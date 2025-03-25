@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <!-- Deaktiviert das Zoomen auf mobilen Geräten -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Weltengenerator mit Spiel</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: monospace;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    /* Standard: Das Ausgabefeld hat 60ch (für 30 Zellen à 2ch) */
+    #output {
+      width: 60ch;
+      height: 15em;
+      background: black;
+      color: white;
+      padding: 10px;
+      border: 1px solid white;
+      display: inline-block;
+      overflow: hidden;
+      line-height: 1.2em;
+      font-size: 2em;
+      margin-top: 10px;
+    }
+    /* Jede Zelle erhält eine feste Breite von 2ch */
+    .cell {
+      display: inline-block;
+      width: 2ch;
+      text-align: center;
+    }
+    /* Anzeige der Spielinfo (Spielfigur und Ziel) */
+    #gameInfo {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    /* Statuszeile: Timer und gefundene Ziele */
+    #statusLine {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    .slider-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0;
+    }
+    .slider-group label {
+      margin-right: 10px;
+      min-width: 60px;
+      text-align: right;
+    }
+    /* Radio-Buttons als Chip-Auswahl */
+    #worldSelection {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+    #worldSelection label {
+      background: #333;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    #worldSelection input[type="radio"] {
+      display: none;
+    }
+    #worldSelection input[type="radio"]:checked + span {
+      background: #555;
+    }
+    button {
+      margin: 5px;
+      padding: 10px;
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #555;
+    }
+    /* Virtuelle Bewegungstasten */
+    #virtualButtons {
+      margin-top: 20px;
+    }
+    #virtualButtons button {
+      width: 3em;
+      height: 3em;
+      font-size: 1.5em;
+      margin: 5px;
+      touch-action: manipulation;
+      -ms-touch-action: manipulation;
+    }
+    /* Kompakte Darstellung für kleine Bildschirme */
+    @media (max-width: 600px) {
+      #output {
+        width: 100%;
+        font-size: 1.5em;
+      }
+      .cell {
+        width: calc(100% / 30);
+      }
+      #virtualButtons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 5px 0;
+        display: flex;
+        justify-content: center;
+      }
+      #virtualButtons button {
+        width: 3em;
+        height: 3em;
+        font-size: 1.2em;
+        margin: 5px;
+      }
+    }
+  </style>
+  <!-- Einbinden von html2canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <h1>Weltengenerator mit Spiel</h1>
+  <input type="text" id="inputText" maxlength="30" placeholder="Text eingeben...">
+  <br><br>
+  
+  <!-- Anzahl-Slider -->
+  <div class="slider-group">
+    <label for="symbolSlider">Anzahl</label>
+    <input type="range" id="symbolSlider" min="10" max="100" value="25" oninput="updateSymbolCount(this.value)">
+    <span id="symbolCount">25</span>
+  </div>
+  
+  <!-- Zoom-Slider -->
+  <div class="slider-group">
+    <label for="zoomSlider">Zoom</label>
+    <input type="range" id="zoomSlider" min="1" max="3" step="0.1" value="2" oninput="updateZoom(this.value)">
+    <span id="zoomPercentage">200%</span>
+  </div>
+  
+  <!-- Alternative Welten-Auswahl via Radio-Buttons -->
+  <div id="worldSelection">
+    <!-- Vorhandene Welten -->
+    <label>
+      <input type="radio" name="worldType" value="galaxy" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)" checked>
+      <span>Galaxy</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="flowers" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Blumenwiese</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="water" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Wasserwelt</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="forest" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Waldwelt</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="lava" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Lavahölle</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="steampunk" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Steampunk</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="desert" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Wüstenwelt</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="medieval" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Mittelalter</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="racing" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Autorennen</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="airport" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Flughafen</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="cyberpunk" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Cyberpunk</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="northpole" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Nordpol</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="volcano" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Vulkaninsel</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="office" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Büro</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="candyland" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Candyland</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="jungle" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Dschungel</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="circus" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Zirkus</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="ruins" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Vergessene Ruinen</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="disco" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Disco</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="concert" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Konzert</span>
+    </label>
+    <!-- Neue Welten -->
+    <label>
+      <input type="radio" name="worldType" value="fairytale" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Märchenwelt</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="apocalypse" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Apokalypse</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="cave" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Höhlenwelt</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="cloud" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Wolkenwelt</span>
+    </label>
+    <label>
+      <input type="radio" name="worldType" value="arcade" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
+      <span>Retro-Arcade</span>
+    </label>
+  </div>
+  
+  <!-- Anzeige der Spielinfo: Spielfigur und Ziel -->
+  <div id="gameInfo"></div>
+  <!-- Anzeige der Statuszeile: Timer und gefundene Ziele -->
+  <div id="statusLine">
+    <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Gefundene Ziele: 0</span>
+  </div>
+  
+  <!-- Ausgabe des Spielfelds -->
+  <div id="output"></div>
+  
+  <!-- Virtuelle Bewegungstasten -->
+  <div id="virtualButtons">
+    <button onclick="movePlayer(0,-1)" ontouchend="movePlayer(0,-1)">↑</button><br>
+    <button onclick="movePlayer(-1,0)" ontouchend="movePlayer(-1,0)">←</button>
+    <button onclick="movePlayer(1,0)" ontouchend="movePlayer(1,0)">→</button><br>
+    <button onclick="movePlayer(0,1)" ontouchend="movePlayer(0,1)">↓</button>
+  </div>
+  
+  <br>
+  <button onclick="copyToClipboard()">Kopieren</button>
+  <button onclick="generateAltText()">ALT Text generieren</button>
+  
+  <script>
+    // Globale Variablen
+    let lastWorldType = 'galaxy';
+    let maxSymbolCount = 25;
+    const width = 30;
+    const height = 10;
+    let lastCallTimestamp = 0;
+    let gameGrid = []; // 2D-Array des Spielfelds
+    let playerX = 0, playerY = 0;
+    let foundCount = 0;
+    
+    // Timer-Variablen
+    let timerStart = null;
+    let timerInterval = null;
+    function updateTimer() {
+      const seconds = Math.floor((Date.now() - timerStart) / 1000);
+      document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
+    }
+    
+    // Definition der Welttypen
+    const worldTypes = {
+      galaxy: { 
+        symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
+        rare: ["👾", "👽", "🎮", "👩‍🚀", "🔫", "🛰️"],
+        bottom: ["🔭", "📡"]
+      },
+      flowers: { 
+        symbols: ["🌸", "🌹", "🌺", "🌻", "🌼", "💐", "🥀", "🌷", "🍀"],
+        rare: ["🦋", "🐞", "🐝", "🍄", "🐇", "🍄‍🟫", "🍄", "🪰", "🪁"],
+        bottom: []
+      },
+      water: { 
+        symbols: ["🐠", "🐟", "🐬", "🐳", "🐋", "🦈", "🦑", "🐙", "🌊", "🚤", "⛵", "🚢", "🛥️"],
+        rare: ["🧜‍♂️", "🧜‍♀️", "🐋", "🤿", "🥽", "🔱", "⚓", "🦈", "🛟", "🩳", "🏊‍♀️", "🏊‍♂️", "🏊", "🏄", "🤽‍♂️"],
+        bottom: []
+      },
+      forest: { 
+        symbols: ["🌲", "🌳", "🌴", "🍄", "🌿", "🍃", "🍂", "🦉", "🐿️", "🦌", "🐻", "🐇"],
+        rare: ["🦅", "🪺", "🪹"],
+        bottom: []
+      },
+      lava: { 
+        symbols: ["🔥", "🌋", "🪨", "💀", "👹", "⚔️", "♨️"],
+        rare: [],
+        bottom: []
+      },
+      steampunk: { 
+        symbols: ["⚙️", "🔩", "🛠️", "⏳", "🚂", "🎩", "🕰️", "🔧", "🧰"],
+        rare: [],
+        bottom: []
+      },
+      desert: { 
+        symbols: ["🏜️", "🌵", "🐫", "🦂", "☀️", "🌞", "🐍", "🦎"],
+        rare: [],
+        bottom: []
+      },
+      medieval: { 
+        symbols: ["⚔️", "🛡️", "🏰", "🐉", "🧙‍♂️", "👑", "🏹", "🗡️", "📜"],
+        rare: [],
+        bottom: []
+      },
+      racing: { 
+        symbols: ["🏎️", "🚦", "🛣️", "🏁", "🚗", "💨", "🚘", "⛽"],
+        rare: [],
+        bottom: []
+      },
+      airport: { 
+        symbols: ["✈️", "🛫", "🛬", "🛄", "🎫", "🛩️", "🚁"],
+        rare: [],
+        bottom: []
+      },
+      cyberpunk: { 
+        symbols: ["🔮", "💾", "🕶️", "🛸", "🤖", "⚡", "🎛️", "🖥️", "💡", "📡"],
+        rare: [],
+        bottom: []
+      },
+      northpole: { 
+        symbols: ["❄️", "⛄", "🎅", "🦌", "🏔️", "🌨️", "🎁", "🛷", "🌲"],
+        rare: [],
+        bottom: []
+      },
+      volcano: { 
+        symbols: ["🌋", "🔥", "🪨", "💀", "⛏️", "🌪️", "♨️", "🚒"],
+        rare: [],
+        bottom: []
+      },
+      office: { 
+        symbols: ["⌨️", "☕", "🖥️", "📎", "📁", "🖨️", "📊", "📅", "🖋️", "📞", "💻", "📠"],
+        rare: ["🖇️", "🗃️", "🏢", "🗂️", "🧑‍💼", "👩‍💼"],
+        bottom: []
+      },
+      candyland: { 
+        symbols: ["🍭", "🍫", "🍩", "🍪", "🍬", "🍰", "🎂", "🍧", "🍦"],
+        rare: ["🍨", "🧁", "🍠", "🧇"],
+        bottom: []
+      },
+      jungle: { 
+        symbols: ["🌴", "🐒", "🦜", "🍌", "🐍", "🐅", "🐆", "🦁", "🐘"],
+        rare: [],
+        bottom: []
+      },
+      circus: { 
+        symbols: ["🎪", "🤹‍♂️", "🎭", "🐘", "🎠", "🤡", "🎟️", "🎫"],
+        rare: [],
+        bottom: []
+      },
+      ruins: { 
+        symbols: ["🏺", "🗿", "⛏️", "🏛️", "🔦", "🏚️", "🗺️"],
+        rare: [],
+        bottom: []
+      },
+      disco: { 
+        symbols: ["🪩", "💃", "🕺", "🎶", "🔊", "🌈", "🎧", "💿"],
+        rare: [],
+        bottom: []
+      },
+      concert: { 
+        symbols: ["🎤", "🎸", "🥁", "🎵", "🎧", "🎹", "🎺", "🎷"],
+        rare: [],
+        bottom: []
+      },
+      // Neue Welten:
+      fairytale: {
+        symbols: ["🧚", "✨", "🌈"],
+        rare: ["🦄", "🔮", "🪄"],
+        bottom: []
+      },
+      apocalypse: {
+        symbols: ["☢️", "🏚️", "🔥"],
+        rare: ["💣", "🌅"],
+        bottom: []
+      },
+      cave: {
+        symbols: ["🪨", "⛰️", "🕸️"],
+        rare: ["🏺", "🕯️"],
+        bottom: []
+      },
+      cloud: {
+        symbols: ["☁️", "🌤️", "🌈"],
+        rare: ["🕊️", "🦋"],
+        bottom: []
+      },
+      arcade: {
+        symbols: ["🎮", "👾", "🕹️"],
+        rare: ["⭐️", "💎"],
+        bottom: []
+      }
+    };
+    
+    // Spiel-Einstellungen: Spieler- und Ziel-Symbole je Welt
+    const gameSettings = {
+      galaxy:    { player: "🚀", target: "🌍" },
+      water:     { player: "🏊‍♂️", target: "🐋" },
+      flowers:   { player: "🐝", target: "🌹" },
+      forest:    { player: "🦊", target: "🍄" },
+      lava:      { player: "😎", target: "🔥" },
+      steampunk: { player: "🤖", target: "⚙️" },
+      desert:    { player: "🐫", target: "🌵" },
+      medieval:  { player: "🧙‍♂️", target: "👑" },
+      racing:    { player: "🏎️", target: "🚦" },
+      airport:   { player: "✈️", target: "🛫" },
+      cyberpunk: { player: "🤖", target: "💾" },
+      northpole: { player: "⛄", target: "❄️" },
+      volcano:   { player: "🚒", target: "🌋" },
+      office:    { player: "👩‍💼", target: "📎" },
+      candyland: { player: "🍭", target: "🍬" },
+      jungle:    { player: "🐒", target: "🍌" },
+      circus:    { player: "🤹‍♂️", target: "🎪" },
+      ruins:     { player: "🏺", target: "🗿" },
+      disco:     { player: "🕺", target: "💃" },
+      concert:   { player: "🎤", target: "🎸" },
+      pirate:    { player: "🏴‍☠️", target: "☠️" },
+      ghost:     { player: "👻", target: "🎃" },
+      party:     { player: "🥳", target: "🎉" },
+      fairytale: { player: "🧚‍♀️", target: "🦄" },
+      apocalypse:{ player: "😷", target: "🌅" },
+      cave:      { player: "⛏️", target: "🏺" },
+      cloud:     { player: "☁️", target: "🕊️" },
+      arcade:    { player: "🎮", target: "💎" }
+    };
+    
+    // Timer aktualisieren (wird jede Sekunde aufgerufen)
+    function updateTimer() {
+      const seconds = Math.floor((Date.now() - timerStart) / 1000);
+      document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
+    }
+    
+    // Erzeugt das Spielfeld (2D-Array) und platziert ggf. den Eingabetext.
+    function generateWorld(type) {
+      // Timer zurücksetzen
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      timerStart = null;
+      document.getElementById("timerDisplay").innerText = "Zeit: 0 s";
+      
+      const world = worldTypes[type];
+      let grid = Array.from({ length: height }, () => Array(width).fill(" "));
+      
+      // Zufällige Platzierung der Symbole
+      for (let i = 0; i < maxSymbolCount; i++) {
+        let x, y;
+        do {
+          x = Math.floor(Math.random() * width);
+          y = Math.floor(Math.random() * height);
+        } while (grid[y][x] !== " ");
+        let symbol;
+        if (Math.random() < 0.09 && world.rare.length > 0) {
+          symbol = world.rare[Math.floor(Math.random() * world.rare.length)];
+        } else {
+          symbol = world.symbols[Math.floor(Math.random() * world.symbols.length)];
+        }
+        grid[y][x] = symbol;
+      }
+      
+      // Optional: Platziere ein "bottom"-Symbol in der untersten Zeile
+      if (world.bottom && world.bottom.length > 0) {
+        let x = Math.floor(Math.random() * width);
+        grid[height - 1][x] = world.bottom[Math.floor(Math.random() * world.bottom.length)];
+      }
+      
+      // Falls ein Eingabetext vorhanden ist, wird dieser in der ersten Zeile zentriert.
+      const inputText = document.getElementById("inputText").value;
+      if (inputText.length > 0) {
+        let textStart = Math.max(0, Math.floor((width - inputText.length) / 2));
+        for (let i = 0; i < inputText.length; i++) {
+          grid[0][textStart + i] = inputText[i];
+        }
+      }
+      
+      // Stelle sicher, dass mindestens ein Ziel vorhanden ist
+      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+      if (!grid.flat().includes(currentGame.target)) {
+        let freeCells = [];
+        for (let i = 0; i < height; i++) {
+          for (let j = 0; j < width; j++) {
+            if (grid[i][j] === " ") {
+              freeCells.push({ x: j, y: i });
+            }
+          }
+        }
+        if (freeCells.length > 0) {
+          const pos = freeCells[Math.floor(Math.random() * freeCells.length)];
+          grid[pos.y][pos.x] = currentGame.target;
+        }
+      }
+      
+      // Setze das globale Spielfeld
+      gameGrid = grid;
+      
+      // Wähle einen zufälligen freien Platz für den Spieler
+      let freeCells = [];
+      for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+          if (grid[i][j] === " ") {
+            freeCells.push({ x: j, y: i });
+          }
+        }
+      }
+      if (freeCells.length > 0) {
+        const pos = freeCells[Math.floor(Math.random() * freeCells.length)];
+        playerX = pos.x;
+        playerY = pos.y;
+      } else {
+        playerX = 0;
+        playerY = 0;
+      }
+      foundCount = 0;
+      updateFoundCount();
+      
+      // Aktualisiere die Spielinfo (Spielfigur und Ziel)
+      document.getElementById("gameInfo").innerText = "Du steuerst " 
+        + currentGame.player + " und musst " + currentGame.target + " finden.";
+      
+      renderGameGrid();
+    }
+    
+    // Aktualisiert die Anzeige der gefundenen Ziele
+    function updateFoundCount() {
+      document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
+    }
+    
+    // Rendert das Spielfeld als HTML, wobei jede Zelle in ein <span class="cell"> eingebettet wird.
+    function renderGameGrid() {
+      let output = "";
+      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+      for (let i = 0; i < height; i++) {
+        let row = "";
+        for (let j = 0; j < width; j++) {
+          if (i === playerY && j === playerX) {
+            row += `<span class="cell">${currentGame.player}</span>`;
+          } else {
+            row += `<span class="cell">${gameGrid[i][j]}</span>`;
+          }
+        }
+        output += row + "<br>";
+      }
+      document.getElementById("output").innerHTML = output;
+    }
+    
+    // Prüft, ob noch Zielsymbole im Spielfeld vorhanden sind.
+    function targetRemaining(target) {
+      for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+          if (gameGrid[i][j] === target) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+    
+    // Spielt einen "Pew"-Sound ab (bei Ziel-Erfassung)
+  function playPewSound() {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const oscillator = ctx.createOscillator();
+  const gain = ctx.createGain();
+  oscillator.type = "square";
+  oscillator.frequency.setValueAtTime(440, ctx.currentTime);
+  oscillator.connect(gain);
+  gain.connect(ctx.destination);
+  oscillator.start(ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
+  oscillator.stop(ctx.currentTime + 0.2);
+}
+
+function playPowSound() {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const oscillator = ctx.createOscillator();
+  const gain = ctx.createGain();
+  oscillator.type = "sawtooth";
+  oscillator.frequency.setValueAtTime(200, ctx.currentTime);
+  oscillator.connect(gain);
+  gain.connect(ctx.destination);
+  oscillator.start(ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
+  oscillator.stop(ctx.currentTime + 0.2);
+}
+
+    function playTuschSound() {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  if (ctx.state === 'suspended') {
+    ctx.resume();
+  }
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = "sine";
+
+  // Zeitbasis
+  let t = ctx.currentTime;
+
+  // Erzeuge in den ersten 300 ms ein rhythmisches "Ta-ta-ta" und lasse danach einen langen Ton ausklingen:
+  osc.frequency.setValueAtTime(400, t);               // Start: 400 Hz
+  osc.frequency.linearRampToValueAtTime(400, t + 0.1);  // Halten bis 0.1 s
+  osc.frequency.linearRampToValueAtTime(300, t + 0.2);  // Abfall auf 300 Hz (erstes "ta")
+  osc.frequency.linearRampToValueAtTime(400, t + 0.3);  // Wiederanstieg auf 400 Hz (zweites "ta")
+
+  // Danach langsam auf einen tiefen Ton abfallen lassen:
+  osc.frequency.linearRampToValueAtTime(150, t + 1.2);  // "daaaaaa"
+
+  // Gain-Hüllkurve: Anfang laut, dann exponentiell abklingen
+  gain.gain.setValueAtTime(0.7, t);
+  gain.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
+
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  osc.start(t);
+  osc.stop(t + 1.2);
+}
+
+
+
+  
+    // Bewegt den Spieler, falls möglich, in die Richtung (dx, dy)
+    function movePlayer(dx, dy) {
+      // Starte Timer bei der ersten Bewegung
+      if (!timerStart) {
+        timerStart = Date.now();
+        timerInterval = setInterval(updateTimer, 1000);
+      }
+      
+      const newX = playerX + dx;
+      const newY = playerY + dy;
+      if (newX < 0 || newX >= width || newY < 0 || newY >= height) return;
+      const cell = gameGrid[newY][newX];
+      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+      // Der Spieler darf nur auf ein leeres Feld ziehen.
+      if (cell !== " ") {
+        if (cell === currentGame.target) {
+          // Ziel zuerst ausblenden, dann neu rendern, Sound abspielen, Zähler erhöhen.
+          gameGrid[newY][newX] = " ";
+          renderGameGrid();
+          playPewSound();
+          foundCount++;
+          updateFoundCount();
+          // Falls kein Ziel mehr vorhanden, nach kurzer Verzögerung Tusch-Sound abspielen und Spielende anzeigen.
+		if (!targetRemaining(currentGame.target)) {
+  setTimeout(() => {
+    playTuschSound();
+    setTimeout(() => {
+      const seconds = Math.floor((Date.now() - timerStart) / 1000);
+      clearInterval(timerInterval);
+      timerInterval = null;
+      alert("Spiel beendet! Gefundene Ziele: " + foundCount + ", Zeit: " + seconds + " s");
+      // Nach Bestätigung des Alerts: Zufällig eine neue Welt laden.
+      const allWorlds = Object.keys(gameSettings);
+      const randomWorld = allWorlds[Math.floor(Math.random() * allWorlds.length)];
+      generateWorldWrapper(randomWorld);
+    }, 600);
+  }, 300);
+}
+
+        } else {
+          // Ungültige Bewegung: Fehler-Ton "Pow"
+          playPowSound();
+        }
+        return; // Keine Bewegung, wenn die Zelle nicht leer war.
+      }
+      // Bei leerer Zelle: Bewege den Spieler.
+      playerX = newX;
+      playerY = newY;
+      renderGameGrid();
+    }
+    
+    // Tastatursteuerung (Pfeiltasten)
+    document.addEventListener("keydown", function(e) {
+      let dx = 0, dy = 0;
+      switch (e.key) {
+        case "ArrowUp":    dy = -1; break;
+        case "ArrowDown":  dy = 1;  break;
+        case "ArrowLeft":  dx = -1; break;
+        case "ArrowRight": dx = 1;  break;
+        default: return;
+      }
+      movePlayer(dx, dy);
+    });
+    
+    // Wrapper für die Erzeugung der Welt (verhindert doppelte Aufrufe)
+    function generateWorldWrapper(type) {
+  const now = Date.now();
+  if (now - lastCallTimestamp < 100) return;
+  lastCallTimestamp = now;
+  lastWorldType = type;
+  generateWorld(type);
+}
+
+    
+    function updateSymbolCount(value) {
+      maxSymbolCount = parseInt(value);
+      document.getElementById("symbolCount").innerText = value;
+      generateWorld(lastWorldType);
+    }
+    
+    // Kopiert den aktuell gerenderten Snapshot (als Bild) in den Zwischenspeicher.
+    function copyToClipboard() {
+      if (!navigator.clipboard || !navigator.clipboard.write) {
+        alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
+        return;
+      }
+      html2canvas(document.getElementById("output")).then(canvas => {
+        canvas.toBlob(blob => {
+          const item = new ClipboardItem({ "image/png": blob });
+          navigator.clipboard.write([item]).then(() => {
+            alert("Bild kopiert!");
+          }).catch(err => {
+            console.error("Fehler beim Kopieren: ", err);
+            alert("Das Kopieren von Bitmaps ist auf diesem Gerät möglicherweise nicht unterstützt.");
+          });
+        });
+      });
+    }
+    
+    // Generiert einen ALT-Text (ohne Zoomfaktor) und kopiert diesen in den Zwischenspeicher.
+    function generateAltText() {
+      const worldDescriptions = {
+        galaxy: "galaktische",
+        flowers: "blumige",
+        water: "wasserbasierte",
+        forest: "waldartige",
+        lava: "feurige",
+        steampunk: "steampunk",
+        desert: "wüstenartige",
+        medieval: "mittelalterliche",
+        racing: "rennbegeisterte",
+        airport: "flughafenbezogene",
+        cyberpunk: "cyberpunk",
+        northpole: "nordpolartige",
+        volcano: "vulkanische",
+        office: "bürokratische",
+        candyland: "süße",
+        jungle: "dschungelartige",
+        circus: "zirkusartige",
+        ruins: "ruinöse",
+        disco: "discoartige",
+        concert: "konzertbezogene",
+        pirate: "piratenhafte",
+        ghost: "geisterhafte",
+        party: "partyorientierte",
+        fairytale: "märchenhafte",
+        apocalypse: "apokalyptische",
+        cave: "höllische",
+        cloud: "himmelhafte",
+        arcade: "retro-arcade"
+      };
+      const worldType = lastWorldType;
+      const symbolCount = maxSymbolCount;
+      const inputText = document.getElementById("inputText").value.trim();
+      let altText = "Alternativtext: Dieses Bild zeigt eine " +
+                    (worldDescriptions[worldType] || worldType) +
+                    " Welt, generiert mit " + symbolCount + " zufällig verteilten Symbolen.";
+      if (inputText !== "") {
+        altText += " Der Text '" + inputText + "' wurde in der ersten Zeile zentriert.";
+      }
+      navigator.clipboard.writeText(altText).then(() => {
+        alert("ALT Text kopiert!");
+      }).catch(err => {
+        console.error("Fehler beim Kopieren des ALT Texts: ", err);
+      });
+    }
+    
+    function updateZoom(value) {
+      document.getElementById("output").style.fontSize = value + "em";
+      document.getElementById("zoomPercentage").innerText = Math.round(value * 100) + "%";
+    }
+    
+    // Verhindere, dass Doppel-Touch auf den virtuellen Buttons den Browser-Zoom auslöst.
+    document.querySelectorAll("#virtualButtons button").forEach(button => {
+      button.addEventListener("touchstart", function(e) {
+        e.preventDefault();
+      });
+    });
+    
+    // Initiale Einstellungen beim Laden der Seite
+    window.addEventListener("load", () => {
+      updateZoom(document.getElementById("zoomSlider").value);
+      generateWorld(lastWorldType);
+    });
+    
+    // Damit generateWorldWrapper global verfügbar ist:
+    window.generateWorldWraer;
+  </script>
+</body>
+</html>
