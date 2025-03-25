@@ -255,6 +255,9 @@
       <span>Retro-Arcade</span>
     </label>
   </div>
+    <br>
+  <button onclick="copyToClipboard()">Kopieren</button>
+  <button onclick="generateAltText()">ALT Text generieren</button>
   
   <!-- Anzeige der Spielinfo: Spielfigur und Ziel -->
   <div id="gameInfo"></div>
@@ -274,10 +277,7 @@
     <button onclick="movePlayer(0,1)" ontouchend="movePlayer(0,1)">↓</button>
   </div>
   
-  <br>
-  <button onclick="copyToClipboard()">Kopieren</button>
-  <button onclick="generateAltText()">ALT Text generieren</button>
-  
+
   <script>
     // Globale Variablen
     let lastWorldType = 'galaxy';
