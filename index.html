@@ -2,6 +2,159 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Weltengenerator mit Spiel</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: monospace;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    #output {
+      width: 60ch;
+      height: 15em;
+      background: black;
+      color: white;
+      padding: 10px;
+      border: 1px solid white;
+      display: inline-block;
+      overflow: hidden;
+      line-height: 1.2em;
+      font-size: 2em;
+      margin-top: 10px;
+    }
+    .cell {
+      display: inline-block;
+      width: 2ch;
+      text-align: center;
+    }
+    #gameInfo {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    #statusLine {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    .slider-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0;
+    }
+    .slider-group label {
+      margin-right: 10px;
+      min-width: 60px;
+      text-align: right;
+    }
+    #worldSelection {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+      overflow-x: auto;
+    }
+    #worldSelection label {
+      background: #333;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    #worldSelection input[type="radio"] {
+      display: none;
+    }
+    #worldSelection input[type="radio"]:checked + span {
+      background: #555;
+    }
+    button {
+      margin: 5px;
+      padding: 10px;
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #555;
+    }
+    #virtualButtons {
+      margin-top: 20px;
+    }
+    #virtualButtons button {
+      width: 3em;
+      height: 3em;
+      font-size: 1.5em;
+      margin: 5px;
+      touch-action: manipulation;
+      -ms-touch-action: manipulation;
+    }
+    @media (max-width: 600px) {
+      #output {
+        width: 100%;
+        font-size: 1.5em;
+      }
+      .cell {
+        width: calc(100% / 30);
+      }
+      #virtualButtons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 5px 0;
+        display: flex;
+        justify-content: center;
+      }
+      #virtualButtons button {
+        width: 3em;
+        height: 3em;
+        font-size: 1.2em;
+        margin: 5px;
+      }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <h1>Weltengenerator mit Spiel</h1>
+  <input type="text" id="inputText" maxlength="30" placeholder="Text eingeben...">
+  <div class="slider-group">
+    <label for="symbolSlider">Anzahl</label>
+    <input type="range" id="symbolSlider" min="10" max="100" value="50" oninput="updateSymbolCount(this.value)">
+    <span id="symbolCount">50</span>
+  </div>
+  <div class="slider-group">
+    <label for="zoomSlider">Zoom</label>
+    <input type="range" id="zoomSlider" min="1" max="3" step="0.1" value="2" oninput="updateZoom(this.value)">
+    <span id="zoomPercentage">200%</span>
+  </div>
+  <div id="worldSelection"></div>
+  <div id="gameInfo"></div>
+  <div id="statusLine">
+    <span id="timerDisplay">Zeit: 0 s</span> |
+    <span id="foundCount">Zu findende Zahl Ziele: 0</span>
+  </div>
+  <div id="output"></div>
+  <div id="virtualButtons">
+    <button onclick="movePlayer(0,-1)" ontouchend="movePlayer(0,-1)">↑</button><br>
+    <button onclick="movePlayer(-1,0)" ontouchend="movePlayer(-1,0)">←</button>
+    <button onclick="movePlayer(1,0)" ontouchend="movePlayer(1,0)">→</button><br>
+    <button onclick="movePlayer(0,1)" ontouchend="movePlayer(0,1)">↓</button>
+  </div>
+  <button onclick="copyToClipboard()">Kopieren</button>
+  <button onclick="generateAltText()">ALT Text generieren</button>
+  <script>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
   <!-- Deaktiviert das Zoomen auf mobilen Geräten -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Weltengenerator mit Spiel</title>
@@ -824,6 +977,10 @@
     
     // Damit generateWorldWrapper global verfügbar ist:
     window.generateWorldWrapper = generateWorldWrapper;
+  </script>
+</body>
+</html>
+
   </script>
 </body>
 </html>
