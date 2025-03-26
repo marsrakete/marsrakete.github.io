@@ -39,7 +39,7 @@
       font-size: 1.2em;
       margin-bottom: 10px;
     }
-    /* Statuszeile: Timer und noch zu findende Ziele */
+    /* Statuszeile: Timer und zu findende Zielzahl */
     #statusLine {
       font-size: 1.2em;
       margin-top: 10px;
@@ -259,7 +259,7 @@
   
   <!-- Anzeige der Spielinfo: Spielfigur und Ziel -->
   <div id="gameInfo"></div>
-  <!-- Anzeige der Statuszeile: Timer und zu findende Ziele -->
+  <!-- Anzeige der Statuszeile: Timer und zu findende Zielzahl -->
   <div id="statusLine">
     <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Zu findende Zahl Ziele: 0</span>
   </div>
@@ -282,14 +282,14 @@
   <script>
     // Globale Variablen
     let lastWorldType = 'galaxy';
-    let maxSymbolCount = 50; // Standardwert jetzt 50
+    let maxSymbolCount = 50; // Standardwert für den Symbolslider
     const width = 30;
     const height = 10;
     let lastCallTimestamp = 0;
     let gameGrid = []; // 2D-Array des Spielfelds
     let playerX = 0, playerY = 0;
     let foundCount = 0;
-    let initialTargetCount = 0; // Gesamtzahl an Ziel-Symbolen im Grid
+    let initialTargetCount = 0; // Anzahl der zu Beginn vorhandenen Ziel-Symbole
     
     // Timer-Variablen
     let timerStart = null;
@@ -513,10 +513,7 @@
       
       // Stelle sicher, dass mindestens ein Ziel vorhanden ist
       const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-      // Zähle die Anzahl der Ziel-Symbole im Grid
-      initialTargetCount = grid.flat().filter(cell => cell === currentGame.target).length;
-      if (initialTargetCount === 0) {
-        // Falls keines vorhanden ist, füge an einer freien Stelle ein Ziel hinzu.
+      if (!grid.flat().includes(currentGame.target)) {
         let freeCells = [];
         for (let i = 0; i < height; i++) {
           for (let j = 0; j < width; j++) {
@@ -528,12 +525,21 @@
         if (freeCells.length > 0) {
           const pos = freeCells[Math.floor(Math.random() * freeCells.length)];
           grid[pos.y][pos.x] = currentGame.target;
-          initialTargetCount = 1;
         }
       }
       
       // Setze das globale Spielfeld
       gameGrid = grid;
+      
+      // Ermittele die Anzahl der zu findenden Ziel-Symbole
+      initialTargetCount = 0;
+      for (let i = 0; i < height; i++) {
+        for (let j = 0; j < width; j++) {
+          if (grid[i][j] === currentGame.target) {
+            initialTargetCount++;
+          }
+        }
+      }
       
       // Wähle einen zufälligen freien Platz für den Spieler
       let freeCells = [];
@@ -553,7 +559,7 @@
         playerY = 0;
       }
       foundCount = 0;
-      updateTargetCount();
+      updateFoundCount();
       
       // Aktualisiere die Spielinfo (Spielfigur und Ziel)
       document.getElementById("gameInfo").innerText = "Du steuerst " + currentGame.player + " und musst " + currentGame.target + " finden.";
@@ -561,10 +567,9 @@
       renderGameGrid();
     }
     
-    // Aktualisiert die Anzeige der noch zu findenden Ziele
-    function updateTargetCount() {
-      const remaining = initialTargetCount - foundCount;
-      document.getElementById("foundCount").innerText = "Zu findende Zahl Ziele: " + remaining;
+    // Aktualisiert die Anzeige der zu findenden Zielzahl
+    function updateFoundCount() {
+      document.getElementById("foundCount").innerText = "Zu findende Zahl Ziele: " + (initialTargetCount - foundCount);
     }
     
     // Rendert das Spielfeld als HTML, wobei jede Zelle in ein <span class="cell"> eingebettet wird.
@@ -585,7 +590,7 @@
       document.getElementById("output").innerHTML = output;
     }
     
-    // Prüft, ob noch Zielsymbole im Spielfeld vorhanden sind.
+    // Prüft, ob noch Ziel-Symbole im Spielfeld vorhanden sind.
     function targetRemaining(target) {
       for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
@@ -626,7 +631,7 @@
     }
     
     // Spielt einen "Tusch"-Sound (Fanfare) ab, der beim Spielende untermalt.
-    // Angepasst auf einen längeren "Tatataaaadaaaaaa!"-Sound
+    // Dieser Sound soll länger und mehrschichtig klingen: "Tatataaaadaaaaaa!"
     function playTuschSound() {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       if (ctx.state === 'suspended') {
@@ -635,13 +640,14 @@
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = "sine";
+      
       let t = ctx.currentTime;
-      // Rhythmischer Beginn: mehrere kurze Schläge
+      // Mehrfache Schläge in den ersten 300 ms:
       osc.frequency.setValueAtTime(400, t);
       osc.frequency.linearRampToValueAtTime(400, t + 0.1);
       osc.frequency.linearRampToValueAtTime(300, t + 0.2);
       osc.frequency.linearRampToValueAtTime(400, t + 0.3);
-      // Dann längere Ausklangphase:
+      // Langer Abfall:
       osc.frequency.linearRampToValueAtTime(150, t + 1.2);
       
       gain.gain.setValueAtTime(0.7, t);
@@ -667,6 +673,7 @@
       if (newX < 0 || newX >= width || newY < 0 || newY >= height) return;
       const cell = gameGrid[newY][newX];
       const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+      
       // Der Spieler darf nur auf ein leeres Feld ziehen.
       if (cell !== " ") {
         if (cell === currentGame.target) {
@@ -675,15 +682,15 @@
           renderGameGrid();
           playPewSound();
           foundCount++;
-          updateTargetCount();
-          // Falls kein Ziel mehr vorhanden, nach kurzer Verzögerung Tusch-Sound abspielen und Spielende anzeigen.
-          if (!targetRemaining(currentGame.target)) {
+          updateFoundCount();
+          // Falls kein Ziel mehr vorhanden, Spielende
+          if ((initialTargetCount - foundCount) === 0) {
             setTimeout(() => {
               playTuschSound();
               const seconds = Math.floor((Date.now() - timerStart) / 1000);
               clearInterval(timerInterval);
               timerInterval = null;
-              alert("Spiel beendet! Zu findende Zahl Ziele: " + (initialTargetCount - foundCount) + ", Zeit: " + seconds + " s");
+              alert("Spiel beendet! Zu findende Ziele: " + (initialTargetCount - foundCount) + ", Zeit: " + seconds + " s");
               // Nach Bestätigung des Alerts: Zufällig eine neue Welt laden.
               const allWorlds = Object.keys(gameSettings);
               const randomWorld = allWorlds[Math.floor(Math.random() * allWorlds.length)];
