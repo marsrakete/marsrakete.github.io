@@ -2,159 +2,6 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Weltengenerator mit Spiel</title>
-  <style>
-    body {
-      background-color: #121212;
-      color: white;
-      font-family: monospace;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
-    #output {
-      width: 60ch;
-      height: 15em;
-      background: black;
-      color: white;
-      padding: 10px;
-      border: 1px solid white;
-      display: inline-block;
-      overflow: hidden;
-      line-height: 1.2em;
-      font-size: 2em;
-      margin-top: 10px;
-    }
-    .cell {
-      display: inline-block;
-      width: 2ch;
-      text-align: center;
-    }
-    #gameInfo {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
-    #statusLine {
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-    .slider-group {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 10px 0;
-    }
-    .slider-group label {
-      margin-right: 10px;
-      min-width: 60px;
-      text-align: right;
-    }
-    #worldSelection {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px 0;
-      overflow-x: auto;
-    }
-    #worldSelection label {
-      background: #333;
-      padding: 10px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-      user-select: none;
-      white-space: nowrap;
-    }
-    #worldSelection input[type="radio"] {
-      display: none;
-    }
-    #worldSelection input[type="radio"]:checked + span {
-      background: #555;
-    }
-    button {
-      margin: 5px;
-      padding: 10px;
-      background: #333;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #555;
-    }
-    #virtualButtons {
-      margin-top: 20px;
-    }
-    #virtualButtons button {
-      width: 3em;
-      height: 3em;
-      font-size: 1.5em;
-      margin: 5px;
-      touch-action: manipulation;
-      -ms-touch-action: manipulation;
-    }
-    @media (max-width: 600px) {
-      #output {
-        width: 100%;
-        font-size: 1.5em;
-      }
-      .cell {
-        width: calc(100% / 30);
-      }
-      #virtualButtons {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.8);
-        padding: 5px 0;
-        display: flex;
-        justify-content: center;
-      }
-      #virtualButtons button {
-        width: 3em;
-        height: 3em;
-        font-size: 1.2em;
-        margin: 5px;
-      }
-    }
-  </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-</head>
-<body>
-  <h1>Weltengenerator mit Spiel</h1>
-  <input type="text" id="inputText" maxlength="30" placeholder="Text eingeben...">
-  <div class="slider-group">
-    <label for="symbolSlider">Anzahl</label>
-    <input type="range" id="symbolSlider" min="10" max="100" value="50" oninput="updateSymbolCount(this.value)">
-    <span id="symbolCount">50</span>
-  </div>
-  <div class="slider-group">
-    <label for="zoomSlider">Zoom</label>
-    <input type="range" id="zoomSlider" min="1" max="3" step="0.1" value="2" oninput="updateZoom(this.value)">
-    <span id="zoomPercentage">200%</span>
-  </div>
-  <div id="worldSelection"></div>
-  <div id="gameInfo"></div>
-  <div id="statusLine">
-    <span id="timerDisplay">Zeit: 0 s</span> |
-    <span id="foundCount">Zu findende Zahl Ziele: 0</span>
-  </div>
-  <div id="output"></div>
-  <div id="virtualButtons">
-    <button onclick="movePlayer(0,-1)" ontouchend="movePlayer(0,-1)">↑</button><br>
-    <button onclick="movePlayer(-1,0)" ontouchend="movePlayer(-1,0)">←</button>
-    <button onclick="movePlayer(1,0)" ontouchend="movePlayer(1,0)">→</button><br>
-    <button onclick="movePlayer(0,1)" ontouchend="movePlayer(0,1)">↓</button>
-  </div>
-  <button onclick="copyToClipboard()">Kopieren</button>
-  <button onclick="generateAltText()">ALT Text generieren</button>
-  <script>
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
   <!-- Deaktiviert das Zoomen auf mobilen Geräten -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Weltengenerator mit Spiel</title>
@@ -192,7 +39,7 @@
       font-size: 1.2em;
       margin-bottom: 10px;
     }
-    /* Statuszeile: Timer und zu findende Zielzahl */
+    /* Statuszeile: Timer und noch zu findende Ziele */
     #statusLine {
       font-size: 1.2em;
       margin-top: 10px;
@@ -412,7 +259,7 @@
   
   <!-- Anzeige der Spielinfo: Spielfigur und Ziel -->
   <div id="gameInfo"></div>
-  <!-- Anzeige der Statuszeile: Timer und zu findende Zielzahl -->
+  <!-- Anzeige der Statuszeile: Timer und zu findende Ziele -->
   <div id="statusLine">
     <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Zu findende Zahl Ziele: 0</span>
   </div>
@@ -435,14 +282,14 @@
   <script>
     // Globale Variablen
     let lastWorldType = 'galaxy';
-    let maxSymbolCount = 50; // Standardwert für den Symbolslider
+    let maxSymbolCount = 50; // Standardwert jetzt 50
     const width = 30;
     const height = 10;
     let lastCallTimestamp = 0;
     let gameGrid = []; // 2D-Array des Spielfelds
     let playerX = 0, playerY = 0;
     let foundCount = 0;
-    let initialTargetCount = 0; // Anzahl der zu Beginn vorhandenen Ziel-Symbole
+    let initialTargetCount = 0; // Gesamtzahl an Ziel-Symbolen im Grid
     
     // Timer-Variablen
     let timerStart = null;
@@ -666,7 +513,10 @@
       
       // Stelle sicher, dass mindestens ein Ziel vorhanden ist
       const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-      if (!grid.flat().includes(currentGame.target)) {
+      // Zähle die Anzahl der Ziel-Symbole im Grid
+      initialTargetCount = grid.flat().filter(cell => cell === currentGame.target).length;
+      if (initialTargetCount === 0) {
+        // Falls keines vorhanden ist, füge an einer freien Stelle ein Ziel hinzu.
         let freeCells = [];
         for (let i = 0; i < height; i++) {
           for (let j = 0; j < width; j++) {
@@ -678,21 +528,12 @@
         if (freeCells.length > 0) {
           const pos = freeCells[Math.floor(Math.random() * freeCells.length)];
           grid[pos.y][pos.x] = currentGame.target;
+          initialTargetCount = 1;
         }
       }
       
       // Setze das globale Spielfeld
       gameGrid = grid;
-      
-      // Ermittele die Anzahl der zu findenden Ziel-Symbole
-      initialTargetCount = 0;
-      for (let i = 0; i < height; i++) {
-        for (let j = 0; j < width; j++) {
-          if (grid[i][j] === currentGame.target) {
-            initialTargetCount++;
-          }
-        }
-      }
       
       // Wähle einen zufälligen freien Platz für den Spieler
       let freeCells = [];
@@ -712,7 +553,7 @@
         playerY = 0;
       }
       foundCount = 0;
-      updateFoundCount();
+      updateTargetCount();
       
       // Aktualisiere die Spielinfo (Spielfigur und Ziel)
       document.getElementById("gameInfo").innerText = "Du steuerst " + currentGame.player + " und musst " + currentGame.target + " finden.";
@@ -720,9 +561,10 @@
       renderGameGrid();
     }
     
-    // Aktualisiert die Anzeige der zu findenden Zielzahl
-    function updateFoundCount() {
-      document.getElementById("foundCount").innerText = "Zu findende Zahl Ziele: " + (initialTargetCount - foundCount);
+    // Aktualisiert die Anzeige der noch zu findenden Ziele
+    function updateTargetCount() {
+      const remaining = initialTargetCount - foundCount;
+      document.getElementById("foundCount").innerText = "Zu findende Zahl Ziele: " + remaining;
     }
     
     // Rendert das Spielfeld als HTML, wobei jede Zelle in ein <span class="cell"> eingebettet wird.
@@ -743,7 +585,7 @@
       document.getElementById("output").innerHTML = output;
     }
     
-    // Prüft, ob noch Ziel-Symbole im Spielfeld vorhanden sind.
+    // Prüft, ob noch Zielsymbole im Spielfeld vorhanden sind.
     function targetRemaining(target) {
       for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
@@ -784,7 +626,7 @@
     }
     
     // Spielt einen "Tusch"-Sound (Fanfare) ab, der beim Spielende untermalt.
-    // Dieser Sound soll länger und mehrschichtig klingen: "Tatataaaadaaaaaa!"
+    // Angepasst auf einen längeren "Tatataaaadaaaaaa!"-Sound
     function playTuschSound() {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       if (ctx.state === 'suspended') {
@@ -793,14 +635,13 @@
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = "sine";
-      
       let t = ctx.currentTime;
-      // Mehrfache Schläge in den ersten 300 ms:
+      // Rhythmischer Beginn: mehrere kurze Schläge
       osc.frequency.setValueAtTime(400, t);
       osc.frequency.linearRampToValueAtTime(400, t + 0.1);
       osc.frequency.linearRampToValueAtTime(300, t + 0.2);
       osc.frequency.linearRampToValueAtTime(400, t + 0.3);
-      // Langer Abfall:
+      // Dann längere Ausklangphase:
       osc.frequency.linearRampToValueAtTime(150, t + 1.2);
       
       gain.gain.setValueAtTime(0.7, t);
@@ -826,7 +667,6 @@
       if (newX < 0 || newX >= width || newY < 0 || newY >= height) return;
       const cell = gameGrid[newY][newX];
       const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-      
       // Der Spieler darf nur auf ein leeres Feld ziehen.
       if (cell !== " ") {
         if (cell === currentGame.target) {
@@ -835,15 +675,15 @@
           renderGameGrid();
           playPewSound();
           foundCount++;
-          updateFoundCount();
-          // Falls kein Ziel mehr vorhanden, Spielende
-          if ((initialTargetCount - foundCount) === 0) {
+          updateTargetCount();
+          // Falls kein Ziel mehr vorhanden, nach kurzer Verzögerung Tusch-Sound abspielen und Spielende anzeigen.
+          if (!targetRemaining(currentGame.target)) {
             setTimeout(() => {
               playTuschSound();
               const seconds = Math.floor((Date.now() - timerStart) / 1000);
               clearInterval(timerInterval);
               timerInterval = null;
-              alert("Spiel beendet! Zu findende Ziele: " + (initialTargetCount - foundCount) + ", Zeit: " + seconds + " s");
+              alert("Spiel beendet! Zu findende Zahl Ziele: " + (initialTargetCount - foundCount) + ", Zeit: " + seconds + " s");
               // Nach Bestätigung des Alerts: Zufällig eine neue Welt laden.
               const allWorlds = Object.keys(gameSettings);
               const randomWorld = allWorlds[Math.floor(Math.random() * allWorlds.length)];
@@ -977,10 +817,6 @@
     
     // Damit generateWorldWrapper global verfügbar ist:
     window.generateWorldWrapper = generateWorldWrapper;
-  </script>
-</body>
-</html>
-
   </script>
 </body>
 </html>
