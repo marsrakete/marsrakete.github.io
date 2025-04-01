@@ -66,7 +66,7 @@
   
   <div id="gameInfo"></div>
   <div id="statusLine">
-    <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Zu findende Zahl Ziele: 0</span>
+    <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Gefundene Ziele: 0</span>
   </div>
   
   <div id="output"></div>
@@ -82,6 +82,8 @@
   <br>
   <button onclick="copyToClipboard()">Kopieren</button>
   <button onclick="generateAltText()">ALT Text generieren</button>
+  <!-- Neuer Button: Übergabe zurück an den Editor -->
+  <button onclick="transferToEditor()">Zurück zum Editor</button>
   
   <script>
     // Globale Variablen und Einstellungen
@@ -91,6 +93,7 @@
     let gameGrid = [];   // 2D-Array des Spielfelds
     let playerX = 0, playerY = 0;  // Position der Spielfigur
     let foundCount = 0;  // Zähler für gefundene Ziele
+    let initialTargetCount = 0; // Anzahl der Zielsymbole im initialen Grid
     let timerStart = null;
     let timerInterval = null;
 
@@ -201,8 +204,10 @@
           }
           return arr;
         });
-        // Suche im Grid nach dem Spielersymbol
         const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+        // Berechne die ursprüngliche Anzahl der Zielsymbole
+        initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
+        // Suche im Grid nach dem Spielersymbol
         let foundPlayer = false;
         for (let i = 0; i < gameGrid.length && !foundPlayer; i++) {
           for (let j = 0; j < gameGrid[i].length; j++) {
@@ -216,14 +221,6 @@
         }
         if (!foundPlayer) {
           alert("Fehler: Das Spielersymbol (" + currentGame.player + ") wurde im Grid nicht gefunden.");
-        }
-        // Prüfe, ob mindestens ein Zielsymbol vorhanden ist
-        let targetExists = false;
-        gameGrid.forEach(row => {
-          if (row.includes(currentGame.target)) targetExists = true;
-        });
-        if (!targetExists) {
-          alert("Fehler: Kein Zielsymbol (" + currentGame.target + ") im Grid gefunden.");
         }
         renderGameGrid();
       } else {
@@ -242,7 +239,6 @@
         }
         gameGrid.push(row);
       }
-      // Falls ein Eingabetext vorhanden ist, platziere ihn in der ersten Zeile zentriert
       const inputText = document.getElementById("inputText").value;
       if (inputText) {
         const start = Math.max(0, Math.floor((width - inputText.length) / 2));
@@ -250,7 +246,6 @@
           gameGrid[0][start + i] = inputText[i];
         }
       }
-      // Stelle sicher, dass mindestens ein Zielsymbol vorhanden ist
       const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
       let targetPlaced = false;
       for (let i = 0; i < height && !targetPlaced; i++) {
@@ -261,7 +256,6 @@
           }
         }
       }
-      // Platziere die Spielfigur an einer freien Stelle, falls nicht vorhanden
       if (!gameGrid.flat().includes(currentGame.player)) {
         let freeCells = [];
         for (let i = 0; i < height; i++) {
@@ -276,12 +270,13 @@
           playerY = pos.y;
         }
       }
+      // Setze initialTargetCount, falls mehrere Ziele vorhanden sein sollten
+      initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
       renderGameGrid();
     }
 
-    // Bewegt die Spielfigur. Es wird geprüft, ob das Ziel erreicht wird oder ob die Bewegung ungültig ist.
+    // Bewegt die Spielfigur. Wird geprüft, ob ein Ziel eingesammelt wird und ob alle Ziele gefunden wurden.
     function movePlayer(dx, dy) {
-      // Starte den Timer bei der ersten Bewegung
       if (!timerStart) {
         timerStart = Date.now();
         timerInterval = setInterval(updateTimer, 1000);
@@ -294,30 +289,24 @@
         return;
       }
       const cellContent = gameGrid[newY][newX];
-      // Erlaubte Bewegung: Leeres Feld oder Zielsymbol
+      // Erlaubt ist die Bewegung, wenn das Feld leer oder ein Zielsymbol ist.
       if (cellContent === " " || cellContent === currentGame.target) {
         if (cellContent === currentGame.target) {
           playPewSound();
           foundCount++;
-          // Aktualisiere Anzeige der zu findenden Ziele (hier einfach als Beispiel – ggf. anpassen)
-          document.getElementById("foundCount").innerText = "Zu findende Zahl Ziele: " + (foundCount);
-          // Prüfe, ob noch Zielsymbole vorhanden sind
-          let targetExists = false;
-          gameGrid.forEach(row => {
-            if (row.includes(currentGame.target)) targetExists = true;
-          });
-          if (!targetExists) {
+          document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
+          // Prüfe, ob alle Ziele gefunden wurden
+          if (foundCount >= initialTargetCount) {
             clearInterval(timerInterval);
             timerInterval = null;
             setTimeout(() => {
               playTuschSound();
               const seconds = Math.floor((Date.now() - timerStart) / 1000);
               alert("Spiel beendet! Gefundene Ziele: " + foundCount + ", Zeit: " + seconds + " s");
-              // Hier könnte man ggf. einen Reset vornehmen oder eine neue Welt laden.
             }, 600);
           }
         }
-        // Bewege die Spielfigur: Alte Position auf " " setzen, neue Position erhält das Spielersymbol.
+        // Bewege die Spielfigur
         gameGrid[playerY][playerX] = " ";
         gameGrid[newY][newX] = currentGame.player;
         playerX = newX;
@@ -366,6 +355,15 @@
       }).catch(err => {
         console.error("Fehler beim Kopieren des ALT Texts: ", err);
       });
+    }
+
+    // Übergibt das aktuelle Grid und die genutzte Welt als URL-Parameter an den Editor.
+    function transferToEditor() {
+      const params = new URLSearchParams();
+      params.set("world", lastWorldType);
+      let gridText = gameGrid.map(row => row.join("")).join("\n");
+      params.set("grid", gridText);
+      window.location.href = "welten_editor.html?" + params.toString();
     }
 
     // Beim Laden der Seite wird versucht, ein Grid aus URL-Parametern zu laden.
