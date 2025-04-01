@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Weltensymbol Editor</title>
+  <style>
+    body {
+      background: #121212;
+      color: white;
+      font-family: monospace;
+      padding: 20px;
+      text-align: center;
+    }
+    #editorContainer {
+      max-width: 800px;
+      margin: auto;
+    }
+    select {
+      font-size: 1em;
+      padding: 5px;
+    }
+    #symbolPalette {
+      margin-top: 20px;
+    }
+    .symbol {
+      display: inline-block;
+      padding: 5px;
+      border: 1px solid white;
+      margin: 2px;
+      cursor: pointer;
+      font-size: 1.5em;
+      transition: background 0.2s;
+    }
+    .symbol.selected {
+      background: white;
+      color: black;
+    }
+    h2 {
+      margin-top: 30px;
+    }
+    /* Raster-Layout (15 Spalten x 10 Zeilen) */
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(15, 2ch);
+      gap: 1px;
+      margin: 20px auto;
+      width: fit-content;
+    }
+    .cell {
+      width: 2ch;
+      height: 2ch;
+      border: 1px solid white;
+      text-align: center;
+      line-height: 2ch;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .cell:hover {
+      background: #333;
+    }
+    button {
+      margin: 10px 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    textarea {
+      margin-top: 10px;
+      width: 100%;
+      max-width: 100%;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div id="editorContainer">
+    <h1>Weltensymbol Editor</h1>
+    
+    <label for="worldSelect">Welt auswählen:</label>
+    <select id="worldSelect">
+      <!-- Optionen werden per JavaScript hinzugefügt -->
+    </select>
+    
+    <div id="symbolPalette"></div>
+    
+    <h2>Ausgabefeld</h2>
+    <div id="grid"></div>
+    
+    <button id="clearGrid">Grid leeren</button>
+    <button id="copyGrid">Grid kopieren</button>
+    <br>
+    <textarea id="gridOutput" rows="10" readonly></textarea>
+  </div>
+  
+  <script>
+    // Definition der Welten (basierend auf den in deinem Projekt vorhandenen Welten)
+    const worldTypes = {
+      galaxy: { 
+        symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
+        rare: ["👾", "👽", "🎮", "👩‍🚀", "🔫", "🛰️"],
+        bottom: ["🔭", "📡"]
+      },
+      flowers: { 
+        symbols: ["🌸", "🌹", "🌺", "🌻", "🌼", "💐", "🥀", "🌷", "🍀"],
+        rare: ["🦋", "🐞", "🐝", "🍄", "🐇"],
+        bottom: []
+      },
+      water: { 
+        symbols: ["🐠", "🐟", "🐬", "🐳", "🐋", "🦈", "🦑", "🐙", "🌊", "🚤", "⛵", "🚢", "🛥️"],
+        rare: ["🧜‍♂️", "🧜‍♀️", "🐋", "🤿", "🥽", "🔱", "⚓"],
+        bottom: []
+      },
+      forest: { 
+        symbols: ["🌲", "🌳", "🌴", "🍄", "🌿", "🍃", "🍂", "🦉", "🐿️", "🦌", "🐻", "🐇"],
+        rare: ["🦅", "🪺"],
+        bottom: []
+      },
+      lava: { 
+        symbols: ["🔥", "🌋", "🪨", "💀", "👹"],
+        rare: [],
+        bottom: []
+      },
+      steampunk: { 
+        symbols: ["⚙️", "🔩", "🛠️", "⏳", "🚂"],
+        rare: [],
+        bottom: []
+      },
+      desert: { 
+        symbols: ["🏜️", "🌵", "🐫", "🦂", "☀️"],
+        rare: [],
+        bottom: []
+      },
+      medieval: { 
+        symbols: ["⚔️", "🛡️", "🏰", "🐉", "🧙‍♂️", "👑"],
+        rare: [],
+        bottom: []
+      },
+      racing: { 
+        symbols: ["🏎️", "🚦", "🏁", "🚗"],
+        rare: [],
+        bottom: []
+      },
+      airport: { 
+        symbols: ["✈️", "🛫", "🛬", "🛄"],
+        rare: [],
+        bottom: []
+      },
+      cyberpunk: { 
+        symbols: ["🔮", "💾", "🕶️", "🛸", "🤖"],
+        rare: [],
+        bottom: []
+      },
+      northpole: { 
+        symbols: ["❄️", "⛄", "🎅", "🦌", "🏔️"],
+        rare: [],
+        bottom: []
+      },
+      volcano: { 
+        symbols: ["🌋", "🔥", "🪨", "💀"],
+        rare: [],
+        bottom: []
+      },
+      office: { 
+        symbols: ["⌨️", "☕", "🖥️", "📎", "📁"],
+        rare: [],
+        bottom: []
+      },
+      candyland: { 
+        symbols: ["🍭", "🍫", "🍩", "🍪", "🍬"],
+        rare: [],
+        bottom: []
+      },
+      jungle: { 
+        symbols: ["🌴", "🐒", "🦜", "🍌", "🐍"],
+        rare: [],
+        bottom: []
+      },
+      circus: { 
+        symbols: ["🎪", "🤹‍♂️", "🎭", "🐘"],
+        rare: [],
+        bottom: []
+      },
+      ruins: { 
+        symbols: ["🏺", "🗿", "⛏️", "🏚️"],
+        rare: [],
+        bottom: []
+      },
+      disco: { 
+        symbols: ["🪩", "💃", "🕺", "🎶"],
+        rare: [],
+        bottom: []
+      },
+      concert: { 
+        symbols: ["🎤", "🎸", "🥁", "🎵"],
+        rare: [],
+        bottom: []
+      },
+      fairytale: {
+        symbols: ["🧚", "✨", "🌈"],
+        rare: ["🦄"],
+        bottom: []
+      },
+      apocalypse: {
+        symbols: ["☢️", "🏚️", "🔥"],
+        rare: ["💣"],
+        bottom: []
+      },
+      cave: {
+        symbols: ["🪨", "⛰️", "🕸️"],
+        rare: [],
+        bottom: []
+      },
+      cloud: {
+        symbols: ["☁️", "🌤️", "🌈"],
+        rare: [],
+        bottom: []
+      },
+      arcade: {
+        symbols: ["🎮", "👾", "🕹️"],
+        rare: [],
+        bottom: []
+      }
+    };
+    
+    // Einstellungen für das Raster
+    const gridCols = 15;
+    const gridRows = 10;
+    let gridData = [];
+    let selectedSymbol = "";
+    
+    // DOM-Elemente
+    const worldSelect = document.getElementById("worldSelect");
+    const symbolPalette = document.getElementById("symbolPalette");
+    const gridContainer = document.getElementById("grid");
+    const gridOutput = document.getElementById("gridOutput");
+    
+    // Füllt das Dropdown mit den vorhandenen Welten
+    function populateWorldSelect() {
+      for (let world in worldTypes) {
+        const option = document.createElement("option");
+        option.value = world;
+        option.textContent = world;
+        worldSelect.appendChild(option);
+      }
+    }
+    
+    // Erzeugt die Symbol-Palette für die aktuell ausgewählte Welt
+    function populateSymbolPalette() {
+      symbolPalette.innerHTML = "";
+      const world = worldTypes[worldSelect.value];
+      // Kombiniert reguläre, rare und bottom-Symbole
+      const symbols = world.symbols.concat(world.rare, world.bottom);
+      symbols.forEach(sym => {
+        const span = document.createElement("span");
+        span.classList.add("symbol");
+        span.textContent = sym;
+        span.addEventListener("click", () => {
+          // Markiere alle als nicht ausgewählt
+          document.querySelectorAll(".symbol").forEach(el => el.classList.remove("selected"));
+          span.classList.add("selected");
+          selectedSymbol = sym;
+        });
+        symbolPalette.appendChild(span);
+      });
+    }
+    
+    // Initialisiert das Raster und die zugehörigen Daten
+    function initGrid() {
+      gridData = [];
+      gridContainer.innerHTML = "";
+      for (let r = 0; r < gridRows; r++) {
+        let row = [];
+        for (let c = 0; c < gridCols; c++) {
+          row.push(" ");
+          const cell = document.createElement("div");
+          cell.classList.add("cell");
+          cell.dataset.row = r;
+          cell.dataset.col = c;
+          cell.textContent = " ";
+          cell.addEventListener("click", () => {
+            if (selectedSymbol !== "") {
+              cell.textContent = selectedSymbol;
+              gridData[r][c] = selectedSymbol;
+              updateGridOutput();
+            }
+          });
+          gridContainer.appendChild(cell);
+        }
+        gridData.push(row);
+      }
+    }
+    
+    // Aktualisiert das Textfeld mit dem aktuellen Rasterinhalt
+    function updateGridOutput() {
+      gridOutput.value = gridData.map(row => row.join("")).join("\n");
+    }
+    
+    // Löscht das Raster
+    function clearGrid() {
+      gridData = gridData.map(row => row.map(() => " "));
+      Array.from(gridContainer.children).forEach(cell => cell.textContent = " ");
+      updateGridOutput();
+    }
+    
+    // Kopiert den Rasterinhalt in den Zwischenspeicher
+    function copyGridToClipboard() {
+      navigator.clipboard.writeText(gridOutput.value)
+        .then(() => alert("Grid kopiert!"))
+        .catch(err => alert("Fehler beim Kopieren: " + err));
+    }
+    
+    // Event Listener
+    worldSelect.addEventListener("change", () => {
+      populateSymbolPalette();
+    });
+    
+    document.getElementById("clearGrid").addEventListener("click", clearGrid);
+    document.getElementById("copyGrid").addEventListener("click", copyGridToClipboard);
+    
+    // Initialisierung
+    populateWorldSelect();
+    populateSymbolPalette();
+    initGrid();
+    updateGridOutput();
+  </script>
+</body>
+</html>
