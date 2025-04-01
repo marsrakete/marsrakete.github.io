@@ -173,7 +173,7 @@ function loadGameFromParams() {
     const gridText = params.get("grid");
     lastWorldType = world;
     const rows = gridText.split("\n");
-    gameGrid = rows.map(row => row.split(""));
+    gameGrid = rows.map(row => Array.from(row));
     
     // Überprüfe, ob das notwendige Spielsymbol und mindestens ein Zielsymbol vorhanden sind:
     const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
