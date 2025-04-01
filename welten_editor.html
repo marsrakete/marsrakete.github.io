@@ -373,15 +373,16 @@
     }
     
     // Übergibt das aktuelle Grid und die genutzte Welt als URL-Parameter an die Hauptseite (Spiel)
-    function transferToGame() {
-      const world = worldSelect.value;
-      const grid = gridOutput.value;
-      const params = new URLSearchParams();
-      params.set("world", world);
-      params.set("grid", grid);
-      // Hier wird angenommen, dass sich die Hauptseite im selben Verzeichnis unter "Weltengenerator_Mit_Spiel.html" befindet
-      window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
-    }
+function transferToGame() {
+  const world = worldSelect.value;
+  const grid = gridOutput.value;
+  const params = new URLSearchParams();
+  params.set("world", world);
+  params.set("grid", grid);
+  // URLSearchParams kodiert die Werte automatisch (z. B. Zeilenumbrüche werden zu %0A)
+  window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
+}
+
     
     // Falls der Editor über Parameter (von der Hauptseite) aufgerufen wurde: Raster und Welt setzen
     function loadEditorFromParams() {
