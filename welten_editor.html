@@ -394,7 +394,8 @@ function loadEditorFromParams() {
     worldSelect.value = world;
     populateSymbolPalette();
     const rows = gridText.split("\n");
-    gridData = rows.map(row => row.split(""));
+    gridData = rows.map(row => Array.from(row));
+
     // Aktualisiere die einzelnen Zellen im DOM
     const cells = gridContainer.querySelectorAll(".cell");
     for (let r = 0; r < gridRows; r++) {
