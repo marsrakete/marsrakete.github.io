@@ -70,7 +70,7 @@
       font-family: monospace;
     }
   </style>
-  <!-- Einbinden von html2canvas für das Bitmap-Copying -->
+  <!-- html2canvas wird benötigt, um das Raster als Bitmap zu kopieren -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -84,19 +84,21 @@
     
     <div id="symbolPalette"></div>
     
-    <h2>Ausgabefeld</h2>
+    <h2>Ausgabefeld (Grid)</h2>
     <div id="grid"></div>
     
     <button id="clearGrid">Grid leeren</button>
     <button id="copyGrid">Grid kopieren (Text)</button>
     <button id="copyBitmap">Bitmap kopieren</button>
     <button id="generateAltText">ALT Text generieren</button>
+    <!-- Neuer Button: Übergabe an die Spielseite -->
+    <button id="transferToGame">In Spiel übernehmen</button>
     <br>
     <textarea id="gridOutput" rows="10" readonly></textarea>
   </div>
   
   <script>
-    // Definition der Welten (basierend auf den in deinem Projekt verwendeten Welten)
+    // Definition der Welten (basierend auf Deinem Projekt)
     const worldTypes = {
       galaxy: { 
         symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
@@ -258,7 +260,7 @@
         span.classList.add("symbol");
         span.textContent = sym;
         span.addEventListener("click", () => {
-          // Markiere alle als nicht ausgewählt
+          // Alle Symbole als nicht ausgewählt markieren
           document.querySelectorAll(".symbol").forEach(el => el.classList.remove("selected"));
           span.classList.add("selected");
           selectedSymbol = sym;
@@ -305,14 +307,14 @@
       updateGridOutput();
     }
     
-    // Kopiert den Rasterinhalt in den Zwischenspeicher (Text)
+    // Kopiert den Rasterinhalt als Text in den Zwischenspeicher
     function copyGridToClipboard() {
       navigator.clipboard.writeText(gridOutput.value)
         .then(() => alert("Grid kopiert!"))
         .catch(err => alert("Fehler beim Kopieren: " + err));
     }
     
-    // Kopiert das Ausgabefeld (Grid) als Bitmap in den Zwischenspeicher
+    // Kopiert das Raster (Grid) als Bitmap in den Zwischenspeicher
     function copyGridAsBitmap() {
       if (!navigator.clipboard || !navigator.clipboard.write) {
         alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
@@ -331,7 +333,7 @@
       });
     }
     
-    // Generiert einen ALT-Text basierend auf der ausgewählten Welt und kopiert diesen in den Zwischenspeicher.
+    // Generiert einen ALT-Text basierend auf der aktuell ausgewählten Welt
     function generateAltText() {
       const worldDescriptions = {
         galaxy: "galaktische",
@@ -370,21 +372,55 @@
       });
     }
     
-    // Event Listener
-    worldSelect.addEventListener("change", () => {
-      populateSymbolPalette();
-    });
+    // Übergibt das aktuelle Grid und die genutzte Welt als URL-Parameter an die Hauptseite (Spiel)
+    function transferToGame() {
+      const world = worldSelect.value;
+      const grid = gridOutput.value;
+      const params = new URLSearchParams();
+      params.set("world", world);
+      params.set("grid", grid);
+      // Hier wird angenommen, dass sich die Hauptseite im selben Verzeichnis unter "Weltengenerator_Mit_Spiel.html" befindet
+      window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
+    }
     
+    // Falls der Editor über Parameter (von der Hauptseite) aufgerufen wurde: Raster und Welt setzen
+    function loadEditorFromParams() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has("world") && params.has("grid")) {
+        const world = params.get("world");
+        const gridText = params.get("grid");
+        worldSelect.value = world;
+        populateSymbolPalette();
+        const rows = gridText.split("\n");
+        gridData = rows.map(row => row.split(""));
+        // Aktualisiere die einzelnen Zellen im DOM
+        const cells = gridContainer.querySelectorAll(".cell");
+        for (let r = 0; r < gridRows; r++) {
+          for (let c = 0; c < gridCols; c++) {
+            const index = r * gridCols + c;
+            if (cells[index]) {
+              cells[index].textContent = gridData[r][c] || " ";
+            }
+          }
+        }
+        updateGridOutput();
+      }
+    }
+    
+    // Event Listener
+    worldSelect.addEventListener("change", populateSymbolPalette);
     document.getElementById("clearGrid").addEventListener("click", clearGrid);
     document.getElementById("copyGrid").addEventListener("click", copyGridToClipboard);
     document.getElementById("copyBitmap").addEventListener("click", copyGridAsBitmap);
     document.getElementById("generateAltText").addEventListener("click", generateAltText);
+    document.getElementById("transferToGame").addEventListener("click", transferToGame);
     
     // Initialisierung
     populateWorldSelect();
     populateSymbolPalette();
     initGrid();
     updateGridOutput();
+    loadEditorFromParams();
   </script>
 </body>
 </html>
