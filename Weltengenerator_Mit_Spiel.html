@@ -146,23 +146,20 @@
     }
     
     // Rendert das Spielfeld anhand des gameGrid-Arrays
-    function renderGameGrid() {
-      let output = "";
-      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-      for (let i = 0; i < height; i++) {
-        let row = "";
-        for (let j = 0; j < width; j++) {
-          // Spielerposition wird hervorgehoben
-          if (i === playerY && j === playerX) {
-            row += `<span class="cell">${currentGame.player}</span>`;
-          } else {
-            row += `<span class="cell">${gameGrid[i][j]}</span>`;
-          }
-        }
-        output += row + "<br>";
-      }
-      document.getElementById("output").innerHTML = output;
+function renderGameGrid() {
+  let output = "";
+  // Es wird keine spezielle Behandlung der Spielerposition mehr vorgenommen,
+  // da das Grid bereits alle Zeichen (inklusive Spielersymbol) enthält.
+  for (let i = 0; i < height; i++) {
+    let row = "";
+    for (let j = 0; j < width; j++) {
+      row += `<span class="cell">${gameGrid[i][j]}</span>`;
     }
+    output += row + "<br>";
+  }
+  document.getElementById("output").innerHTML = output;
+}
+
     
     // Wird beim Laden der Seite aufgerufen, falls Parameter übergeben wurden
 function loadGameFromParams() {
@@ -173,40 +170,39 @@ function loadGameFromParams() {
     lastWorldType = world;
     const rows = gridText.split("\n");
     gameGrid = rows.map(row => {
-      // Zerlege den String in Unicode-Zeichen
       let arr = Array.from(row);
-      // Passe die Länge der Zeile an die erwartete Breite an:
+      // Stelle sicher, dass jede Zeile genau 'width' Zeichen hat
       if (arr.length < width) {
-        // Mit Leerzeichen auffüllen
         arr = arr.concat(Array(width - arr.length).fill(" "));
       } else if (arr.length > width) {
-        // Überschüssige Zeichen abschneiden
         arr = arr.slice(0, width);
       }
       return arr;
     });
     
-    // Überprüfe, ob das notwendige Spielsymbol und mindestens ein Zielsymbol vorhanden sind:
+    // Suche nach dem Spielersymbol (z.B. currentGame.player) und setze playerX, playerY
     const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-    let playerFound = false;
-    let targetFound = false;
-    gameGrid.forEach(row => {
-      row.forEach(cell => {
-        if (cell === currentGame.player) playerFound = true;
-        if (cell === currentGame.target) targetFound = true;
-      });
-    });
-    let errors = [];
-    if (!playerFound) errors.push("Spielsymbol (" + currentGame.player + ") fehlt.");
-    if (!targetFound) errors.push("Mindestens ein Zielsymbol (" + currentGame.target + ") muss vorhanden sein.");
-    if (errors.length > 0) {
-      alert("Fehler: " + errors.join(" "));
+    let foundPlayer = false;
+    for (let i = 0; i < gameGrid.length && !foundPlayer; i++) {
+      for (let j = 0; j < gameGrid[i].length; j++) {
+        if (gameGrid[i][j] === currentGame.player) {
+          playerX = j;
+          playerY = i;
+          foundPlayer = true;
+          break;
+        }
+      }
     }
+    // Optional: Fehlermeldung, falls kein Spielersymbol gefunden wurde.
+    if (!foundPlayer) {
+      alert("Fehler: Das Spielersymbol (" + currentGame.player + ") wurde im Grid nicht gefunden.");
+    }
+    
+    // Hier wird das Grid einfach gerendert – ohne extra das Spielersymbol einzufügen
     renderGameGrid();
-  } else {
-    // Standard-Verhalten, falls keine Parameter vorhanden sind.
   }
 }
+
 
 
 
