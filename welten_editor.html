@@ -385,28 +385,30 @@ function transferToGame() {
 
     
     // Falls der Editor über Parameter (von der Hauptseite) aufgerufen wurde: Raster und Welt setzen
-    function loadEditorFromParams() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.has("world") && params.has("grid")) {
-        const world = params.get("world");
-        const gridText = params.get("grid");
-        worldSelect.value = world;
-        populateSymbolPalette();
-        const rows = gridText.split("\n");
-        gridData = rows.map(row => row.split(""));
-        // Aktualisiere die einzelnen Zellen im DOM
-        const cells = gridContainer.querySelectorAll(".cell");
-        for (let r = 0; r < gridRows; r++) {
-          for (let c = 0; c < gridCols; c++) {
-            const index = r * gridCols + c;
-            if (cells[index]) {
-              cells[index].textContent = gridData[r][c] || " ";
-            }
-          }
+function loadEditorFromParams() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("world") && params.has("grid")) {
+    // Explizite Decodierung
+    const world = decodeURIComponent(params.get("world"));
+    const gridText = decodeURIComponent(params.get("grid"));
+    worldSelect.value = world;
+    populateSymbolPalette();
+    const rows = gridText.split("\n");
+    gridData = rows.map(row => row.split(""));
+    // Aktualisiere die einzelnen Zellen im DOM
+    const cells = gridContainer.querySelectorAll(".cell");
+    for (let r = 0; r < gridRows; r++) {
+      for (let c = 0; c < gridCols; c++) {
+        const index = r * gridCols + c;
+        if (cells[index]) {
+          cells[index].textContent = gridData[r][c] || " ";
         }
-        updateGridOutput();
       }
     }
+    updateGridOutput();
+  }
+}
+
     
     // Event Listener
     worldSelect.addEventListener("change", populateSymbolPalette);
