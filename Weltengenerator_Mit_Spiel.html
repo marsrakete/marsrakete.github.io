@@ -257,15 +257,15 @@
     }
     
     // Button, um das aktuelle Grid und die genutzte Welt an den Editor zurück zu übergeben
-    function transferToEditor() {
-      const params = new URLSearchParams();
-      params.set("world", lastWorldType);
-      // Das Grid in einen Text umwandeln (Zeilen durch \n getrennt)
-      let gridText = gameGrid.map(row => row.join("")).join("\n");
-      params.set("grid", gridText);
-      // Annahme: der Editor heißt "welten_editor.html" und liegt im selben Verzeichnis
-      window.location.href = "welten_editor.html?" + params.toString();
-    }
+function transferToEditor() {
+  const params = new URLSearchParams();
+  params.set("world", lastWorldType);
+  let gridText = gameGrid.map(row => row.join("")).join("\n");
+  params.set("grid", gridText);
+  // Auch hier übernimmt URLSearchParams die Kodierung
+  window.location.href = "welten_editor.html?" + params.toString();
+}
+
     
     // Event Listener für den "Zurück zum Editor"-Button
     document.getElementById("transferToEditor").addEventListener("click", transferToEditor);
