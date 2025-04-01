@@ -683,7 +683,7 @@
               const seconds = Math.floor((Date.now() - timerStart) / 1000);
               clearInterval(timerInterval);
               timerInterval = null;
-              alert("Spiel beendet! Zu findende Zahl Ziele: " + (initialTargetCount - foundCount) + ", Zeit: " + seconds + " s");
+              alert("Spiel beendet! Gefundene Ziele: " + foundCount + ", Zeit: " + seconds + " s");
               // Nach Bestätigung des Alerts: Zufällig eine neue Welt laden.
               const allWorlds = Object.keys(gameSettings);
               const randomWorld = allWorlds[Math.floor(Math.random() * allWorlds.length)];
