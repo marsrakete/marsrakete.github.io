@@ -70,6 +70,8 @@
       font-family: monospace;
     }
   </style>
+  <!-- Einbinden von html2canvas für das Bitmap-Copying -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
   <div id="editorContainer">
@@ -86,13 +88,15 @@
     <div id="grid"></div>
     
     <button id="clearGrid">Grid leeren</button>
-    <button id="copyGrid">Grid kopieren</button>
+    <button id="copyGrid">Grid kopieren (Text)</button>
+    <button id="copyBitmap">Bitmap kopieren</button>
+    <button id="generateAltText">ALT Text generieren</button>
     <br>
     <textarea id="gridOutput" rows="10" readonly></textarea>
   </div>
   
   <script>
-    // Definition der Welten (basierend auf den in deinem Projekt vorhandenen Welten)
+    // Definition der Welten (basierend auf den in deinem Projekt verwendeten Welten)
     const worldTypes = {
       galaxy: { 
         symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
@@ -301,11 +305,69 @@
       updateGridOutput();
     }
     
-    // Kopiert den Rasterinhalt in den Zwischenspeicher
+    // Kopiert den Rasterinhalt in den Zwischenspeicher (Text)
     function copyGridToClipboard() {
       navigator.clipboard.writeText(gridOutput.value)
         .then(() => alert("Grid kopiert!"))
         .catch(err => alert("Fehler beim Kopieren: " + err));
+    }
+    
+    // Kopiert das Ausgabefeld (Grid) als Bitmap in den Zwischenspeicher
+    function copyGridAsBitmap() {
+      if (!navigator.clipboard || !navigator.clipboard.write) {
+        alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
+        return;
+      }
+      html2canvas(gridContainer).then(canvas => {
+        canvas.toBlob(blob => {
+          const item = new ClipboardItem({ "image/png": blob });
+          navigator.clipboard.write([item]).then(() => {
+            alert("Bitmap kopiert!");
+          }).catch(err => {
+            console.error("Fehler beim Kopieren: ", err);
+            alert("Fehler beim Kopieren der Bitmap.");
+          });
+        });
+      });
+    }
+    
+    // Generiert einen ALT-Text basierend auf der ausgewählten Welt und kopiert diesen in den Zwischenspeicher.
+    function generateAltText() {
+      const worldDescriptions = {
+        galaxy: "galaktische",
+        flowers: "blumige",
+        water: "wasserbasierte",
+        forest: "waldartige",
+        lava: "feurige",
+        steampunk: "steampunk",
+        desert: "wüstenartige",
+        medieval: "mittelalterliche",
+        racing: "rennbegeisterte",
+        airport: "flughafenbezogene",
+        cyberpunk: "cyberpunk",
+        northpole: "nordpolartige",
+        volcano: "vulkanische",
+        office: "bürokratische",
+        candyland: "süße",
+        jungle: "dschungelartige",
+        circus: "zirkusartige",
+        ruins: "ruinöse",
+        disco: "discoartige",
+        concert: "konzertbezogene",
+        fairytale: "märchenhafte",
+        apocalypse: "apokalyptische",
+        cave: "höllische",
+        cloud: "himmelhafte",
+        arcade: "retro-arcade"
+      };
+      const worldType = worldSelect.value;
+      const description = worldDescriptions[worldType] || worldType;
+      let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltensymbol Editor. Das Raster hat " + gridRows + " Zeilen und " + gridCols + " Spalten.";
+      navigator.clipboard.writeText(altText).then(() => {
+        alert("ALT Text kopiert!");
+      }).catch(err => {
+        console.error("Fehler beim Kopieren des ALT Texts: ", err);
+      });
     }
     
     // Event Listener
@@ -315,6 +377,8 @@
     
     document.getElementById("clearGrid").addEventListener("click", clearGrid);
     document.getElementById("copyGrid").addEventListener("click", copyGridToClipboard);
+    document.getElementById("copyBitmap").addEventListener("click", copyGridAsBitmap);
+    document.getElementById("generateAltText").addEventListener("click", generateAltText);
     
     // Initialisierung
     populateWorldSelect();
