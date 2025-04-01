@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <!-- Deaktiviert das Zoomen auf mobilen Geräten -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Weltengenerator mit Spiel</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: monospace;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    #output {
+      width: 60ch;
+      height: 15em;
+      background: black;
+      color: white;
+      padding: 10px;
+      border: 1px solid white;
+      display: inline-block;
+      overflow: hidden;
+      line-height: 1.2em;
+      font-size: 2em;
+      margin-top: 10px;
+    }
+    .cell {
+      display: inline-block;
+      width: 2ch;
+      text-align: center;
+    }
+    #gameInfo {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    #statusLine {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px;
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #555;
+    }
+  </style>
+  <!-- html2canvas wird benötigt, falls weitere Bitmap-Funktionen genutzt werden -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+  <h1>Weltengenerator mit Spiel</h1>
+  <input type="text" id="inputText" maxlength="30" placeholder="Text eingeben...">
+  <br><br>
+  
+  <div id="gameInfo"></div>
+  <div id="statusLine">
+    <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Zu findende Zahl Ziele: 0</span>
+  </div>
+  
+  <div id="output"></div>
+  
+  <!-- Virtuelle Bewegungstasten -->
+  <div id="virtualButtons">
+    <button onclick="movePlayer(0,-1)">↑</button><br>
+    <button onclick="movePlayer(-1,0)">←</button>
+    <button onclick="movePlayer(1,0)">→</button><br>
+    <button onclick="movePlayer(0,1)">↓</button>
+  </div>
+  
+  <br>
+  <button onclick="copyToClipboard()">Kopieren</button>
+  <button onclick="generateAltText()">ALT Text generieren</button>
+  <!-- Neuer Button: Übergabe zurück an den Editor -->
+  <button id="transferToEditor">Zurück zum Editor</button>
+  
+  <script>
+    // Globale Variablen und Einstellungen
+    let lastWorldType = 'galaxy';
+    const width = 30;
+    const height = 10;
+    let gameGrid = []; // 2D-Array des Spielfelds
+    let playerX = 0, playerY = 0;
+    let foundCount = 0;
+    let initialTargetCount = 0;
+    
+    let timerStart = null;
+    let timerInterval = null;
+    
+    // Definition der Welttypen (wie in Deinem Projekt)
+    const worldTypes = {
+      galaxy: { 
+        symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
+        rare: ["👾", "👽", "🎮", "👩‍🚀", "🔫", "🛰️"],
+        bottom: ["🔭", "📡"]
+      },
+      // ... weitere Welten analog (flowers, water, etc.)
+      fairytale: { symbols: ["🧚", "✨", "🌈"], rare: ["🦄"], bottom: [] },
+      apocalypse:{ symbols: ["☢️", "🏚️", "🔥"], rare: ["💣"], bottom: [] },
+      cave:      { symbols: ["🪨", "⛰️", "🕸️"], rare: [], bottom: [] },
+      cloud:     { symbols: ["☁️", "🌤️", "🌈"], rare: [], bottom: [] },
+      arcade:    { symbols: ["🎮", "👾", "🕹️"], rare: [], bottom: [] }
+      // (ergänze ggf. alle Welten aus Deinem Editor)
+    };
+    
+    // Spiel-Einstellungen: Spieler- und Ziel-Symbole je Welt
+    const gameSettings = {
+      galaxy:    { player: "🚀", target: "🌍" },
+      flowers:   { player: "🐝", target: "🌹" },
+      water:     { player: "🏊‍♂️", target: "🐋" },
+      forest:    { player: "🦊", target: "🍄" },
+      lava:      { player: "😎", target: "🔥" },
+      steampunk: { player: "🤖", target: "⚙️" },
+      desert:    { player: "🐫", target: "🌵" },
+      medieval:  { player: "🧙‍♂️", target: "👑" },
+      racing:    { player: "🏎️", target: "🚦" },
+      airport:   { player: "✈️", target: "🛫" },
+      cyberpunk: { player: "🤖", target: "💾" },
+      northpole: { player: "⛄", target: "❄️" },
+      volcano:   { player: "🚒", target: "🌋" },
+      office:    { player: "👩‍💼", target: "📎" },
+      candyland: { player: "🍭", target: "🍬" },
+      jungle:    { player: "🐒", target: "🍌" },
+      circus:    { player: "🤹‍♂️", target: "🎪" },
+      ruins:     { player: "🏺", target: "🗿" },
+      disco:     { player: "🕺", target: "💃" },
+      concert:   { player: "🎤", target: "🎸" },
+      fairytale: { player: "🧚‍♀️", target: "🦄" },
+      apocalypse:{ player: "😷", target: "🌅" },
+      cave:      { player: "⛏️", target: "🏺" },
+      cloud:     { player: "☁️", target: "🕊️" },
+      arcade:    { player: "🎮", target: "💎" }
+    };
+    
+    // Timer-Funktion
+    function updateTimer() {
+      const seconds = Math.floor((Date.now() - timerStart) / 1000);
+      document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
+    }
+    
+    // Rendert das Spielfeld anhand des gameGrid-Arrays
+    function renderGameGrid() {
+      let output = "";
+      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+      for (let i = 0; i < height; i++) {
+        let row = "";
+        for (let j = 0; j < width; j++) {
+          // Spielerposition wird hervorgehoben
+          if (i === playerY && j === playerX) {
+            row += `<span class="cell">${currentGame.player}</span>`;
+          } else {
+            row += `<span class="cell">${gameGrid[i][j]}</span>`;
+          }
+        }
+        output += row + "<br>";
+      }
+      document.getElementById("output").innerHTML = output;
+    }
+    
+    // Wird beim Laden der Seite aufgerufen, falls Parameter übergeben wurden
+    function loadGameFromParams() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has("world") && params.has("grid")) {
+        const world = params.get("world");
+        const gridText = params.get("grid");
+        lastWorldType = world;
+        // Das Grid aus dem Text (Zeilen durch \n getrennt) in ein 2D-Array umwandeln:
+        const rows = gridText.split("\n");
+        gameGrid = rows.map(row => row.split(""));
+        // Prüfe, ob das notwendige Spielsymbol und mindestens ein Zielsymbol vorhanden sind:
+        const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+        let playerFound = false;
+        let targetFound = false;
+        gameGrid.forEach(row => {
+          row.forEach(cell => {
+            if (cell === currentGame.player) playerFound = true;
+            if (cell === currentGame.target) targetFound = true;
+          });
+        });
+        let errors = [];
+        if (!playerFound) errors.push("Spielsymbol (" + currentGame.player + ") fehlt.");
+        if (!targetFound) errors.push("Mindestens ein Zielsymbol (" + currentGame.target + ") muss vorhanden sein.");
+        if (errors.length > 0) {
+          alert("Fehler: " + errors.join(" "));
+        }
+        renderGameGrid();
+      } else {
+        // Falls keine Parameter vorhanden sind, kann hier ggf. eine neue Welt generiert werden.
+        // (Standard-Verhalten Deiner ursprünglichen Seite)
+      }
+    }
+    
+    // Kopiert einen Screenshot des Ausgabefeldes (als Bitmap) in den Zwischenspeicher
+    function copyToClipboard() {
+      if (!navigator.clipboard || !navigator.clipboard.write) {
+        alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
+        return;
+      }
+      html2canvas(document.getElementById("output")).then(canvas => {
+        canvas.toBlob(blob => {
+          const item = new ClipboardItem({ "image/png": blob });
+          navigator.clipboard.write([item]).then(() => {
+            alert("Bild kopiert!");
+          }).catch(err => {
+            console.error("Fehler beim Kopieren: ", err);
+            alert("Das Kopieren von Bitmaps ist auf diesem Gerät möglicherweise nicht unterstützt.");
+          });
+        });
+      });
+    }
+    
+    // Generiert einen ALT-Text basierend auf der aktuellen Welt (wie in Deinem Editor) und kopiert ihn in den Zwischenspeicher
+    function generateAltText() {
+      const worldDescriptions = {
+        galaxy: "galaktische",
+        flowers: "blumige",
+        water: "wasserbasierte",
+        forest: "waldartige",
+        lava: "feurige",
+        steampunk: "steampunk",
+        desert: "wüstenartige",
+        medieval: "mittelalterliche",
+        racing: "rennbegeisterte",
+        airport: "flughafenbezogene",
+        cyberpunk: "cyberpunk",
+        northpole: "nordpolartige",
+        volcano: "vulkanische",
+        office: "bürokratische",
+        candyland: "süße",
+        jungle: "dschungelartige",
+        circus: "zirkusartige",
+        ruins: "ruinöse",
+        disco: "discoartige",
+        concert: "konzertbezogene",
+        fairytale: "märchenhafte",
+        apocalypse: "apokalyptische",
+        cave: "höllische",
+        cloud: "himmelhafte",
+        arcade: "retro-arcade"
+      };
+      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+      const description = worldDescriptions[lastWorldType] || lastWorldType;
+      let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltengenerator. ";
+      altText += "Das Spielfeld hat " + height + " Zeilen und " + width + " Spalten.";
+      navigator.clipboard.writeText(altText).then(() => {
+        alert("ALT Text kopiert!");
+      }).catch(err => {
+        console.error("Fehler beim Kopieren des ALT Texts: ", err);
+      });
+    }
+    
+    // Button, um das aktuelle Grid und die genutzte Welt an den Editor zurück zu übergeben
+    function transferToEditor() {
+      const params = new URLSearchParams();
+      params.set("world", lastWorldType);
+      // Das Grid in einen Text umwandeln (Zeilen durch \n getrennt)
+      let gridText = gameGrid.map(row => row.join("")).join("\n");
+      params.set("grid", gridText);
+      // Annahme: der Editor heißt "welten_editor.html" und liegt im selben Verzeichnis
+      window.location.href = "welten_editor.html?" + params.toString();
+    }
+    
+    // Event Listener für den "Zurück zum Editor"-Button
+    document.getElementById("transferToEditor").addEventListener("click", transferToEditor);
+    
+    // Initialisierung: Falls Parameter vorhanden sind, das Spiel-Grid befüllen
+    loadGameFromParams();
+  </script>
+</body>
+</html>
