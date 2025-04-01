@@ -388,9 +388,9 @@ function transferToGame() {
 function loadEditorFromParams() {
   const params = new URLSearchParams(window.location.search);
   if (params.has("world") && params.has("grid")) {
-    // Explizite Decodierung
-    const world = decodeURIComponent(params.get("world"));
-    const gridText = decodeURIComponent(params.get("grid"));
+    // Direktes Auslesen – URLSearchParams kümmert sich um das Decoding
+    const world = params.get("world");
+    const gridText = params.get("grid");
     worldSelect.value = world;
     populateSymbolPalette();
     const rows = gridText.split("\n");
@@ -408,6 +408,7 @@ function loadEditorFromParams() {
     updateGridOutput();
   }
 }
+
 
     
     // Event Listener
