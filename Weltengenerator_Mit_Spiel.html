@@ -165,37 +165,38 @@
     }
     
     // Wird beim Laden der Seite aufgerufen, falls Parameter übergeben wurden
-    function loadGameFromParams() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.has("world") && params.has("grid")) {
-        const world = params.get("world");
-        const gridText = params.get("grid");
-        lastWorldType = world;
-        // Das Grid aus dem Text (Zeilen durch \n getrennt) in ein 2D-Array umwandeln:
-        const rows = gridText.split("\n");
-        gameGrid = rows.map(row => row.split(""));
-        // Prüfe, ob das notwendige Spielsymbol und mindestens ein Zielsymbol vorhanden sind:
-        const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-        let playerFound = false;
-        let targetFound = false;
-        gameGrid.forEach(row => {
-          row.forEach(cell => {
-            if (cell === currentGame.player) playerFound = true;
-            if (cell === currentGame.target) targetFound = true;
-          });
-        });
-        let errors = [];
-        if (!playerFound) errors.push("Spielsymbol (" + currentGame.player + ") fehlt.");
-        if (!targetFound) errors.push("Mindestens ein Zielsymbol (" + currentGame.target + ") muss vorhanden sein.");
-        if (errors.length > 0) {
-          alert("Fehler: " + errors.join(" "));
-        }
-        renderGameGrid();
-      } else {
-        // Falls keine Parameter vorhanden sind, kann hier ggf. eine neue Welt generiert werden.
-        // (Standard-Verhalten Deiner ursprünglichen Seite)
-      }
+function loadGameFromParams() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has("world") && params.has("grid")) {
+    // Explizite Decodierung falls nötig
+    const world = decodeURIComponent(params.get("world"));
+    const gridText = decodeURIComponent(params.get("grid"));
+    lastWorldType = world;
+    // Das Grid aus dem Text (Zeilen durch \n getrennt) in ein 2D-Array umwandeln:
+    const rows = gridText.split("\n");
+    gameGrid = rows.map(row => row.split(""));
+    // Überprüfe, ob das notwendige Spielsymbol und mindestens ein Zielsymbol vorhanden sind:
+    const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+    let playerFound = false;
+    let targetFound = false;
+    gameGrid.forEach(row => {
+      row.forEach(cell => {
+        if (cell === currentGame.player) playerFound = true;
+        if (cell === currentGame.target) targetFound = true;
+      });
+    });
+    let errors = [];
+    if (!playerFound) errors.push("Spielsymbol (" + currentGame.player + ") fehlt.");
+    if (!targetFound) errors.push("Mindestens ein Zielsymbol (" + currentGame.target + ") muss vorhanden sein.");
+    if (errors.length > 0) {
+      alert("Fehler: " + errors.join(" "));
     }
+    renderGameGrid();
+  } else {
+    // Fallback: Standard-Verhalten, wenn keine Parameter übergeben wurden.
+  }
+}
+
     
     // Kopiert einen Screenshot des Ausgabefeldes (als Bitmap) in den Zwischenspeicher
     function copyToClipboard() {
