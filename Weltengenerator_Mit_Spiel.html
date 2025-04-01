@@ -168,12 +168,23 @@
 function loadGameFromParams() {
   const params = new URLSearchParams(window.location.search);
   if (params.has("world") && params.has("grid")) {
-    // Keine extra decodeURIComponent-Aufrufe mehr!
     const world = params.get("world");
     const gridText = params.get("grid");
     lastWorldType = world;
     const rows = gridText.split("\n");
-    gameGrid = rows.map(row => Array.from(row));
+    gameGrid = rows.map(row => {
+      // Zerlege den String in Unicode-Zeichen
+      let arr = Array.from(row);
+      // Passe die Länge der Zeile an die erwartete Breite an:
+      if (arr.length < width) {
+        // Mit Leerzeichen auffüllen
+        arr = arr.concat(Array(width - arr.length).fill(" "));
+      } else if (arr.length > width) {
+        // Überschüssige Zeichen abschneiden
+        arr = arr.slice(0, width);
+      }
+      return arr;
+    });
     
     // Überprüfe, ob das notwendige Spielsymbol und mindestens ein Zielsymbol vorhanden sind:
     const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
@@ -196,6 +207,7 @@ function loadGameFromParams() {
     // Standard-Verhalten, falls keine Parameter vorhanden sind.
   }
 }
+
 
 
     
