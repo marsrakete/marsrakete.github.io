@@ -38,42 +38,33 @@
     h2 {
       margin-top: 30px;
     }
-    /* Das Ausgabefeld, analog zur Spielseite */
-    #output {
-      display: grid;
-      grid-template-columns: repeat(15, 2ch);
-      gap: 1px;
-      margin: 20px auto;
+    /* Sowohl das Ausgabefeld als auch die Textarea erhalten die gleichen Maße wie in der Spielseite */
+    #output, #gridOutput {
+      width: 60ch;
+      height: 15em;
       background: black;
+      color: white;
       padding: 10px;
       border: 1px solid white;
-      width: fit-content;
+      display: inline-block;
+      overflow: hidden;
+      line-height: 1.2em;
+      font-size: 2em;
+      margin-top: 10px;
     }
-    .cell {
+    /* Da #output als Raster aufgebaut wird, definieren wir hier die Zellen */
+    #output .cell {
+      display: inline-block;
       width: 2ch;
-      height: 2ch;
-      border: 1px solid white;
       text-align: center;
-      line-height: 2ch;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .cell:hover {
-      background: #333;
     }
     button {
       margin: 10px 5px;
       padding: 5px 10px;
       cursor: pointer;
     }
-    textarea {
-      margin-top: 10px;
-      width: 100%;
-      max-width: 100%;
-      font-family: monospace;
-    }
   </style>
-  <!-- html2canvas wird benötigt, um das Ausgabefeld als Bitmap zu kopieren -->
+  <!-- html2canvas wird benötigt, um das Textfeld als Bitmap zu kopieren -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -84,15 +75,18 @@
     <div id="symbolPalette"></div>
     
     <h2>Ausgabefeld</h2>
+    <!-- Das Ausgabefeld (visuelle Darstellung des Grids) -->
     <div id="output"></div>
+    <!-- Die Textarea zeigt den Grid-Inhalt (als Text) – beide Elemente haben identische Maße -->
+    <textarea id="gridOutput" readonly></textarea>
     <br>
     <button id="clearGrid">Grid leeren</button>
     <button id="copyGrid">Grid kopieren (Text)</button>
+    <!-- Die Bitmap-Snapshot-Funktion verwendet hier gridOutput -->
     <button id="copyBitmap">Bitmap kopieren</button>
     <button id="generateAltText">ALT Text generieren</button>
+    <!-- Dieser Button übergibt die Parameter an die Spielseite -->
     <button id="transferToGame">In Spiel übernehmen</button>
-    <br>
-    <textarea id="gridOutput" rows="10" readonly></textarea>
   </div>
   
   <script>
@@ -265,7 +259,6 @@
         span.classList.add("symbol");
         span.textContent = sym;
         span.addEventListener("click", () => {
-          // Alle Symbole als nicht ausgewählt markieren
           document.querySelectorAll(".symbol").forEach(el => el.classList.remove("selected"));
           span.classList.add("selected");
           selectedSymbol = sym;
@@ -283,11 +276,13 @@
         let row = [];
         for (let c = 0; c < gridCols; c++) {
           row.push(" ");
+          // Erstelle eine Zelle; hier wird nur der DOM-Inhalt gesetzt
           const cell = document.createElement("div");
           cell.classList.add("cell");
           cell.dataset.row = r;
           cell.dataset.col = c;
           cell.textContent = " ";
+          // Beim Klick wird das ausgewählte Symbol ins Grid geschrieben
           cell.addEventListener("click", () => {
             if (selectedSymbol !== "") {
               cell.textContent = selectedSymbol;
@@ -323,13 +318,13 @@
         .catch(err => alert("Fehler beim Kopieren: " + err));
     }
 
-    // Kopiert das Ausgabefeld (#output) als Bitmap in den Zwischenspeicher
+    // Kopiert das Textfeld (#gridOutput) als Bitmap in den Zwischenspeicher
     function copyGridAsBitmap() {
       if (!navigator.clipboard || !navigator.clipboard.write) {
         alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
         return;
       }
-      html2canvas(document.getElementById("output")).then(canvas => {
+      html2canvas(document.getElementById("gridOutput")).then(canvas => {
         canvas.toBlob(blob => {
           const item = new ClipboardItem({ "image/png": blob });
           navigator.clipboard.write([item]).then(() => {
@@ -361,7 +356,8 @@
         .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     }
 
-    // Übergibt das aktuelle Grid und die ausgewählte Welt als URL-Parameter an die Spiel-Seite
+    // Übergibt das aktuelle Grid und die ausgewählte Welt als URL-Parameter an die Spiel-Seite.
+    // Dabei werden die ursprünglichen (nicht modifizierten) Parameter übergeben.
     function transferToGame() {
       const currentWorld = document.getElementById("worldSelect").value;
       const currentGame = gameSettings[currentWorld] || { player: "🙂", target: "⭐️" };
@@ -384,7 +380,7 @@
       window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
     }
 
-    // Lädt das Editor-Grid aus URL-Parametern, falls vorhanden
+    // Lädt das Editor-Grid aus URL-Parametern, falls vorhanden, und übernimmt die ursprünglichen Parameter
     function loadEditorFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
