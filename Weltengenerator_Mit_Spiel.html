@@ -14,7 +14,8 @@
       margin: 0;
       padding: 20px;
     }
-    #output {
+    /* Sowohl das visuelle Ausgabefeld als auch die Textarea erhalten exakt dieselben Maße */
+    #output, #gridOutput {
       width: 60ch;
       height: 15em;
       background: black;
@@ -27,6 +28,7 @@
       font-size: 2em;
       margin-top: 10px;
     }
+    /* Für die Darstellung des Grids (visuell) */
     .cell {
       display: inline-block;
       width: 2ch;
@@ -56,20 +58,21 @@
       margin-top: 20px;
     }
   </style>
-  <!-- html2canvas wird für das Kopieren als Bitmap benötigt -->
+  <!-- html2canvas wird benötigt, um das Textfeld (#gridOutput) als Bitmap zu kopieren -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
   <h1>Weltengenerator mit Spiel</h1>
-  <input type="text" id="inputText" maxlength="30" placeholder="Text eingeben...">
-  <br><br>
   
   <div id="gameInfo"></div>
   <div id="statusLine">
     <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Gefundene Ziele: 0</span>
   </div>
   
+  <!-- Visuelles Ausgabefeld für das Grid -->
   <div id="output"></div>
+  <!-- Textfeld, das den Grid-Inhalt als Text anzeigt (exakte Maße wie output) -->
+  <textarea id="gridOutput" readonly></textarea>
   
   <!-- Virtuelle Bewegungstasten -->
   <div id="virtualButtons">
@@ -82,7 +85,6 @@
   <br>
   <button onclick="copyToClipboard()">Kopieren</button>
   <button onclick="generateAltText()">ALT Text generieren</button>
-  <!-- Neuer Button: Übergabe zurück an den Editor -->
   <button onclick="transferToEditor()">Zurück zum Editor</button>
   
   <script>
@@ -93,11 +95,11 @@
     let gameGrid = [];   // 2D-Array des Spielfelds
     let playerX = 0, playerY = 0;  // Position der Spielfigur
     let foundCount = 0;  // Zähler für gefundene Ziele
-    let initialTargetCount = 0; // Anzahl der Zielsymbole im initialen Grid
+    let initialTargetCount = 0; // Ursprüngliche Anzahl der Zielsymbole
     let timerStart = null;
     let timerInterval = null;
 
-    // Definition der Welttypen (Beispiel: Hier sind nur einige definiert)
+    // Definition der Welttypen (Beispiel: hier sind einige definiert)
     const worldTypes = {
       galaxy: { 
         symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
@@ -111,7 +113,7 @@
       arcade: { symbols: ["🎮", "👾", "🕹️"], rare: [], bottom: [] }
     };
 
-    // Spiel-Einstellungen: Für jede Welt werden Spieler- und Ziel-Symbole definiert.
+    // Spiel-Einstellungen: Definiert werden Spielersymbol und Zielsymbol für jede Welt.
     const gameSettings = {
       galaxy: { player: "🚀", target: "🌍" },
       fairytale: { player: "🧚‍♀️", target: "🦄" },
@@ -168,23 +170,25 @@
       osc.stop(t + 1.2);
     }
 
-    // Timer aktualisieren (wird jede Sekunde aufgerufen)
+    // Timer aktualisieren
     function updateTimer() {
       const seconds = Math.floor((Date.now() - timerStart) / 1000);
       document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
     }
 
-    // Rendert das Spiel-Grid basierend auf dem gameGrid-Array
+    // Rendert das Spiel-Grid aus dem 2D-Array gameGrid
     function renderGameGrid() {
-      let output = "";
+      let outputHTML = "";
       for (let i = 0; i < height; i++) {
         let rowStr = "";
         for (let j = 0; j < width; j++) {
           rowStr += `<span class="cell">${gameGrid[i][j]}</span>`;
         }
-        output += rowStr + "<br>";
+        outputHTML += rowStr + "<br>";
       }
-      document.getElementById("output").innerHTML = output;
+      document.getElementById("output").innerHTML = outputHTML;
+      // Aktualisiere auch die Textarea (gridOutput) – beide sollen identisch sein
+      document.getElementById("gridOutput").value = gameGrid.map(row => row.join("")).join("\n");
     }
 
     // Lädt das Spiel-Grid aus URL-Parametern (world und grid)
@@ -205,9 +209,9 @@
           return arr;
         });
         const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-        // Berechne die ursprüngliche Anzahl der Zielsymbole
+        // Bestimme die ursprüngliche Anzahl an Zielsymbolen:
         initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
-        // Suche im Grid nach dem Spielersymbol
+        // Suche nach der Spielfigur im Grid und speichere die Position
         let foundPlayer = false;
         for (let i = 0; i < gameGrid.length && !foundPlayer; i++) {
           for (let j = 0; j < gameGrid[i].length; j++) {
@@ -239,13 +243,7 @@
         }
         gameGrid.push(row);
       }
-      const inputText = document.getElementById("inputText").value;
-      if (inputText) {
-        const start = Math.max(0, Math.floor((width - inputText.length) / 2));
-        for (let i = 0; i < inputText.length && start + i < width; i++) {
-          gameGrid[0][start + i] = inputText[i];
-        }
-      }
+      // Stelle sicher, dass mindestens ein Zielsymbol vorhanden ist
       const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
       let targetPlaced = false;
       for (let i = 0; i < height && !targetPlaced; i++) {
@@ -256,6 +254,7 @@
           }
         }
       }
+      // Platziere die Spielfigur, falls nicht vorhanden
       if (!gameGrid.flat().includes(currentGame.player)) {
         let freeCells = [];
         for (let i = 0; i < height; i++) {
@@ -264,18 +263,17 @@
           }
         }
         if (freeCells.length > 0) {
-          let pos = freeCells[Math.floor(Math.random() * freeCells.length)];
+          const pos = freeCells[Math.floor(Math.random() * freeCells.length)];
           gameGrid[pos.y][pos.x] = currentGame.player;
           playerX = pos.x;
           playerY = pos.y;
         }
       }
-      // Setze initialTargetCount, falls mehrere Ziele vorhanden sein sollten
       initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
       renderGameGrid();
     }
 
-    // Bewegt die Spielfigur. Wird geprüft, ob ein Ziel eingesammelt wird und ob alle Ziele gefunden wurden.
+    // Bewegt die Spielfigur; prüft auch, ob ein Zielsymbol eingesammelt wurde und ob alle Ziele gefunden sind.
     function movePlayer(dx, dy) {
       if (!timerStart) {
         timerStart = Date.now();
@@ -289,7 +287,7 @@
         return;
       }
       const cellContent = gameGrid[newY][newX];
-      // Erlaubt ist die Bewegung, wenn das Feld leer oder ein Zielsymbol ist.
+      // Bewegung ist erlaubt, wenn das Feld leer oder ein Zielsymbol ist.
       if (cellContent === " " || cellContent === currentGame.target) {
         if (cellContent === currentGame.target) {
           playPewSound();
@@ -317,17 +315,17 @@
       }
     }
 
-    // Kopiert das Ausgabefeld (das Grid) als Bitmap in den Zwischenspeicher.
+    // Kopiert das Textfeld (#gridOutput) als Bitmap in den Zwischenspeicher.
     function copyToClipboard() {
       if (!navigator.clipboard || !navigator.clipboard.write) {
         alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
         return;
       }
-      html2canvas(document.getElementById("output")).then(canvas => {
+      html2canvas(document.getElementById("gridOutput")).then(canvas => {
         canvas.toBlob(blob => {
           const item = new ClipboardItem({ "image/png": blob });
           navigator.clipboard.write([item]).then(() => {
-            alert("Bild kopiert!");
+            alert("Bitmap kopiert!");
           }).catch(err => {
             console.error("Fehler beim Kopieren: ", err);
             alert("Fehler beim Kopieren der Bitmap.");
@@ -336,7 +334,7 @@
       });
     }
 
-    // Generiert einen ALT-Text basierend auf der aktuellen Welt und kopiert ihn in den Zwischenspeicher.
+    // Generiert einen ALT-Text basierend auf der aktuellen Welt und Grid-Dimension.
     function generateAltText() {
       const worldDescriptions = {
         galaxy: "galaktische",
@@ -346,27 +344,28 @@
         cloud: "himmelhafte",
         arcade: "retro-arcade"
       };
-      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
       const description = worldDescriptions[lastWorldType] || lastWorldType;
       let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltengenerator. ";
       altText += "Das Spielfeld hat " + height + " Zeilen und " + width + " Spalten.";
-      navigator.clipboard.writeText(altText).then(() => {
-        alert("ALT Text kopiert!");
-      }).catch(err => {
-        console.error("Fehler beim Kopieren des ALT Texts: ", err);
-      });
+      navigator.clipboard.writeText(altText)
+        .then(() => alert("ALT Text kopiert!"))
+        .catch(err => {
+          console.error("Fehler beim Kopieren des ALT Texts: ", err);
+          alert("Fehler beim Kopieren des ALT Texts: " + err);
+        });
     }
 
-    // Übergibt das aktuelle Grid und die genutzte Welt als URL-Parameter an den Editor.
+    // Übergibt das aktuelle Grid und die ausgewählte Welt als URL-Parameter an den Editor.
+    // Dabei werden die ursprünglichen Parameter (unverändert) übergeben.
     function transferToEditor() {
       const params = new URLSearchParams();
       params.set("world", lastWorldType);
-      let gridText = gameGrid.map(row => row.join("")).join("\n");
+      const gridText = gameGrid.map(row => row.join("")).join("\n");
       params.set("grid", gridText);
       window.location.href = "welten_editor.html?" + params.toString();
     }
 
-    // Beim Laden der Seite wird versucht, ein Grid aus URL-Parametern zu laden.
+    // Beim Laden der Seite wird versucht, das Grid aus URL-Parametern zu laden.
     window.addEventListener("load", () => {
       loadGameFromParams();
     });
