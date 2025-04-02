@@ -38,25 +38,47 @@
     h2 {
       margin-top: 30px;
     }
-    /* Sowohl das Ausgabefeld als auch die Textarea erhalten die gleichen Maße wie in der Spielseite */
-    #output, #gridOutput {
+    /* #output wird als echtes CSS-Grid angezeigt */
+    #output {
+      display: grid;
+      grid-template-columns: repeat(15, 2ch);
+      gap: 1px;
+      width: 60ch;
+      height: 15em;
+      background: black;
+      padding: 10px;
+      border: 1px solid white;
+      margin: 10px auto;
+      overflow: hidden;
+      font-size: 2em;
+      line-height: 1.2em;
+    }
+    /* Die Textarea (#gridOutput) erhält exakt dieselben Maße */
+    #gridOutput {
       width: 60ch;
       height: 15em;
       background: black;
       color: white;
       padding: 10px;
       border: 1px solid white;
-      display: inline-block;
-      overflow: hidden;
-      line-height: 1.2em;
-      font-size: 2em;
       margin-top: 10px;
+      font-family: monospace;
+      font-size: 2em;
+      line-height: 1.2em;
+      overflow: hidden;
+      resize: none;
     }
-    /* Da #output als Raster aufgebaut wird, definieren wir hier die Zellen */
-    #output .cell {
-      display: inline-block;
+    .cell {
       width: 2ch;
+      height: 2ch;
       text-align: center;
+      line-height: 2ch;
+      border: 1px solid white;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .cell:hover {
+      background: #333;
     }
     button {
       margin: 10px 5px;
@@ -64,7 +86,7 @@
       cursor: pointer;
     }
   </style>
-  <!-- html2canvas wird benötigt, um das Textfeld als Bitmap zu kopieren -->
+  <!-- html2canvas wird benötigt, um die Textarea als Bitmap zu kopieren -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -75,17 +97,16 @@
     <div id="symbolPalette"></div>
     
     <h2>Ausgabefeld</h2>
-    <!-- Das Ausgabefeld (visuelle Darstellung des Grids) -->
+    <!-- Hier wird das visuelle Grid erstellt -->
     <div id="output"></div>
-    <!-- Die Textarea zeigt den Grid-Inhalt (als Text) – beide Elemente haben identische Maße -->
+    <!-- Die Textarea zeigt den Grid-Inhalt als Text (exakte Maße wie das visuelle Grid) -->
     <textarea id="gridOutput" readonly></textarea>
     <br>
     <button id="clearGrid">Grid leeren</button>
     <button id="copyGrid">Grid kopieren (Text)</button>
-    <!-- Die Bitmap-Snapshot-Funktion verwendet hier gridOutput -->
+    <!-- Die Bitmap-Snapshot-Funktion nutzt hier die Textarea (#gridOutput) -->
     <button id="copyBitmap">Bitmap kopieren</button>
     <button id="generateAltText">ALT Text generieren</button>
-    <!-- Dieser Button übergibt die Parameter an die Spielseite -->
     <button id="transferToGame">In Spiel übernehmen</button>
   </div>
   
@@ -95,108 +116,13 @@
     const gridRows = 10;
     let gridData = [];
     let selectedSymbol = "";
-
-    // Definition der Welten (wie in Deinem Projekt)
+    
+    // Definition der Welten (Beispiel: hier einige Welten)
     const worldTypes = {
       galaxy: { 
         symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
         rare: ["👾", "👽", "🎮", "👩‍🚀", "🔫", "🛰️"],
         bottom: ["🔭", "📡"]
-      },
-      flowers: { 
-        symbols: ["🌸", "🌹", "🌺", "🌻", "🌼", "💐", "🥀", "🌷", "🍀"],
-        rare: ["🦋", "🐞", "🐝", "🍄", "🐇"],
-        bottom: []
-      },
-      water: { 
-        symbols: ["🐠", "🐟", "🐬", "🐳", "🐋", "🦈", "🦑", "🐙", "🌊", "🚤", "⛵", "🚢", "🛥️"],
-        rare: ["🧜‍♂️", "🧜‍♀️", "🐋", "🤿", "🥽", "🔱", "⚓"],
-        bottom: []
-      },
-      forest: { 
-        symbols: ["🌲", "🌳", "🌴", "🍄", "🌿", "🍃", "🍂", "🦉", "🐿️", "🦌", "🐻", "🐇"],
-        rare: ["🦅", "🪺"],
-        bottom: []
-      },
-      lava: { 
-        symbols: ["🔥", "🌋", "🪨", "💀", "👹"],
-        rare: [],
-        bottom: []
-      },
-      steampunk: { 
-        symbols: ["⚙️", "🔩", "🛠️", "⏳", "🚂"],
-        rare: [],
-        bottom: []
-      },
-      desert: { 
-        symbols: ["🏜️", "🌵", "🐫", "🦂", "☀️"],
-        rare: [],
-        bottom: []
-      },
-      medieval: { 
-        symbols: ["⚔️", "🛡️", "🏰", "🐉", "🧙‍♂️", "👑"],
-        rare: [],
-        bottom: []
-      },
-      racing: { 
-        symbols: ["🏎️", "🚦", "🏁", "🚗"],
-        rare: [],
-        bottom: []
-      },
-      airport: { 
-        symbols: ["✈️", "🛫", "🛬", "🛄"],
-        rare: [],
-        bottom: []
-      },
-      cyberpunk: { 
-        symbols: ["🔮", "💾", "🕶️", "🛸", "🤖"],
-        rare: [],
-        bottom: []
-      },
-      northpole: { 
-        symbols: ["❄️", "⛄", "🎅", "🦌", "🏔️"],
-        rare: [],
-        bottom: []
-      },
-      volcano: { 
-        symbols: ["🌋", "🔥", "🪨", "💀"],
-        rare: [],
-        bottom: []
-      },
-      office: { 
-        symbols: ["⌨️", "☕", "🖥️", "📎", "📁"],
-        rare: [],
-        bottom: []
-      },
-      candyland: { 
-        symbols: ["🍭", "🍫", "🍩", "🍪", "🍬"],
-        rare: [],
-        bottom: []
-      },
-      jungle: { 
-        symbols: ["🌴", "🐒", "🦜", "🍌", "🐍"],
-        rare: [],
-        bottom: []
-      },
-      circus: { 
-        symbols: ["🎪", "🤹‍♂️", "🎭", "🐘"],
-        rare: [],
-        bottom: []
-      },
-      ruins: { 
-        symbols: ["🏺", "🗿", "⛏️", "🏚️"],
-        rare: [],
-        bottom: []
-      },
-      disco: { 
-        symbols: ["🪩", "💃", "🕺", "🎶"],
-        rare: [],
-        bottom: []
-      },
-      concert: { 
-        symbols: ["🎤", "🎸", "🥁", "🎵"],
-        rare: [],
-        bottom: []
       },
       fairytale: { 
         symbols: ["🧚", "✨", "🌈"],
@@ -224,8 +150,8 @@
         bottom: []
       }
     };
-
-    // Spiel-Einstellungen: Für jede Welt werden Spieler- und Zielfigur festgelegt.
+    
+    // Spiel-Einstellungen: Definiert werden Spielersymbol und Zielsymbol je Welt.
     const gameSettings = {
       galaxy: { player: "🚀", target: "🌍" },
       fairytale: { player: "🧚‍♀️", target: "🦄" },
@@ -234,8 +160,7 @@
       cloud: { player: "☁️", target: "🕊️" },
       arcade: { player: "🎮", target: "💎" }
     };
-
-    // Füllt das Dropdown mit den verfügbaren Welten
+    
     function populateWorldSelect() {
       const worldSelect = document.getElementById("worldSelect");
       worldSelect.innerHTML = "";
@@ -246,13 +171,11 @@
         worldSelect.appendChild(option);
       }
     }
-
-    // Erzeugt die Symbol-Palette für die aktuell ausgewählte Welt
+    
     function populateSymbolPalette() {
       const palette = document.getElementById("symbolPalette");
       palette.innerHTML = "";
       const world = worldTypes[document.getElementById("worldSelect").value];
-      // Kombiniert reguläre, rare und bottom-Symbole
       const symbols = world.symbols.concat(world.rare, world.bottom);
       symbols.forEach(sym => {
         const span = document.createElement("span");
@@ -266,23 +189,21 @@
         palette.appendChild(span);
       });
     }
-
-    // Initialisiert das Grid und erstellt die Zellen im Ausgabefeld (#output)
+    
     function initGrid() {
       gridData = [];
       const output = document.getElementById("output");
       output.innerHTML = "";
+      // Erstelle Zellen als direkte Kinder des Grid-Containers (#output)
       for (let r = 0; r < gridRows; r++) {
         let row = [];
         for (let c = 0; c < gridCols; c++) {
           row.push(" ");
-          // Erstelle eine Zelle; hier wird nur der DOM-Inhalt gesetzt
           const cell = document.createElement("div");
           cell.classList.add("cell");
           cell.dataset.row = r;
           cell.dataset.col = c;
           cell.textContent = " ";
-          // Beim Klick wird das ausgewählte Symbol ins Grid geschrieben
           cell.addEventListener("click", () => {
             if (selectedSymbol !== "") {
               cell.textContent = selectedSymbol;
@@ -296,29 +217,26 @@
       }
       updateGridOutput();
     }
-
-    // Aktualisiert das Textfeld, das den Grid-Inhalt als Text anzeigt
+    
     function updateGridOutput() {
       const textArea = document.getElementById("gridOutput");
       textArea.value = gridData.map(row => row.join("")).join("\n");
     }
-
-    // Löscht das Grid
+    
     function clearGrid() {
       gridData = gridData.map(row => row.map(() => " "));
       const cells = document.querySelectorAll("#output .cell");
       cells.forEach(cell => cell.textContent = " ");
       updateGridOutput();
     }
-
-    // Kopiert den Grid-Inhalt als Text in den Zwischenspeicher
+    
     function copyGridToClipboard() {
       navigator.clipboard.writeText(document.getElementById("gridOutput").value)
         .then(() => alert("Grid kopiert!"))
         .catch(err => alert("Fehler beim Kopieren: " + err));
     }
-
-    // Kopiert das Textfeld (#gridOutput) als Bitmap in den Zwischenspeicher
+    
+    // Kopiert die Textarea (#gridOutput) als Bitmap in den Zwischenspeicher.
     function copyGridAsBitmap() {
       if (!navigator.clipboard || !navigator.clipboard.write) {
         alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
@@ -336,8 +254,7 @@
         });
       });
     }
-
-    // Generiert einen ALT-Text basierend auf der ausgewählten Welt und Grid-Dimension
+    
     function generateAltText() {
       const worldDescriptions = {
         galaxy: "galaktische",
@@ -355,9 +272,8 @@
         .then(() => alert("ALT Text kopiert!"))
         .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     }
-
-    // Übergibt das aktuelle Grid und die ausgewählte Welt als URL-Parameter an die Spiel-Seite.
-    // Dabei werden die ursprünglichen (nicht modifizierten) Parameter übergeben.
+    
+    // Übergibt das aktuelle Grid und die ausgewählte Welt als URL-Parameter an die Spielseite.
     function transferToGame() {
       const currentWorld = document.getElementById("worldSelect").value;
       const currentGame = gameSettings[currentWorld] || { player: "🙂", target: "⭐️" };
@@ -379,8 +295,8 @@
       params.set("grid", gridText);
       window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
     }
-
-    // Lädt das Editor-Grid aus URL-Parametern, falls vorhanden, und übernimmt die ursprünglichen Parameter
+    
+    // Lädt die ursprünglichen Parameter (falls vorhanden) in den Editor.
     function loadEditorFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
@@ -398,7 +314,7 @@
           }
           return arr;
         });
-        // Aktualisiere das DOM im Ausgabefeld (#output)
+        // Aktualisiere die Zellen im visuellen Grid (#output)
         const cells = document.querySelectorAll("#output .cell");
         for (let r = 0; r < gridRows; r++) {
           for (let c = 0; c < gridCols; c++) {
@@ -411,16 +327,14 @@
         updateGridOutput();
       }
     }
-
-    // Event Listener
+    
     document.getElementById("worldSelect").addEventListener("change", populateSymbolPalette);
     document.getElementById("clearGrid").addEventListener("click", clearGrid);
     document.getElementById("copyGrid").addEventListener("click", copyGridToClipboard);
     document.getElementById("copyBitmap").addEventListener("click", copyGridAsBitmap);
     document.getElementById("generateAltText").addEventListener("click", generateAltText);
     document.getElementById("transferToGame").addEventListener("click", transferToGame);
-
-    // Initialisierung beim Laden der Seite
+    
     window.addEventListener("load", () => {
       populateWorldSelect();
       populateSymbolPalette();
