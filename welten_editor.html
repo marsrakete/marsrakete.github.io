@@ -38,12 +38,15 @@
     h2 {
       margin-top: 30px;
     }
-    /* Raster-Layout (15 Spalten x 10 Zeilen) */
-    #grid {
+    /* Das Ausgabefeld, analog zur Spielseite */
+    #output {
       display: grid;
       grid-template-columns: repeat(15, 2ch);
       gap: 1px;
       margin: 20px auto;
+      background: black;
+      padding: 10px;
+      border: 1px solid white;
       width: fit-content;
     }
     .cell {
@@ -70,35 +73,36 @@
       font-family: monospace;
     }
   </style>
-  <!-- html2canvas wird benötigt, um das Raster als Bitmap zu kopieren -->
+  <!-- html2canvas wird benötigt, um das Ausgabefeld als Bitmap zu kopieren -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
   <div id="editorContainer">
     <h1>Weltensymbol Editor</h1>
-    
     <label for="worldSelect">Welt auswählen:</label>
-    <select id="worldSelect">
-      <!-- Optionen werden per JavaScript hinzugefügt -->
-    </select>
-    
+    <select id="worldSelect"></select>
     <div id="symbolPalette"></div>
     
-    <h2>Ausgabefeld (Grid)</h2>
-    <div id="grid"></div>
-    
+    <h2>Ausgabefeld</h2>
+    <div id="output"></div>
+    <br>
     <button id="clearGrid">Grid leeren</button>
     <button id="copyGrid">Grid kopieren (Text)</button>
     <button id="copyBitmap">Bitmap kopieren</button>
     <button id="generateAltText">ALT Text generieren</button>
-    <!-- Neuer Button: Übergabe an die Spielseite -->
     <button id="transferToGame">In Spiel übernehmen</button>
     <br>
     <textarea id="gridOutput" rows="10" readonly></textarea>
   </div>
   
   <script>
-    // Definition der Welten (basierend auf Deinem Projekt)
+    // Globale Einstellungen
+    const gridCols = 15;
+    const gridRows = 10;
+    let gridData = [];
+    let selectedSymbol = "";
+
+    // Definition der Welten (wie in Deinem Projekt)
     const worldTypes = {
       galaxy: { 
         symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
@@ -200,47 +204,47 @@
         rare: [],
         bottom: []
       },
-      fairytale: {
+      fairytale: { 
         symbols: ["🧚", "✨", "🌈"],
         rare: ["🦄"],
         bottom: []
       },
-      apocalypse: {
+      apocalypse: { 
         symbols: ["☢️", "🏚️", "🔥"],
         rare: ["💣"],
         bottom: []
       },
-      cave: {
+      cave: { 
         symbols: ["🪨", "⛰️", "🕸️"],
         rare: [],
         bottom: []
       },
-      cloud: {
+      cloud: { 
         symbols: ["☁️", "🌤️", "🌈"],
         rare: [],
         bottom: []
       },
-      arcade: {
+      arcade: { 
         symbols: ["🎮", "👾", "🕹️"],
         rare: [],
         bottom: []
       }
     };
-    
-    // Einstellungen für das Raster
-    const gridCols = 15;
-    const gridRows = 10;
-    let gridData = [];
-    let selectedSymbol = "";
-    
-    // DOM-Elemente
-    const worldSelect = document.getElementById("worldSelect");
-    const symbolPalette = document.getElementById("symbolPalette");
-    const gridContainer = document.getElementById("grid");
-    const gridOutput = document.getElementById("gridOutput");
-    
-    // Füllt das Dropdown mit den vorhandenen Welten
+
+    // Spiel-Einstellungen: Für jede Welt werden Spieler- und Zielfigur festgelegt.
+    const gameSettings = {
+      galaxy: { player: "🚀", target: "🌍" },
+      fairytale: { player: "🧚‍♀️", target: "🦄" },
+      apocalypse: { player: "😷", target: "🌅" },
+      cave: { player: "⛏️", target: "🏺" },
+      cloud: { player: "☁️", target: "🕊️" },
+      arcade: { player: "🎮", target: "💎" }
+    };
+
+    // Füllt das Dropdown mit den verfügbaren Welten
     function populateWorldSelect() {
+      const worldSelect = document.getElementById("worldSelect");
+      worldSelect.innerHTML = "";
       for (let world in worldTypes) {
         const option = document.createElement("option");
         option.value = world;
@@ -248,11 +252,12 @@
         worldSelect.appendChild(option);
       }
     }
-    
+
     // Erzeugt die Symbol-Palette für die aktuell ausgewählte Welt
     function populateSymbolPalette() {
-      symbolPalette.innerHTML = "";
-      const world = worldTypes[worldSelect.value];
+      const palette = document.getElementById("symbolPalette");
+      palette.innerHTML = "";
+      const world = worldTypes[document.getElementById("worldSelect").value];
       // Kombiniert reguläre, rare und bottom-Symbole
       const symbols = world.symbols.concat(world.rare, world.bottom);
       symbols.forEach(sym => {
@@ -265,14 +270,15 @@
           span.classList.add("selected");
           selectedSymbol = sym;
         });
-        symbolPalette.appendChild(span);
+        palette.appendChild(span);
       });
     }
-    
-    // Initialisiert das Raster und die zugehörigen Daten
+
+    // Initialisiert das Grid und erstellt die Zellen im Ausgabefeld (#output)
     function initGrid() {
       gridData = [];
-      gridContainer.innerHTML = "";
+      const output = document.getElementById("output");
+      output.innerHTML = "";
       for (let r = 0; r < gridRows; r++) {
         let row = [];
         for (let c = 0; c < gridCols; c++) {
@@ -289,38 +295,41 @@
               updateGridOutput();
             }
           });
-          gridContainer.appendChild(cell);
+          output.appendChild(cell);
         }
         gridData.push(row);
       }
-    }
-    
-    // Aktualisiert das Textfeld mit dem aktuellen Rasterinhalt
-    function updateGridOutput() {
-      gridOutput.value = gridData.map(row => row.join("")).join("\n");
-    }
-    
-    // Löscht das Raster
-    function clearGrid() {
-      gridData = gridData.map(row => row.map(() => " "));
-      Array.from(gridContainer.children).forEach(cell => cell.textContent = " ");
       updateGridOutput();
     }
-    
-    // Kopiert den Rasterinhalt als Text in den Zwischenspeicher
+
+    // Aktualisiert das Textfeld, das den Grid-Inhalt als Text anzeigt
+    function updateGridOutput() {
+      const textArea = document.getElementById("gridOutput");
+      textArea.value = gridData.map(row => row.join("")).join("\n");
+    }
+
+    // Löscht das Grid
+    function clearGrid() {
+      gridData = gridData.map(row => row.map(() => " "));
+      const cells = document.querySelectorAll("#output .cell");
+      cells.forEach(cell => cell.textContent = " ");
+      updateGridOutput();
+    }
+
+    // Kopiert den Grid-Inhalt als Text in den Zwischenspeicher
     function copyGridToClipboard() {
-      navigator.clipboard.writeText(gridOutput.value)
+      navigator.clipboard.writeText(document.getElementById("gridOutput").value)
         .then(() => alert("Grid kopiert!"))
         .catch(err => alert("Fehler beim Kopieren: " + err));
     }
-    
-    // Kopiert das Raster (Grid) als Bitmap in den Zwischenspeicher
+
+    // Kopiert das Ausgabefeld (#output) als Bitmap in den Zwischenspeicher
     function copyGridAsBitmap() {
       if (!navigator.clipboard || !navigator.clipboard.write) {
         alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
         return;
       }
-      html2canvas(gridContainer).then(canvas => {
+      html2canvas(document.getElementById("output")).then(canvas => {
         canvas.toBlob(blob => {
           const item = new ClipboardItem({ "image/png": blob });
           navigator.clipboard.write([item]).then(() => {
@@ -332,108 +341,96 @@
         });
       });
     }
-    
-    // Generiert einen ALT-Text basierend auf der aktuell ausgewählten Welt
+
+    // Generiert einen ALT-Text basierend auf der ausgewählten Welt und Grid-Dimension
     function generateAltText() {
       const worldDescriptions = {
         galaxy: "galaktische",
-        flowers: "blumige",
-        water: "wasserbasierte",
-        forest: "waldartige",
-        lava: "feurige",
-        steampunk: "steampunk",
-        desert: "wüstenartige",
-        medieval: "mittelalterliche",
-        racing: "rennbegeisterte",
-        airport: "flughafenbezogene",
-        cyberpunk: "cyberpunk",
-        northpole: "nordpolartige",
-        volcano: "vulkanische",
-        office: "bürokratische",
-        candyland: "süße",
-        jungle: "dschungelartige",
-        circus: "zirkusartige",
-        ruins: "ruinöse",
-        disco: "discoartige",
-        concert: "konzertbezogene",
         fairytale: "märchenhafte",
         apocalypse: "apokalyptische",
         cave: "höllische",
         cloud: "himmelhafte",
         arcade: "retro-arcade"
       };
-      const worldType = worldSelect.value;
-      const description = worldDescriptions[worldType] || worldType;
-      let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltensymbol Editor. Das Raster hat " + gridRows + " Zeilen und " + gridCols + " Spalten.";
-      navigator.clipboard.writeText(altText).then(() => {
-        alert("ALT Text kopiert!");
-      }).catch(err => {
-        console.error("Fehler beim Kopieren des ALT Texts: ", err);
-      });
+      const currentWorld = document.getElementById("worldSelect").value;
+      const description = worldDescriptions[currentWorld] || currentWorld;
+      let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltensymbol Editor. ";
+      altText += "Das Raster hat " + gridRows + " Zeilen und " + gridCols + " Spalten.";
+      navigator.clipboard.writeText(altText)
+        .then(() => alert("ALT Text kopiert!"))
+        .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     }
-    
-    // Übergibt das aktuelle Grid und die genutzte Welt als URL-Parameter an die Hauptseite (Spiel)
-function transferToGame() {
-  const world = worldSelect.value;
-  const grid = gridOutput.value;
-  const params = new URLSearchParams();
-  params.set("world", world);
-  params.set("grid", grid);
-  // URLSearchParams kodiert die Werte automatisch (z. B. Zeilenumbrüche werden zu %0A)
-  window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
-}
 
-    
-    // Falls der Editor über Parameter (von der Hauptseite) aufgerufen wurde: Raster und Welt setzen
-function loadEditorFromParams() {
-  const params = new URLSearchParams(window.location.search);
-  if (params.has("world") && params.has("grid")) {
-    const world = params.get("world");
-    const gridText = params.get("grid");
-    worldSelect.value = world;
-    populateSymbolPalette();
-    const rows = gridText.split("\n");
-    gridData = rows.map(row => {
-      let arr = Array.from(row);
-      // Passe die Länge der Zeile an die erwartete Spaltenzahl im Editor an:
-      if (arr.length < gridCols) {
-        arr = arr.concat(Array(gridCols - arr.length).fill(" "));
-      } else if (arr.length > gridCols) {
-        arr = arr.slice(0, gridCols);
+    // Übergibt das aktuelle Grid und die ausgewählte Welt als URL-Parameter an die Spiel-Seite
+    function transferToGame() {
+      const currentWorld = document.getElementById("worldSelect").value;
+      const currentGame = gameSettings[currentWorld] || { player: "🙂", target: "⭐️" };
+      const flatGrid = gridData.flat();
+      let errors = [];
+      if (!flatGrid.includes(currentGame.player)) {
+        errors.push("Das Spielersymbol (" + currentGame.player + ") fehlt.");
       }
-      return arr;
-    });
-    // Aktualisiere die einzelnen Zellen im DOM:
-    const cells = gridContainer.querySelectorAll(".cell");
-    for (let r = 0; r < gridRows; r++) {
-      for (let c = 0; c < gridCols; c++) {
-        const index = r * gridCols + c;
-        if (cells[index]) {
-          cells[index].textContent = gridData[r][c] || " ";
+      if (!flatGrid.includes(currentGame.target)) {
+        errors.push("Das Zielsymbol (" + currentGame.target + ") fehlt.");
+      }
+      if (errors.length > 0) {
+        alert("Fehler: " + errors.join(" "));
+        return;
+      }
+      const params = new URLSearchParams();
+      params.set("world", currentWorld);
+      const gridText = gridData.map(row => row.join("")).join("\n");
+      params.set("grid", gridText);
+      window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
+    }
+
+    // Lädt das Editor-Grid aus URL-Parametern, falls vorhanden
+    function loadEditorFromParams() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has("world") && params.has("grid")) {
+        const world = params.get("world");
+        const gridText = params.get("grid");
+        document.getElementById("worldSelect").value = world;
+        populateSymbolPalette();
+        const rows = gridText.split("\n");
+        gridData = rows.map(row => {
+          let arr = Array.from(row);
+          if (arr.length < gridCols) {
+            arr = arr.concat(Array(gridCols - arr.length).fill(" "));
+          } else if (arr.length > gridCols) {
+            arr = arr.slice(0, gridCols);
+          }
+          return arr;
+        });
+        // Aktualisiere das DOM im Ausgabefeld (#output)
+        const cells = document.querySelectorAll("#output .cell");
+        for (let r = 0; r < gridRows; r++) {
+          for (let c = 0; c < gridCols; c++) {
+            const index = r * gridCols + c;
+            if (cells[index]) {
+              cells[index].textContent = gridData[r][c] || " ";
+            }
+          }
         }
+        updateGridOutput();
       }
     }
-    updateGridOutput();
-  }
-}
 
-
-
-    
     // Event Listener
-    worldSelect.addEventListener("change", populateSymbolPalette);
+    document.getElementById("worldSelect").addEventListener("change", populateSymbolPalette);
     document.getElementById("clearGrid").addEventListener("click", clearGrid);
     document.getElementById("copyGrid").addEventListener("click", copyGridToClipboard);
     document.getElementById("copyBitmap").addEventListener("click", copyGridAsBitmap);
     document.getElementById("generateAltText").addEventListener("click", generateAltText);
     document.getElementById("transferToGame").addEventListener("click", transferToGame);
-    
-    // Initialisierung
-    populateWorldSelect();
-    populateSymbolPalette();
-    initGrid();
-    updateGridOutput();
-    loadEditorFromParams();
+
+    // Initialisierung beim Laden der Seite
+    window.addEventListener("load", () => {
+      populateWorldSelect();
+      populateSymbolPalette();
+      initGrid();
+      loadEditorFromParams();
+    });
   </script>
 </body>
 </html>
