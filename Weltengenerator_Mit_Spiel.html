@@ -335,25 +335,23 @@
     }
 
     // Generiert einen ALT-Text basierend auf der aktuellen Welt und Grid-Dimension.
-    function generateAltText() {
-      const worldDescriptions = {
-        galaxy: "galaktische",
-        fairytale: "märchenhafte",
-        apocalypse: "apokalyptische",
-        cave: "höllische",
-        cloud: "himmelhafte",
-        arcade: "retro-arcade"
-      };
-      const description = worldDescriptions[lastWorldType] || lastWorldType;
-      let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltengenerator. ";
-      altText += "Das Spielfeld hat " + height + " Zeilen und " + width + " Spalten.";
-      navigator.clipboard.writeText(altText)
-        .then(() => alert("ALT Text kopiert!"))
-        .catch(err => {
-          console.error("Fehler beim Kopieren des ALT Texts: ", err);
-          alert("Fehler beim Kopieren des ALT Texts: " + err);
-        });
-    }
+function generateAltText() {
+  // Hole die aktuell ausgewählte Welt aus worldData
+  const currentWorldKey = document.getElementById("worldSelect").value;
+  const currentWorld = worldData[currentWorldKey];
+  
+  // Verwende die Beschreibung, sofern vorhanden – ansonsten falls nicht definiert, den worlds key
+  const description = currentWorld.description || currentWorldKey;
+  
+  // Erzeuge den ALT-Text, der nun die in worldData definierte Description beinhaltet
+  let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltensymbol Editor. ";
+  altText += "Das Raster hat " + gridRows + " Zeilen und " + gridCols + " Spalten.";
+  
+  navigator.clipboard.writeText(altText)
+    .then(() => alert("ALT Text kopiert!"))
+    .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
+}
+
 
     // Übergibt das aktuelle Grid und die ausgewählte Welt als URL-Parameter an den Editor.
     // Dabei werden die ursprünglichen Parameter (unverändert) übergeben.
