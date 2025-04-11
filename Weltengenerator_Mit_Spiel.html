@@ -14,7 +14,7 @@
       margin: 0;
       padding: 20px;
     }
-    /* Sowohl das visuelle Ausgabefeld als auch die Textarea erhalten exakt dieselben Maße */
+    /* Gleiche Maße für visuelle und textuelle Ausgabe */
     #output, #gridOutput {
       width: 60ch;
       height: 15em;
@@ -28,7 +28,6 @@
       font-size: 2em;
       margin-top: 10px;
     }
-    /* Für die Darstellung des Grids (visuell) */
     .cell {
       display: inline-block;
       width: 2ch;
@@ -58,7 +57,9 @@
       margin-top: 20px;
     }
   </style>
-  <!-- html2canvas wird benötigt, um das Textfeld (#gridOutput) als Bitmap zu kopieren -->
+  <!-- Lade worldData.js extern -->
+  <script src="worldData.js"></script>
+  <!-- html2canvas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -69,12 +70,9 @@
     <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Gefundene Ziele: 0</span>
   </div>
   
-  <!-- Visuelles Ausgabefeld für das Grid -->
   <div id="output"></div>
-  <!-- Textfeld, das den Grid-Inhalt als Text anzeigt (exakte Maße wie output) -->
   <textarea id="gridOutput" readonly></textarea>
   
-  <!-- Virtuelle Bewegungstasten -->
   <div id="virtualButtons">
     <button onclick="movePlayer(0,-1)">↑</button><br>
     <button onclick="movePlayer(-1,0)">←</button>
@@ -88,42 +86,17 @@
   <button onclick="transferToEditor()">Zurück zum Editor</button>
   
   <script>
-    // Globale Variablen und Einstellungen
     let lastWorldType = 'galaxy';
-    const width = 30;    // Anzahl Spalten im Spiel-Grid
-    const height = 10;   // Anzahl Zeilen im Spiel-Grid
-    let gameGrid = [];   // 2D-Array des Spielfelds
-    let playerX = 0, playerY = 0;  // Position der Spielfigur
-    let foundCount = 0;  // Zähler für gefundene Ziele
-    let initialTargetCount = 0; // Ursprüngliche Anzahl der Zielsymbole
+    const width = 30;
+    const height = 10;
+    let gameGrid = [];
+    let playerX = 0, playerY = 0;
+    let foundCount = 0;
+    let initialTargetCount = 0;
     let timerStart = null;
     let timerInterval = null;
-
-    // Definition der Welttypen (Beispiel: hier sind einige definiert)
-    const worldTypes = {
-      galaxy: { 
-        symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
-        rare: ["👾", "👽", "🎮", "👩‍🚀", "🔫", "🛰️"],
-        bottom: ["🔭", "📡"]
-      },
-      fairytale: { symbols: ["🧚", "✨", "🌈"], rare: ["🦄"], bottom: [] },
-      apocalypse: { symbols: ["☢️", "🏚️", "🔥"], rare: ["💣"], bottom: [] },
-      cave: { symbols: ["🪨", "⛰️", "🕸️"], rare: [], bottom: [] },
-      cloud: { symbols: ["☁️", "🌤️", "🌈"], rare: [], bottom: [] },
-      arcade: { symbols: ["🎮", "👾", "🕹️"], rare: [], bottom: [] }
-    };
-
-    // Spiel-Einstellungen: Definiert werden Spielersymbol und Zielsymbol für jede Welt.
-    const gameSettings = {
-      galaxy: { player: "🚀", target: "🌍" },
-      fairytale: { player: "🧚‍♀️", target: "🦄" },
-      apocalypse: { player: "😷", target: "🌅" },
-      cave: { player: "⛏️", target: "🏺" },
-      cloud: { player: "☁️", target: "🕊️" },
-      arcade: { player: "🎮", target: "💎" }
-    };
-
-    // Sound-Funktionen
+    
+    // Greife auf worldData zu
     function playPewSound() {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const oscillator = ctx.createOscillator();
@@ -136,7 +109,7 @@
       gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
       oscillator.stop(ctx.currentTime + 0.2);
     }
-
+    
     function playPowSound() {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const oscillator = ctx.createOscillator();
@@ -149,7 +122,7 @@
       gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
       oscillator.stop(ctx.currentTime + 0.2);
     }
-
+    
     function playTuschSound() {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       if (ctx.state === 'suspended') { ctx.resume(); }
@@ -169,14 +142,12 @@
       osc.start(t);
       osc.stop(t + 1.2);
     }
-
-    // Timer aktualisieren
+    
     function updateTimer() {
       const seconds = Math.floor((Date.now() - timerStart) / 1000);
       document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
     }
-
-    // Rendert das Spiel-Grid aus dem 2D-Array gameGrid
+    
     function renderGameGrid() {
       let outputHTML = "";
       for (let i = 0; i < height; i++) {
@@ -187,11 +158,9 @@
         outputHTML += rowStr + "<br>";
       }
       document.getElementById("output").innerHTML = outputHTML;
-      // Aktualisiere auch die Textarea (gridOutput) – beide sollen identisch sein
       document.getElementById("gridOutput").value = gameGrid.map(row => row.join("")).join("\n");
     }
-
-    // Lädt das Spiel-Grid aus URL-Parametern (world und grid)
+    
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
@@ -208,10 +177,9 @@
           }
           return arr;
         });
-        const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-        // Bestimme die ursprüngliche Anzahl an Zielsymbolen:
+        const currentWorld = worldData[lastWorldType];
+        const currentGame = { player: currentWorld.player, target: currentWorld.target };
         initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
-        // Suche nach der Spielfigur im Grid und speichere die Position
         let foundPlayer = false;
         for (let i = 0; i < gameGrid.length && !foundPlayer; i++) {
           for (let j = 0; j < gameGrid[i].length; j++) {
@@ -228,12 +196,10 @@
         }
         renderGameGrid();
       } else {
-        // Falls keine Parameter übergeben wurden, erzeuge ein Standard-Grid
         generateDefaultGrid();
       }
     }
-
-    // Erzeugt ein Standard-Grid, falls keine Parameter vorhanden sind
+    
     function generateDefaultGrid() {
       gameGrid = [];
       for (let i = 0; i < height; i++) {
@@ -243,8 +209,8 @@
         }
         gameGrid.push(row);
       }
-      // Stelle sicher, dass mindestens ein Zielsymbol vorhanden ist
-      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+      const currentWorld = worldData[lastWorldType];
+      const currentGame = { player: currentWorld.player, target: currentWorld.target };
       let targetPlaced = false;
       for (let i = 0; i < height && !targetPlaced; i++) {
         for (let j = 0; j < width && !targetPlaced; j++) {
@@ -254,7 +220,6 @@
           }
         }
       }
-      // Platziere die Spielfigur, falls nicht vorhanden
       if (!gameGrid.flat().includes(currentGame.player)) {
         let freeCells = [];
         for (let i = 0; i < height; i++) {
@@ -272,14 +237,14 @@
       initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
       renderGameGrid();
     }
-
-    // Bewegt die Spielfigur; prüft auch, ob ein Zielsymbol eingesammelt wurde und ob alle Ziele gefunden sind.
+    
     function movePlayer(dx, dy) {
       if (!timerStart) {
         timerStart = Date.now();
         timerInterval = setInterval(updateTimer, 1000);
       }
-      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
+      const currentWorld = worldData[lastWorldType];
+      const currentGame = { player: currentWorld.player, target: currentWorld.target };
       const newX = playerX + dx;
       const newY = playerY + dy;
       if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
@@ -287,13 +252,11 @@
         return;
       }
       const cellContent = gameGrid[newY][newX];
-      // Bewegung ist erlaubt, wenn das Feld leer oder ein Zielsymbol ist.
       if (cellContent === " " || cellContent === currentGame.target) {
         if (cellContent === currentGame.target) {
           playPewSound();
           foundCount++;
           document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
-          // Prüfe, ob alle Ziele gefunden wurden
           if (foundCount >= initialTargetCount) {
             clearInterval(timerInterval);
             timerInterval = null;
@@ -304,7 +267,6 @@
             }, 600);
           }
         }
-        // Bewege die Spielfigur
         gameGrid[playerY][playerX] = " ";
         gameGrid[newY][newX] = currentGame.player;
         playerX = newX;
@@ -314,8 +276,19 @@
         playPowSound();
       }
     }
-
-    // Kopiert das Textfeld (#gridOutput) als Bitmap in den Zwischenspeicher.
+    
+    document.addEventListener("keydown", function(e) {
+      let dx = 0, dy = 0;
+      switch(e.key) {
+        case "ArrowUp":    dy = -1; break;
+        case "ArrowDown":  dy = 1;  break;
+        case "ArrowLeft":  dx = -1; break;
+        case "ArrowRight": dx = 1;  break;
+        default: return;
+      }
+      movePlayer(dx, dy);
+    });
+    
     function copyToClipboard() {
       if (!navigator.clipboard || !navigator.clipboard.write) {
         alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
@@ -333,8 +306,7 @@
         });
       });
     }
-
-    // Generiert einen ALT-Text basierend auf der aktuellen Welt und Grid-Dimension.
+    
 function generateAltText() {
   // Hole die aktuell ausgewählte Welt aus worldData
   const currentWorldKey = document.getElementById("worldSelect").value;
@@ -352,9 +324,7 @@ function generateAltText() {
     .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
 }
 
-
-    // Übergibt das aktuelle Grid und die ausgewählte Welt als URL-Parameter an den Editor.
-    // Dabei werden die ursprünglichen Parameter (unverändert) übergeben.
+    
     function transferToEditor() {
       const params = new URLSearchParams();
       params.set("world", lastWorldType);
@@ -362,13 +332,12 @@ function generateAltText() {
       params.set("grid", gridText);
       window.location.href = "welten_editor.html?" + params.toString();
     }
-
-    // Beim Laden der Seite wird versucht, das Grid aus URL-Parametern zu laden.
+    
     window.addEventListener("load", () => {
+      generateDefaultGrid();
       loadGameFromParams();
     });
-
-    // Tastatursteuerung: Pfeiltasten
+    
     document.addEventListener("keydown", function(e) {
       switch(e.key) {
         case "ArrowUp":
