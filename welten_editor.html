@@ -368,24 +368,23 @@
       });
     }
     
-    function generateAltText() {
-      const worldDescriptions = {
-        galaxy: "galaktische",
-        fairytale: "märchenhafte",
-        apocalypse: "apokalyptische",
-        cave: "höllische",
-        cloud: "himmelhafte",
-        arcade: "retro-arcade"
-      };
-      const currentWorld = document.getElementById("worldSelect").value;
-      const description = worldDescriptions[currentWorld] || currentWorld;
-      let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltensymbol Editor. ";
-      altText += "Das Raster hat " + gridRows + " Zeilen und " + gridCols + " Spalten.";
-      navigator.clipboard.writeText(altText)
-        .then(() => alert("ALT Text kopiert!"))
-        .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
-    }
-    
+function generateAltText() {
+  // Hole die aktuell ausgewählte Welt aus worldData
+  const currentWorldKey = document.getElementById("worldSelect").value;
+  const currentWorld = worldData[currentWorldKey];
+  
+  // Verwende die Beschreibung, sofern vorhanden – ansonsten falls nicht definiert, den worlds key
+  const description = currentWorld.description || currentWorldKey;
+  
+  // Erzeuge den ALT-Text, der nun die in worldData definierte Description beinhaltet
+  let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltensymbol Editor. ";
+  altText += "Das Raster hat " + gridRows + " Zeilen und " + gridCols + " Spalten.";
+  
+  navigator.clipboard.writeText(altText)
+    .then(() => alert("ALT Text kopiert!"))
+    .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
+}
+
     function transferToGame() {
       const currentWorld = document.getElementById("worldSelect").value;
       const currentGame = gameSettings[currentWorld] || { player: "🙂", target: "⭐️" };
