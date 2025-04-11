@@ -14,24 +14,28 @@
       margin: 0;
       padding: 20px;
     }
-    /* Gleiche Maße für visuelle und textuelle Ausgabe */
-    #output, #gridOutput {
+    /* Gleiche Maße für die visuelle Ausgabe (grid) */
+    #output {
       width: 60ch;
       height: 15em;
       background: black;
       color: white;
       padding: 10px;
       border: 1px solid white;
-      display: inline-block;
+      margin: 10px auto;
       overflow: hidden;
       line-height: 1.2em;
       font-size: 2em;
-      margin-top: 10px;
     }
-    .cell {
-      display: inline-block;
-      width: 2ch;
-      text-align: center;
+    /* Steuerungselemente über dem Spielfeld */
+    #gameControls {
+      margin-bottom: 15px;
+    }
+    #gameControls select, #gameControls button {
+      font-size: 1em;
+      padding: 5px 10px;
+      margin: 5px;
+      cursor: pointer;
     }
     #gameInfo {
       font-size: 1.2em;
@@ -56,10 +60,15 @@
     #virtualButtons {
       margin-top: 20px;
     }
+    .cell {
+      display: inline-block;
+      width: 2ch;
+      text-align: center;
+    }
   </style>
-  <!-- Lade worldData.js extern -->
+  <!-- Lade worldData.js extern (enthält alle Weltdaten inkl. descriptions) -->
   <script src="worldData.js"></script>
-  <!-- html2canvas -->
+  <!-- html2canvas, falls benötigt -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -70,9 +79,17 @@
     <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Gefundene Ziele: 0</span>
   </div>
   
-  <div id="output"></div>
-  <textarea id="gridOutput" readonly></textarea>
+  <!-- Steuerung zum Auswählen einer Welt und Starten der Generierung -->
+  <div id="gameControls">
+    <label for="worldSelect">Welt auswählen:</label>
+    <select id="worldSelect"></select>
+    <button id="generateWorldBtn">Welt generieren</button>
+  </div>
   
+  <!-- Visuelle Ausgabe des Spielfelds -->
+  <div id="output"></div>
+  
+  <!-- Virtuelle Bewegungstasten -->
   <div id="virtualButtons">
     <button onclick="movePlayer(0,-1)">↑</button><br>
     <button onclick="movePlayer(-1,0)">←</button>
@@ -86,140 +103,83 @@
   <button onclick="transferToEditor()">Zurück zum Editor</button>
   
   <script>
-    let lastWorldType = 'galaxy';
+    // Globale Variablen und Einstellungen
     const width = 30;
     const height = 10;
+    const maxSymbolCount = 50; // Anzahl zufällig zu platzierender Symbole
     let gameGrid = [];
     let playerX = 0, playerY = 0;
     let foundCount = 0;
     let initialTargetCount = 0;
     let timerStart = null;
     let timerInterval = null;
+    let lastWorldType = 'galaxy';
     
-    // Greife auf worldData zu
-    function playPewSound() {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const oscillator = ctx.createOscillator();
-      const gain = ctx.createGain();
-      oscillator.type = "square";
-      oscillator.frequency.setValueAtTime(440, ctx.currentTime);
-      oscillator.connect(gain);
-      gain.connect(ctx.destination);
-      oscillator.start();
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
-      oscillator.stop(ctx.currentTime + 0.2);
-    }
-    
-    function playPowSound() {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const oscillator = ctx.createOscillator();
-      const gain = ctx.createGain();
-      oscillator.type = "sawtooth";
-      oscillator.frequency.setValueAtTime(200, ctx.currentTime);
-      oscillator.connect(gain);
-      gain.connect(ctx.destination);
-      oscillator.start();
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
-      oscillator.stop(ctx.currentTime + 0.2);
-    }
-    
-    function playTuschSound() {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      if (ctx.state === 'suspended') { ctx.resume(); }
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = "sine";
-      let t = ctx.currentTime;
-      osc.frequency.setValueAtTime(400, t);
-      osc.frequency.linearRampToValueAtTime(400, t + 0.1);
-      osc.frequency.linearRampToValueAtTime(300, t + 0.2);
-      osc.frequency.linearRampToValueAtTime(400, t + 0.3);
-      osc.frequency.linearRampToValueAtTime(150, t + 1.2);
-      gain.gain.setValueAtTime(0.7, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(t);
-      osc.stop(t + 1.2);
-    }
-    
-    function updateTimer() {
-      const seconds = Math.floor((Date.now() - timerStart) / 1000);
-      document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
-    }
-    
-    function renderGameGrid() {
-      let outputHTML = "";
-      for (let i = 0; i < height; i++) {
-        let rowStr = "";
-        for (let j = 0; j < width; j++) {
-          rowStr += `<span class="cell">${gameGrid[i][j]}</span>`;
-        }
-        outputHTML += rowStr + "<br>";
-      }
-      document.getElementById("output").innerHTML = outputHTML;
-      document.getElementById("gridOutput").value = gameGrid.map(row => row.join("")).join("\n");
-    }
-    
-    function loadGameFromParams() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.has("world") && params.has("grid")) {
-        const world = params.get("world");
-        const gridText = params.get("grid");
-        lastWorldType = world;
-        const rows = gridText.split("\n");
-        gameGrid = rows.map(row => {
-          let arr = Array.from(row);
-          if (arr.length < width) {
-            arr = arr.concat(Array(width - arr.length).fill(" "));
-          } else if (arr.length > width) {
-            arr = arr.slice(0, width);
-          }
-          return arr;
-        });
-        const currentWorld = worldData[lastWorldType];
-        const currentGame = { player: currentWorld.player, target: currentWorld.target };
-        initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
-        let foundPlayer = false;
-        for (let i = 0; i < gameGrid.length && !foundPlayer; i++) {
-          for (let j = 0; j < gameGrid[i].length; j++) {
-            if (gameGrid[i][j] === currentGame.player) {
-              playerX = j;
-              playerY = i;
-              foundPlayer = true;
-              break;
-            }
-          }
-        }
-        if (!foundPlayer) {
-          alert("Fehler: Das Spielersymbol (" + currentGame.player + ") wurde im Grid nicht gefunden.");
-        }
-        renderGameGrid();
-      } else {
-        generateDefaultGrid();
+    // Füllt das Dropdown mit allen Welten aus worldData
+    function populateWorldSelect() {
+      const worldSelect = document.getElementById("worldSelect");
+      worldSelect.innerHTML = "";
+      for (let world in worldData) {
+        const option = document.createElement("option");
+        option.value = world;
+        option.textContent = world;
+        worldSelect.appendChild(option);
       }
     }
     
-    function generateDefaultGrid() {
+    // Generiert das Spielfeld zufällig basierend auf der gewählten Welt
+    function generateWorld() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      timerStart = null;
+      foundCount = 0;
+      
+      const currentWorldKey = document.getElementById("worldSelect").value;
+      lastWorldType = currentWorldKey;
+      const currentWorld = worldData[currentWorldKey];
+      
+      // Initialisiere gameGrid als 2D-Array
       gameGrid = [];
       for (let i = 0; i < height; i++) {
-        let row = [];
-        for (let j = 0; j < width; j++) {
-          row.push(" ");
-        }
-        gameGrid.push(row);
+        gameGrid.push(Array(width).fill(" "));
       }
-      const currentWorld = worldData[lastWorldType];
+      
+      // Platziere zufällig maxSymbolCount Symbole aus symbols+rare
+      const symbolsPool = currentWorld.symbols.concat(currentWorld.rare);
+      for (let i = 0; i < maxSymbolCount; i++) {
+        let x, y;
+        do {
+          x = Math.floor(Math.random() * width);
+          y = Math.floor(Math.random() * height);
+        } while (gameGrid[y][x] !== " ");
+        const symbol = symbolsPool[Math.floor(Math.random() * symbolsPool.length)];
+        gameGrid[y][x] = symbol;
+      }
+      
+      // Platziere optional ein "bottom"-Symbol in der untersten Zeile
+      if (currentWorld.bottom.length > 0) {
+        const x = Math.floor(Math.random() * width);
+        gameGrid[height - 1][x] = currentWorld.bottom[Math.floor(Math.random() * currentWorld.bottom.length)];
+      }
+      
+      // Sicherstellen, dass mindestens ein Ziel-Symbol vorhanden ist
       const currentGame = { player: currentWorld.player, target: currentWorld.target };
-      let targetPlaced = false;
-      for (let i = 0; i < height && !targetPlaced; i++) {
-        for (let j = 0; j < width && !targetPlaced; j++) {
-          if (gameGrid[i][j] === " ") {
-            gameGrid[i][j] = currentGame.target;
-            targetPlaced = true;
+      initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
+      if (initialTargetCount === 0) {
+        let freeCells = [];
+        for (let i = 0; i < height; i++) {
+          for (let j = 0; j < width; j++) {
+            if (gameGrid[i][j] === " ") freeCells.push({ x: j, y: i });
           }
         }
+        if (freeCells.length > 0) {
+          const pos = freeCells[Math.floor(Math.random() * freeCells.length)];
+          gameGrid[pos.y][pos.x] = currentGame.target;
+          initialTargetCount = 1;
+        }
       }
+      
+      // Platziere den Spieler, falls er noch nicht im Grid vorhanden ist
       if (!gameGrid.flat().includes(currentGame.player)) {
         let freeCells = [];
         for (let i = 0; i < height; i++) {
@@ -234,10 +194,34 @@
           playerY = pos.y;
         }
       }
-      initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
+      
+      // Aktualisiere die Spielinfo mit player, target und Beschreibung
+      document.getElementById("gameInfo").innerText =
+        "Du steuerst " + currentWorld.player + " und musst " + currentWorld.target + " finden. " +
+        currentWorld.description;
+      
       renderGameGrid();
     }
     
+    // Rendert das 2D-Array in das visuelle Grid (#output)
+    function renderGameGrid() {
+      let outputHTML = "";
+      for (let i = 0; i < height; i++) {
+        let rowStr = "";
+        for (let j = 0; j < width; j++) {
+          rowStr += `<span class="cell">${gameGrid[i][j]}</span>`;
+        }
+        outputHTML += rowStr + "<br>";
+      }
+      document.getElementById("output").innerHTML = outputHTML;
+    }
+    
+    function updateTimer() {
+      const seconds = Math.floor((Date.now() - timerStart) / 1000);
+      document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
+    }
+    
+    // Bewegt den Spieler und verarbeitet Kollisionen
     function movePlayer(dx, dy) {
       if (!timerStart) {
         timerStart = Date.now();
@@ -289,41 +273,51 @@
       movePlayer(dx, dy);
     });
     
+    // Kopierfunktion (falls benötigt, hier nur als Platzhalter)
     function copyToClipboard() {
-      if (!navigator.clipboard || !navigator.clipboard.write) {
-        alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
-        return;
-      }
-      html2canvas(document.getElementById("gridOutput")).then(canvas => {
-        canvas.toBlob(blob => {
-          const item = new ClipboardItem({ "image/png": blob });
-          navigator.clipboard.write([item]).then(() => {
-            alert("Bitmap kopiert!");
-          }).catch(err => {
-            console.error("Fehler beim Kopieren: ", err);
-            alert("Fehler beim Kopieren der Bitmap.");
-          });
-        });
-      });
+      alert("Diese Funktion ist in dieser Version deaktiviert, da kein gridOutput verwendet wird.");
     }
     
-function generateAltText() {
-  // Hole die aktuell ausgewählte Welt aus worldData
-  const currentWorldKey = document.getElementById("worldSelect").value;
-  const currentWorld = worldData[currentWorldKey];
-  
-  // Verwende die Beschreibung, sofern vorhanden – ansonsten falls nicht definiert, den worlds key
-  const description = currentWorld.description || currentWorldKey;
-  
-  // Erzeuge den ALT-Text, der nun die in worldData definierte Description beinhaltet
-  let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltensymbol Editor. ";
-  altText += "Das Raster hat " + gridRows + " Zeilen und " + gridCols + " Spalten.";
-  
-  navigator.clipboard.writeText(altText)
-    .then(() => alert("ALT Text kopiert!"))
-    .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
-}
-
+    // Funktion zum Generieren des ALT-Texts, der nun currentWorld.description verwendet
+    function generateAltText() {
+      const currentWorldKey = document.getElementById("worldSelect").value;
+      const currentWorld = worldData[currentWorldKey];
+      const description = currentWorld.description || currentWorldKey;
+      let altText = "Alternativtext: Dieses Bild zeigt eine " + description + " Welt, erstellt mit dem Weltengenerator. ";
+      altText += "Das Spielfeld hat " + height + " Zeilen und " + width + " Spalten.";
+      navigator.clipboard.writeText(altText)
+        .then(() => alert("ALT Text kopiert!"))
+        .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
+    }
+    
+    // Lädt das Spiel aus URL-Parametern (world und grid)
+    function loadGameFromParams() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has("world") && params.has("grid")) {
+        const worldKey = params.get("world");
+        lastWorldType = worldKey;
+        const gridText = params.get("grid");
+        const rows = gridText.split("\n");
+        gameGrid = rows.map(row => {
+          let arr = Array.from(row);
+          if (arr.length < width) {
+            arr = arr.concat(Array(width - arr.length).fill(" "));
+          } else if (arr.length > width) {
+            arr = arr.slice(0, width);
+          }
+          return arr;
+        });
+        const currentWorld = worldData[lastWorldType];
+        const currentGame = { player: currentWorld.player, target: currentWorld.target };
+        initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
+        document.getElementById("gameInfo").innerText =
+          "Du steuerst " + currentWorld.player + " und musst " + currentWorld.target + " finden. " +
+          currentWorld.description;
+        renderGameGrid();
+      } else {
+        generateWorld();
+      }
+    }
     
     function transferToEditor() {
       const params = new URLSearchParams();
@@ -333,27 +327,14 @@ function generateAltText() {
       window.location.href = "welten_editor.html?" + params.toString();
     }
     
+    // Initialisierung: Falls URL-Parameter vorhanden, lade das Spiel; ansonsten generiere eine Welt
     window.addEventListener("load", () => {
-      generateDefaultGrid();
+      populateWorldSelect();
+      // Falls Parameter vorhanden, nutze loadGameFromParams()
       loadGameFromParams();
     });
     
-    document.addEventListener("keydown", function(e) {
-      switch(e.key) {
-        case "ArrowUp":
-          movePlayer(0, -1);
-          break;
-        case "ArrowDown":
-          movePlayer(0, 1);
-          break;
-        case "ArrowLeft":
-          movePlayer(-1, 0);
-          break;
-        case "ArrowRight":
-          movePlayer(1, 0);
-          break;
-      }
-    });
+    document.getElementById("generateWorldBtn").addEventListener("click", generateWorld);
   </script>
 </body>
 </html>
