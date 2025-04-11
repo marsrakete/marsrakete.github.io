@@ -38,7 +38,7 @@
     h2 {
       margin-top: 30px;
     }
-    /* Das Grid wird als CSS-Grid angezeigt */
+    /* CSS-Grid für das Ausgabefeld */
     #output {
       display: grid;
       grid-template-columns: repeat(15, 2ch);
@@ -53,7 +53,7 @@
       font-size: 2em;
       line-height: 1.2em;
     }
-    /* Die Textarea erhält dieselben Maße */
+    /* Textarea mit identischen Maßen */
     #gridOutput {
       width: 60ch;
       height: 15em;
@@ -86,7 +86,9 @@
       cursor: pointer;
     }
   </style>
-  <!-- html2canvas wird benötigt -->
+  <!-- Lade worldData.js extern -->
+  <script src="worldData.js"></script>
+  <!-- html2canvas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -97,9 +99,7 @@
     <div id="symbolPalette"></div>
     
     <h2>Ausgabefeld</h2>
-    <!-- Visuelles Grid -->
     <div id="output"></div>
-    <!-- Textarea zeigt das Grid als Text -->
     <textarea id="gridOutput" readonly></textarea>
     <br>
     <button id="clearGrid">Grid leeren</button>
@@ -115,172 +115,11 @@
     let gridData = [];
     let selectedSymbol = "";
     
-    // worldTypes gemäß dem von dir vorgegebenen Snippet:
-    const worldTypes = {
-      galaxy: { 
-        symbols: ["🧿","🕳️","✮","🎱","🌍","☾","🌌","🌑","🪐","🌕","☄️","💫","🚀","🛸","🌠","🌙","⭐️","🌜","🌚"],
-        rare: ["👾","👽","🎮","👩‍🚀","🔫","🛰️"],
-        bottom: ["🔭","📡"]
-      },
-      flowers: { 
-        symbols: ["🌸","🌹","🌺","🌻","🌼","💐","🥀","🌷","🍀"],
-        rare: ["🦋","🐞","🐝","🍄","🐇","🍄‍🟫","🍄","🪰","🪁"],
-        bottom: []
-      },
-      water: { 
-        symbols: ["🐠","🐟","🐬","🐳","🐋","🦈","🦑","🐙","🌊","🚤","⛵","🚢","🛥️"],
-        rare: ["🧜‍♂️","🧜‍♀️","🐋","🤿","🥽","🔱","⚓","🦈","🛟","🩳","🏊‍♀️","🏊‍♂️","🏊","🏄","🤽‍♂️"],
-        bottom: []
-      },
-      forest: { 
-        symbols: ["🌲","🌳","🌴","🍄","🌿","🍃","🍂","🦉","🐿️","🦌","🐻","🐇"],
-        rare: ["🦅","🪺","🪹"],
-        bottom: []
-      },
-      lava: { 
-        symbols: ["🔥","🌋","🪨","💀","👹","⚔️","♨️"],
-        rare: [],
-        bottom: []
-      },
-      steampunk: { 
-        symbols: ["⚙️","🔩","🛠️","⏳","🚂","🎩","🕰️","🔧","🧰"],
-        rare: [],
-        bottom: []
-      },
-      desert: { 
-        symbols: ["🏜️","🌵","🐫","🦂","☀️","🌞","🐍","🦎"],
-        rare: [],
-        bottom: []
-      },
-      medieval: { 
-        symbols: ["⚔️","🛡️","🏰","🐉","🧙‍♂️","👑","🏹","🗡️","📜"],
-        rare: [],
-        bottom: []
-      },
-      racing: { 
-        symbols: ["🏎️","🚦","🛣️","🏁","🚗","💨","🚘","⛽"],
-        rare: [],
-        bottom: []
-      },
-      airport: { 
-        symbols: ["✈️","🛫","🛬","🛄","🎫","🛩️","🚁"],
-        rare: [],
-        bottom: []
-      },
-      cyberpunk: { 
-        symbols: ["🔮","💾","🕶️","🛸","🤖","⚡","🎛️","🖥️","💡","📡"],
-        rare: [],
-        bottom: []
-      },
-      northpole: { 
-        symbols: ["❄️","⛄","🎅","🦌","🏔️","🌨️","🎁","🛷","🌲"],
-        rare: [],
-        bottom: []
-      },
-      volcano: { 
-        symbols: ["🌋","🔥","🪨","💀","⛏️","🌪️","♨️","🚒"],
-        rare: [],
-        bottom: []
-      },
-      office: { 
-        symbols: ["⌨️","☕","🖥️","📎","📁","🖨️","📊","📅","🖋️","📞","💻","📠"],
-        rare: ["🖇️","🗃️","🏢","🗂️","🧑‍💼","👩‍💼"],
-        bottom: []
-      },
-      candyland: { 
-        symbols: ["🍭","🍫","🍩","🍪","🍬","🍰","🎂","🍧","🍦"],
-        rare: ["🍨","🧁","🍠","🧇"],
-        bottom: []
-      },
-      jungle: { 
-        symbols: ["🌴","🐒","🦜","🍌","🐍","🐅","🐆","🦁","🐘"],
-        rare: [],
-        bottom: []
-      },
-      circus: { 
-        symbols: ["🎪","🤹‍♂️","🎭","🐘","🎠","🤡","🎟️","🎫"],
-        rare: [],
-        bottom: []
-      },
-      ruins: { 
-        symbols: ["🏺","🗿","⛏️","🏛️","🔦","🏚️","🗺️"],
-        rare: [],
-        bottom: []
-      },
-      disco: { 
-        symbols: ["🪩","💃","🕺","🎶","🔊","🌈","🎧","💿"],
-        rare: [],
-        bottom: []
-      },
-      concert: { 
-        symbols: ["🎤","🎸","🥁","🎵","🎧","🎹","🎺","🎷"],
-        rare: [],
-        bottom: []
-      },
-      // Neue Welten:
-      fairytale: {
-        symbols: ["🧚","✨","🌈"],
-        rare: ["🦄","🔮","🪄"],
-        bottom: []
-      },
-      apocalypse: {
-        symbols: ["☢️","🏚️","🔥"],
-        rare: ["💣","🌅"],
-        bottom: []
-      },
-      cave: {
-        symbols: ["🪨","⛰️","🕸️"],
-        rare: ["🏺","🕯️"],
-        bottom: []
-      },
-      cloud: {
-        symbols: ["☁️","🌤️","🌈"],
-        rare: ["🕊️","🦋"],
-        bottom: []
-      },
-      arcade: {
-        symbols: ["🎮","👾","🕹️"],
-        rare: ["⭐️","💎"],
-        bottom: []
-      }
-    };
-    
-    // Spiel-Einstellungen gemäß index.html:
-    const gameSettings = {
-      galaxy:    { player: "🚀", target: "🌍" },
-      water:     { player: "🏊‍♂️", target: "🐋" },
-      flowers:   { player: "🐝", target: "🌹" },
-      forest:    { player: "🦊", target: "🍄" },
-      lava:      { player: "😎", target: "🔥" },
-      steampunk: { player: "🤖", target: "⚙️" },
-      desert:    { player: "🐫", target: "🌵" },
-      medieval:  { player: "🧙‍♂️", target: "👑" },
-      racing:    { player: "🏎️", target: "🚦" },
-      airport:   { player: "✈️", target: "🛫" },
-      cyberpunk: { player: "🤖", target: "💾" },
-      northpole: { player: "⛄", target: "❄️" },
-      volcano:   { player: "🚒", target: "🌋" },
-      office:    { player: "👩‍💼", target: "📎" },
-      candyland: { player: "🍭", target: "🍬" },
-      jungle:    { player: "🐒", target: "🍌" },
-      circus:    { player: "🤹‍♂️", target: "🎪" },
-      ruins:     { player: "🏺", target: "🗿" },
-      disco:     { player: "🕺", target: "💃" },
-      concert:   { player: "🎤", target: "🎸" },
-      pirate:    { player: "🏴‍☠️", target: "☠️" },
-      ghost:     { player: "👻", target: "🎃" },
-      party:     { player: "🥳", target: "🎉" },
-      fairytale: { player: "🧚‍♀️", target: "🦄" },
-      apocalypse:{ player: "😷", target: "🌅" },
-      cave:      { player: "⛏️", target: "🏺" },
-      cloud:     { player: "☁️", target: "🕊️" },
-      arcade:    { player: "🎮", target: "💎" }
-    };
-    
+    // Greife auf worldData zu (enthält alle Welten inkl. player/target)
     function populateWorldSelect() {
       const worldSelect = document.getElementById("worldSelect");
       worldSelect.innerHTML = "";
-      for (let world in worldTypes) {
+      for (let world in worldData) {
         const option = document.createElement("option");
         option.value = world;
         option.textContent = world;
@@ -291,7 +130,7 @@
     function populateSymbolPalette() {
       const palette = document.getElementById("symbolPalette");
       palette.innerHTML = "";
-      const world = worldTypes[document.getElementById("worldSelect").value];
+      const world = worldData[document.getElementById("worldSelect").value];
       const symbols = world.symbols.concat(world.rare, world.bottom);
       symbols.forEach(sym => {
         const span = document.createElement("span");
@@ -385,9 +224,12 @@ function generateAltText() {
     .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
 }
 
+    
     function transferToGame() {
       const currentWorld = document.getElementById("worldSelect").value;
-      const currentGame = gameSettings[currentWorld] || { player: "🙂", target: "⭐️" };
+      const world = worldData[currentWorld];
+      // Verwende player und target direkt aus worldData:
+      const currentGame = { player: world.player, target: world.target };
       const flatGrid = gridData.flat();
       let errors = [];
       if (!flatGrid.includes(currentGame.player)) {
@@ -407,7 +249,10 @@ function generateAltText() {
       window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
     }
     
-    document.getElementById("worldSelect").addEventListener("change", populateSymbolPalette);
+    document.getElementById("worldSelect").addEventListener("change", () => {
+      populateSymbolPalette();
+      clearGrid();
+    });
     document.getElementById("clearGrid").addEventListener("click", clearGrid);
     document.getElementById("copyGrid").addEventListener("click", copyGridToClipboard);
     document.getElementById("copyBitmap").addEventListener("click", copyGridAsBitmap);
