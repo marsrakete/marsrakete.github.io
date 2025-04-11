@@ -68,7 +68,7 @@
   </style>
   <!-- Lade worldData.js extern (enthält alle Weltdaten inkl. descriptions) -->
   <script src="worldData.js"></script>
-  <!-- html2canvas, falls benötigt -->
+  <!-- html2canvas falls benötigt -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -79,7 +79,7 @@
     <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Gefundene Ziele: 0</span>
   </div>
   
-  <!-- Steuerung zum Auswählen einer Welt und Starten der Generierung -->
+  <!-- Steuerung: Auswahl einer Welt und Starten der Generierung -->
   <div id="gameControls">
     <label for="worldSelect">Welt auswählen:</label>
     <select id="worldSelect"></select>
@@ -106,7 +106,7 @@
     // Globale Variablen und Einstellungen
     const width = 30;
     const height = 10;
-    const maxSymbolCount = 50; // Anzahl zufällig zu platzierender Symbole
+    const maxSymbolCount = 50;
     let gameGrid = [];
     let playerX = 0, playerY = 0;
     let foundCount = 0;
@@ -127,7 +127,7 @@
       }
     }
     
-    // Generiert das Spielfeld zufällig basierend auf der gewählten Welt
+    // Generiert das Spielfeld basierend auf der aktuell gewählten Welt
     function generateWorld() {
       clearInterval(timerInterval);
       timerInterval = null;
@@ -156,13 +156,13 @@
         gameGrid[y][x] = symbol;
       }
       
-      // Platziere optional ein "bottom"-Symbol in der untersten Zeile
+      // Optional: Platziere ein "bottom"-Symbol in der untersten Zeile
       if (currentWorld.bottom.length > 0) {
         const x = Math.floor(Math.random() * width);
         gameGrid[height - 1][x] = currentWorld.bottom[Math.floor(Math.random() * currentWorld.bottom.length)];
       }
       
-      // Sicherstellen, dass mindestens ein Ziel-Symbol vorhanden ist
+      // Sorge dafür, dass mindestens ein Ziel vorhanden ist
       const currentGame = { player: currentWorld.player, target: currentWorld.target };
       initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
       if (initialTargetCount === 0) {
@@ -179,7 +179,7 @@
         }
       }
       
-      // Platziere den Spieler, falls er noch nicht im Grid vorhanden ist
+      // Füge den Spieler hinzu – in der Generierungslogik soll er immer gesetzt werden
       if (!gameGrid.flat().includes(currentGame.player)) {
         let freeCells = [];
         for (let i = 0; i < height; i++) {
@@ -195,7 +195,7 @@
         }
       }
       
-      // Aktualisiere die Spielinfo mit player, target und Beschreibung
+      // Aktualisiere die Spielinfo (inklusive Beschreibung)
       document.getElementById("gameInfo").innerText =
         "Du steuerst " + currentWorld.player + " und musst " + currentWorld.target + " finden. " +
         currentWorld.description;
@@ -203,7 +203,7 @@
       renderGameGrid();
     }
     
-    // Rendert das 2D-Array in das visuelle Grid (#output)
+    // Rendert das Spielfeld in das visuelle Grid
     function renderGameGrid() {
       let outputHTML = "";
       for (let i = 0; i < height; i++) {
@@ -221,7 +221,9 @@
       document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
     }
     
-    // Bewegt den Spieler und verarbeitet Kollisionen
+    // Bewegt den Spieler; wenn ein Zielfeld erreicht wird, verschwindet das Ziel.
+    // Wichtig: Beim Erreichen eines Ziels wird das Ziel durch den Spieler ersetzt.
+    // Falls bereits geladen (loadGameFromParams) – wird keine neue Spielfigur hinzugefügt.
     function movePlayer(dx, dy) {
       if (!timerStart) {
         timerStart = Date.now();
@@ -241,17 +243,11 @@
           playPewSound();
           foundCount++;
           document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
-          if (foundCount >= initialTargetCount) {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            setTimeout(() => {
-              playTuschSound();
-              const seconds = Math.floor((Date.now() - timerStart) / 1000);
-              alert("Spiel beendet! Gefundene Ziele: " + foundCount + ", Zeit: " + seconds + " s");
-            }, 600);
-          }
+          // Hier wird das Ziel nicht ersetzt – die Zielfigur verschwindet
         }
+        // Lösche die alte Position der Spielfigur
         gameGrid[playerY][playerX] = " ";
+        // Setze den Spieler an die neue Position
         gameGrid[newY][newX] = currentGame.player;
         playerX = newX;
         playerY = newY;
@@ -273,12 +269,12 @@
       movePlayer(dx, dy);
     });
     
-    // Kopierfunktion (falls benötigt, hier nur als Platzhalter)
+    // Kopierfunktion (hier als Platzhalter, da kein gridOutput mehr verwendet wird)
     function copyToClipboard() {
-      alert("Diese Funktion ist in dieser Version deaktiviert, da kein gridOutput verwendet wird.");
+      alert("Diese Funktion ist in dieser Version deaktiviert, da kein Textfeld verwendet wird.");
     }
     
-    // Funktion zum Generieren des ALT-Texts, der nun currentWorld.description verwendet
+    // Updated generateAltText nutzt die description aus worldData
     function generateAltText() {
       const currentWorldKey = document.getElementById("worldSelect").value;
       const currentWorld = worldData[currentWorldKey];
@@ -290,7 +286,8 @@
         .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     }
     
-    // Lädt das Spiel aus URL-Parametern (world und grid)
+    // Lädt das Spiel aus URL-Parametern. Wird genutzt, wenn loadGameFromParams() aufgerufen wird.
+    // Dabei wird NICHT automatisch eine neue Spielfigur eingefügt, wenn diese fehlt.
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
@@ -310,9 +307,27 @@
         const currentWorld = worldData[lastWorldType];
         const currentGame = { player: currentWorld.player, target: currentWorld.target };
         initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
+        // Überprüfe, ob die Spielfigur bereits vorhanden ist;
+        // wenn nicht, gebe einen Hinweis aus und füge KEINE neue Spielfigur hinzu.
+        const flatGrid = gameGrid.flat();
+        if (!flatGrid.includes(currentGame.player)) {
+          alert("Hinweis: Das Spielersymbol (" + currentGame.player + ") wurde im geladenen Grid nicht gefunden.");
+        }
         document.getElementById("gameInfo").innerText =
           "Du steuerst " + currentWorld.player + " und musst " + currentWorld.target + " finden. " +
           currentWorld.description;
+        // Spielerposition anhand des Grid-Inhalts (falls gefunden)
+        let foundPlayer = false;
+        for (let i = 0; i < gameGrid.length && !foundPlayer; i++) {
+          for (let j = 0; j < gameGrid[i].length; j++) {
+            if (gameGrid[i][j] === currentGame.player) {
+              playerX = j;
+              playerY = i;
+              foundPlayer = true;
+              break;
+            }
+          }
+        }
         renderGameGrid();
       } else {
         generateWorld();
@@ -327,10 +342,9 @@
       window.location.href = "welten_editor.html?" + params.toString();
     }
     
-    // Initialisierung: Falls URL-Parameter vorhanden, lade das Spiel; ansonsten generiere eine Welt
+    // Initialisierung: Falls URL-Parameter vorhanden, lade das Spiel; ansonsten generiere eine neue Welt.
     window.addEventListener("load", () => {
       populateWorldSelect();
-      // Falls Parameter vorhanden, nutze loadGameFromParams()
       loadGameFromParams();
     });
     
