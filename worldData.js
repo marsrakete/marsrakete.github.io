@@ -27,7 +27,7 @@ const worldData = {
     description: "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen."
   },
   forest: { 
-    symbols: ["🌲","🌳","🌴","🍄","🌿","🍃","🍂","🦉","🐿️","🦌","🐻","🐇"],
+    symbols: ["🦊","🌲","🌳","🌴","🍄","🌿","🍃","🍂","🦉","🐿️","🦌","🐻","🐇"],
     rare: ["🦅","🪺","🪹"],
     bottom: [],
     player: "🦊",
@@ -35,7 +35,7 @@ const worldData = {
     description: "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen."
   },
   lava: { 
-    symbols: ["🔥","🌋","🪨","💀","👹","⚔️","♨️"],
+    symbols: ["😎","🔥","🌋","🪨","💀","👹","⚔️","♨️"],
     rare: [],
     bottom: [],
     player: "😎",
@@ -43,7 +43,7 @@ const worldData = {
     description: "Eine feurige Welt, in der Vulkane lodern und Magma den Boden bedeckt."
   },
   steampunk: { 
-    symbols: ["⚙️","🔩","🛠️","⏳","🚂","🎩","🕰️","🔧","🧰"],
+    symbols: ["🤖","⚙️","🔩","🛠️","⏳","🚂","🎩","🕰️","🔧","🧰"],
     rare: [],
     bottom: [],
     player: "🤖",
