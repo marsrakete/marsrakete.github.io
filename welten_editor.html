@@ -38,7 +38,7 @@
     h2 {
       margin-top: 30px;
     }
-    /* #output wird als echtes CSS-Grid angezeigt */
+    /* Das Grid wird als CSS-Grid angezeigt */
     #output {
       display: grid;
       grid-template-columns: repeat(15, 2ch);
@@ -53,7 +53,7 @@
       font-size: 2em;
       line-height: 1.2em;
     }
-    /* Die Textarea (#gridOutput) erhält exakt dieselben Maße */
+    /* Die Textarea erhält dieselben Maße */
     #gridOutput {
       width: 60ch;
       height: 15em;
@@ -86,7 +86,7 @@
       cursor: pointer;
     }
   </style>
-  <!-- html2canvas wird benötigt, um die Textarea als Bitmap zu kopieren -->
+  <!-- html2canvas wird benötigt -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -97,68 +97,184 @@
     <div id="symbolPalette"></div>
     
     <h2>Ausgabefeld</h2>
-    <!-- Hier wird das visuelle Grid erstellt -->
+    <!-- Visuelles Grid -->
     <div id="output"></div>
-    <!-- Die Textarea zeigt den Grid-Inhalt als Text (exakte Maße wie das visuelle Grid) -->
+    <!-- Textarea zeigt das Grid als Text -->
     <textarea id="gridOutput" readonly></textarea>
     <br>
     <button id="clearGrid">Grid leeren</button>
     <button id="copyGrid">Grid kopieren (Text)</button>
-    <!-- Die Bitmap-Snapshot-Funktion nutzt hier die Textarea (#gridOutput) -->
     <button id="copyBitmap">Bitmap kopieren</button>
     <button id="generateAltText">ALT Text generieren</button>
     <button id="transferToGame">In Spiel übernehmen</button>
   </div>
   
   <script>
-    // Globale Einstellungen
     const gridCols = 15;
     const gridRows = 10;
     let gridData = [];
     let selectedSymbol = "";
     
-    // Definition der Welten (Beispiel: hier einige Welten)
+    // worldTypes gemäß dem von dir vorgegebenen Snippet:
     const worldTypes = {
       galaxy: { 
-        symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
-        rare: ["👾", "👽", "🎮", "👩‍🚀", "🔫", "🛰️"],
-        bottom: ["🔭", "📡"]
+        symbols: ["🧿","🕳️","✮","🎱","🌍","☾","🌌","🌑","🪐","🌕","☄️","💫","🚀","🛸","🌠","🌙","⭐️","🌜","🌚"],
+        rare: ["👾","👽","🎮","👩‍🚀","🔫","🛰️"],
+        bottom: ["🔭","📡"]
       },
-      fairytale: { 
-        symbols: ["🧚", "✨", "🌈"],
-        rare: ["🦄"],
+      flowers: { 
+        symbols: ["🌸","🌹","🌺","🌻","🌼","💐","🥀","🌷","🍀"],
+        rare: ["🦋","🐞","🐝","🍄","🐇","🍄‍🟫","🍄","🪰","🪁"],
         bottom: []
       },
-      apocalypse: { 
-        symbols: ["☢️", "🏚️", "🔥"],
-        rare: ["💣"],
+      water: { 
+        symbols: ["🐠","🐟","🐬","🐳","🐋","🦈","🦑","🐙","🌊","🚤","⛵","🚢","🛥️"],
+        rare: ["🧜‍♂️","🧜‍♀️","🐋","🤿","🥽","🔱","⚓","🦈","🛟","🩳","🏊‍♀️","🏊‍♂️","🏊","🏄","🤽‍♂️"],
         bottom: []
       },
-      cave: { 
-        symbols: ["🪨", "⛰️", "🕸️"],
+      forest: { 
+        symbols: ["🌲","🌳","🌴","🍄","🌿","🍃","🍂","🦉","🐿️","🦌","🐻","🐇"],
+        rare: ["🦅","🪺","🪹"],
+        bottom: []
+      },
+      lava: { 
+        symbols: ["🔥","🌋","🪨","💀","👹","⚔️","♨️"],
         rare: [],
         bottom: []
       },
-      cloud: { 
-        symbols: ["☁️", "🌤️", "🌈"],
+      steampunk: { 
+        symbols: ["⚙️","🔩","🛠️","⏳","🚂","🎩","🕰️","🔧","🧰"],
         rare: [],
         bottom: []
       },
-      arcade: { 
-        symbols: ["🎮", "👾", "🕹️"],
+      desert: { 
+        symbols: ["🏜️","🌵","🐫","🦂","☀️","🌞","🐍","🦎"],
         rare: [],
+        bottom: []
+      },
+      medieval: { 
+        symbols: ["⚔️","🛡️","🏰","🐉","🧙‍♂️","👑","🏹","🗡️","📜"],
+        rare: [],
+        bottom: []
+      },
+      racing: { 
+        symbols: ["🏎️","🚦","🛣️","🏁","🚗","💨","🚘","⛽"],
+        rare: [],
+        bottom: []
+      },
+      airport: { 
+        symbols: ["✈️","🛫","🛬","🛄","🎫","🛩️","🚁"],
+        rare: [],
+        bottom: []
+      },
+      cyberpunk: { 
+        symbols: ["🔮","💾","🕶️","🛸","🤖","⚡","🎛️","🖥️","💡","📡"],
+        rare: [],
+        bottom: []
+      },
+      northpole: { 
+        symbols: ["❄️","⛄","🎅","🦌","🏔️","🌨️","🎁","🛷","🌲"],
+        rare: [],
+        bottom: []
+      },
+      volcano: { 
+        symbols: ["🌋","🔥","🪨","💀","⛏️","🌪️","♨️","🚒"],
+        rare: [],
+        bottom: []
+      },
+      office: { 
+        symbols: ["⌨️","☕","🖥️","📎","📁","🖨️","📊","📅","🖋️","📞","💻","📠"],
+        rare: ["🖇️","🗃️","🏢","🗂️","🧑‍💼","👩‍💼"],
+        bottom: []
+      },
+      candyland: { 
+        symbols: ["🍭","🍫","🍩","🍪","🍬","🍰","🎂","🍧","🍦"],
+        rare: ["🍨","🧁","🍠","🧇"],
+        bottom: []
+      },
+      jungle: { 
+        symbols: ["🌴","🐒","🦜","🍌","🐍","🐅","🐆","🦁","🐘"],
+        rare: [],
+        bottom: []
+      },
+      circus: { 
+        symbols: ["🎪","🤹‍♂️","🎭","🐘","🎠","🤡","🎟️","🎫"],
+        rare: [],
+        bottom: []
+      },
+      ruins: { 
+        symbols: ["🏺","🗿","⛏️","🏛️","🔦","🏚️","🗺️"],
+        rare: [],
+        bottom: []
+      },
+      disco: { 
+        symbols: ["🪩","💃","🕺","🎶","🔊","🌈","🎧","💿"],
+        rare: [],
+        bottom: []
+      },
+      concert: { 
+        symbols: ["🎤","🎸","🥁","🎵","🎧","🎹","🎺","🎷"],
+        rare: [],
+        bottom: []
+      },
+      // Neue Welten:
+      fairytale: {
+        symbols: ["🧚","✨","🌈"],
+        rare: ["🦄","🔮","🪄"],
+        bottom: []
+      },
+      apocalypse: {
+        symbols: ["☢️","🏚️","🔥"],
+        rare: ["💣","🌅"],
+        bottom: []
+      },
+      cave: {
+        symbols: ["🪨","⛰️","🕸️"],
+        rare: ["🏺","🕯️"],
+        bottom: []
+      },
+      cloud: {
+        symbols: ["☁️","🌤️","🌈"],
+        rare: ["🕊️","🦋"],
+        bottom: []
+      },
+      arcade: {
+        symbols: ["🎮","👾","🕹️"],
+        rare: ["⭐️","💎"],
         bottom: []
       }
     };
     
-    // Spiel-Einstellungen: Definiert werden Spielersymbol und Zielsymbol je Welt.
+    // Spiel-Einstellungen gemäß index.html:
     const gameSettings = {
-      galaxy: { player: "🚀", target: "🌍" },
+      galaxy:    { player: "🚀", target: "🌍" },
+      water:     { player: "🏊‍♂️", target: "🐋" },
+      flowers:   { player: "🐝", target: "🌹" },
+      forest:    { player: "🦊", target: "🍄" },
+      lava:      { player: "😎", target: "🔥" },
+      steampunk: { player: "🤖", target: "⚙️" },
+      desert:    { player: "🐫", target: "🌵" },
+      medieval:  { player: "🧙‍♂️", target: "👑" },
+      racing:    { player: "🏎️", target: "🚦" },
+      airport:   { player: "✈️", target: "🛫" },
+      cyberpunk: { player: "🤖", target: "💾" },
+      northpole: { player: "⛄", target: "❄️" },
+      volcano:   { player: "🚒", target: "🌋" },
+      office:    { player: "👩‍💼", target: "📎" },
+      candyland: { player: "🍭", target: "🍬" },
+      jungle:    { player: "🐒", target: "🍌" },
+      circus:    { player: "🤹‍♂️", target: "🎪" },
+      ruins:     { player: "🏺", target: "🗿" },
+      disco:     { player: "🕺", target: "💃" },
+      concert:   { player: "🎤", target: "🎸" },
+      pirate:    { player: "🏴‍☠️", target: "☠️" },
+      ghost:     { player: "👻", target: "🎃" },
+      party:     { player: "🥳", target: "🎉" },
       fairytale: { player: "🧚‍♀️", target: "🦄" },
-      apocalypse: { player: "😷", target: "🌅" },
-      cave: { player: "⛏️", target: "🏺" },
-      cloud: { player: "☁️", target: "🕊️" },
-      arcade: { player: "🎮", target: "💎" }
+      apocalypse:{ player: "😷", target: "🌅" },
+      cave:      { player: "⛏️", target: "🏺" },
+      cloud:     { player: "☁️", target: "🕊️" },
+      arcade:    { player: "🎮", target: "💎" }
     };
     
     function populateWorldSelect() {
@@ -194,7 +310,6 @@
       gridData = [];
       const output = document.getElementById("output");
       output.innerHTML = "";
-      // Erstelle Zellen als direkte Kinder des Grid-Containers (#output)
       for (let r = 0; r < gridRows; r++) {
         let row = [];
         for (let c = 0; c < gridCols; c++) {
@@ -225,8 +340,7 @@
     
     function clearGrid() {
       gridData = gridData.map(row => row.map(() => " "));
-      const cells = document.querySelectorAll("#output .cell");
-      cells.forEach(cell => cell.textContent = " ");
+      document.querySelectorAll("#output .cell").forEach(cell => cell.textContent = " ");
       updateGridOutput();
     }
     
@@ -236,7 +350,6 @@
         .catch(err => alert("Fehler beim Kopieren: " + err));
     }
     
-    // Kopiert die Textarea (#gridOutput) als Bitmap in den Zwischenspeicher.
     function copyGridAsBitmap() {
       if (!navigator.clipboard || !navigator.clipboard.write) {
         alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
@@ -273,7 +386,6 @@
         .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     }
     
-    // Übergibt das aktuelle Grid und die ausgewählte Welt als URL-Parameter an die Spielseite.
     function transferToGame() {
       const currentWorld = document.getElementById("worldSelect").value;
       const currentGame = gameSettings[currentWorld] || { player: "🙂", target: "⭐️" };
@@ -296,38 +408,6 @@
       window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
     }
     
-    // Lädt die ursprünglichen Parameter (falls vorhanden) in den Editor.
-    function loadEditorFromParams() {
-      const params = new URLSearchParams(window.location.search);
-      if (params.has("world") && params.has("grid")) {
-        const world = params.get("world");
-        const gridText = params.get("grid");
-        document.getElementById("worldSelect").value = world;
-        populateSymbolPalette();
-        const rows = gridText.split("\n");
-        gridData = rows.map(row => {
-          let arr = Array.from(row);
-          if (arr.length < gridCols) {
-            arr = arr.concat(Array(gridCols - arr.length).fill(" "));
-          } else if (arr.length > gridCols) {
-            arr = arr.slice(0, gridCols);
-          }
-          return arr;
-        });
-        // Aktualisiere die Zellen im visuellen Grid (#output)
-        const cells = document.querySelectorAll("#output .cell");
-        for (let r = 0; r < gridRows; r++) {
-          for (let c = 0; c < gridCols; c++) {
-            const index = r * gridCols + c;
-            if (cells[index]) {
-              cells[index].textContent = gridData[r][c] || " ";
-            }
-          }
-        }
-        updateGridOutput();
-      }
-    }
-    
     document.getElementById("worldSelect").addEventListener("change", populateSymbolPalette);
     document.getElementById("clearGrid").addEventListener("click", clearGrid);
     document.getElementById("copyGrid").addEventListener("click", copyGridToClipboard);
@@ -339,7 +419,6 @@
       populateWorldSelect();
       populateSymbolPalette();
       initGrid();
-      loadEditorFromParams();
     });
   </script>
 </body>
