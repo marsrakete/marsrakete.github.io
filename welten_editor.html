@@ -15,7 +15,7 @@
       max-width: 800px;
       margin: auto;
     }
-    /* Button-Container für die Weltauswahl */
+    /* Button-Leiste für die Weltauswahl statt Dropdown */
     #worldButtons {
       margin-bottom: 15px;
     }
@@ -24,10 +24,27 @@
       padding: 5px 10px;
       font-size: 1em;
       cursor: pointer;
+      background-color: #333;
+      border: none;
+      color: white;
+      transition: background 0.2s;
+    }
+    #worldButtons button:hover {
+      background-color: #555;
+    }
+    /* Extra Info-Zeile für Spieler- und Ziel-Symbole */
+    #playerTargetInfo {
+      margin-bottom: 15px;
+      font-size: 1.2em;
+    }
+    #playerTargetInfo span {
+      margin: 0 10px;
+      font-size: 1.8em;
+      font-weight: bold;
     }
     /* Symbol-Palette */
     #symbolPalette {
-      margin-top: 20px;
+      margin-top: 10px;
     }
     .symbol {
       display: inline-block;
@@ -42,7 +59,7 @@
       background: white;
       color: black;
     }
-    /* Zusätzliche Markierungen für Spieler-/Ziel-Symbole */
+    /* Markierungen für Spieler- und Ziel-Symbole */
     .playerSymbol {
       border-color: limegreen;
     }
@@ -52,7 +69,7 @@
     h2 {
       margin-top: 30px;
     }
-    /* Raster-Ausgabe: 30 Spalten à 2ch */
+    /* Raster-Ausgabe: 30 Spalten à 2ch, 10 Zeilen */
     #output {
       display: grid;
       grid-template-columns: repeat(30, 2ch);
@@ -67,7 +84,7 @@
       font-size: 2em;
       line-height: 1.2em;
     }
-    /* Textfeld erhält genau dieselben Maße wie das visuelle Grid */
+    /* Textfeld mit exakt denselben Maßen */
     #gridOutput {
       width: 60ch;
       height: 10em;
@@ -102,22 +119,26 @@
   </style>
   <!-- Lade worldData.js extern (enthält alle Welt-Daten inkl. description, player und target) -->
   <script src="worldData.js"></script>
-  <!-- html2canvas (falls benötigt für Bitmap-Kopier-Funktion) -->
+  <!-- html2canvas (für Kopierfunktionen) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
   <div id="editorContainer">
     <h1>Weltensymbol Editor</h1>
     
-    <!-- Button-Leiste statt Dropdown zur Weltauswahl -->
+    <!-- Welt-Buttons als Auswahl -->
     <div id="worldButtons"></div>
     
+    <!-- Extra Zeile: Anzeige der Spieler- und Zielfiguren -->
+    <div id="playerTargetInfo"></div>
+    
+    <!-- Symbol-Palette -->
     <div id="symbolPalette"></div>
     
     <h2>Ausgabefeld</h2>
     <!-- Visuelles Raster -->
     <div id="output"></div>
-    <!-- Textfeld, das den Rasterinhalt exakt darstellt -->
+    <!-- Textfeld, das das Raster exakt darstellt -->
     <textarea id="gridOutput" readonly></textarea>
     <br>
     <button id="clearGrid">Grid leeren</button>
@@ -133,6 +154,7 @@
     const gridRows = 10;
     let gridData = [];
     let selectedSymbol = "";
+    let lastWorldType = "galaxy"; // Standardwelt
     
     // Füllt die Welt-Buttons basierend auf worldData
     function populateWorldButtons() {
@@ -142,9 +164,9 @@
         const btn = document.createElement("button");
         btn.innerText = world;
         btn.addEventListener("click", () => {
-          // Setze den aktuell ausgewählten Welt-Key und aktualisiere die Palette
           lastWorldType = world;
           highlightWorldButton(world);
+          updatePlayerTargetInfo();
           populateSymbolPalette();
         });
         container.appendChild(btn);
@@ -159,26 +181,31 @@
       });
     }
     
-    // Füllt die Symbol-Palette für die aktuell ausgewählte Welt aus worldData
+    // Aktualisiert die Info-Zeile mit Spieler- und Ziel-Symbol
+    function updatePlayerTargetInfo() {
+      const infoDiv = document.getElementById("playerTargetInfo");
+      const currentWorld = worldData[lastWorldType];
+      infoDiv.innerHTML =
+        "Spielersymbol: <span style='color: limegreen;'>" + currentWorld.player + "</span> " +
+        " | Zielsymbol: <span style='color: red;'>" + currentWorld.target + "</span>";
+    }
+    
+    // Füllt die Symbol-Palette basierend auf der aktuell ausgewählten Welt aus worldData
     function populateSymbolPalette() {
       const palette = document.getElementById("symbolPalette");
       palette.innerHTML = "";
       const currentWorld = worldData[lastWorldType];
-      // Verbinde die drei Arrays zu einem einzigen
       const symbols = currentWorld.symbols.concat(currentWorld.rare, currentWorld.bottom);
       symbols.forEach(sym => {
         const span = document.createElement("span");
         span.classList.add("symbol");
         span.textContent = sym;
-        // Wenn das Symbol das Spieler-Symbol ist, markiere es
         if (sym === currentWorld.player) {
           span.classList.add("playerSymbol");
         }
-        // Wenn das Symbol das Ziel-Symbol ist, markiere es
         if (sym === currentWorld.target) {
           span.classList.add("targetSymbol");
         }
-        // Klick-Funktion, um ein Symbol auszuwählen
         span.addEventListener("click", () => {
           document.querySelectorAll(".symbol").forEach(el => el.classList.remove("selected"));
           span.classList.add("selected");
@@ -193,7 +220,6 @@
       gridData = [];
       const output = document.getElementById("output");
       output.innerHTML = "";
-      // Erstelle das Raster aus 30*10 Zellen
       for (let r = 0; r < gridRows; r++) {
         let row = [];
         for (let c = 0; c < gridCols; c++) {
@@ -203,7 +229,6 @@
           cell.dataset.row = r;
           cell.dataset.col = c;
           cell.textContent = " ";
-          // Beim Klick wird, falls ein Symbol ausgewählt wurde, das Feld geändert
           cell.addEventListener("click", () => {
             if (selectedSymbol !== "") {
               cell.textContent = selectedSymbol;
@@ -218,7 +243,7 @@
       updateGridOutput();
     }
     
-    // Aktualisiert das Textfeld, welches das Raster als Text darstellt
+    // Aktualisiert das Textfeld, das den Rasterinhalt als Text darstellt
     function updateGridOutput() {
       const textArea = document.getElementById("gridOutput");
       textArea.value = gridData.map(row => row.join("")).join("\n");
@@ -226,8 +251,7 @@
     
     function clearGrid() {
       gridData = gridData.map(row => row.map(() => " "));
-      const cells = document.querySelectorAll("#output .cell");
-      cells.forEach(cell => cell.textContent = " ");
+      document.querySelectorAll("#output .cell").forEach(cell => cell.textContent = " ");
       updateGridOutput();
     }
     
@@ -251,7 +275,6 @@
       });
     }
     
-    // Übergibt das aktuelle Grid und die aktuell ausgewählte Welt als URL-Parameter an die Spielseite
     function transferToGame() {
       const params = new URLSearchParams();
       params.set("world", encodeURIComponent(lastWorldType));
@@ -260,25 +283,21 @@
       window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
     }
     
-    // Initialisierung: Lade die Weltbuttons, setze Standardwelt, Palette und Raster
     window.addEventListener("load", () => {
-      // Setze die Standardwelt (z.B. galaxy)
-      lastWorldType = "galaxy";
+      lastWorldType = "galaxy"; // Standardwelt
       populateWorldButtons();
       highlightWorldButton(lastWorldType);
+      updatePlayerTargetInfo();
       populateSymbolPalette();
       initGrid();
     });
     
-    // Event-Listener für die Tasten
     document.getElementById("clearGrid").addEventListener("click", clearGrid);
     document.getElementById("copyGrid").addEventListener("click", copyGridToClipboard);
     document.getElementById("copyBitmap").addEventListener("click", copyGridAsBitmap);
     document.getElementById("generateAltText").addEventListener("click", () => {
-      // ALT-Text wird aus worldData.description generiert
       const currentWorld = worldData[lastWorldType];
-      const desc = currentWorld.description || lastWorldType;
-      const altText = "Alternativtext: Dieses Bild zeigt eine " + desc +
+      const altText = "Alternativtext: Dieses Bild zeigt eine " + (currentWorld.description || lastWorldType) +
         " Welt, erstellt mit dem Weltensymbol Editor. Das Raster hat " + gridRows + " Zeilen und " + gridCols + " Spalten.";
       navigator.clipboard.writeText(altText)
         .then(() => alert("ALT Text kopiert!"))
