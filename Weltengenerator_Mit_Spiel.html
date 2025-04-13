@@ -334,13 +334,16 @@
       }
     }
     
-    function transferToEditor() {
-      const params = new URLSearchParams();
-      params.set("world", lastWorldType);
-      const gridText = gameGrid.map(row => row.join("")).join("\n");
-      params.set("grid", gridText);
-      window.location.href = "welten_editor.html?" + params.toString();
-    }
+function transferToEditor() {
+  const params = new URLSearchParams();
+  // Übergebe den aktuellen Welt-Key; sichere ihn ab
+  params.set("world", encodeURIComponent(lastWorldType));
+  // Konvertiere das gameGrid in einen String (mit Zeilenumbrüchen) und sichere ihn ab
+  const gridText = gameGrid.map(row => row.join("")).join("\n");
+  params.set("grid", encodeURIComponent(gridText));
+  console.log("Parameter zum Editor:", params.toString()); // Debug-Ausgabe
+  window.location.href = "welten_editor.html?" + params.toString();
+}
     
     // Initialisierung: Falls URL-Parameter vorhanden, lade das Spiel; ansonsten generiere eine neue Welt.
     window.addEventListener("load", () => {
