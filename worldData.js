@@ -1,6 +1,6 @@
 // worldData.js
 // Zentrales Objekt, das alle Welten mit ihren Symbolen, seltenen Symbolen, bottom-Elementen,
-// den Spielern und Zielen sowie einer Beschreibung enthält.
+// dem Spieler, dem Ziel, einer Beschreibung und zusätzlichen Sound-Funktionen enthält.
 const worldData = {
   galaxy: { 
     symbols: ["🧿","🕳️","✮","🎱","🌍","☾","🌌","🌑","🪐","🌕","☄️","💫","🚀","🛸","🌠","🌙","⭐️","🌜","🌚"],
@@ -11,7 +11,7 @@ const worldData = {
     description: "Eine galaktische Welt voller Sterne und fremder Planeten."
   },
   flowers: { 
-    symbols: ["🌸","🌹","🌺","🌻","🌼","💐","🥀","🌷","🍀"],
+    symbols: ["🌸","🌹","🌺","🌻","🌼","💐","🥀","🌷","🍀","🌱"],
     rare: ["🦋","🐞","🐝","🍄","🐇","🍄‍🟫","🍄","🪰","🪁"],
     bottom: [],
     player: "🐝",
@@ -27,7 +27,7 @@ const worldData = {
     description: "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen."
   },
   forest: { 
-    symbols: ["🦊","🌲","🌳","🌴","🍄","🌿","🍃","🍂","🦉","🐿️","🦌","🐻","🐇"],
+    symbols: ["🌲","🌳","🌴","🍄","🌿","🍃","🍂","🦉","🐿️","🦌","🐻","🐇"],
     rare: ["🦅","🪺","🪹"],
     bottom: [],
     player: "🦊",
@@ -35,7 +35,7 @@ const worldData = {
     description: "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen."
   },
   lava: { 
-    symbols: ["😎","🔥","🌋","🪨","💀","👹","⚔️","♨️"],
+    symbols: ["🔥","🌋","🪨","💀","👹","⚔️","♨️","🌡️","🥵","💥"],
     rare: [],
     bottom: [],
     player: "😎",
@@ -43,7 +43,7 @@ const worldData = {
     description: "Eine feurige Welt, in der Vulkane lodern und Magma den Boden bedeckt."
   },
   steampunk: { 
-    symbols: ["🤖","⚙️","🔩","🛠️","⏳","🚂","🎩","🕰️","🔧","🧰"],
+    symbols: ["⚙️","🔩","🛠️","⏳","🚂","🎩","🕰️","🔧","🧰","📻"],
     rare: [],
     bottom: [],
     player: "🤖",
@@ -51,7 +51,7 @@ const worldData = {
     description: "Eine Steampunk-Welt, die mechanische Wunder und nostalgische Technik verbindet."
   },
   desert: { 
-    symbols: ["🏜️","🌵","🐫","🦂","☀️","🌞","🐍","🦎"],
+    symbols: ["🏜️","🌵","🐫","🦂","☀️","🌞","🐍","🦎","🧭","🌄"],
     rare: [],
     bottom: [],
     player: "🐫",
@@ -59,7 +59,7 @@ const worldData = {
     description: "Eine wüstenartige Welt mit sengender Sonne und kargen Landschaften."
   },
   medieval: { 
-    symbols: ["⚔️","🛡️","🏰","🐉","🧙‍♂️","👑","🏹","🗡️","📜"],
+    symbols: ["⚔️","🛡️","🏰","🐉","🧙‍♂️","👑","🏹","🗡️","📜","⚜️"],
     rare: [],
     bottom: [],
     player: "🧙‍♂️",
@@ -67,7 +67,7 @@ const worldData = {
     description: "Eine mittelalterliche Welt, in der Ritter, Burgen und Drachen zuhause sind."
   },
   racing: { 
-    symbols: ["🏎️","🚦","🛣️","🏁","🚗","💨","🚘","⛽"],
+    symbols: ["🏎️","🚦","🛣️","🏁","🚗","💨","🚘","⛽","🛞","🚙"],
     rare: [],
     bottom: [],
     player: "🏎️",
@@ -75,7 +75,7 @@ const worldData = {
     description: "Eine Welt für Adrenalinjunkies mit schnellen Autos und spannenden Rennen."
   },
   airport: { 
-    symbols: ["✈️","🛫","🛬","🛄","🎫","🛩️","🚁"],
+    symbols: ["✈️","🛫","🛬","🛄","🎫","🛩️","🚁","🧳","💺","🛂"],
     rare: [],
     bottom: [],
     player: "✈️",
@@ -91,7 +91,7 @@ const worldData = {
     description: "Eine futuristische Cyberpunk-Welt mit Neonlichtern und digitalen Visionen."
   },
   northpole: { 
-    symbols: ["❄️","⛄","🎅","🦌","🏔️","🌨️","🎁","🛷","🌲"],
+    symbols: ["❄️","⛄","🎅","🦌","🏔️","🌨️","🎁","🛷","🌲","☃️"],
     rare: [],
     bottom: [],
     player: "⛄",
@@ -99,7 +99,7 @@ const worldData = {
     description: "Eine frostige Welt am Nordpol, voll von Schnee, Eis und festlicher Stimmung."
   },
   volcano: { 
-    symbols: ["🌋","🔥","🪨","💀","⛏️","🌪️","♨️","🚒"],
+    symbols: ["🌋","🔥","🪨","💀","⛏️","🌪️","♨️","🚒","🥵","💥"],
     rare: [],
     bottom: [],
     player: "🚒",
@@ -115,7 +115,7 @@ const worldData = {
     description: "Eine bürokratische Welt, in der Computer, Akten und Kaffee das Geschäft bestimmen."
   },
   candyland: { 
-    symbols: ["🍭","🍫","🍩","🍪","🍬","🍰","🎂","🍧","🍦"],
+    symbols: ["🍭","🍫","🍩","🍪","🍬","🍰","🎂","🍧","🍦","🍮"],
     rare: ["🍨","🧁","🍠","🧇"],
     bottom: [],
     player: "🍭",
@@ -123,7 +123,7 @@ const worldData = {
     description: "Eine süße Welt, in der Schokolade, Bonbons und Kuchen dominieren."
   },
   jungle: { 
-    symbols: ["🌴","🐒","🦜","🍌","🐍","🐅","🐆","🦁","🐘"],
+    symbols: ["🌴","🐒","🦜","🍌","🐍","🐅","🐆","🦁","🐘","🍃"],
     rare: [],
     bottom: [],
     player: "🐒",
@@ -131,7 +131,7 @@ const worldData = {
     description: "Eine dschungelartige Welt voller exotischer Tiere und üppiger Vegetation."
   },
   circus: { 
-    symbols: ["🎪","🤹‍♂️","🎭","🐘","🎠","🤡","🎟️","🎫"],
+    symbols: ["🎪","🤹‍♂️","🎭","🐘","🎠","🤡","🎟️","🎫","🃏","🎩"],
     rare: [],
     bottom: [],
     player: "🤹‍♂️",
@@ -139,7 +139,7 @@ const worldData = {
     description: "Eine zirkusartige Welt, in der Akrobaten, Clowns und bunte Zelte zuhause sind."
   },
   ruins: { 
-    symbols: ["🏺","🗿","⛏️","🏛️","🔦","🏚️","🗺️"],
+    symbols: ["🏺","🗿","⛏️","🏛️","🔦","🏚️","🗺️","🪨","⚱️","📜"],
     rare: [],
     bottom: [],
     player: "🏺",
@@ -147,7 +147,7 @@ const worldData = {
     description: "Eine ruinöse Welt, in der alte Tempel und verfallene Bauwerke eine geheimnisvolle Atmosphäre schaffen."
   },
   disco: { 
-    symbols: ["🪩","💃","🕺","🎶","🔊","🌈","🎧","💿"],
+    symbols: ["🪩","💃","🕺","🎶","🔊","🌈","🎧","💿","🎵","💥"],
     rare: [],
     bottom: [],
     player: "🕺",
@@ -155,7 +155,7 @@ const worldData = {
     description: "Eine discoartige Welt, pulsierend mit Musik, Bewegung und bunten Lichtern."
   },
   concert: { 
-    symbols: ["🎤","🎸","🥁","🎵","🎧","🎹","🎺","🎷"],
+    symbols: ["🎤","🎸","🥁","🎵","🎧","🎹","🎺","🎷","🎼","🎻"],
     rare: [],
     bottom: [],
     player: "🎤",
@@ -163,33 +163,72 @@ const worldData = {
     description: "Eine konzertbezogene Welt, in der Musik und Live-Auftritte das Herzstück bilden."
   },
   pirate: { 
-    symbols: [],
+    symbols: ["🏴‍☠️","⚓","🏝️","🗺️","☠️","🚢","🦜","🎣","⚔️","🏴"],
     rare: [],
     bottom: [],
     player: "🏴‍☠️",
     target: "☠️",
-    description: "Eine piratenhafte Welt mit Abenteuern auf hoher See und Schatzsuchen."
+    description: "Eine piratenhafte Welt, in der Abenteuer auf hoher See und Schatzsuchen zum Alltag gehören."
   },
   ghost: { 
-    symbols: [],
+    symbols: ["👻","💀","🕯️","🎃","🧟‍♂️","🕸️","🌑","👽","💭","🧛‍♂️"],
     rare: [],
     bottom: [],
     player: "👻",
     target: "🎃",
-    description: "Eine geisterhafte Welt voller Spukgestalten und mysteriöser Erscheinungen."
+    description: "Eine geisterhafte Welt, in der Spukgestalten und mysteriöse Erscheinungen dominieren."
   },
   party: { 
-    symbols: [],
+    symbols: ["🥳","🎉","🍾","🎊","💥","🎈","🎁","🎶","🥂","🍹"],
     rare: [],
     bottom: [],
     player: "🥳",
     target: "🎉",
-    description: "Eine partyorientierte Welt, in der Feierlaune und Spaß im Vordergrund stehen."
+    description: "Eine partyorientierte Welt, in der Feierlaune und Spaß an erster Stelle stehen."
+  },
+  fairytale: { 
+    symbols: ["🧚","✨","🌈","🦋","🌟","🌙","💫","🎆","🌹","🍄"],
+    rare: ["🦄","🔮","🪄"],
+    bottom: [],
+    player: "🧚‍♀️",
+    target: "🦄",
+    description: "Eine märchenhafte Welt voller Magie und zauberhafter Kreaturen."
+  },
+  apocalypse: { 
+    symbols: ["☢️","🏚️","🔥","🌑","🌫️","🩸","⚠️","☠️","🔪","💥"],
+    rare: ["💣","🌅"],
+    bottom: [],
+    player: "😷",
+    target: "🌅",
+    description: "Eine apokalyptische Welt, in der Chaos und Zerstörung vorherrschen."
+  },
+  cave: { 
+    symbols: ["🪨","⛰️","🕸️","🗿","🏔️","🌌","🧱","🔦","🌑","🛠️"],
+    rare: ["🏺","🕯️"],
+    bottom: [],
+    player: "⛏️",
+    target: "🏺",
+    description: "Eine höllische Welt unter der Erde, geprägt von Felsformationen und Dunkelheit."
+  },
+  cloud: { 
+    symbols: ["☁️","🌤️","🌈","💨","🌥️","🌀","✨","🌞","☀️","🌦️"],
+    rare: ["🕊️","🦋"],
+    bottom: [],
+    player: "☁️",
+    target: "🕊️",
+    description: "Eine himmelhafte Welt, in der Wolken und Licht das Bild bestimmen."
+  },
+  arcade: { 
+    symbols: ["🎮","👾","🕹️","🎲","🎯","🏆","🎰","📼","🔊","🎵"],
+    rare: [],
+    bottom: [],
+    player: "🎮",
+    target: "💎",
+    description: "Eine retro-arcade Welt, voll von Pixeln, alten Spielen und Nostalgie."
   }
 };
 
-// Füge nun die Sound-Funktionen in worldData.js hinzu:
-
+// Sound-Funktionen zentral in worldData.js
 function playPewSound() {
   const ctx = new (window.AudioContext || window.webkitAudioContext)();
   const oscillator = ctx.createOscillator();
