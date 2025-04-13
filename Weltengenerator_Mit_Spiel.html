@@ -2,7 +2,6 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <!-- Deaktiviert das Zoomen auf mobilen Geräten -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Weltengenerator mit Spiel</title>
   <style>
@@ -14,22 +13,20 @@
       margin: 0;
       padding: 20px;
     }
-    /* Gleiche Maße für das visuelle Raster: 64ch breit, 12em hoch (wie im Editor) */
+    /* Raster: 30 Spalten à 2ch und 10 Zeilen à 2ch – konsistent mit dem Editor */
     #output {
       display: grid;
       grid-template-columns: repeat(30, 2ch);
+      grid-template-rows: repeat(10, 2ch);
       gap: 1px;
-      width: 64ch;
-      height: 12em;
       background: black;
       padding: 10px;
       border: 1px solid white;
       margin: 10px auto;
-      overflow: hidden;
       font-size: 2em;
       line-height: 1.2em;
     }
-    /* Button-Leiste zur Weltauswahl */
+    /* Welt-Buttons zur Auswahl */
     #worldButtons {
       margin-bottom: 15px;
     }
@@ -71,7 +68,7 @@
 <body>
   <h1>Weltengenerator mit Spiel</h1>
   
-  <!-- Welt-Buttons für die Weltauswahl -->
+  <!-- Weltauswahl via Buttons -->
   <div id="worldButtons"></div>
   
   <div id="gameInfo"></div>
@@ -106,7 +103,7 @@
     let timerInterval = null;
     let lastWorldType = "galaxy";
     
-    // Füllt #worldButtons mit Buttons für jede Welt
+    // Füllt die Welt-Buttons
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -129,7 +126,6 @@
       });
     }
     
-    // Aktualisiert die Spielinfo (Spieler, Ziel und Beschreibung) basierend auf worldData
     function updateGameInfo() {
       const currentWorld = worldData[lastWorldType];
       document.getElementById("gameInfo").innerText =
@@ -137,7 +133,7 @@
         currentWorld.description;
     }
     
-    // Initialisiert gameGrid als 2D-Array und erzeugt das Raster (#output)
+    // Initialisiert ein leeres Raster (30x10)
     function initGrid() {
       gameGrid = [];
       const output = document.getElementById("output");
@@ -151,26 +147,23 @@
           cell.dataset.row = r;
           cell.dataset.col = c;
           cell.textContent = " ";
-          cell.addEventListener("click", () => {
-            // Im Spiel-Editor wird per Klick nichts gesetzt – der Spieler wird mit Pfeiltasten gesteuert
-          });
           output.appendChild(cell);
         }
         gameGrid.push(row);
       }
     }
     
-    // Rendert das Raster in #output
+    // Rendert das Raster anhand von gameGrid
     function renderGameGrid() {
-      let outputHTML = "";
-      for (let i = 0; i < height; i++) {
-        let rowStr = "";
-        for (let j = 0; j < width; j++) {
-          rowStr += `<span class="cell">${gameGrid[i][j]}</span>`;
+      const cells = document.querySelectorAll("#output .cell");
+      for (let r = 0; r < height; r++) {
+        for (let c = 0; c < width; c++) {
+          const index = r * width + c;
+          if (cells[index]) {
+            cells[index].textContent = gameGrid[r][c];
+          }
         }
-        outputHTML += rowStr + "<br>";
       }
-      document.getElementById("output").innerHTML = outputHTML;
     }
     
     function updateTimer() {
@@ -178,7 +171,7 @@
       document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
     }
     
-    // Generiert das Spielfeld zufällig basierend auf der aktuell gewählten Welt
+    // Generiert ein Raster basierend auf der aktuell gewählten Welt
     function generateWorld() {
       clearInterval(timerInterval);
       timerInterval = null;
@@ -186,14 +179,12 @@
       foundCount = 0;
       
       const currentWorld = worldData[lastWorldType];
-      
-      // Initialisiere gameGrid als leeres 2D-Array
+      // Initialisiere gameGrid
       gameGrid = [];
       for (let i = 0; i < height; i++) {
         gameGrid.push(Array(width).fill(" "));
       }
       
-      // Platziere zufällig maxSymbolCount Symbole aus symbols + rare
       const symbolsPool = currentWorld.symbols.concat(currentWorld.rare);
       for (let i = 0; i < maxSymbolCount; i++) {
         let x, y;
@@ -205,13 +196,11 @@
         gameGrid[y][x] = symbol;
       }
       
-      // Platziere optional ein "bottom"-Symbol in der untersten Zeile
       if (currentWorld.bottom.length > 0) {
         const x = Math.floor(Math.random() * width);
         gameGrid[height - 1][x] = currentWorld.bottom[Math.floor(Math.random() * currentWorld.bottom.length)];
       }
       
-      // Stelle sicher, dass mindestens ein Ziel vorhanden ist
       const currentGame = { player: currentWorld.player, target: currentWorld.target };
       initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
       if (initialTargetCount === 0) {
@@ -228,7 +217,6 @@
         }
       }
       
-      // Füge den Spieler hinzu – falls er noch nicht vorhanden
       if (!gameGrid.flat().includes(currentGame.player)) {
         let freeCells = [];
         for (let i = 0; i < height; i++) {
@@ -243,7 +231,6 @@
           playerY = pos.y;
         }
       } else {
-        // Falls bereits vorhanden, ermittle die Position
         let found = false;
         for (let i = 0; i < height && !found; i++) {
           for (let j = 0; j < width; j++) {
@@ -261,7 +248,7 @@
       renderGameGrid();
     }
     
-    // Bewegt den Spieler; beim Erreichen eines Ziel-Symbols wird dieses entfernt
+    // Bewegt den Spieler; erreicht er ein Ziel, wird dieses entfernt
     function movePlayer(dx, dy) {
       if (!timerStart) {
         timerStart = Date.now();
@@ -281,12 +268,10 @@
           playPewSound();
           foundCount++;
           document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
-          // Das Zielfeld wird nicht mehr wiederbefüllt – es verschwindet
+          // Ziel wird entfernt, also " "
           gameGrid[newY][newX] = " ";
         }
-        // Alte Position des Spielers löschen
         gameGrid[playerY][playerX] = " ";
-        // Spieler an neuer Position setzen
         gameGrid[newY][newX] = currentGame.player;
         playerX = newX;
         playerY = newY;
@@ -296,18 +281,17 @@
       }
     }
     
-    // Kopierfunktion (falls benötigt)
+    // Kopierfunktion (hier als Platzhalter)
     function copyToClipboard() {
-      // Hier nicht implementiert, da kein Textfeld mehr existiert
       alert("Diese Funktion ist in dieser Version deaktiviert.");
     }
     
-    // Generiert ALT-Text unter Verwendung der currentWorld.description
+    // Generiert ALT-Text unter Verwendung der worldData.description
     function generateAltText() {
       const currentWorld = worldData[lastWorldType];
       const desc = currentWorld.description || lastWorldType;
       let altText = "Alternativtext: Dieses Bild zeigt eine " + desc +
-        " Welt, erstellt mit dem Weltengenerator. Das Spielfeld hat " + height + " Zeilen und " + width + " Spalten.";
+        " Welt, erstellt mit dem Weltengenerator. Das Spielfeld umfasst " + height + " Zeilen und " + width + " Spalten.";
       navigator.clipboard.writeText(altText)
         .then(() => alert("ALT Text kopiert!"))
         .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
@@ -333,18 +317,16 @@
         const currentWorld = worldData[lastWorldType];
         const currentGame = { player: currentWorld.player, target: currentWorld.target };
         initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
-        // Prüfe, ob die Spielfigur im geladenen Grid vorhanden ist – falls nicht, zeige eine Warnung
         if (!gameGrid.flat().includes(currentGame.player)) {
           alert("Hinweis: Das Spielersymbol (" + currentGame.player + ") wurde im geladenen Grid nicht gefunden.");
         } else {
-          // Ermittle Spielerposition anhand des Grids
-          let foundPlayer = false;
-          for (let i = 0; i < height && !foundPlayer; i++) {
+          let found = false;
+          for (let i = 0; i < height && !found; i++) {
             for (let j = 0; j < width; j++) {
               if (gameGrid[i][j] === currentGame.player) {
                 playerX = j;
                 playerY = i;
-                foundPlayer = true;
+                found = true;
                 break;
               }
             }
@@ -357,7 +339,7 @@
       }
     }
     
-    // Übergibt Parameter (welt, grid) zurück an den Editor
+    // Übergibt Parameter an welten_editor.html
     function transferToEditor() {
       const params = new URLSearchParams();
       params.set("world", encodeURIComponent(lastWorldType));
@@ -365,9 +347,6 @@
       params.set("grid", encodeURIComponent(gridText));
       window.location.href = "welten_editor.html?" + params.toString();
     }
-    
-    // Sound-Funktionen (angenommen, worldData.js liefert playPewSound und playPowSound)
-    // Falls hier benötigt, werden die aus worldData.js genutzt.
     
     window.addEventListener("load", () => {
       populateWorldButtons();
@@ -391,7 +370,7 @@
     
     document.getElementById("transferToEditor").addEventListener("click", transferToEditor);
     document.getElementById("generateAltText").addEventListener("click", generateAltText);
-    document.getElementById("copyToClipboard").addEventListener("click", copyToClipboard);
+    document.getElementById("copyToClipboard") && document.getElementById("copyToClipboard").addEventListener("click", copyToClipboard);
   </script>
 </body>
 </html>
