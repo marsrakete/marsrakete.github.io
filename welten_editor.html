@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Weltensymbol Editor</title>
-  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="./common.css">
   <style>
-    /* Editor-spezifisches Styling für das Ausgabefeld: kein CSS-Grid, sondern Block mit Zeilenumbrüchen */
+    /* Editor-spezifische Anpassungen: Das Ausgabefeld wird als Block mit Zeilenumbrüchen dargestellt */
     #output {
       width: 64ch;
       height: 12em;
@@ -13,7 +13,7 @@
       margin: 10px auto;
       overflow: auto;
       font-size: 2em;
-      line-height: 2ch;
+      line-height: 2ch; /* Jede Zelle 2ch hoch */
       white-space: pre-wrap;
     }
     .row {
@@ -29,7 +29,25 @@
       border: 1px solid white;
     }
   </style>
-  <script src="worldData.js"></script>
+  <script src="./worldData.js"></script>
+  <script src="./common.js"></script>
+</head>
+<body>
+  <div id="editorContainer">
+    <h1>Weltensymbol Editor</h1>
+    <!-- Welt-Buttons -->
+    <div id="worldButtons"></div>
+    <!-- Info-Zeile für Spieler- und Ziel-Symbole -->
+    <div id="playerTargetInfo"></div>
+    <!-- Symbol-Palette -->
+    <div id="symbolPalette"></div>
+    <h2>Ausgabefeld</h2>
+    <div id="output"></div>
+    <br>
+    <button id="clearGrid">Grid leeren</button>
+    <button id="generateAltText">ALT Text generieren</button>
+    <button id="transferToGame">In Spiel übernehmen</button>
+  </div>
   <script>
     const gridCols = 30;
     const gridRows = 10;
@@ -52,14 +70,14 @@
         container.appendChild(btn);
       }
     }
-    
+
     function highlightWorldButton(selectedWorld) {
       const buttons = document.querySelectorAll("#worldButtons button");
       buttons.forEach(btn => {
         btn.style.backgroundColor = (btn.innerText === selectedWorld) ? "#555" : "#333";
       });
     }
-    
+
     function updatePlayerTargetInfo() {
       const infoDiv = document.getElementById("playerTargetInfo");
       const currentWorld = worldData[lastWorldType];
@@ -67,7 +85,7 @@
         "Spielersymbol: <span style='color: limegreen;'>" + currentWorld.player + "</span>" +
         " | Zielsymbol: <span style='color: red;'>" + currentWorld.target + "</span>";
     }
-    
+
     function populateSymbolPalette() {
       const palette = document.getElementById("symbolPalette");
       palette.innerHTML = "";
@@ -87,7 +105,7 @@
         palette.appendChild(span);
       });
     }
-    
+
     function initGrid() {
       gridData = [];
       const output = document.getElementById("output");
@@ -115,12 +133,12 @@
         output.appendChild(rowDiv);
       }
     }
-    
+
     function clearGrid() {
       gridData = gridData.map(row => row.map(() => " "));
       document.querySelectorAll("#output .cell").forEach(cell => cell.textContent = " ");
     }
-    
+
     function renderGameGrid() {
       const rows = document.querySelectorAll("#output .row");
       for (let r = 0; r < gridRows; r++) {
@@ -130,7 +148,7 @@
         }
       }
     }
-    
+
     function transferToGame() {
       const currentWorld = worldData[lastWorldType];
       const currentGame = { player: currentWorld.player, target: currentWorld.target };
@@ -147,9 +165,9 @@
       params.set("world", lastWorldType);
       const gridText = gridData.map(row => row.join("")).join("\n");
       params.set("grid", gridText);
-      window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
+      window.location.href = "./Weltengenerator_Mit_Spiel.html?" + params.toString();
     }
-    
+
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
@@ -169,7 +187,7 @@
         renderGameGrid();
       }
     }
-    
+
     window.addEventListener("load", () => {
       lastWorldType = "galaxy";
       populateWorldButtons();
@@ -179,7 +197,7 @@
       initGrid();
       loadGameFromParams();
     });
-    
+
     document.getElementById("clearGrid").addEventListener("click", clearGrid);
     document.getElementById("generateAltText").addEventListener("click", () => {
       const currentWorld = worldData[lastWorldType];
