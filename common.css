@@ -1,0 +1,105 @@
+/* common.css */
+body {
+  background: #121212;
+  color: white;
+  font-family: monospace;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Gemeinsame Button-Styles */
+button {
+  margin: 10px 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #333;
+  border: none;
+  color: white;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Style für Welt-Button-Leiste */
+#worldButtons {
+  margin-bottom: 15px;
+}
+
+#worldButtons button {
+  margin: 3px;
+  padding: 5px 10px;
+  font-size: 1em;
+}
+
+/* Info-Zeile für Spieler-/Zielfiguren */
+#playerTargetInfo {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+#playerTargetInfo span {
+  margin: 0 10px;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+/* Gemeinsames Raster (#output)
+   Raster mit genau 30 Spalten à 2ch und 10 Zeilen à 2ch */
+#output {
+  display: grid;
+  grid-template-columns: repeat(30, 2ch);
+  grid-template-rows: repeat(10, 2ch);
+  gap: 1px;
+  background: black;
+  padding: 10px;
+  border: 1px solid white;
+  margin: 10px auto;
+  font-size: 2em;
+  line-height: 1.2em;
+}
+
+/* Zellen im Raster */
+.cell {
+  width: 2ch;
+  height: 2ch;
+  text-align: center;
+  line-height: 2ch;
+  border: 1px solid white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cell:hover {
+  background: #333;
+}
+
+/* Symbol-Palette */
+#symbolPalette {
+  margin-top: 10px;
+}
+
+.symbol {
+  display: inline-block;
+  padding: 5px;
+  border: 1px solid white;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 1.5em;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.symbol.selected {
+  background: white;
+  color: black;
+}
+
+.playerSymbol {
+  border-color: limegreen;
+}
+
+.targetSymbol {
+  border-color: red;
+}
