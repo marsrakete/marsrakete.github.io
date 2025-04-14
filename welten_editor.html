@@ -5,7 +5,7 @@
   <title>Weltensymbol Editor</title>
   <link rel="stylesheet" href="./common.css">
   <style>
-    /* Editor-spezifische Anpassungen: Das Ausgabefeld wird als Block mit Zeilenumbrüchen dargestellt */
+    /* Editor-spezifisches Styling: Das Ausgabefeld wird als Block mit Zeilenumbrüchen dargestellt */
     #output {
       width: 64ch;
       height: 12em;
@@ -48,6 +48,7 @@
     <button id="generateAltText">ALT Text generieren</button>
     <button id="transferToGame">In Spiel übernehmen</button>
   </div>
+  
   <script>
     const gridCols = 30;
     const gridRows = 10;
@@ -70,14 +71,14 @@
         container.appendChild(btn);
       }
     }
-
+    
     function highlightWorldButton(selectedWorld) {
       const buttons = document.querySelectorAll("#worldButtons button");
       buttons.forEach(btn => {
         btn.style.backgroundColor = (btn.innerText === selectedWorld) ? "#555" : "#333";
       });
     }
-
+    
     function updatePlayerTargetInfo() {
       const infoDiv = document.getElementById("playerTargetInfo");
       const currentWorld = worldData[lastWorldType];
@@ -85,7 +86,7 @@
         "Spielersymbol: <span style='color: limegreen;'>" + currentWorld.player + "</span>" +
         " | Zielsymbol: <span style='color: red;'>" + currentWorld.target + "</span>";
     }
-
+    
     function populateSymbolPalette() {
       const palette = document.getElementById("symbolPalette");
       palette.innerHTML = "";
@@ -105,7 +106,7 @@
         palette.appendChild(span);
       });
     }
-
+    
     function initGrid() {
       gridData = [];
       const output = document.getElementById("output");
@@ -133,12 +134,12 @@
         output.appendChild(rowDiv);
       }
     }
-
+    
     function clearGrid() {
       gridData = gridData.map(row => row.map(() => " "));
       document.querySelectorAll("#output .cell").forEach(cell => cell.textContent = " ");
     }
-
+    
     function renderGameGrid() {
       const rows = document.querySelectorAll("#output .row");
       for (let r = 0; r < gridRows; r++) {
@@ -148,30 +149,12 @@
         }
       }
     }
-
-    function transferToGame() {
-      const currentWorld = worldData[lastWorldType];
-      const currentGame = { player: currentWorld.player, target: currentWorld.target };
-      const flatGrid = gridData.flat();
-      if (!flatGrid.includes(currentGame.player)) {
-        alert("Fehler: Das Spielersymbol (" + currentGame.player + ") fehlt.");
-        return;
-      }
-      if (!flatGrid.includes(currentGame.target)) {
-        alert("Fehler: Das Zielsymbol (" + currentGame.target + ") fehlt.");
-        return;
-      }
-      const params = new URLSearchParams();
-      params.set("world", lastWorldType);
-      const gridText = gridData.map(row => row.join("")).join("\n");
-      params.set("grid", gridText);
-      window.location.href = "./Weltengenerator_Mit_Spiel.html?" + params.toString();
-    }
-
+    
+    // Lädt Parameter aus der URL und setzt dabei den Weltkey mit Normalisierung
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
-        lastWorldType = params.get("world");
+        lastWorldType = params.get("world").normalize();
         const gridText = params.get("grid");
         const rows = gridText.split("\n");
         gridData = rows.map(row => {
@@ -187,17 +170,7 @@
         renderGameGrid();
       }
     }
-
-    window.addEventListener("load", () => {
-      lastWorldType = "galaxy";
-      populateWorldButtons();
-      highlightWorldButton(lastWorldType);
-      updatePlayerTargetInfo();
-      populateSymbolPalette();
-      initGrid();
-      loadGameFromParams();
-    });
-
+    
     document.getElementById("clearGrid").addEventListener("click", clearGrid);
     document.getElementById("generateAltText").addEventListener("click", () => {
       const currentWorld = worldData[lastWorldType];
@@ -209,7 +182,32 @@
         .then(() => alert("ALT Text kopiert!"))
         .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     });
-    document.getElementById("transferToGame").addEventListener("click", transferToGame);
+    document.getElementById("transferToGame").addEventListener("click", () => {
+      const currentWorld = worldData[lastWorldType];
+      const currentGame = { player: currentWorld.player, target: currentWorld.target };
+      if (!gridData.flat().includes(currentGame.player)) {
+        alert("Fehler: Das Spielersymbol (" + currentGame.player + ") fehlt.");
+        return;
+      }
+      if (!gridData.flat().includes(currentGame.target)) {
+        alert("Fehler: Das Zielsymbol (" + currentGame.target + ") fehlt.");
+        return;
+      }
+      const params = new URLSearchParams();
+      params.set("world", lastWorldType);
+      const gridText = gridData.map(row => row.join("")).join("\n");
+      params.set("grid", gridText);
+      window.location.href = "./Weltengenerator_Mit_Spiel.html?" + params.toString();
+    });
+    
+    window.addEventListener("load", () => {
+      populateWorldButtons();
+      highlightWorldButton(lastWorldType);
+      updatePlayerTargetInfo();
+      populateSymbolPalette();
+      initGrid();
+      loadGameFromParams();
+    });
   </script>
 </body>
 </html>
