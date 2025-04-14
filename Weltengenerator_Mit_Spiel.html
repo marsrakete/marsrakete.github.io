@@ -4,66 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Weltengenerator mit Spiel</title>
-  <style>
-    body {
-      background-color: #121212;
-      color: white;
-      font-family: monospace;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
-    /* Raster: 30 Spalten x 2ch, 10 Zeilen x 2ch */
-    #output {
-      display: grid;
-      grid-template-columns: repeat(30, 2ch);
-      grid-template-rows: repeat(10, 2ch);
-      gap: 1px;
-      background: black;
-      padding: 10px;
-      border: 1px solid white;
-      margin: 10px auto;
-      font-size: 2em;
-      line-height: 1.2em;
-    }
-    /* Welt-Buttons */
-    #worldButtons {
-      margin-bottom: 15px;
-    }
-    #worldButtons button {
-      margin: 3px;
-      padding: 5px 10px;
-      font-size: 1em;
-      cursor: pointer;
-      background-color: #333;
-      border: none;
-      color: white;
-      transition: background 0.2s;
-    }
-    #worldButtons button:hover {
-      background-color: #555;
-    }
-    #gameInfo {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
-    #statusLine {
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-    .cell {
-      display: inline-block;
-      width: 2ch;
-      text-align: center;
-    }
-    button {
-      margin: 10px 5px;
-      padding: 5px 10px;
-      cursor: pointer;
-    }
-  </style>
-  <!-- Binde worldData.js ein -->
+  <link rel="stylesheet" href="common.css"> <!-- Falls du common.css nutzt -->
   <script src="worldData.js"></script>
+  <script src="common.js"></script>
+  <style>
+    /* Falls zusätzliches, specifisches CSS notwendig ist, hier ergänzen. */
+  </style>
 </head>
 <body>
   <h1>Weltengenerator mit Spiel</h1>
@@ -78,7 +24,6 @@
   
   <div id="output"></div>
   
-  <!-- Virtuelle Bewegungstasten -->
   <div id="virtualButtons">
     <button onclick="movePlayer(0,-1)">↑</button><br>
     <button onclick="movePlayer(-1,0)">←</button>
@@ -92,18 +37,13 @@
   <button id="transferToEditor">Zurück zum Editor</button>
   
   <script>
-    const width = 30;
-    const height = 10;
-    const maxSymbolCount = 50;
+    const width = 30, height = 10, maxSymbolCount = 50;
     let gameGrid = [];
     let playerX = 0, playerY = 0;
-    let foundCount = 0;
-    let initialTargetCount = 0;
-    let timerStart = null;
-    let timerInterval = null;
+    let foundCount = 0, initialTargetCount = 0;
+    let timerStart = null, timerInterval = null;
     let lastWorldType = "galaxy";
-
-    // Füllt #worldButtons mit Buttons für jede Welt
+    
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -114,7 +54,7 @@
           lastWorldType = world;
           highlightWorldButton(world);
           updateGameInfo();
-          generateWorld();  // Bei Klick wird sofort eine neue Welt generiert
+          generateWorld();
         });
         container.appendChild(btn);
       }
@@ -134,7 +74,6 @@
         currentWorld.description;
     }
     
-    // Initialisiert das leere Raster (#output)
     function initGrid() {
       gameGrid = [];
       const output = document.getElementById("output");
@@ -291,7 +230,6 @@
         .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     }
     
-    // Lädt das Raster aus den URL-Parametern, falls vorhanden
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
@@ -332,7 +270,6 @@
       }
     }
     
-    // Übergibt Parameter an welten_editor.html; URLSearchParams übernimmt die Kodierung automatisch
     function transferToEditor() {
       const params = new URLSearchParams();
       params.set("world", lastWorldType);
