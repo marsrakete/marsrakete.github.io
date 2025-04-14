@@ -59,7 +59,6 @@
       background: white;
       color: black;
     }
-    /* Markierung für Spieler- und Ziel-Symbole */
     .playerSymbol {
       border-color: limegreen;
     }
@@ -69,7 +68,7 @@
     h2 {
       margin-top: 30px;
     }
-    /* Raster: 30 Spalten à 2ch und 10 Zeilen à 2ch – so stimmt die Anzahl der Zellen exakt */
+    /* Raster: 30 Spalten à 2ch, 10 Zeilen à 2ch */
     #output {
       display: grid;
       grid-template-columns: repeat(30, 2ch);
@@ -88,26 +87,21 @@
       cursor: pointer;
     }
   </style>
-  <!-- Lade worldData.js extern (enthält alle Welt-Daten inkl. description, player, target) -->
+  <!-- Binde worldData.js ein -->
   <script src="worldData.js"></script>
 </head>
 <body>
   <div id="editorContainer">
     <h1>Weltensymbol Editor</h1>
-    
-    <!-- Weltauswahl über Buttons -->
+    <!-- Welt-Buttons -->
     <div id="worldButtons"></div>
-    
-    <!-- Info-Zeile: Anzeige von Spieler- und Ziel-Symbol -->
+    <!-- Info-Zeile für Spieler- und Ziel-Symbole -->
     <div id="playerTargetInfo"></div>
-    
     <!-- Symbol-Palette -->
     <div id="symbolPalette"></div>
-    
     <h2>Ausgabefeld</h2>
-    <!-- Raster-Ausgabe (visuell) -->
+    <!-- Raster-Ausgabe -->
     <div id="output"></div>
-    
     <br>
     <button id="clearGrid">Grid leeren</button>
     <button id="generateAltText">ALT Text generieren</button>
@@ -121,7 +115,7 @@
     let selectedSymbol = "";
     let lastWorldType = "galaxy";  // Standardwelt
 
-    // Erzeugt Buttons für jede Welt basierend auf worldData
+    // Erzeugt Buttons für jede Welt aus worldData
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -146,7 +140,7 @@
       });
     }
     
-    // Zeigt in der Info-Zeile die Spieler- und Ziel-Symbole an
+    // Aktualisiert die Info-Zeile über Spieler- und Ziel-Symbole
     function updatePlayerTargetInfo() {
       const infoDiv = document.getElementById("playerTargetInfo");
       const currentWorld = worldData[lastWorldType];
@@ -155,7 +149,7 @@
         " | Zielsymbol: <span style='color: red;'>" + currentWorld.target + "</span>";
     }
     
-    // Füllt die Symbol-Palette
+    // Füllt die Symbol-Palette für die ausgewählte Welt
     function populateSymbolPalette() {
       const palette = document.getElementById("symbolPalette");
       palette.innerHTML = "";
@@ -180,7 +174,7 @@
       });
     }
     
-    // Erzeugt ein leeres Raster (30x10) und füllt gridData entsprechend
+    // Erzeugt ein leeres Raster (30x10) und initialisiert gridData
     function initGrid() {
       gridData = [];
       const output = document.getElementById("output");
@@ -211,7 +205,7 @@
       document.querySelectorAll("#output .cell").forEach(cell => cell.textContent = " ");
     }
     
-    // Übergibt Parameter an Weltengenerator_Mit_Spiel.html – prüft, ob Spieler- und Ziel-Symbole vorhanden sind
+    // Übergibt Parameter an Weltengenerator_Mit_Spiel.html (ohne manuelles Encoding – URLSearchParams übernimmt dies)
     function transferToGame() {
       const currentWorld = worldData[lastWorldType];
       const currentGame = { player: currentWorld.player, target: currentWorld.target };
@@ -225,10 +219,9 @@
         return;
       }
       const params = new URLSearchParams();
-      params.set("world", encodeURIComponent(lastWorldType));
-      // Erzeuge den Grid-String (Zeilenumbrüche getrennt)
+      params.set("world", lastWorldType);
       const gridText = gridData.map(row => row.join("")).join("\n");
-      params.set("grid", encodeURIComponent(gridText));
+      params.set("grid", gridText);
       window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
     }
     
