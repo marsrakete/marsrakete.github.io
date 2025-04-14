@@ -21,6 +21,9 @@
       line-height: 1.2em;
     }
   </style>
+ <!-- Wir nutzen html2canvas, um das Raster als Bild zu kopieren -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>  
 </head>
 <body>
   <h1>Weltengenerator mit Spiel</h1>
@@ -227,7 +230,17 @@
     }
 
     function copyToClipboard() {
-      alert("Diese Funktion ist in dieser Version deaktiviert.");
+      // Verwende html2canvas, um das Raster (#output) als Bild zu kopieren
+      html2canvas(document.getElementById("output")).then(canvas => {
+        canvas.toBlob(blob => {
+          const item = new ClipboardItem({ "image/png": blob });
+          navigator.clipboard.write([item]).then(() => {
+            alert("Bild in die Zwischenablage kopiert!");
+          }).catch(err => {
+            alert("Fehler beim Kopieren des Bildes: " + err);
+          });
+        });
+      });
     }
 
     function generateAltText() {
