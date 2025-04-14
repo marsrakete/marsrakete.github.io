@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./common.css">
   <script src="./worldData.js"></script>
   <style>
-    /* Spezifisch für den Spielmodus: Das Ausgabefeld wird als CSS-Grid angezeigt */
+    /* Spielmodus: Raster als CSS-Grid */
     #output {
       display: grid;
       grid-template-columns: repeat(30, 2ch);
@@ -21,7 +21,6 @@
       line-height: 1.2em;
     }
   </style>
-  <!-- html2canvas wird für die Kopierfunktion genutzt -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -58,7 +57,6 @@
     let timerStart = null, timerInterval = null;
     let lastWorldType = "galaxy";
 
-    // Erzeugt die Welt-Buttons basierend auf worldData
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -89,7 +87,6 @@
         currentWorld.description;
     }
     
-    // Initialisiert das leere Raster und baut es als CSS-Grid im #output auf
     function initGrid() {
       gameGrid = [];
       const output = document.getElementById("output");
@@ -109,7 +106,6 @@
       }
     }
     
-    // Rendert das Raster anhand von gameGrid
     function renderGameGrid() {
       const cells = document.querySelectorAll("#output .cell");
       for (let r = 0; r < height; r++) {
@@ -132,13 +128,11 @@
       foundCount = 0;
       
       const currentWorld = worldData[lastWorldType];
-      // Erzeuge ein leeres Raster
       gameGrid = [];
       for (let i = 0; i < height; i++) {
         gameGrid.push(Array(width).fill(" "));
       }
       
-      // Fülle das Raster mit zufälligen Symbolen (aus symbols und rare)
       const symbolsPool = currentWorld.symbols.concat(currentWorld.rare);
       for (let i = 0; i < maxSymbolCount; i++) {
         let x, y;
@@ -150,7 +144,6 @@
         gameGrid[y][x] = symbol;
       }
       
-      // Optional: Platziere ein Symbol aus bottom in der untersten Zeile, falls definiert.
       if (currentWorld.bottom.length > 0) {
         const x = Math.floor(Math.random() * width);
         gameGrid[height - 1][x] = currentWorld.bottom[Math.floor(Math.random() * currentWorld.bottom.length)];
@@ -172,7 +165,7 @@
         }
       }
       
-      // Wähle zufällig eine bestehende Spielerposition aus (sofern vorhanden)
+      // Wähle zufällig eine existierende Spielerposition
       let playerPositions = [];
       for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
@@ -208,32 +201,26 @@
       }
       const cellContent = gameGrid[newY][newX];
       if (cellContent === " " || cellContent === currentGame.target) {
-        // Prüfe, ob hier ein Ziel vorhanden ist
         const targetFound = (cellContent === currentGame.target);
-        // Aktualisiere das Raster: Entferne die alte Spielerposition, setze Spieler an die neue Position
+        // Zuerst Ziel löschen und Spieler vorrücken
         gameGrid[playerY][playerX] = " ";
         gameGrid[newY][newX] = currentGame.player;
         playerX = newX;
         playerY = newY;
-        
-        // Falls Ziel getroffen, erhöhe die Zählung, spiele Sound und lösche das Ziel
+        renderGameGrid();
         if (targetFound) {
           playPewSound();
           foundCount++;
           document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
-          // Hier wurde das Ziel bereits durch den Spieler ersetzt.
-        }
-        renderGameGrid();
-        
-        // Prüfe, ob das Spiel beendet ist
-        if (targetFound && foundCount >= initialTargetCount) {
-          clearInterval(timerInterval);
-          timerInterval = null;
-          const seconds = Math.floor((Date.now() - timerStart) / 1000);
-          alert("Spiel beendet!\nGefundene Ziele: " + foundCount + "\nZeit: " + seconds + " s");
-          // Nach Bestätigung: Das Spielfeld wird neu aus den URL-Parametern aufgebaut
-          loadGameFromParams();
-          return;
+          if (foundCount >= initialTargetCount) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            const seconds = Math.floor((Date.now() - timerStart) / 1000);
+            alert("Spiel beendet!\nGefundene Ziele: " + foundCount + "\nZeit: " + seconds + " s");
+            // Nach Bestätigung: Spielfeld neu aus den URL-Parametern laden
+            loadGameFromParams();
+            return;
+          }
         }
       } else {
         playPowSound();
@@ -266,7 +253,8 @@
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
-        lastWorldType = params.get("world");
+        // Wichtig: Den übergebenen Welt-Key normalisieren, um Variationen zu vermeiden
+        lastWorldType = params.get("world").normalize();
         const gridText = params.get("grid");
         const rows = gridText.split("\n");
         gameGrid = rows.map(row => {
@@ -278,24 +266,6 @@
           }
           return arr;
         });
-        // Beim Laden: Wähle zufällig eine bereits vorhandene Spielerposition
-        const currentWorld = worldData[lastWorldType];
-        const currentGame = { player: currentWorld.player, target: currentWorld.target };
-        let playerPositions = [];
-        for (let i = 0; i < height; i++) {
-          for (let j = 0; j < width; j++) {
-            if (gameGrid[i][j] === currentGame.player) {
-              playerPositions.push({ x: j, y: i });
-            }
-          }
-        }
-        if (playerPositions.length > 0) {
-          const pos = playerPositions[Math.floor(Math.random() * playerPositions.length)];
-          playerX = pos.x;
-          playerY = pos.y;
-        } else {
-          alert("Hinweis: Das Spielersymbol (" + currentGame.player + ") wurde im geladenen Grid nicht gefunden.");
-        }
         updateGameInfo();
         renderGameGrid();
       }
