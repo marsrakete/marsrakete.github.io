@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./common.css">
   <script src="./worldData.js"></script>
   <style>
-    /* Spezifisch für den Spielmodus: Das Ausgabefeld wird als CSS-Grid angezeigt */
+    /* Im Spielmodus wird das Ausgabefeld als CSS-Grid definiert */
     #output {
       display: grid;
       grid-template-columns: repeat(30, 2ch);
@@ -58,7 +58,7 @@
     let timerStart = null, timerInterval = null;
     let lastWorldType = "galaxy";
 
-    // Erzeugt die Welt-Buttons basierend auf worldData
+    // Erzeugt Welt-Buttons basierend auf worldData
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -89,6 +89,7 @@
         currentWorld.description;
     }
     
+    // Initialisiert das leere Raster (gameGrid) und baut #output als Grid auf
     function initGrid() {
       gameGrid = [];
       const output = document.getElementById("output");
@@ -108,6 +109,7 @@
       }
     }
     
+    // Rendert das Raster basierend auf gameGrid in #output
     function renderGameGrid() {
       const cells = document.querySelectorAll("#output .cell");
       for (let r = 0; r < height; r++) {
@@ -123,6 +125,7 @@
       document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
     }
     
+    // Generiert ein neues Spielfeld
     function generateWorld() {
       clearInterval(timerInterval);
       timerInterval = null;
@@ -153,6 +156,7 @@
       
       const currentGame = { player: currentWorld.player, target: currentWorld.target };
       initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
+      // Wenn keine Ziel-Symbole vorhanden, füge eins hinzu:
       if (initialTargetCount === 0) {
         let freeCells = [];
         for (let i = 0; i < height; i++) {
@@ -167,19 +171,10 @@
         }
       }
       
+      // Wenn bereits mindestens eine Spielerfigur vorhanden, dann ermittle deren Position.
+      // Wenn nicht, zeige eine Warnung (neuen Spieler nicht erzeugen).
       if (!gameGrid.flat().includes(currentGame.player)) {
-        let freeCells = [];
-        for (let i = 0; i < height; i++) {
-          for (let j = 0; j < width; j++) {
-            if (gameGrid[i][j] === " ") freeCells.push({ x: j, y: i });
-          }
-        }
-        if (freeCells.length > 0) {
-          const pos = freeCells[Math.floor(Math.random() * freeCells.length)];
-          gameGrid[pos.y][pos.x] = currentGame.player;
-          playerX = pos.x;
-          playerY = pos.y;
-        }
+        alert("Hinweis: Das Spielersymbol (" + currentGame.player + ") wurde im Spielfeld nicht gefunden.");
       } else {
         let found = false;
         for (let i = 0; i < height && !found; i++) {
@@ -198,6 +193,7 @@
       renderGameGrid();
     }
     
+    // Bewegt den Spieler; wird ein Ziel erreicht, wird es entfernt
     function movePlayer(dx, dy) {
       if (!timerStart) {
         timerStart = Date.now();
@@ -217,15 +213,14 @@
           playPewSound();
           foundCount++;
           document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
-          // Ziel wird entfernt
           gameGrid[newY][newX] = " ";
-          // Spielende erkannt, wenn alle Ziele gefunden wurden:
+          // Prüfung: Spielende, wenn alle Ziele gefunden wurden
           if (foundCount >= initialTargetCount) {
             clearInterval(timerInterval);
             timerInterval = null;
             const seconds = Math.floor((Date.now() - timerStart) / 1000);
             alert("Spiel beendet!\nGefundene Ziele: " + foundCount + "\nZeit: " + seconds + " s");
-            // Nach Bestätigung das Raster aus den Parametern wieder aufbauen:
+            // Nach Bestätigung: Spielfeld anhand der URL-Parameter neu aufbauen
             loadGameFromParams();
             return;
           }
