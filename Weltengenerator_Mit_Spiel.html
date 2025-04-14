@@ -13,7 +13,7 @@
       margin: 0;
       padding: 20px;
     }
-    /* Raster: 30 Spalten à 2ch, 10 Zeilen à 2ch */
+    /* Raster: 30 Spalten x 2ch, 10 Zeilen x 2ch */
     #output {
       display: grid;
       grid-template-columns: repeat(30, 2ch);
@@ -26,7 +26,7 @@
       font-size: 2em;
       line-height: 1.2em;
     }
-    /* Welt-Buttons zur Auswahl */
+    /* Welt-Buttons */
     #worldButtons {
       margin-bottom: 15px;
     }
@@ -68,7 +68,7 @@
 <body>
   <h1>Weltengenerator mit Spiel</h1>
   
-  <!-- Weltauswahl: Buttons -->
+  <!-- Welt-Buttons -->
   <div id="worldButtons"></div>
   
   <div id="gameInfo"></div>
@@ -114,6 +114,7 @@
           lastWorldType = world;
           highlightWorldButton(world);
           updateGameInfo();
+          generateWorld();  // Bei Klick wird sofort eine neue Welt generiert
         });
         container.appendChild(btn);
       }
@@ -133,7 +134,7 @@
         currentWorld.description;
     }
     
-    // Initialisiert ein leeres Raster (30x10)
+    // Initialisiert das leere Raster (#output)
     function initGrid() {
       gameGrid = [];
       const output = document.getElementById("output");
@@ -153,7 +154,6 @@
       }
     }
     
-    // Rendert das Raster anhand gameGrid
     function renderGameGrid() {
       const cells = document.querySelectorAll("#output .cell");
       for (let r = 0; r < height; r++) {
@@ -171,7 +171,6 @@
       document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
     }
     
-    // Generiert das Raster zufällig anhand der ausgewählten Welt
     function generateWorld() {
       clearInterval(timerInterval);
       timerInterval = null;
@@ -247,7 +246,6 @@
       renderGameGrid();
     }
     
-    // Bewegt die Spielfigur; beim Erreichen eines Ziel-Symbols wird dieses entfernt
     function movePlayer(dx, dy) {
       if (!timerStart) {
         timerStart = Date.now();
@@ -279,12 +277,10 @@
       }
     }
     
-    // Kopierfunktion (Platzhalter)
     function copyToClipboard() {
       alert("Diese Funktion ist in dieser Version deaktiviert.");
     }
     
-    // Generiert ALT-Text unter Verwendung der aktuellen Weltbeschreibung
     function generateAltText() {
       const currentWorld = worldData[lastWorldType];
       const desc = currentWorld.description || lastWorldType;
@@ -295,12 +291,11 @@
         .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     }
     
-    // Lädt das Spiel aus URL-Parametern, falls vorhanden
+    // Lädt das Raster aus den URL-Parametern, falls vorhanden
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
-        const worldKey = params.get("world");
-        lastWorldType = worldKey;
+        lastWorldType = params.get("world");
         const gridText = params.get("grid");
         const rows = gridText.split("\n");
         gameGrid = rows.map(row => {
@@ -337,7 +332,7 @@
       }
     }
     
-    // Übergibt Parameter zurück an den Editor – verwendet URLSearchParams ohne zusätzliches Encoding
+    // Übergibt Parameter an welten_editor.html; URLSearchParams übernimmt die Kodierung automatisch
     function transferToEditor() {
       const params = new URLSearchParams();
       params.set("world", lastWorldType);
