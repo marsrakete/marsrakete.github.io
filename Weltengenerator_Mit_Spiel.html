@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./common.css">
   <script src="./worldData.js"></script>
   <style>
-    /* Im Spielmodus verwenden wir weiterhin CSS-Grid für das Raster */
+    /* Spielmodus: Raster als CSS-Grid */
     #output {
       display: grid;
       grid-template-columns: repeat(30, 2ch);
@@ -165,7 +165,7 @@
         }
       }
       
-      // Wähle zufällig eine bereits existierende Spielerposition:
+      // Wähle zufällig eine existierende Spielerposition aus:
       let playerPositions = [];
       for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
@@ -201,9 +201,8 @@
       }
       const cellContent = gameGrid[newY][newX];
       if (cellContent === " " || cellContent === currentGame.target) {
-        // Ziel gefunden?
         const targetFound = (cellContent === currentGame.target);
-        // Zuerst alte Spielerposition leeren, dann Spieler an neue Position setzen
+        // Zuerst Spielfigur bewegen:
         gameGrid[playerY][playerX] = " ";
         gameGrid[newY][newX] = currentGame.player;
         playerX = newX;
@@ -213,13 +212,12 @@
           playPewSound();
           foundCount++;
           document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
-          // Prüfung: Wenn alle Ziele gefunden wurden, Spielende
           if (foundCount >= initialTargetCount) {
             clearInterval(timerInterval);
             timerInterval = null;
             const seconds = Math.floor((Date.now() - timerStart) / 1000);
             alert("Spiel beendet!\nGefundene Ziele: " + foundCount + "\nZeit: " + seconds + " s");
-            // Nach dem Popup: Spielfeld neu aus den URL-Parametern aufbauen
+            // Nach Bestätigung: Spielfeld neu aus den URL-Parametern aufbauen
             loadGameFromParams();
             return;
           }
@@ -255,7 +253,7 @@
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
-        // Normalisiere den übergebenen Welt-Schlüssel, um Varianten zu vermeiden
+        // Normalisiere den übergebenen Welt-Schlüssel, um Unicode-Variationen zu vermeiden
         lastWorldType = params.get("world").normalize("NFC");
         const gridText = params.get("grid");
         const rows = gridText.split("\n");
@@ -275,7 +273,7 @@
     
     function transferToEditor() {
       const params = new URLSearchParams();
-      // Normalisiere den Welt-Schlüssel
+      // Normalisiere den Welt-Schlüssel beim Übertragen
       params.set("world", lastWorldType.normalize("NFC"));
       const gridText = gameGrid.map(row => row.join("")).join("\n");
       params.set("grid", gridText);
@@ -284,9 +282,15 @@
     
     window.addEventListener("load", () => {
       populateWorldButtons();
+      // Wenn Parameter vorhanden, loadGameFromParams() setzt lastWorldType entsprechend,
+      // andernfalls bleibt der Default (galaxy)
+      loadGameFromParams();
+      // Anschließend werden die UI-Elemente aktualisiert:
       highlightWorldButton(lastWorldType);
       updateGameInfo();
+      populateSymbolPalette();
       initGrid();
+      // Falls Parameter geladen wurden, wird das Raster überschrieben:
       loadGameFromParams();
     });
     
