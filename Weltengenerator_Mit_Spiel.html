@@ -4,12 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Weltengenerator mit Spiel</title>
-  <link rel="stylesheet" href="common.css"> <!-- Falls du common.css nutzt -->
-  <script src="worldData.js"></script>
-  <script src="common.js"></script>
+  <link rel="stylesheet" href="common.css"> <!-- Basisstile aus common.css -->
   <style>
-    /* Falls zusätzliches, specifisches CSS notwendig ist, hier ergänzen. */
+    /* Spezifisch für den Spielmodus: Das Ausgabefeld soll als Block (Zeilenweise) dargestellt werden */
+    #output {
+      width: 64ch;
+      height: 12em;
+      border: 1px solid white;
+      margin: 10px auto;
+      overflow: auto;
+      font-size: 2em;
+      line-height: 2ch;
+    }
+    .row {
+      display: block;
+      white-space: nowrap;
+    }
+    .cell {
+      display: inline-block;
+      width: 2ch;
+      height: 2ch;
+      text-align: center;
+      vertical-align: top;
+      border: 1px solid white;
+      margin: 0;
+    }
   </style>
+  <script src="worldData.js"></script>
 </head>
 <body>
   <h1>Weltengenerator mit Spiel</h1>
@@ -22,8 +43,10 @@
     <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Gefundene Ziele: 0</span>
   </div>
   
+  <!-- Raster-Ausgabe: Aufbau wie im Editor -->
   <div id="output"></div>
   
+  <!-- Virtuelle Bewegungstasten -->
   <div id="virtualButtons">
     <button onclick="movePlayer(0,-1)">↑</button><br>
     <button onclick="movePlayer(-1,0)">←</button>
@@ -43,7 +66,7 @@
     let foundCount = 0, initialTargetCount = 0;
     let timerStart = null, timerInterval = null;
     let lastWorldType = "galaxy";
-    
+
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -74,33 +97,35 @@
         currentWorld.description;
     }
     
+    // Initiiert das leere Raster als 2D-Array und baut die Ausgabe zeilenweise auf
     function initGrid() {
       gameGrid = [];
       const output = document.getElementById("output");
       output.innerHTML = "";
       for (let r = 0; r < height; r++) {
         let row = [];
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("row");
         for (let c = 0; c < width; c++) {
           row.push(" ");
-          const cell = document.createElement("div");
+          const cell = document.createElement("span");
           cell.classList.add("cell");
           cell.dataset.row = r;
           cell.dataset.col = c;
           cell.textContent = " ";
-          output.appendChild(cell);
+          rowDiv.appendChild(cell);
         }
         gameGrid.push(row);
+        output.appendChild(rowDiv);
       }
     }
     
     function renderGameGrid() {
-      const cells = document.querySelectorAll("#output .cell");
+      const rows = document.querySelectorAll("#output .row");
       for (let r = 0; r < height; r++) {
+        const cells = rows[r].querySelectorAll(".cell");
         for (let c = 0; c < width; c++) {
-          const index = r * width + c;
-          if (cells[index]) {
-            cells[index].textContent = gameGrid[r][c];
-          }
+          cells[c].textContent = gameGrid[r][c];
         }
       }
     }
@@ -245,24 +270,6 @@
           }
           return arr;
         });
-        const currentWorld = worldData[lastWorldType];
-        const currentGame = { player: currentWorld.player, target: currentWorld.target };
-        initialTargetCount = gameGrid.flat().filter(cell => cell === currentGame.target).length;
-        if (!gameGrid.flat().includes(currentGame.player)) {
-          alert("Hinweis: Das Spielersymbol (" + currentGame.player + ") wurde im geladenen Grid nicht gefunden.");
-        } else {
-          let found = false;
-          for (let i = 0; i < height && !found; i++) {
-            for (let j = 0; j < width; j++) {
-              if (gameGrid[i][j] === currentGame.player) {
-                playerX = j;
-                playerY = i;
-                found = true;
-                break;
-              }
-            }
-          }
-        }
         updateGameInfo();
         renderGameGrid();
       } else {
