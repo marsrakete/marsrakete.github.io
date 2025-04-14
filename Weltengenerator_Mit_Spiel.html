@@ -186,46 +186,60 @@
       updateGameInfo();
       renderGameGrid();
     }
-    
+
     function movePlayer(dx, dy) {
-      if (!timerStart) {
-        timerStart = Date.now();
-        timerInterval = setInterval(updateTimer, 1000);
-      }
-      const currentWorld = worldData[lastWorldType];
-      const currentGame = { player: currentWorld.player, target: currentWorld.target };
-      const newX = playerX + dx;
-      const newY = playerY + dy;
-      if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
-        playPowSound();
-        return;
-      }
-      const cellContent = gameGrid[newY][newX];
-      if (cellContent === " " || cellContent === currentGame.target) {
-        if (cellContent === currentGame.target) {
-          playPewSound();
-          foundCount++;
-          document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
-          gameGrid[newY][newX] = " ";
-          if (foundCount >= initialTargetCount) {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            const seconds = Math.floor((Date.now() - timerStart) / 1000);
-            alert("Spiel beendet!\nGefundene Ziele: " + foundCount + "\nZeit: " + seconds + " s");
-            // Nach Spielende: Das Spielfeld wird neu aus den Parametern aufgebaut.
-            loadGameFromParams();
-            return;
-          }
-        }
-        gameGrid[playerY][playerX] = " ";
-        gameGrid[newY][newX] = currentGame.player;
-        playerX = newX;
-        playerY = newY;
-        renderGameGrid();
-      } else {
-        playPowSound();
-      }
-    }
+  if (!timerStart) {
+    timerStart = Date.now();
+    timerInterval = setInterval(updateTimer, 1000);
+  }
+  
+  const currentWorld = worldData[lastWorldType];
+  const currentGame = { player: currentWorld.player, target: currentWorld.target };
+  const newX = playerX + dx;
+  const newY = playerY + dy;
+  
+  if (newX < 0 || newX >= width || newY < 0 || newY >= height) {
+    playPowSound();
+    return;
+  }
+  
+  const cellContent = gameGrid[newY][newX];
+  if (cellContent !== " " && cellContent !== currentGame.target) {
+    playPowSound();
+    return;
+  }
+  
+  // Prüfe, ob ein Ziel getroffen wird
+  const targetFound = (cellContent === currentGame.target);
+  
+  // Aktualisiere das Raster: Alte Position des Spielers löschen, neue Position setzen.
+  gameGrid[playerY][playerX] = " ";
+  gameGrid[newY][newX] = currentGame.player;
+  playerX = newX;
+  playerY = newY;
+  
+  // Wenn ein Ziel angetroffen wurde, lösche es bereits (das Ziel wird bereits durch Spieler ersetzt)
+  if (targetFound) {
+    playPewSound();
+    foundCount++;
+    document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
+  }
+  
+  // Render das aktualisierte Raster
+  renderGameGrid();
+  
+  // Prüfe, ob das Spiel beendet ist (alle Ziele wurden gefunden)
+  if (targetFound && foundCount >= initialTargetCount) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    const seconds = Math.floor((Date.now() - timerStart) / 1000);
+    alert("Spiel beendet!\nGefundene Ziele: " + foundCount + "\nZeit: " + seconds + " s");
+    // Nach Bestätigung wird das Spielfeld anhand der URL-Parameter wieder aufgebaut.
+    loadGameFromParams();
+    return;
+  }
+}
+
     
     function copyToClipboard() {
       html2canvas(document.getElementById("output")).then(canvas => {
