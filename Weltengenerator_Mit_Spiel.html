@@ -13,7 +13,7 @@
       margin: 0;
       padding: 20px;
     }
-    /* Raster: 30 Spalten à 2ch und 10 Zeilen à 2ch – konsistent mit dem Editor */
+    /* Raster: 30 Spalten à 2ch, 10 Zeilen à 2ch */
     #output {
       display: grid;
       grid-template-columns: repeat(30, 2ch);
@@ -68,7 +68,7 @@
 <body>
   <h1>Weltengenerator mit Spiel</h1>
   
-  <!-- Weltauswahl via Buttons -->
+  <!-- Weltauswahl: Buttons -->
   <div id="worldButtons"></div>
   
   <div id="gameInfo"></div>
@@ -89,7 +89,7 @@
   <br>
   <button onclick="copyToClipboard()">Kopieren</button>
   <button onclick="generateAltText()">ALT Text generieren</button>
-  <button onclick="transferToEditor()">Zurück zum Editor</button>
+  <button id="transferToEditor">Zurück zum Editor</button>
   
   <script>
     const width = 30;
@@ -102,8 +102,8 @@
     let timerStart = null;
     let timerInterval = null;
     let lastWorldType = "galaxy";
-    
-    // Füllt die Welt-Buttons
+
+    // Füllt #worldButtons mit Buttons für jede Welt
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -153,7 +153,7 @@
       }
     }
     
-    // Rendert das Raster anhand von gameGrid
+    // Rendert das Raster anhand gameGrid
     function renderGameGrid() {
       const cells = document.querySelectorAll("#output .cell");
       for (let r = 0; r < height; r++) {
@@ -171,7 +171,7 @@
       document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
     }
     
-    // Generiert ein Raster basierend auf der aktuell gewählten Welt
+    // Generiert das Raster zufällig anhand der ausgewählten Welt
     function generateWorld() {
       clearInterval(timerInterval);
       timerInterval = null;
@@ -179,7 +179,6 @@
       foundCount = 0;
       
       const currentWorld = worldData[lastWorldType];
-      // Initialisiere gameGrid
       gameGrid = [];
       for (let i = 0; i < height; i++) {
         gameGrid.push(Array(width).fill(" "));
@@ -248,7 +247,7 @@
       renderGameGrid();
     }
     
-    // Bewegt den Spieler; erreicht er ein Ziel, wird dieses entfernt
+    // Bewegt die Spielfigur; beim Erreichen eines Ziel-Symbols wird dieses entfernt
     function movePlayer(dx, dy) {
       if (!timerStart) {
         timerStart = Date.now();
@@ -268,7 +267,6 @@
           playPewSound();
           foundCount++;
           document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
-          // Ziel wird entfernt, also " "
           gameGrid[newY][newX] = " ";
         }
         gameGrid[playerY][playerX] = " ";
@@ -281,12 +279,12 @@
       }
     }
     
-    // Kopierfunktion (hier als Platzhalter)
+    // Kopierfunktion (Platzhalter)
     function copyToClipboard() {
       alert("Diese Funktion ist in dieser Version deaktiviert.");
     }
     
-    // Generiert ALT-Text unter Verwendung der worldData.description
+    // Generiert ALT-Text unter Verwendung der aktuellen Weltbeschreibung
     function generateAltText() {
       const currentWorld = worldData[lastWorldType];
       const desc = currentWorld.description || lastWorldType;
@@ -301,9 +299,9 @@
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
-        const worldKey = decodeURIComponent(params.get("world"));
+        const worldKey = params.get("world");
         lastWorldType = worldKey;
-        const gridText = decodeURIComponent(params.get("grid"));
+        const gridText = params.get("grid");
         const rows = gridText.split("\n");
         gameGrid = rows.map(row => {
           let arr = Array.from(row);
@@ -339,12 +337,12 @@
       }
     }
     
-    // Übergibt Parameter an welten_editor.html
+    // Übergibt Parameter zurück an den Editor – verwendet URLSearchParams ohne zusätzliches Encoding
     function transferToEditor() {
       const params = new URLSearchParams();
-      params.set("world", encodeURIComponent(lastWorldType));
+      params.set("world", lastWorldType);
       const gridText = gameGrid.map(row => row.join("")).join("\n");
-      params.set("grid", encodeURIComponent(gridText));
+      params.set("grid", gridText);
       window.location.href = "welten_editor.html?" + params.toString();
     }
     
