@@ -21,9 +21,8 @@
       line-height: 1.2em;
     }
   </style>
- <!-- Wir nutzen html2canvas, um das Raster als Bild zu kopieren -->
+  <!-- html2canvas wird für die Kopierfunktion genutzt -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-</head>  
 </head>
 <body>
   <h1>Weltengenerator mit Spiel</h1>
@@ -59,6 +58,7 @@
     let timerStart = null, timerInterval = null;
     let lastWorldType = "galaxy";
 
+    // Erzeugt die Welt-Buttons basierend auf worldData
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -74,21 +74,21 @@
         container.appendChild(btn);
       }
     }
-
+    
     function highlightWorldButton(selectedWorld) {
       const buttons = document.querySelectorAll("#worldButtons button");
       buttons.forEach(btn => {
         btn.style.backgroundColor = (btn.innerText === selectedWorld) ? "#555" : "#333";
       });
     }
-
+    
     function updateGameInfo() {
       const currentWorld = worldData[lastWorldType];
       document.getElementById("gameInfo").innerText =
         "Du steuerst " + currentWorld.player + " und musst " + currentWorld.target + " finden. " +
         currentWorld.description;
     }
-
+    
     function initGrid() {
       gameGrid = [];
       const output = document.getElementById("output");
@@ -107,7 +107,7 @@
         gameGrid.push(row);
       }
     }
-
+    
     function renderGameGrid() {
       const cells = document.querySelectorAll("#output .cell");
       for (let r = 0; r < height; r++) {
@@ -117,12 +117,12 @@
         }
       }
     }
-
+    
     function updateTimer() {
       const seconds = Math.floor((Date.now() - timerStart) / 1000);
       document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
     }
-
+    
     function generateWorld() {
       clearInterval(timerInterval);
       timerInterval = null;
@@ -197,7 +197,7 @@
       updateGameInfo();
       renderGameGrid();
     }
-
+    
     function movePlayer(dx, dy) {
       if (!timerStart) {
         timerStart = Date.now();
@@ -217,7 +217,18 @@
           playPewSound();
           foundCount++;
           document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
+          // Ziel wird entfernt
           gameGrid[newY][newX] = " ";
+          // Spielende erkannt, wenn alle Ziele gefunden wurden:
+          if (foundCount >= initialTargetCount) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            const seconds = Math.floor((Date.now() - timerStart) / 1000);
+            alert("Spiel beendet!\nGefundene Ziele: " + foundCount + "\nZeit: " + seconds + " s");
+            // Nach Bestätigung das Raster aus den Parametern wieder aufbauen:
+            loadGameFromParams();
+            return;
+          }
         }
         gameGrid[playerY][playerX] = " ";
         gameGrid[newY][newX] = currentGame.player;
@@ -228,9 +239,8 @@
         playPowSound();
       }
     }
-
+    
     function copyToClipboard() {
-      // Verwende html2canvas, um das Raster (#output) als Bild zu kopieren
       html2canvas(document.getElementById("output")).then(canvas => {
         canvas.toBlob(blob => {
           const item = new ClipboardItem({ "image/png": blob });
@@ -242,7 +252,7 @@
         });
       });
     }
-
+    
     function generateAltText() {
       const currentWorld = worldData[lastWorldType];
       const desc = currentWorld.description || lastWorldType;
@@ -252,7 +262,7 @@
         .then(() => alert("ALT Text kopiert!"))
         .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     }
-
+    
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
@@ -272,7 +282,7 @@
         renderGameGrid();
       }
     }
-
+    
     function transferToEditor() {
       const params = new URLSearchParams();
       params.set("world", lastWorldType);
@@ -280,7 +290,7 @@
       params.set("grid", gridText);
       window.location.href = "./welten_editor.html?" + params.toString();
     }
-
+    
     window.addEventListener("load", () => {
       populateWorldButtons();
       highlightWorldButton(lastWorldType);
@@ -288,7 +298,7 @@
       initGrid();
       loadGameFromParams();
     });
-
+    
     document.addEventListener("keydown", function(e) {
       let dx = 0, dy = 0;
       switch(e.key) {
@@ -300,7 +310,7 @@
       }
       movePlayer(dx, dy);
     });
-
+    
     document.getElementById("transferToEditor").addEventListener("click", transferToEditor);
     document.getElementById("generateAltText").addEventListener("click", generateAltText);
     document.getElementById("copyToClipboard") && document.getElementById("copyToClipboard").addEventListener("click", copyToClipboard);
