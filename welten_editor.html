@@ -48,7 +48,6 @@
     <button id="generateAltText">ALT Text generieren</button>
     <button id="transferToGame">In Spiel übernehmen</button>
   </div>
-  
   <script>
     const gridCols = 30;
     const gridRows = 10;
@@ -150,11 +149,11 @@
       }
     }
     
-    // Lädt Parameter aus der URL und setzt dabei den Weltkey mit Normalisierung
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
-        lastWorldType = params.get("world").normalize();
+        // Den übergebenen Welt-Schlüssel normalisieren
+        lastWorldType = params.get("world").normalize("NFC");
         const gridText = params.get("grid");
         const rows = gridText.split("\n");
         gridData = rows.map(row => {
@@ -171,18 +170,7 @@
       }
     }
     
-    document.getElementById("clearGrid").addEventListener("click", clearGrid);
-    document.getElementById("generateAltText").addEventListener("click", () => {
-      const currentWorld = worldData[lastWorldType];
-      const altText = "Alternativtext: Dieses Bild zeigt eine " +
-        (currentWorld.description || lastWorldType) +
-        " Welt, erstellt mit dem Weltensymbol Editor. Das Raster umfasst " +
-        gridRows + " Zeilen und " + gridCols + " Spalten.";
-      navigator.clipboard.writeText(altText)
-        .then(() => alert("ALT Text kopiert!"))
-        .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
-    });
-    document.getElementById("transferToGame").addEventListener("click", () => {
+    function transferToGame() {
       const currentWorld = worldData[lastWorldType];
       const currentGame = { player: currentWorld.player, target: currentWorld.target };
       if (!gridData.flat().includes(currentGame.player)) {
@@ -194,11 +182,25 @@
         return;
       }
       const params = new URLSearchParams();
-      params.set("world", lastWorldType);
+      // Normalisiere den Welt-Schlüssel, damit er exakt entspricht.
+      params.set("world", lastWorldType.normalize("NFC"));
       const gridText = gridData.map(row => row.join("")).join("\n");
       params.set("grid", gridText);
       window.location.href = "./Weltengenerator_Mit_Spiel.html?" + params.toString();
+    }
+    
+    document.getElementById("clearGrid").addEventListener("click", clearGrid);
+    document.getElementById("generateAltText").addEventListener("click", () => {
+      const currentWorld = worldData[lastWorldType];
+      const altText = "Alternativtext: Dieses Bild zeigt eine " +
+        (currentWorld.description || lastWorldType) +
+        " Welt, erstellt mit dem Weltensymbol Editor. Das Raster umfasst " +
+        gridRows + " Zeilen und " + gridCols + " Spalten.";
+      navigator.clipboard.writeText(altText)
+        .then(() => alert("ALT Text kopiert!"))
+        .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     });
+    document.getElementById("transferToGame").addEventListener("click", transferToGame);
     
     window.addEventListener("load", () => {
       populateWorldButtons();
