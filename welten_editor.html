@@ -48,13 +48,16 @@
     <button id="generateAltText">ALT Text generieren</button>
     <button id="transferToGame">In Spiel übernehmen</button>
   </div>
+  
   <script>
     const gridCols = 30;
     const gridRows = 10;
     let gridData = [];
     let selectedSymbol = "";
-    let lastWorldType = "galaxy"; // Standardwelt
-
+    // Standardwert ist "galaxy", wird aber überschrieben, falls Parameter vorhanden sind.
+    let lastWorldType = "galaxy"; 
+    
+    // Erzeugt die Welt-Buttons
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -106,6 +109,7 @@
       });
     }
     
+    // Baut das Raster (gridData) zeilenweise als Block (nicht als Grid) auf.
     function initGrid() {
       gridData = [];
       const output = document.getElementById("output");
@@ -149,10 +153,10 @@
       }
     }
     
+    // Liest Parameter aus der URL aus und stellt sicher, dass der übergebene world-Schlüssel übernommen wird.
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
-        // Den übergebenen Welt-Schlüssel normalisieren
         lastWorldType = params.get("world").normalize("NFC");
         const gridText = params.get("grid");
         const rows = gridText.split("\n");
@@ -166,27 +170,11 @@
           return arr;
         });
         updatePlayerTargetInfo();
+        // Da der Parameter world übernommen wurde, aktualisieren wir auch die Welt-Buttons und die Symbol-Palette:
+        highlightWorldButton(lastWorldType);
+        populateSymbolPalette();
         renderGameGrid();
       }
-    }
-    
-    function transferToGame() {
-      const currentWorld = worldData[lastWorldType];
-      const currentGame = { player: currentWorld.player, target: currentWorld.target };
-      if (!gridData.flat().includes(currentGame.player)) {
-        alert("Fehler: Das Spielersymbol (" + currentGame.player + ") fehlt.");
-        return;
-      }
-      if (!gridData.flat().includes(currentGame.target)) {
-        alert("Fehler: Das Zielsymbol (" + currentGame.target + ") fehlt.");
-        return;
-      }
-      const params = new URLSearchParams();
-      // Normalisiere den Welt-Schlüssel, damit er exakt entspricht.
-      params.set("world", lastWorldType.normalize("NFC"));
-      const gridText = gridData.map(row => row.join("")).join("\n");
-      params.set("grid", gridText);
-      window.location.href = "./Weltengenerator_Mit_Spiel.html?" + params.toString();
     }
     
     document.getElementById("clearGrid").addEventListener("click", clearGrid);
@@ -200,11 +188,31 @@
         .then(() => alert("ALT Text kopiert!"))
         .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
     });
-    document.getElementById("transferToGame").addEventListener("click", transferToGame);
+    document.getElementById("transferToGame").addEventListener("click", () => {
+      const currentWorld = worldData[lastWorldType];
+      const currentGame = { player: currentWorld.player, target: currentWorld.target };
+      if (!gridData.flat().includes(currentGame.player)) {
+        alert("Fehler: Das Spielersymbol (" + currentGame.player + ") fehlt.");
+        return;
+      }
+      if (!gridData.flat().includes(currentGame.target)) {
+        alert("Fehler: Das Zielsymbol (" + currentGame.target + ") fehlt.");
+        return;
+      }
+      const params = new URLSearchParams();
+      // Normalisiere den Welt-Schlüssel
+      params.set("world", lastWorldType.normalize("NFC"));
+      const gridText = gridData.map(row => row.join("")).join("\n");
+      params.set("grid", gridText);
+      window.location.href = "./Weltengenerator_Mit_Spiel.html?" + params.toString();
+    });
     
     window.addEventListener("load", () => {
+      // Nur defaulten, wenn keine Parameter vorhanden – loadGameFromParams überschreibt dies.
+      if (!window.location.search) {
+        lastWorldType = "galaxy";
+      }
       populateWorldButtons();
-      highlightWorldButton(lastWorldType);
       updatePlayerTargetInfo();
       populateSymbolPalette();
       initGrid();
