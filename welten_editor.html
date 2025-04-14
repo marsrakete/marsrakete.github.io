@@ -4,28 +4,60 @@
   <meta charset="UTF-8">
   <title>Weltensymbol Editor</title>
   <link rel="stylesheet" href="common.css">
+  <style>
+    /* Editor-spezifische Anpassungen: Das Ausgabefeld soll als Block mit Zeilenumbrüchen aufgebaut werden */
+    #output {
+      width: 64ch;
+      height: 12em;
+      border: 1px solid white;
+      margin: 10px auto;
+      overflow: auto;
+      font-size: 2em;
+      line-height: 2ch; /* jede Zelle 2ch hoch */
+    }
+    .row {
+      display: block;
+      white-space: nowrap;
+    }
+    .cell {
+      display: inline-block;
+      width: 2ch;
+      height: 2ch;
+      text-align: center;
+      vertical-align: top;
+      border: 1px solid white;
+    }
+  </style>
+  <!-- Binde worldData.js ein (enthält alle Welt-Daten inkl. description, player, target) -->
   <script src="worldData.js"></script>
-  <script src="common.js"></script>
+  <!-- Gemeinsame Skriptfunktionen (optional in common.js) könnten hier eingebunden werden -->
 </head>
 <body>
   <div id="editorContainer">
     <h1>Weltensymbol Editor</h1>
+    <!-- Welt-Buttons -->
     <div id="worldButtons"></div>
+    <!-- Info-Zeile: Spieler- und Ziel-Symbole -->
     <div id="playerTargetInfo"></div>
+    <!-- Symbol-Palette -->
     <div id="symbolPalette"></div>
     <h2>Ausgabefeld</h2>
+    <!-- Ausgabe-Bereich wird zeilenweise aufgebaut -->
     <div id="output"></div>
     <br>
     <button id="clearGrid">Grid leeren</button>
     <button id="generateAltText">ALT Text generieren</button>
     <button id="transferToGame">In Spiel übernehmen</button>
   </div>
+  
   <script>
-    const gridCols = 30, gridRows = 10;
+    const gridCols = 30;
+    const gridRows = 10;
     let gridData = [];
     let selectedSymbol = "";
-    let lastWorldType = "galaxy";
-    
+    let lastWorldType = "galaxy"; // Standardwelt
+
+    // Füllt den Container #worldButtons mit Buttons für jede Welt aus worldData
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -42,6 +74,7 @@
       }
     }
     
+    // Hebt den aktuell ausgewählten Button hervor
     function highlightWorldButton(selectedWorld) {
       const buttons = document.querySelectorAll("#worldButtons button");
       buttons.forEach(btn => {
@@ -49,6 +82,7 @@
       });
     }
     
+    // Aktualisiert die Info-Zeile mit Spieler- und Ziel-Symbol
     function updatePlayerTargetInfo() {
       const infoDiv = document.getElementById("playerTargetInfo");
       const currentWorld = worldData[lastWorldType];
@@ -57,6 +91,7 @@
         " | Zielsymbol: <span style='color: red;'>" + currentWorld.target + "</span>";
     }
     
+    // Füllt die Symbol-Palette für die ausgewählte Welt
     function populateSymbolPalette() {
       const palette = document.getElementById("symbolPalette");
       palette.innerHTML = "";
@@ -77,49 +112,114 @@
       });
     }
     
-    function initEditor() {
-      gridData = initGrid(gridRows, gridCols);
+    // Erzeugt ein leeres Raster als 2D-Array und baut das Ausgabefeld zeilenweise auf
+    function initGrid() {
+      gridData = [];
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+      for (let r = 0; r < gridRows; r++) {
+        let row = [];
+        const rowDiv = document.createElement("div");
+        rowDiv.classList.add("row");
+        for (let c = 0; c < gridCols; c++) {
+          row.push(" ");
+          const cell = document.createElement("span");
+          cell.classList.add("cell");
+          cell.dataset.row = r;
+          cell.dataset.col = c;
+          cell.textContent = " ";
+          cell.addEventListener("click", () => {
+            if (selectedSymbol !== "") {
+              cell.textContent = selectedSymbol;
+              gridData[r][c] = selectedSymbol;
+            }
+          });
+          rowDiv.appendChild(cell);
+        }
+        gridData.push(row);
+        output.appendChild(rowDiv);
+      }
     }
     
-    function renderEditor() {
-      renderGameGrid(gridData, gridCols, gridRows);
+    function clearGrid() {
+      gridData = gridData.map(row => row.map(() => " "));
+      document.querySelectorAll("#output .cell").forEach(cell => cell.textContent = " ");
     }
     
-    document.getElementById("clearGrid").addEventListener("click", () => {
-      clearGrid();
-    });
+    // Rendert das Raster anhand von gridData (aktualisiert alle Zellen)
+    function renderGameGrid() {
+      const rows = document.querySelectorAll("#output .row");
+      for (let r = 0; r < gridRows; r++) {
+        const cells = rows[r].querySelectorAll(".cell");
+        for (let c = 0; c < gridCols; c++) {
+          cells[c].textContent = gridData[r][c];
+        }
+      }
+    }
     
-    document.getElementById("generateAltText").addEventListener("click", () => {
-      const currentWorld = worldData[lastWorldType];
-      const altText = "Alternativtext: Dieses Bild zeigt eine " + (currentWorld.description || lastWorldType) +
-        " Welt, erstellt mit dem Weltensymbol Editor. Das Raster umfasst " + gridRows + " Zeilen und " + gridCols + " Spalten.";
-      navigator.clipboard.writeText(altText).then(() => alert("ALT Text kopiert!"));
-    });
-    
-    document.getElementById("transferToGame").addEventListener("click", () => {
+    // Übergibt Parameter an Weltengenerator_Mit_Spiel.html; prüft, ob Spieler und Ziel vorhanden sind
+    function transferToGame() {
       const currentWorld = worldData[lastWorldType];
       const currentGame = { player: currentWorld.player, target: currentWorld.target };
-      if (!gridData.flat().includes(currentGame.player)) {
+      const flatGrid = gridData.flat();
+      if (!flatGrid.includes(currentGame.player)) {
         alert("Fehler: Das Spielersymbol (" + currentGame.player + ") fehlt.");
         return;
       }
-      if (!gridData.flat().includes(currentGame.target)) {
+      if (!flatGrid.includes(currentGame.target)) {
         alert("Fehler: Das Zielsymbol (" + currentGame.target + ") fehlt.");
         return;
       }
-      window.location.href = transferToPage("Weltengenerator_Mit_Spiel.html", lastWorldType, gridData);
-    });
+      const params = new URLSearchParams();
+      params.set("world", lastWorldType);
+      const gridText = gridData.map(row => row.join("")).join("\n");
+      params.set("grid", gridText);
+      window.location.href = "Weltengenerator_Mit_Spiel.html?" + params.toString();
+    }
+    
+    // Liest Parameter aus der URL aus und befüllt das Raster, falls vorhanden
+    function loadGameFromParams() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.has("world") && params.has("grid")) {
+        lastWorldType = params.get("world");
+        const gridText = params.get("grid");
+        const rows = gridText.split("\n");
+        gridData = rows.map(row => {
+          let arr = Array.from(row);
+          if (arr.length < gridCols) {
+            arr = arr.concat(Array(gridCols - arr.length).fill(" "));
+          } else if (arr.length > gridCols) {
+            arr = arr.slice(0, gridCols);
+          }
+          return arr;
+        });
+        updatePlayerTargetInfo();
+        renderGameGrid();
+      }
+    }
     
     window.addEventListener("load", () => {
+      lastWorldType = "galaxy";
       populateWorldButtons();
       highlightWorldButton(lastWorldType);
       updatePlayerTargetInfo();
       populateSymbolPalette();
-      initEditor();
-      // Falls Parameter vorhanden, loadGameFromParams() aufrufen.
-      // Andernfalls beginnt das Editor-Raster als leer.
-      // loadGameFromParams();
+      initGrid();
+      loadGameFromParams();
     });
+    
+    document.getElementById("clearGrid").addEventListener("click", clearGrid);
+    document.getElementById("generateAltText").addEventListener("click", () => {
+      const currentWorld = worldData[lastWorldType];
+      const altText = "Alternativtext: Dieses Bild zeigt eine " +
+        (currentWorld.description || lastWorldType) +
+        " Welt, erstellt mit dem Weltensymbol Editor. Das Raster umfasst " +
+        gridRows + " Zeilen und " + gridCols + " Spalten.";
+      navigator.clipboard.writeText(altText)
+        .then(() => alert("ALT Text kopiert!"))
+        .catch(err => alert("Fehler beim Kopieren des ALT Texts: " + err));
+    });
+    document.getElementById("transferToGame").addEventListener("click", transferToGame);
   </script>
 </body>
 </html>
