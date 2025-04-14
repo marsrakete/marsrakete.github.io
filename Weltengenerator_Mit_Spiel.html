@@ -4,33 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Weltengenerator mit Spiel</title>
-  <link rel="stylesheet" href="common.css"> <!-- Basisstile aus common.css -->
+  <link rel="stylesheet" href="common.css">
+  <script src="worldData.js"></script>
   <style>
-    /* Spezifisch für den Spielmodus: Das Ausgabefeld soll als Block (Zeilenweise) dargestellt werden */
+    /* Hier bleiben die Spielmodus-spezifischen Styles erhalten (Raster als CSS-Grid) */
     #output {
-      width: 64ch;
-      height: 12em;
+      display: grid;
+      grid-template-columns: repeat(30, 2ch);
+      grid-template-rows: repeat(10, 2ch);
+      gap: 1px;
+      background: black;
+      padding: 10px;
       border: 1px solid white;
       margin: 10px auto;
-      overflow: auto;
       font-size: 2em;
-      line-height: 2ch;
-    }
-    .row {
-      display: block;
-      white-space: nowrap;
-    }
-    .cell {
-      display: inline-block;
-      width: 2ch;
-      height: 2ch;
-      text-align: center;
-      vertical-align: top;
-      border: 1px solid white;
-      margin: 0;
+      line-height: 1.2em;
     }
   </style>
-  <script src="worldData.js"></script>
 </head>
 <body>
   <h1>Weltengenerator mit Spiel</h1>
@@ -43,7 +33,6 @@
     <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Gefundene Ziele: 0</span>
   </div>
   
-  <!-- Raster-Ausgabe: Aufbau wie im Editor -->
   <div id="output"></div>
   
   <!-- Virtuelle Bewegungstasten -->
@@ -66,7 +55,7 @@
     let foundCount = 0, initialTargetCount = 0;
     let timerStart = null, timerInterval = null;
     let lastWorldType = "galaxy";
-
+    
     function populateWorldButtons() {
       const container = document.getElementById("worldButtons");
       container.innerHTML = "";
@@ -97,35 +86,31 @@
         currentWorld.description;
     }
     
-    // Initiiert das leere Raster als 2D-Array und baut die Ausgabe zeilenweise auf
     function initGrid() {
       gameGrid = [];
       const output = document.getElementById("output");
       output.innerHTML = "";
       for (let r = 0; r < height; r++) {
         let row = [];
-        const rowDiv = document.createElement("div");
-        rowDiv.classList.add("row");
         for (let c = 0; c < width; c++) {
           row.push(" ");
-          const cell = document.createElement("span");
+          const cell = document.createElement("div");
           cell.classList.add("cell");
           cell.dataset.row = r;
           cell.dataset.col = c;
           cell.textContent = " ";
-          rowDiv.appendChild(cell);
+          output.appendChild(cell);
         }
         gameGrid.push(row);
-        output.appendChild(rowDiv);
       }
     }
     
     function renderGameGrid() {
-      const rows = document.querySelectorAll("#output .row");
+      const cells = document.querySelectorAll("#output .cell");
       for (let r = 0; r < height; r++) {
-        const cells = rows[r].querySelectorAll(".cell");
         for (let c = 0; c < width; c++) {
-          cells[c].textContent = gameGrid[r][c];
+          const index = r * width + c;
+          if (cells[index]) cells[index].textContent = gameGrid[r][c];
         }
       }
     }
@@ -272,8 +257,6 @@
         });
         updateGameInfo();
         renderGameGrid();
-      } else {
-        generateWorld();
       }
     }
     
