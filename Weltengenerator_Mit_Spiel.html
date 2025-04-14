@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="./common.css">
   <script src="./worldData.js"></script>
   <style>
-    /* Spielmodus: Raster als CSS-Grid */
+    /* Im Spielmodus verwenden wir weiterhin CSS-Grid für das Raster */
     #output {
       display: grid;
       grid-template-columns: repeat(30, 2ch);
@@ -165,7 +165,7 @@
         }
       }
       
-      // Wähle zufällig eine existierende Spielerposition
+      // Wähle zufällig eine bereits existierende Spielerposition:
       let playerPositions = [];
       for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
@@ -201,8 +201,9 @@
       }
       const cellContent = gameGrid[newY][newX];
       if (cellContent === " " || cellContent === currentGame.target) {
+        // Ziel gefunden?
         const targetFound = (cellContent === currentGame.target);
-        // Zuerst Ziel löschen und Spieler vorrücken
+        // Zuerst alte Spielerposition leeren, dann Spieler an neue Position setzen
         gameGrid[playerY][playerX] = " ";
         gameGrid[newY][newX] = currentGame.player;
         playerX = newX;
@@ -212,12 +213,13 @@
           playPewSound();
           foundCount++;
           document.getElementById("foundCount").innerText = "Gefundene Ziele: " + foundCount;
+          // Prüfung: Wenn alle Ziele gefunden wurden, Spielende
           if (foundCount >= initialTargetCount) {
             clearInterval(timerInterval);
             timerInterval = null;
             const seconds = Math.floor((Date.now() - timerStart) / 1000);
             alert("Spiel beendet!\nGefundene Ziele: " + foundCount + "\nZeit: " + seconds + " s");
-            // Nach Bestätigung: Spielfeld neu aus den URL-Parametern laden
+            // Nach dem Popup: Spielfeld neu aus den URL-Parametern aufbauen
             loadGameFromParams();
             return;
           }
@@ -253,8 +255,8 @@
     function loadGameFromParams() {
       const params = new URLSearchParams(window.location.search);
       if (params.has("world") && params.has("grid")) {
-        // Wichtig: Den übergebenen Welt-Key normalisieren, um Variationen zu vermeiden
-        lastWorldType = params.get("world").normalize();
+        // Normalisiere den übergebenen Welt-Schlüssel, um Varianten zu vermeiden
+        lastWorldType = params.get("world").normalize("NFC");
         const gridText = params.get("grid");
         const rows = gridText.split("\n");
         gameGrid = rows.map(row => {
@@ -273,7 +275,8 @@
     
     function transferToEditor() {
       const params = new URLSearchParams();
-      params.set("world", lastWorldType);
+      // Normalisiere den Welt-Schlüssel
+      params.set("world", lastWorldType.normalize("NFC"));
       const gridText = gameGrid.map(row => row.join("")).join("\n");
       params.set("grid", gridText);
       window.location.href = "./welten_editor.html?" + params.toString();
