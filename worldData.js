@@ -22,7 +22,7 @@ const worldData = {
     symbols: ["🐠","🐟","🐬","🐳","🐋","🦈","🦑","🐙","🌊","🚤","⛵","🚢","🛥️"],
     rare: ["🧜‍♂️","🧜‍♀️","🐋","🤿","🥽","🔱","⚓","🦈","🛟","🩳","🏊‍♀️","🏊‍♂️","🏊","🏄","🤽‍♂️"],
     bottom: [],
-    player: "🏊‍♂️",
+    player: "🏊‍",
     target: "🐋",
     description: "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen."
   },
@@ -62,7 +62,7 @@ const worldData = {
     symbols: ["⚔️","🛡️","🏰","🐉","🧙‍♂️","👑","🏹","🗡️","📜","⚜️"],
     rare: [],
     bottom: [],
-    player: "🧙‍♂️",
+    player: "🧙‍",
     target: "👑",
     description: "Eine mittelalterliche Welt, in der Ritter, Burgen und Drachen zuhause sind."
   },
@@ -134,7 +134,7 @@ const worldData = {
     symbols: ["🎪","🤹‍♂️","🎭","🐘","🎠","🤡","🎟️","🎫","🃏","🎩"],
     rare: [],
     bottom: [],
-    player: "🤹‍♂️",
+    player: "🤹‍",
     target: "🎪",
     description: "Eine zirkusartige Welt, in der Akrobaten, Clowns und bunte Zelte zuhause sind."
   },
@@ -190,7 +190,7 @@ const worldData = {
     symbols: ["🧚","✨","🌈","🦋","🌟","🌙","💫","🎆","🌹","🍄"],
     rare: ["🦄","🔮","🪄"],
     bottom: [],
-    player: "🧚‍♀️",
+    player: "🧚‍",
     target: "🦄",
     description: "Eine märchenhafte Welt voller Magie und zauberhafter Kreaturen."
   },
@@ -225,6 +225,35 @@ const worldData = {
     player: "🎮",
     target: "💎",
     description: "Eine retro-arcade Welt, voll von Pixeln, alten Spielen und Nostalgie."
+  },
+  // --- Neue Welten ---
+  insects: {
+    symbols: ["🐜","🦋","🐞","🐝","🦗","🦟","🪲","🦂","🕷️","🕸️","🐝","🪰","🦟","🐌","🐝"],
+    rare:    ["🪳","🪱","🦠"],
+    bottom:  ["🍂","🍃"],
+    player:  "🕷️",   target: "🕸️",
+    description: "Eine insektenreiche Welt voller Krabbeltiere und feiner Netze."
+  },
+  cars: {
+    symbols: ["🚗","🚕","🚙","🚌","🚎","🏎️","🚑","🚒","🚓","🚚","🚛","🚜","🚲","🛻","🚐"],
+    rare:    ["🚀","🛳️","✈️"],
+    bottom:  ["🛣️","🚧"],
+    player:  "🚗",   target: "🛣️",
+    description: "Eine autozentrierte Welt mit Straßen, Schildern und hupenden Fahrzeugen."
+  },
+  human: {
+    symbols: ["👶","🧒","👧","🧑","👨","👩","👵","👴","🧓","👩‍🦰","👨‍🦱"],
+    rare:    ["🤱","🤰","🧑‍🤝‍🧑"],
+    bottom:  ["🏠","🏡"],
+    player:  "🧒",   target: "🤱",
+    description: "Eine menschliche Welt voller Familien, Lachen und liebevoller Augenblicke."
+  },
+  craftsmen: {
+    symbols: ["🔨","🪚","🛠️","🔩","🔧","🪛","🔗","⚙️","🧰","🔗","🧱","🏗️"],
+    rare:    ["👷","🦺","🔬"],
+    bottom:  ["🧰","🔧"],
+    player:  "🧑‍🔧",   target: "🔧",
+    description: "Eine Welt der Handwerkskunst mit Werkzeugen, Maschinen und kreativen Erfindungen."
   }
 };
 
