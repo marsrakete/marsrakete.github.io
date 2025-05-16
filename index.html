@@ -2,821 +2,340 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <!-- Deaktiviert das Zoomen auf mobilen Geräten -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Weltengenerator mit Spiel</title>
+  <title>Weltgenerator</title>
+  <link rel="stylesheet" href="./common.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="./worldData.js"></script>
+  <script src="./common.js"></script>
   <style>
-    body {
-      background-color: #121212;
-      color: white;
-      font-family: monospace;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
-    /* Standard: Das Ausgabefeld hat 60ch (für 30 Zellen à 2ch) */
-    #output {
-      width: 60ch;
-      height: 15em;
+    /* Spielmodus: Raster als CSS-Grid */
+    #gameOutput {
+      display: grid;
+      grid-template-columns: repeat(30, 2ch);
+      grid-template-rows: repeat(10, 2ch);
+      gap: 1px;
       background: black;
-      color: white;
       padding: 10px;
       border: 1px solid white;
-      display: inline-block;
-      overflow: hidden;
-      line-height: 1.2em;
+      margin: 10px auto;
       font-size: 2em;
-      margin-top: 10px;
+      line-height: 1.2em;
+      width: fit-content;
     }
-    /* Jede Zelle erhält eine feste Breite von 2ch */
+
+    /* Editormodus: Ausgabefeld mit Zeilenumbrüchen */
+    #editorOutput {
+      width: 64ch;
+      height: 22ch;     /* Höhe angepasst für 10 Zeilen à 2ch */
+      margin: 10px auto;
+      overflow: visible;
+      font-size: 2em;
+      line-height: 2ch;
+      white-space: pre-wrap;
+      /* Kein Rahmen im Editormodus-Ausgabefeld */
+    }
+
+    .row { display: block; white-space: nowrap; }
     .cell {
       display: inline-block;
       width: 2ch;
+      height: 2ch;
       text-align: center;
+      vertical-align: top;
+      /* Kein Rahmen im Spielmodus */
     }
-    /* Anzeige der Spielinfo (Spielfigur und Ziel) */
-    #gameInfo {
-      font-size: 1.2em;
-      margin-bottom: 10px;
-    }
-    /* Statuszeile: Timer und noch zu findende Ziele */
-    #statusLine {
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-    .slider-group {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 10px 0;
-    }
-    .slider-group label {
-      margin-right: 10px;
-      min-width: 60px;
-      text-align: right;
-    }
-    /* Radio-Buttons als Chip-Auswahl */
-    #worldSelection {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px 0;
-      overflow-x: auto;
-    }
-    #worldSelection label {
-      background: #333;
-      padding: 10px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-      user-select: none;
-      white-space: nowrap;
-    }
-    #worldSelection input[type="radio"] {
-      display: none;
-    }
-    #worldSelection input[type="radio"]:checked + span {
-      background: #555;
-    }
-    button {
-      margin: 5px;
-      padding: 10px;
-      background: #333;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #555;
-    }
-    /* Virtuelle Bewegungstasten */
-    #virtualButtons {
-      margin-top: 20px;
-    }
-    #virtualButtons button {
-      width: 3em;
-      height: 3em;
-      font-size: 1.5em;
-      margin: 5px;
-      touch-action: manipulation;
-      -ms-touch-action: manipulation;
-    }
-    /* Kompakte Darstellung für kleine Bildschirme */
-    @media (max-width: 600px) {
-      #output {
-        width: 100%;
-        font-size: 1.5em;
-      }
-      .cell {
-        width: calc(100% / 30);
-      }
-      #virtualButtons {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.8);
-        padding: 5px 0;
-        display: flex;
-        justify-content: center;
-      }
-      #virtualButtons button {
-        width: 3em;
-        height: 3em;
-        font-size: 1.2em;
-        margin: 5px;
-      }
-    }
+    /* Rahmen in Editorzellen */
+    #editorOutput .cell { border: 1px solid white; }
   </style>
-  
-  <!-- Einbinden von html2canvas -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-  <h1>Weltengenerator mit Spiel</h1>
-  <input type="text" id="inputText" maxlength="30" placeholder="Text eingeben...">
-  <br><br>
-  
-  <!-- Anzahl-Slider (Standardwert 50) -->
-  <div class="slider-group">
-    <label for="symbolSlider">Anzahl</label>
-    <input type="range" id="symbolSlider" min="10" max="100" value="50" oninput="updateSymbolCount(this.value)">
-    <span id="symbolCount">50</span>
+  <button id="toggleMode">Zum Editor</button>
+
+  <!-- Spielcontainer -->
+  <div id="gameContainer">
+    <h1>Spielmodus</h1>
+    <div id="worldButtonsGame"></div>
+    <div id="gameInfo"></div>
+    <div id="statusLine">
+      <span id="timerDisplay">Zeit: 0 s</span> |
+      <span id="foundCount">Gefundene Ziele: 0</span>
+    </div>
+    <div id="gameOutput"></div>
+    <div id="virtualButtons">
+      <button onclick="movePlayer(0,-1)">↑</button><br>
+      <button onclick="movePlayer(-1,0)">←</button>
+      <button onclick="movePlayer(1,0)">→</button><br>
+      <button onclick="movePlayer(0,1)">↓</button>
+    </div>
+    <button id="newRandomGame">Spiel zufällig neu generieren</button>
+    <button id="generateGameAltText">ALT Text generieren</button>
+    <button id="copyGameGraphic">Als Grafik kopieren</button>
+    <button id="copyGameText">Als Text kopieren</button>
   </div>
-  
-  <!-- Zoom-Slider -->
-  <div class="slider-group">
-    <label for="zoomSlider">Zoom</label>
-    <input type="range" id="zoomSlider" min="1" max="3" step="0.1" value="2" oninput="updateZoom(this.value)">
-    <span id="zoomPercentage">200%</span>
+
+  <!-- Editorcontainer -->
+  <div id="editorContainer" style="display:none;">
+    <h1>Editormodus</h1>
+    <div id="worldButtonsEditor"></div>
+    <div id="playerTargetInfo"></div>
+    <div id="symbolPalette"></div>
+    <h2>Ausgabefeld</h2>
+    <div id="editorOutput"></div>
+    <button id="clearGrid">Grid leeren</button>
+    <button id="newEditorRandom">Welt zufällig neu generieren</button>
+    <button id="generateEditorAltText">ALT Text generieren</button>
+    <button id="applyToGame">In Spiel übernehmen</button>
+    <button id="copyEditorGraphic">Als Grafik kopieren</button>
+    <button id="copyEditorText">Als Text kopieren</button>
   </div>
-  
-  <!-- Alternative Welten-Auswahl via Radio-Buttons -->
-  <div id="worldSelection">
-    <!-- Vorhandene Welten -->
-    <label>
-      <input type="radio" name="worldType" value="galaxy" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)" checked>
-      <span>Galaxy</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="flowers" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Blumenwiese</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="water" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Wasserwelt</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="forest" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Waldwelt</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="lava" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Lavahölle</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="steampunk" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Steampunk</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="desert" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Wüstenwelt</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="medieval" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Mittelalter</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="racing" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Autorennen</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="airport" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Flughafen</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="cyberpunk" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Cyberpunk</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="northpole" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Nordpol</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="volcano" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Vulkaninsel</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="office" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Büro</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="candyland" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Candyland</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="jungle" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Dschungel</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="circus" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Zirkus</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="ruins" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Vergessene Ruinen</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="disco" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Disco</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="concert" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Konzert</span>
-    </label>
-    <!-- Neue Welten -->
-    <label>
-      <input type="radio" name="worldType" value="fairytale" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Märchenwelt</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="apocalypse" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Apokalypse</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="cave" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Höhlenwelt</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="cloud" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Wolkenwelt</span>
-    </label>
-    <label>
-      <input type="radio" name="worldType" value="arcade" onclick="generateWorldWrapper(this.value)" onchange="generateWorldWrapper(this.value)">
-      <span>Retro-Arcade</span>
-    </label>
-  </div>
-  
-  <!-- Anzeige der Spielinfo: Spielfigur und Ziel -->
-  <div id="gameInfo"></div>
-  <!-- Anzeige der Statuszeile: Timer und zu findende Ziele -->
-  <div id="statusLine">
-    <span id="timerDisplay">Zeit: 0 s</span> | <span id="foundCount">Zu findende Zahl Ziele: 0</span>
-  </div>
-  
-  <!-- Ausgabe des Spielfelds -->
-  <div id="output"></div>
-  
-  <!-- Virtuelle Bewegungstasten -->
-  <div id="virtualButtons">
-    <button onclick="movePlayer(0,-1)" ontouchend="movePlayer(0,-1)">↑</button><br>
-    <button onclick="movePlayer(-1,0)" ontouchend="movePlayer(-1,0)">←</button>
-    <button onclick="movePlayer(1,0)" ontouchend="movePlayer(1,0)">→</button><br>
-    <button onclick="movePlayer(0,1)" ontouchend="movePlayer(0,1)">↓</button>
-  </div>
-  
-  <br>
-  <button onclick="copyToClipboard()">Kopieren</button>
-  <button onclick="generateAltText()">ALT Text generieren</button>
-  
+
   <script>
-    // Globale Variablen
-    let lastWorldType = 'galaxy';
-    let maxSymbolCount = 50; // Standardwert jetzt 50
-    const width = 30;
-    const height = 10;
-    let lastCallTimestamp = 0;
-    let gameGrid = []; // 2D-Array des Spielfelds
-    let playerX = 0, playerY = 0;
-    let foundCount = 0;
-    let initialTargetCount = 0; // Gesamtzahl an Ziel-Symbolen im Grid
-    
-    // Timer-Variablen
-    let timerStart = null;
-    let timerInterval = null;
-    function updateTimer() {
-      const seconds = Math.floor((Date.now() - timerStart) / 1000);
-      document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
-    }
-    
-    // Definition der Welttypen
-    const worldTypes = {
-      galaxy: { 
-        symbols: ["🧿", "🕳️", "✮", "🎱", "🌍", "☾", "🌌", "🌑", "🪐", "🌕", "☄️", "💫", "🚀", "🛸", "🌠", "🌙", "⭐️", "🌜", "🌚"],
-        rare: ["👾", "👽", "🎮", "👩‍🚀", "🔫", "🛰️"],
-        bottom: ["🔭", "📡"]
-      },
-      flowers: { 
-        symbols: ["🌸", "🌹", "🌺", "🌻", "🌼", "💐", "🥀", "🌷", "🍀"],
-        rare: ["🦋", "🐞", "🐝", "🍄", "🐇", "🍄‍🟫", "🍄", "🪰", "🪁"],
-        bottom: []
-      },
-      water: { 
-        symbols: ["🐠", "🐟", "🐬", "🐳", "🐋", "🦈", "🦑", "🐙", "🌊", "🚤", "⛵", "🚢", "🛥️"],
-        rare: ["🧜‍♂️", "🧜‍♀️", "🐋", "🤿", "🥽", "🔱", "⚓", "🦈", "🛟", "🩳", "🏊‍♀️", "🏊‍♂️", "🏊", "🏄", "🤽‍♂️"],
-        bottom: []
-      },
-      forest: { 
-        symbols: ["🌲", "🌳", "🌴", "🍄", "🌿", "🍃", "🍂", "🦉", "🐿️", "🦌", "🐻", "🐇"],
-        rare: ["🦅", "🪺", "🪹"],
-        bottom: []
-      },
-      lava: { 
-        symbols: ["🔥", "🌋", "🪨", "💀", "👹", "⚔️", "♨️"],
-        rare: [],
-        bottom: []
-      },
-      steampunk: { 
-        symbols: ["⚙️", "🔩", "🛠️", "⏳", "🚂", "🎩", "🕰️", "🔧", "🧰"],
-        rare: [],
-        bottom: []
-      },
-      desert: { 
-        symbols: ["🏜️", "🌵", "🐫", "🦂", "☀️", "🌞", "🐍", "🦎"],
-        rare: [],
-        bottom: []
-      },
-      medieval: { 
-        symbols: ["⚔️", "🛡️", "🏰", "🐉", "🧙‍♂️", "👑", "🏹", "🗡️", "📜"],
-        rare: [],
-        bottom: []
-      },
-      racing: { 
-        symbols: ["🏎️", "🚦", "🛣️", "🏁", "🚗", "💨", "🚘", "⛽"],
-        rare: [],
-        bottom: []
-      },
-      airport: { 
-        symbols: ["✈️", "🛫", "🛬", "🛄", "🎫", "🛩️", "🚁"],
-        rare: [],
-        bottom: []
-      },
-      cyberpunk: { 
-        symbols: ["🔮", "💾", "🕶️", "🛸", "🤖", "⚡", "🎛️", "🖥️", "💡", "📡"],
-        rare: [],
-        bottom: []
-      },
-      northpole: { 
-        symbols: ["❄️", "⛄", "🎅", "🦌", "🏔️", "🌨️", "🎁", "🛷", "🌲"],
-        rare: [],
-        bottom: []
-      },
-      volcano: { 
-        symbols: ["🌋", "🔥", "🪨", "💀", "⛏️", "🌪️", "♨️", "🚒"],
-        rare: [],
-        bottom: []
-      },
-      office: { 
-        symbols: ["⌨️", "☕", "🖥️", "📎", "📁", "🖨️", "📊", "📅", "🖋️", "📞", "💻", "📠"],
-        rare: ["🖇️", "🗃️", "🏢", "🗂️", "🧑‍💼", "👩‍💼"],
-        bottom: []
-      },
-      candyland: { 
-        symbols: ["🍭", "🍫", "🍩", "🍪", "🍬", "🍰", "🎂", "🍧", "🍦"],
-        rare: ["🍨", "🧁", "🍠", "🧇"],
-        bottom: []
-      },
-      jungle: { 
-        symbols: ["🌴", "🐒", "🦜", "🍌", "🐍", "🐅", "🐆", "🦁", "🐘"],
-        rare: [],
-        bottom: []
-      },
-      circus: { 
-        symbols: ["🎪", "🤹‍♂️", "🎭", "🐘", "🎠", "🤡", "🎟️", "🎫"],
-        rare: [],
-        bottom: []
-      },
-      ruins: { 
-        symbols: ["🏺", "🗿", "⛏️", "🏛️", "🔦", "🏚️", "🗺️"],
-        rare: [],
-        bottom: []
-      },
-      disco: { 
-        symbols: ["🪩", "💃", "🕺", "🎶", "🔊", "🌈", "🎧", "💿"],
-        rare: [],
-        bottom: []
-      },
-      concert: { 
-        symbols: ["🎤", "🎸", "🥁", "🎵", "🎧", "🎹", "🎺", "🎷"],
-        rare: [],
-        bottom: []
-      },
-      // Neue Welten:
-      fairytale: {
-        symbols: ["🧚", "✨", "🌈"],
-        rare: ["🦄", "🔮", "🪄"],
-        bottom: []
-      },
-      apocalypse: {
-        symbols: ["☢️", "🏚️", "🔥"],
-        rare: ["💣", "🌅"],
-        bottom: []
-      },
-      cave: {
-        symbols: ["🪨", "⛰️", "🕸️"],
-        rare: ["🏺", "🕯️"],
-        bottom: []
-      },
-      cloud: {
-        symbols: ["☁️", "🌤️", "🌈"],
-        rare: ["🕊️", "🦋"],
-        bottom: []
-      },
-      arcade: {
-        symbols: ["🎮", "👾", "🕹️"],
-        rare: ["⭐️", "💎"],
-        bottom: []
-      }
-    };
-    
-    // Spiel-Einstellungen: Spieler- und Ziel-Symbole je Welt
-    const gameSettings = {
-      galaxy:    { player: "🚀", target: "🌍" },
-      water:     { player: "🏊‍♂️", target: "🐋" },
-      flowers:   { player: "🐝", target: "🌹" },
-      forest:    { player: "🦊", target: "🍄" },
-      lava:      { player: "😎", target: "🔥" },
-      steampunk: { player: "🤖", target: "⚙️" },
-      desert:    { player: "🐫", target: "🌵" },
-      medieval:  { player: "🧙‍♂️", target: "👑" },
-      racing:    { player: "🏎️", target: "🚦" },
-      airport:   { player: "✈️", target: "🛫" },
-      cyberpunk: { player: "🤖", target: "💾" },
-      northpole: { player: "⛄", target: "❄️" },
-      volcano:   { player: "🚒", target: "🌋" },
-      office:    { player: "👩‍💼", target: "📎" },
-      candyland: { player: "🍭", target: "🍬" },
-      jungle:    { player: "🐒", target: "🍌" },
-      circus:    { player: "🤹‍♂️", target: "🎪" },
-      ruins:     { player: "🏺", target: "🗿" },
-      disco:     { player: "🕺", target: "💃" },
-      concert:   { player: "🎤", target: "🎸" },
-      pirate:    { player: "🏴‍☠️", target: "☠️" },
-      ghost:     { player: "👻", target: "🎃" },
-      party:     { player: "🥳", target: "🎉" },
-      fairytale: { player: "🧚‍♀️", target: "🦄" },
-      apocalypse:{ player: "😷", target: "🌅" },
-      cave:      { player: "⛏️", target: "🏺" },
-      cloud:     { player: "☁️", target: "🕊️" },
-      arcade:    { player: "🎮", target: "💎" }
-    };
-    
-    // Timer aktualisieren (wird jede Sekunde aufgerufen)
-    function updateTimer() {
-      const seconds = Math.floor((Date.now() - timerStart) / 1000);
-      document.getElementById("timerDisplay").innerText = "Zeit: " + seconds + " s";
-    }
-    
-    // Erzeugt das Spielfeld (2D-Array) und platziert ggf. den Eingabetext.
-    function generateWorld(type) {
-      // Timer zurücksetzen
-      if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-      }
-      timerStart = null;
-      document.getElementById("timerDisplay").innerText = "Zeit: 0 s";
-      
-      const world = worldTypes[type];
-      let grid = Array.from({ length: height }, () => Array(width).fill(" "));
-      
-      // Zufällige Platzierung der Symbole
-      for (let i = 0; i < maxSymbolCount; i++) {
-        let x, y;
-        do {
-          x = Math.floor(Math.random() * width);
-          y = Math.floor(Math.random() * height);
-        } while (grid[y][x] !== " ");
-        let symbol;
-        if (Math.random() < 0.09 && world.rare.length > 0) {
-          symbol = world.rare[Math.floor(Math.random() * world.rare.length)];
-        } else {
-          symbol = world.symbols[Math.floor(Math.random() * world.symbols.length)];
-        }
-        grid[y][x] = symbol;
-      }
-      
-      // Optional: Platziere ein "bottom"-Symbol in der untersten Zeile
-      if (world.bottom && world.bottom.length > 0) {
-        let x = Math.floor(Math.random() * width);
-        grid[height - 1][x] = world.bottom[Math.floor(Math.random() * world.bottom.length)];
-      }
-      
-      // Falls ein Eingabetext vorhanden ist, wird dieser in der ersten Zeile zentriert.
-      const inputText = document.getElementById("inputText").value;
-      if (inputText.length > 0) {
-        let textStart = Math.max(0, Math.floor((width - inputText.length) / 2));
-        for (let i = 0; i < inputText.length; i++) {
-          grid[0][textStart + i] = inputText[i];
-        }
-      }
-      
-      // Stelle sicher, dass mindestens ein Ziel vorhanden ist
-      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-      // Zähle die Anzahl der Ziel-Symbole im Grid
-      initialTargetCount = grid.flat().filter(cell => cell === currentGame.target).length;
-      if (initialTargetCount === 0) {
-        // Falls keines vorhanden ist, füge an einer freien Stelle ein Ziel hinzu.
-        let freeCells = [];
-        for (let i = 0; i < height; i++) {
-          for (let j = 0; j < width; j++) {
-            if (grid[i][j] === " ") {
-              freeCells.push({ x: j, y: i });
-            }
-          }
-        }
-        if (freeCells.length > 0) {
-          const pos = freeCells[Math.floor(Math.random() * freeCells.length)];
-          grid[pos.y][pos.x] = currentGame.target;
-          initialTargetCount = 1;
-        }
-      }
-      
-      // Setze das globale Spielfeld
-      gameGrid = grid;
-      
-      // Wähle einen zufälligen freien Platz für den Spieler
-      let freeCells = [];
-      for (let i = 0; i < height; i++) {
-        for (let j = 0; j < width; j++) {
-          if (grid[i][j] === " ") {
-            freeCells.push({ x: j, y: i });
-          }
-        }
-      }
-      if (freeCells.length > 0) {
-        const pos = freeCells[Math.floor(Math.random() * freeCells.length)];
-        playerX = pos.x;
-        playerY = pos.y;
+    const cols = 30, rows = 10, maxSymbols = 50;
+    let mode = 'game';
+    let currentWorld = 'galaxy';
+    let gameGrid = [], originalGrid = [], editorGrid = [];
+    let playerX = 0, playerY = 0, foundCount = 0, initialTargets = 0;
+    let timerStart = null, timerInterval = null;
+    let selectedSymbol = '';
+
+    function switchMode() {
+      if (mode === 'game') {
+        mode = 'editor';
+        document.getElementById('gameContainer').style.display = 'none';
+        document.getElementById('editorContainer').style.display = 'block';
+        document.getElementById('toggleMode').innerText = 'Zum Spiel';
+        editorGrid = originalGrid.map(r => r.slice());
+        renderEditor();
       } else {
-        playerX = 0;
-        playerY = 0;
+        mode = 'game';
+        document.getElementById('editorContainer').style.display = 'none';
+        document.getElementById('gameContainer').style.display = 'block';
+        document.getElementById('toggleMode').innerText = 'Zum Editor';
       }
-      foundCount = 0;
-      updateTargetCount();
-      
-      // Aktualisiere die Spielinfo (Spielfigur und Ziel)
-      document.getElementById("gameInfo").innerText = "Du steuerst " + currentGame.player + " und musst " + currentGame.target + " finden.";
-      
-      renderGameGrid();
     }
-    
-    // Aktualisiert die Anzeige der noch zu findenden Ziele
-    function updateTargetCount() {
-      const remaining = initialTargetCount - foundCount;
-      document.getElementById("foundCount").innerText = "Zu findende Zahl Ziele: " + remaining;
-    }
-    
-    // Rendert das Spielfeld als HTML, wobei jede Zelle in ein <span class="cell"> eingebettet wird.
-    function renderGameGrid() {
-      let output = "";
-      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-      for (let i = 0; i < height; i++) {
-        let row = "";
-        for (let j = 0; j < width; j++) {
-          if (i === playerY && j === playerX) {
-            row += `<span class="cell">${currentGame.player}</span>`;
-          } else {
-            row += `<span class="cell">${gameGrid[i][j]}</span>`;
-          }
-        }
-        output += row + "<br>";
-      }
-      document.getElementById("output").innerHTML = output;
-    }
-    
-    // Prüft, ob noch Zielsymbole im Spielfeld vorhanden sind.
-    function targetRemaining(target) {
-      for (let i = 0; i < height; i++) {
-        for (let j = 0; j < width; j++) {
-          if (gameGrid[i][j] === target) {
-            return true;
-          }
-        }
-      }
-      return false;
-    }
-    
-    // Spielt einen "Pew"-Sound ab (bei Ziel-Erfassung)
-    function playPewSound() {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const oscillator = ctx.createOscillator();
-      const gain = ctx.createGain();
-      oscillator.type = "square";
-      oscillator.frequency.setValueAtTime(440, ctx.currentTime);
-      oscillator.connect(gain);
-      gain.connect(ctx.destination);
-      oscillator.start(ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
-      oscillator.stop(ctx.currentTime + 0.2);
-    }
-    
-    // Spielt einen "Pow"-Sound ab (bei ungültiger Bewegung)
-    function playPowSound() {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const oscillator = ctx.createOscillator();
-      const gain = ctx.createGain();
-      oscillator.type = "sawtooth";
-      oscillator.frequency.setValueAtTime(200, ctx.currentTime);
-      oscillator.connect(gain);
-      gain.connect(ctx.destination);
-      oscillator.start(ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
-      oscillator.stop(ctx.currentTime + 0.2);
-    }
-    
-    // Spielt einen "Tusch"-Sound (Fanfare) ab, der beim Spielende untermalt.
-    // Angepasst auf einen längeren "Tatataaaadaaaaaa!"-Sound
-    function playTuschSound() {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      if (ctx.state === 'suspended') {
-        ctx.resume();
-      }
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = "sine";
-      let t = ctx.currentTime;
-      // Rhythmischer Beginn: mehrere kurze Schläge
-      osc.frequency.setValueAtTime(400, t);
-      osc.frequency.linearRampToValueAtTime(400, t + 0.1);
-      osc.frequency.linearRampToValueAtTime(300, t + 0.2);
-      osc.frequency.linearRampToValueAtTime(400, t + 0.3);
-      // Dann längere Ausklangphase:
-      osc.frequency.linearRampToValueAtTime(150, t + 1.2);
-      
-      gain.gain.setValueAtTime(0.7, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
-      
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      
-      osc.start(t);
-      osc.stop(t + 1.2);
-    }
-    
-    // Bewegt den Spieler, falls möglich, in die Richtung (dx, dy)
-    function movePlayer(dx, dy) {
-      // Starte Timer bei der ersten Bewegung
-      if (!timerStart) {
-        timerStart = Date.now();
-        timerInterval = setInterval(updateTimer, 1000);
-      }
-      
-      const newX = playerX + dx;
-      const newY = playerY + dy;
-      if (newX < 0 || newX >= width || newY < 0 || newY >= height) return;
-      const cell = gameGrid[newY][newX];
-      const currentGame = gameSettings[lastWorldType] || { player: "🙂", target: "⭐️" };
-      // Der Spieler darf nur auf ein leeres Feld ziehen.
-      if (cell !== " ") {
-        if (cell === currentGame.target) {
-          // Ziel zuerst ausblenden, dann neu rendern, Sound abspielen, Zähler erhöhen.
-          gameGrid[newY][newX] = " ";
-          renderGameGrid();
-          playPewSound();
-          foundCount++;
-          updateTargetCount();
-          // Falls kein Ziel mehr vorhanden, nach kurzer Verzögerung Tusch-Sound abspielen und Spielende anzeigen.
-          if (!targetRemaining(currentGame.target)) {
-            setTimeout(() => {
-              playTuschSound();
-              const seconds = Math.floor((Date.now() - timerStart) / 1000);
-              clearInterval(timerInterval);
-              timerInterval = null;
-              alert("Spiel beendet! Gefundene Ziele: " + foundCount + ", Zeit: " + seconds + " s");
-              // Nach Bestätigung des Alerts: Zufällig eine neue Welt laden.
-              const allWorlds = Object.keys(gameSettings);
-              const randomWorld = allWorlds[Math.floor(Math.random() * allWorlds.length)];
-              generateWorldWrapper(randomWorld);
-            }, 600);
-          }
-        } else {
-          // Ungültige Bewegung: Fehler-Ton "Pow"
-          playPowSound();
-        }
-        return; // Keine Bewegung, wenn die Zelle nicht leer war.
-      }
-      // Bei leerer Zelle: Bewege den Spieler.
-      playerX = newX;
-      playerY = newY;
-      renderGameGrid();
-    }
-    
-    // Tastatursteuerung (Pfeiltasten)
-    document.addEventListener("keydown", function(e) {
-      let dx = 0, dy = 0;
-      switch (e.key) {
-        case "ArrowUp":    dy = -1; break;
-        case "ArrowDown":  dy = 1;  break;
-        case "ArrowLeft":  dx = -1; break;
-        case "ArrowRight": dx = 1;  break;
-        default: return;
-      }
-      movePlayer(dx, dy);
+    document.getElementById('toggleMode').addEventListener('click', switchMode);
+
+    window.addEventListener('keydown', e => {
+      if (mode !== 'game') return;
+      if (['ArrowUp','w','W'].includes(e.key)) { movePlayer(0,-1); e.preventDefault(); }
+      if (['ArrowDown','s','S'].includes(e.key)) { movePlayer(0,1); e.preventDefault(); }
+      if (['ArrowLeft','a','A'].includes(e.key)) { movePlayer(-1,0); e.preventDefault(); }
+      if (['ArrowRight','d','D'].includes(e.key)) { movePlayer(1,0); e.preventDefault(); }
     });
-    
-    // Wrapper für die Erzeugung der Welt (verhindert doppelte Aufrufe)
-    function generateWorldWrapper(type) {
-      const now = Date.now();
-      if (now - lastCallTimestamp < 100) return;
-      lastCallTimestamp = now;
-      lastWorldType = type;
-      generateWorld(type);
-    }
-    
-    function updateSymbolCount(value) {
-      maxSymbolCount = parseInt(value);
-      document.getElementById("symbolCount").innerText = value;
-      generateWorld(lastWorldType);
-    }
-    
-    // Kopiert den aktuell gerenderten Snapshot (als Bild) in den Zwischenspeicher.
-    function copyToClipboard() {
-      if (!navigator.clipboard || !navigator.clipboard.write) {
-        alert("Das Kopieren von Bitmaps wird auf diesem Gerät nicht unterstützt.");
-        return;
+
+    // --- Spielfunktionen ---
+    function populateWorldButtonsGame() {
+      const container = document.getElementById('worldButtonsGame'); container.innerHTML = '';
+      for (let name in worldData) {
+        const btn = document.createElement('button'); btn.innerText = name;
+        btn.onclick = () => { currentWorld = name; highlightButton('worldButtonsGame', name); updateGameInfo(); generateRandomWorld(); };
+        container.appendChild(btn);
       }
-      html2canvas(document.getElementById("output")).then(canvas => {
-        canvas.toBlob(blob => {
-          const item = new ClipboardItem({ "image/png": blob });
-          navigator.clipboard.write([item]).then(() => {
-            alert("Bild kopiert!");
-          }).catch(err => {
-            console.error("Fehler beim Kopieren: ", err);
-            alert("Das Kopieren von Bitmaps ist auf diesem Gerät möglicherweise nicht unterstützt.");
-          });
-        });
-      });
+      highlightButton('worldButtonsGame', currentWorld);
     }
-    
-    // Generiert einen ALT-Text (ohne Zoomfaktor) und kopiert diesen in den Zwischenspeicher.
-    function generateAltText() {
-      const worldDescriptions = {
-        galaxy: "galaktische",
-        flowers: "blumige",
-        water: "wasserbasierte",
-        forest: "waldartige",
-        lava: "feurige",
-        steampunk: "steampunk",
-        desert: "wüstenartige",
-        medieval: "mittelalterliche",
-        racing: "rennbegeisterte",
-        airport: "flughafenbezogene",
-        cyberpunk: "cyberpunk",
-        northpole: "nordpolartige",
-        volcano: "vulkanische",
-        office: "bürokratische",
-        candyland: "süße",
-        jungle: "dschungelartige",
-        circus: "zirkusartige",
-        ruins: "ruinöse",
-        disco: "discoartige",
-        concert: "konzertbezogene",
-        pirate: "piratenhafte",
-        ghost: "geisterhafte",
-        party: "partyorientierte",
-        fairytale: "märchenhafte",
-        apocalypse: "apokalyptische",
-        cave: "höllische",
-        cloud: "himmelhafte",
-        arcade: "retro-arcade"
-      };
-      const worldType = lastWorldType;
-      const symbolCount = maxSymbolCount;
-      const inputText = document.getElementById("inputText").value.trim();
-      let altText = "Alternativtext: Dieses Bild zeigt eine " +
-                    (worldDescriptions[worldType] || worldType) +
-                    " Welt, generiert mit " + symbolCount + " zufällig verteilten Symbolen.";
-      if (inputText !== "") {
-        altText += " Der Text '" + inputText + "' wurde in der ersten Zeile zentriert.";
+
+    function highlightButton(containerId, selected) {
+      document.querySelectorAll('#'+containerId+' button').forEach(b => b.style.background = b.innerText===selected?'#555':'#333');
+    }
+
+    function updateGameInfo() {
+      const w = worldData[currentWorld];
+      document.getElementById('gameInfo').innerText =
+        `Du steuerst ${w.player} und musst ${w.target} finden. ${w.description}`;
+    }
+
+    function initGameGridEmpty() {
+      gameGrid = [];
+      const output = document.getElementById('gameOutput'); output.innerHTML = '';
+      for (let y=0; y<rows; y++) {
+        const row = [];
+        for (let x=0; x<cols; x++) {
+          row.push(' ');
+          const cell = document.createElement('div'); cell.className = 'cell'; output.appendChild(cell);
+        }
+        gameGrid.push(row);
       }
-      navigator.clipboard.writeText(altText).then(() => {
-        alert("ALT Text kopiert!");
-      }).catch(err => {
-        console.error("Fehler beim Kopieren des ALT Texts: ", err);
-      });
     }
-    
-    function updateZoom(value) {
-      document.getElementById("output").style.fontSize = value + "em";
-      document.getElementById("zoomPercentage").innerText = Math.round(value * 100) + "%";
+
+    function renderGame() {
+      const cells = document.querySelectorAll('#gameOutput .cell');
+      gameGrid.forEach((row,y) => row.forEach((sym,x) => cells[y*cols+x].textContent = sym));
     }
-    
-    // Verhindere, dass Doppel-Touch auf den virtuellen Buttons den Browser-Zoom auslöst.
-    document.querySelectorAll("#virtualButtons button").forEach(button => {
-      button.addEventListener("touchstart", function(e) {
-        e.preventDefault();
+
+function generateRandomWorld() {
+  // Timer zurücksetzen
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = null;
+  timerStart = null;
+  foundCount = 0;
+
+  const w = worldData[currentWorld];
+  initGameGridEmpty();
+
+  // Pool aus normalen und seltenen Symbolen
+  const symbolPool = [...w.symbols, ...w.rare];
+
+  // Zufällige Symbole platzieren
+  for (let i = 0; i < maxSymbols; i++) {
+    let x, y;
+    do {
+      x = Math.floor(Math.random() * cols);
+      y = Math.floor(Math.random() * rows);
+    } while (gameGrid[y][x] !== ' ');
+    gameGrid[y][x] = symbolPool[Math.floor(Math.random() * symbolPool.length)];
+  }
+
+  // Optionales Bottom-Element unten einfügen
+  if (w.bottom.length > 0) {
+    const x = Math.floor(Math.random() * cols);
+    gameGrid[rows - 1][x] = w.bottom[Math.floor(Math.random() * w.bottom.length)];
+  }
+
+  // Sicherstellen, dass mindestens ein Target vorhanden ist
+  let targetCount = gameGrid.flat().filter(c => c === w.target).length;
+  if (targetCount === 0) {
+    let tx, ty;
+    do {
+      tx = Math.floor(Math.random() * cols);
+      ty = Math.floor(Math.random() * rows);
+    } while (gameGrid[ty][tx] !== ' ');
+    gameGrid[ty][tx] = w.target;
+    targetCount = 1;
+  }
+  initialTargets = targetCount;
+
+  // Spielerposition wählen (entweder vorhandenes Player-Symbol oder zufällige freie Zelle)
+  const playerPositions = [];
+  gameGrid.forEach((row, ry) =>
+    row.forEach((c, cx) => {
+      if (c === w.player) playerPositions.push({ x: cx, y: ry });
+    })
+  );
+  let start;
+  if (playerPositions.length > 0) {
+    start = playerPositions[Math.floor(Math.random() * playerPositions.length)];
+  } else {
+    let px, py;
+    do {
+      px = Math.floor(Math.random() * cols);
+      py = Math.floor(Math.random() * rows);
+    } while (gameGrid[py][px] !== ' ');
+    start = { x: px, y: py };
+  }
+  playerX = start.x;
+  playerY = start.y;
+  gameGrid[playerY][playerX] = w.player;
+
+  // Anzeige aktualisieren
+  renderGame();
+  updateGameInfo();
+  document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
+  document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+
+  // Ursprungszustand speichern
+  originalGrid = gameGrid.map(row => row.slice());
+}
+
+
+    function movePlayer(dx,dy) {
+      if (!timerStart) { timerStart = Date.now(); timerInterval = setInterval(() => {
+        document.getElementById('timerDisplay').innerText = `Zeit: ${Math.floor((Date.now()-timerStart)/1000)} s`;
+      }, 1000); }
+      const w = worldData[currentWorld], target=w.target;
+      const nx = playerX+dx, ny = playerY+dy;
+      if (nx<0||ny<0||nx>=cols||ny>=rows) { playPowSound(); return; }
+      const cell = gameGrid[ny][nx];
+      if (cell===' '||cell===target) {
+        if (cell===target) { playPewSound(); foundCount++; document.getElementById('foundCount').innerText=`Gefundene Ziele: ${foundCount}`; }
+        gameGrid[playerY][playerX] = ' '; gameGrid[ny][nx] = w.player; playerX=nx; playerY=ny; renderGame();
+        if (foundCount>=initialTargets) { clearInterval(timerInterval); alert(`Spiel beendet!\nGefundene Ziele: ${foundCount}\nZeit: ${Math.floor((Date.now()-timerStart)/1000)} s`); }
+      } else { playPowSound(); }
+    }
+
+    // Spiel-Buttons
+    document.getElementById('newRandomGame').addEventListener('click', generateRandomWorld);
+    document.getElementById('generateGameAltText').addEventListener('click', ()=>{
+      const w = worldData[currentWorld];
+      const txt = `Alternativtext: Dieses Bild zeigt eine ${w.description} Welt erstellt mit dem Weltengenerator von Millux. Das Feld umfasst ${rows} Zeilen und ${cols} Spalten.`;
+      navigator.clipboard.writeText(txt).then(()=>alert('ALT Text kopiert!'));
+    });
+    document.getElementById('copyGameGraphic').addEventListener('click', ()=>{
+      html2canvas(document.getElementById('gameOutput')).then(canvas=>{
+        canvas.toBlob(blob=>navigator.clipboard.write([new ClipboardItem({'image/png':blob})]).then(()=>alert('Grafik kopiert!')));
       });
     });
-    
-    // Initiale Einstellungen beim Laden der Seite
-    window.addEventListener("load", () => {
-      updateZoom(document.getElementById("zoomSlider").value);
-      generateWorld(lastWorldType);
+    document.getElementById('copyGameText').addEventListener('click', ()=>{
+      const text = gameGrid.map(row=>row.join('').replace(/\s+$/,'')).join('\r\n');
+      navigator.clipboard.writeText(text).then(()=>alert('Text kopiert!'));
     });
-    
-    // Damit generateWorldWrapper global verfügbar ist:
-    window.generateWorldWrapper = generateWorldWrapper;
+
+    // Editorfunktionen
+    function renderEditor() {
+      document.querySelectorAll('#editorOutput .cell').forEach((cell,idx) => {
+        const r=Math.floor(idx/cols), c=idx%cols;
+        cell.textContent = editorGrid[r][c];
+      });
+    }
+    function generateRandomEditor() {
+      generateRandomWorld();
+      editorGrid = originalGrid.map(r=>r.slice());
+      renderEditor();
+    }
+    document.getElementById('newEditorRandom').addEventListener('click', generateRandomEditor);
+    document.getElementById('generateEditorAltText').addEventListener('click', ()=>{
+      const w=worldData[currentWorld]; const txt=`Alternativtext: Diese ${w.description} Welt im Editor (${rows}x${cols}).`;
+      navigator.clipboard.writeText(txt).then(()=>alert('ALT Text kopiert!')); });
+    document.getElementById('applyToGame').addEventListener('click', ()=>{
+      gameGrid = editorGrid.map(r=>r.slice()); initialTargets = gameGrid.flat().filter(c=>c===worldData[currentWorld].target).length; foundCount=0; timerStart=null; clearInterval(timerInterval);
+      document.getElementById('foundCount').innerText='Gefundene Ziele: 0'; document.getElementById('timerDisplay').innerText='Zeit: 0 s'; renderGame(); switchMode();
+    });
+    document.getElementById('copyEditorGraphic').addEventListener('click', ()=>{
+      html2canvas(document.getElementById('editorOutput')).then(canvas=>{
+        canvas.toBlob(blob=>navigator.clipboard.write([new ClipboardItem({'image/png':blob})]).then(()=>alert('Grafik kopiert!')));
+      });
+    });
+    document.getElementById('copyEditorText').addEventListener('click', ()=>{
+      const text = editorGrid.map(row=>row.join('').replace(/\s+$/,'')).join('\r\n');
+      navigator.clipboard.writeText(text).then(()=>alert('Text kopiert!'));
+    });
+
+    function populateWorldButtonsEditor() {
+      const container=document.getElementById('worldButtonsEditor'); container.innerHTML='';
+      for (let name in worldData) {
+        const btn=document.createElement('button'); btn.innerText=name;
+        btn.onclick=()=>{ currentWorld=name; highlightButton('worldButtonsEditor',name); updatePlayerTargetInfo(); populateSymbolPalette(); };
+        container.appendChild(btn);
+      }
+      highlightButton('worldButtonsEditor', currentWorld);
+    }
+    function updatePlayerTargetInfo() {
+      const w=worldData[currentWorld]; document.getElementById('playerTargetInfo').innerHTML=
+        `Spielersymbol: <span style="color:limegreen;">${w.player}</span> | Zielsymbol: <span style="color:red;">${w.target}</span>`;
+    }
+    function populateSymbolPalette() {
+      const p=document.getElementById('symbolPalette'); p.innerHTML=''; const w=worldData[currentWorld];
+      [...w.symbols,...w.rare,...w.bottom].forEach(sym=>{ const span=document.createElement('span'); span.className='symbol'; span.textContent=sym;
+        if(sym===w.player) span.classList.add('playerSymbol'); if(sym===w.target) span.classList.add('targetSymbol');
+        span.onclick=()=>{ document.querySelectorAll('#symbolPalette .symbol').forEach(el=>el.classList.remove('selected')); span.classList.add('selected'); selectedSymbol=sym; };
+        p.appendChild(span);
+      });
+    }
+    function initEditorGrid() {
+      editorGrid=[]; const out=document.getElementById('editorOutput'); out.innerHTML='';
+      for (let y=0; y<rows; y++) { const rowArr=[]; const line=document.createElement('div'); line.className='row';
+        for (let x=0; x<cols; x++) { rowArr.push(' '); const cell=document.createElement('span'); cell.className='cell';
+          cell.onclick=()=>{ if(selectedSymbol){ cell.textContent=selectedSymbol; editorGrid[y][x]=selectedSymbol;} };
+          line.appendChild(cell);
+        }
+        editorGrid.push(rowArr); out.appendChild(line);
+      }
+    }
+    document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
+    window.addEventListener('load', ()=>{
+      populateWorldButtonsGame(); updateGameInfo(); generateRandomWorld();
+      populateWorldButtonsEditor(); updatePlayerTargetInfo(); populateSymbolPalette(); initEditorGrid();
+    });
   </script>
 </body>
 </html>
