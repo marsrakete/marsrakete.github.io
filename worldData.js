@@ -256,28 +256,3 @@ const worldData = {
   }
 };
 
-function playPewSound() {
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = ctx.createOscillator();
-  const gain = ctx.createGain();
-  oscillator.type = "square";
-  oscillator.frequency.setValueAtTime(440, ctx.currentTime);
-  oscillator.connect(gain);
-  gain.connect(ctx.destination);
-  oscillator.start();
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
-  oscillator.stop(ctx.currentTime + 0.2);
-}
-
-function playPowSound() {
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = ctx.createOscillator();
-  const gain = ctx.createGain();
-  oscillator.type = "sawtooth";
-  oscillator.frequency.setValueAtTime(200, ctx.currentTime);
-  oscillator.connect(gain);
-  gain.connect(ctx.destination);
-  oscillator.start();
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
-  oscillator.stop(ctx.currentTime + 0.2);
-}
