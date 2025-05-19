@@ -159,9 +159,27 @@ function movePlayer(dx,dy) {
     if (foundCount>=initialTargets) {
       clearInterval(timerInterval);
       const msg = `Spiel beendet!\nGefundene Ziele: ${foundCount}\nZeit: ${Math.floor((Date.now()-timerStart)/1000)} s`;
-      setTimeout(() => alert(msg), 50);
+      setTimeout(() => {
+        alert(msg);
+        resetToOriginalGrid();
+      }, 50);
     }
   } else { playPowSound(); }
+}
+
+function resetToOriginalGrid() {
+  gameGrid = originalGrid.map(r=>r.slice());
+  const w = worldData[currentWorld];
+  initialTargets = gameGrid.flat().filter(c => c === w.target).length;
+  foundCount = 0;
+  timerStart = null;
+  playerX = 0; playerY = 0;
+  gameGrid.forEach((row, ry) => row.forEach((c, cx) => {
+    if (c === w.player) { playerX = cx; playerY = ry; }
+  }));
+  document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
+  document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+  renderGame();
 }
 
 // Spiel-Buttons
