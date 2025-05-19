@@ -15,21 +15,21 @@ cd marsrakete.github.io
 
 ## Extending World Data
 
-World definitions are stored in [`worldData.js`](worldData.js). Each world entry defines available symbols, rare symbols, a player icon, a target icon and a short description. To add a new world, append an object in `worldData` following the existing pattern and submit a pull request.
+World definitions are stored in [`worldData.json`](worldData.json). Each world entry defines available symbols, rare symbols, a player icon, a target icon and a short description. To add a new world, append an object in the JSON file following the existing pattern and submit a pull request.
 
 Example snippet:
 
-```javascript
-const worldData = {
-  myWorld: {
-    symbols: ["🧪","🔬"],
-    rare:    ["👾"],
-    bottom:  [],
-    player:  "🧑‍🔬",
-    target:  "🧬",
-    description: "A science themed world." ,
+```json
+{
+  "myWorld": {
+    "symbols": ["🧪", "🔬"],
+    "rare":    ["👾"],
+    "bottom":  [],
+    "player":  "🧑‍🔬",
+    "target":  "🧬",
+    "description": "A science themed world."
   }
-};
+}
 ```
 
 ## Contributing
