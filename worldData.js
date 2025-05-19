@@ -1,6 +1,5 @@
 // worldData.js
-// Zentrales Objekt, das alle Welten mit ihren Symbolen, seltenen Symbolen, bottom-Elementen,
-// dem Spieler, dem Ziel, einer Beschreibung und zusätzlichen Sound-Funktionen enthält.
+// Zentrales Objekt, das alle Welten mit ihren Symbolen, seltenen Symbolen, bottom-Elementen, dem Spieler, dem Ziel und einer Beschreibung enthält.
 const worldData = {
   galaxy: { 
     symbols: ["🧿","🕳️","✮","🎱","🌍","☾","🌌","🌑","🪐","🌕","☄️","💫","🚀","🛸","🌠","🌙","⭐️","🌜","🌚"],
@@ -257,7 +256,6 @@ const worldData = {
   }
 };
 
-// Sound-Funktionen zentral in worldData.js
 function playPewSound() {
   const ctx = new (window.AudioContext || window.webkitAudioContext)();
   const oscillator = ctx.createOscillator();
