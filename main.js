@@ -239,7 +239,13 @@ function initEditorGrid() {
   }
 }
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
-window.addEventListener('load', ()=>{
-  populateWorldButtonsGame(); updateGameInfo(); generateRandomWorld();
-  populateWorldButtonsEditor(); updatePlayerTargetInfo(); populateSymbolPalette(); initEditorGrid();
+window.addEventListener('load', async ()=>{
+  await loadWorldData();
+  populateWorldButtonsGame();
+  updateGameInfo();
+  generateRandomWorld();
+  populateWorldButtonsEditor();
+  updatePlayerTargetInfo();
+  populateSymbolPalette();
+  initEditorGrid();
 });
