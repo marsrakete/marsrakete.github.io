@@ -57,7 +57,6 @@
       "🍄",
       "🐇",
       "🍄‍🟫",
-      "🍄",
       "🪰",
       "🪁"
     ],
@@ -624,11 +623,8 @@
       "🦂",
       "🕷️",
       "🕸️",
-      "🐝",
       "🪰",
-      "🦟",
-      "🐌",
-      "🐝"
+      "🐌"
     ],
     "rare": [
       "🪳",
@@ -712,7 +708,6 @@
       "🔗",
       "⚙️",
       "🧰",
-      "🔗",
       "🧱",
       "🏗️"
     ],
@@ -728,5 +723,135 @@
     "player": "🧑‍🔧",
     "target": "🔧",
     "description": "Eine Welt der Handwerkskunst mit Werkzeugen, Maschinen und kreativen Erfindungen."
+  },
+  "kart": {
+    "symbols": [
+      "🏎️",
+      "🚦",
+      "🏁",
+      "🚧",
+      "🍌",
+      "🛞",
+      "🚗",
+      "🎮",
+      "💨",
+      "🏆"
+    ],
+    "rare": [
+      "🌈",
+      "⭐️",
+      "🍄"
+    ],
+    "bottom": [
+      "🛣️",
+      "🚧"
+    ],
+    "player": "🏎️",
+    "target": "🏁",
+    "description": "Eine bunte Kartwelt mit wilden Rennen und verrückten Hindernissen."
+  },
+  "frogger": {
+    "symbols": [
+      "🐸",
+      "🚗",
+      "🚓",
+      "🚚",
+      "🐢",
+      "🚦",
+      "🌊",
+      "🪵",
+      "🌲",
+      "🛣️"
+    ],
+    "rare": [
+      "🐊",
+      "🚤",
+      "🐍"
+    ],
+    "bottom": [
+      "🪷",
+      "🌊"
+    ],
+    "player": "🐸",
+    "target": "🏡",
+    "description": "Frösche überqueren hier Straßen und Flüsse, um sicher nach Hause zu gelangen."
+  },
+  "heliport": {
+    "symbols": [
+      "🚁",
+      "🛬",
+      "🛫",
+      "🗼",
+      "🏥",
+      "🅿️",
+      "🛩️",
+      "🪂",
+      "🌆",
+      "🚦"
+    ],
+    "rare": [
+      "🛤️",
+      "🛑",
+      "🔦"
+    ],
+    "bottom": [
+      "🅷",
+      "🛬"
+    ],
+    "player": "🚁",
+    "target": "🏥",
+    "description": "Eine städtische Welt voller Helikopterlandeplätze und Flugverkehr."
+  },
+  "spaceTaxi": {
+    "symbols": [
+      "🚕",
+      "🚀",
+      "🛸",
+      "🌌",
+      "🪐",
+      "⭐️",
+      "🌜",
+      "✨",
+      "🛰️",
+      "🚏"
+    ],
+    "rare": [
+      "👽",
+      "🛸",
+      "🌠"
+    ],
+    "bottom": [
+      "🌌",
+      "🛰️"
+    ],
+    "player": "🚕",
+    "target": "🪐",
+    "description": "Eine schräge Zukunftswelt, in der Taxis zwischen den Sternen pendeln."
+  },
+  "superhero": {
+    "symbols": [
+      "🦸‍♂️",
+      "🦸‍♀️",
+      "🏙️",
+      "💥",
+      "🦹‍♂️",
+      "🌆",
+      "🪝",
+      "🚁",
+      "🚓",
+      "⚡"
+    ],
+    "rare": [
+      "🦹‍♀️",
+      "🛡️",
+      "🚨"
+    ],
+    "bottom": [
+      "🏢",
+      "🏙️"
+    ],
+    "player": "🦸‍♂️",
+    "target": "🦹‍♂️",
+    "description": "Hier kämpfen Superhelden in schwindelerregenden Höhen gegen das Böse."
   }
 }
