@@ -22,7 +22,7 @@ const worldData = {
     symbols: ["🐠","🐟","🐬","🐳","🐋","🦈","🦑","🐙","🌊","🚤","⛵","🚢","🛥️"],
     rare: ["🧜‍♂️","🧜‍♀️","🐋","🤿","🥽","🔱","⚓","🦈","🛟","🩳","🏊‍♀️","🏊‍♂️","🏊","🏄","🤽‍♂️"],
     bottom: [],
-    player: "🏊‍",
+    player: "🏊",
     target: "🐋",
     description: "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen."
   },
@@ -62,7 +62,7 @@ const worldData = {
     symbols: ["⚔️","🛡️","🏰","🐉","🧙‍♂️","👑","🏹","🗡️","📜","⚜️"],
     rare: [],
     bottom: [],
-    player: "🧙‍",
+    player: "🧙‍♂️",
     target: "👑",
     description: "Eine mittelalterliche Welt, in der Ritter, Burgen und Drachen zuhause sind."
   },
@@ -134,7 +134,7 @@ const worldData = {
     symbols: ["🎪","🤹‍♂️","🎭","🐘","🎠","🤡","🎟️","🎫","🃏","🎩"],
     rare: [],
     bottom: [],
-    player: "🤹‍",
+    player: "🤹‍♂️",
     target: "🎪",
     description: "Eine zirkusartige Welt, in der Akrobaten, Clowns und bunte Zelte zuhause sind."
   },
@@ -190,7 +190,7 @@ const worldData = {
     symbols: ["🧚","✨","🌈","🦋","🌟","🌙","💫","🎆","🌹","🍄"],
     rare: ["🦄","🔮","🪄"],
     bottom: [],
-    player: "🧚‍",
+    player: "🧚‍♀️",
     target: "🦄",
     description: "Eine märchenhafte Welt voller Magie und zauberhafter Kreaturen."
   },
