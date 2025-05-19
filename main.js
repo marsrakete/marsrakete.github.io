@@ -156,7 +156,11 @@ function movePlayer(dx,dy) {
   if (cell===' '||cell===target) {
     if (cell===target) { playPewSound(); foundCount++; document.getElementById('foundCount').innerText=`Gefundene Ziele: ${foundCount}`; }
     gameGrid[playerY][playerX] = ' '; gameGrid[ny][nx] = w.player; playerX=nx; playerY=ny; renderGame();
-    if (foundCount>=initialTargets) { clearInterval(timerInterval); alert(`Spiel beendet!\nGefundene Ziele: ${foundCount}\nZeit: ${Math.floor((Date.now()-timerStart)/1000)} s`); }
+    if (foundCount>=initialTargets) {
+      clearInterval(timerInterval);
+      const msg = `Spiel beendet!\nGefundene Ziele: ${foundCount}\nZeit: ${Math.floor((Date.now()-timerStart)/1000)} s`;
+      setTimeout(() => alert(msg), 50);
+    }
   } else { playPowSound(); }
 }
 
