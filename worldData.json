@@ -853,5 +853,56 @@
     "player": "🦸‍♂️",
     "target": "🦹‍♂️",
     "description": "Hier kämpfen Superhelden in schwindelerregenden Höhen gegen das Böse."
+  },
+  "kitchen": {
+    "symbols": [
+      "🍳",
+      "🍽️",
+      "🔪",
+      "🥄",
+      "🥣",
+      "🍞",
+      "🍔",
+      "🍟",
+      "🍕",
+      "🥗",
+      "🍰",
+      "🍲"
+    ],
+    "rare": [
+      "🥘",
+      "🧂",
+      "🍱",
+      "🥓",
+      "🍇"
+    ],
+    "bottom": [],
+    "player": "🧑‍🍳",
+    "target": "🍲",
+    "description": "Eine geschäftige Küche voller Utensilien, Lebensmitteln und leckerer Gerichte."
+  },
+  "library": {
+    "symbols": [
+      "📚",
+      "📖",
+      "🕯️",
+      "🍷",
+      "🛋️",
+      "📘",
+      "📗",
+      "📕",
+      "📙",
+      "🪑"
+    ],
+    "rare": [
+      "📜",
+      "🔖",
+      "👓",
+      "🥂"
+    ],
+    "bottom": [],
+    "player": "📚",
+    "target": "🍷",
+    "description": "Eine gemütliche Leseecke mit Büchern, Kerzen und einem Glas Rotwein."
   }
 }
