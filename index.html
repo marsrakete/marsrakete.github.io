@@ -24,6 +24,13 @@
       width: fit-content;
     }
 
+    /* Scale grid font size to fit on narrow screens */
+    @media (max-width: 1920px) {
+      #gameOutput {
+        font-size: calc(100vw / 60);
+      }
+    }
+
     /* Editormodus: Ausgabefeld mit Zeilenumbrüchen */
     #editorOutput {
       width: 64ch;
