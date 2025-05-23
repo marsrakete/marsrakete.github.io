@@ -47,6 +47,19 @@
     }
     /* Rahmen in Editorzellen */
     #editorOutput .cell { border: 1px solid white; }
+
+    /* Steuer-Buttons */
+    #virtualButtons button {
+      touch-action: manipulation;
+    }
+    @media (max-width: 600px) {
+      #virtualButtons {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+      }
+      #virtualButtons br { display: none; }
+    }
   </style>
 </head>
 <body>
