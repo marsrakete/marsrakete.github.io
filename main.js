@@ -36,7 +36,13 @@ function populateWorldButtonsGame() {
   const container = document.getElementById('worldButtonsGame'); container.innerHTML = '';
   for (let name in worldData) {
     const btn = document.createElement('button'); btn.innerText = name;
-    btn.onclick = () => { currentWorld = name; highlightButton('worldButtonsGame', name); updateGameInfo(); generateRandomWorld(); };
+    btn.onclick = () => {
+      currentWorld = name;
+      highlightButton('worldButtonsGame', name);
+      updateGameInfo();
+      updateBackground();
+      generateRandomWorld();
+    };
     container.appendChild(btn);
   }
   highlightButton('worldButtonsGame', currentWorld);
@@ -50,6 +56,24 @@ function updateGameInfo() {
   const w = worldData[currentWorld];
   document.getElementById('gameInfo').innerText =
     `Du steuerst ${w.player} und musst ${w.target} finden. ${w.description}`;
+}
+
+function updateBackground() {
+  const body = document.body;
+  const w = worldData[currentWorld];
+  if (!w.background) {
+    body.style.backgroundColor = '#121212';
+    body.style.backgroundImage = '';
+    return;
+  }
+  if (w.background.length <= 2 && !w.background.startsWith('#')) {
+    const svg = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='24'>${w.background}</text></svg>`);
+    body.style.backgroundColor = '#121212';
+    body.style.backgroundImage = `url("data:image/svg+xml,${svg}")`;
+  } else {
+    body.style.backgroundImage = '';
+    body.style.backgroundColor = w.background;
+  }
 }
 
 function initGameGridEmpty() {
@@ -78,6 +102,7 @@ timerStart = null;
 foundCount = 0;
 
 const w = worldData[currentWorld];
+updateBackground();
 initGameGridEmpty();
 
 // Pool aus normalen und seltenen Symbolen
@@ -233,7 +258,13 @@ function populateWorldButtonsEditor() {
   const container=document.getElementById('worldButtonsEditor'); container.innerHTML='';
   for (let name in worldData) {
     const btn=document.createElement('button'); btn.innerText=name;
-    btn.onclick=()=>{ currentWorld=name; highlightButton('worldButtonsEditor',name); updatePlayerTargetInfo(); populateSymbolPalette(); };
+    btn.onclick=()=>{
+      currentWorld=name;
+      highlightButton('worldButtonsEditor',name);
+      updatePlayerTargetInfo();
+      populateSymbolPalette();
+      updateBackground();
+    };
     container.appendChild(btn);
   }
   highlightButton('worldButtonsEditor', currentWorld);
@@ -265,6 +296,7 @@ window.addEventListener('load', async ()=>{
   await loadWorldData();
   populateWorldButtonsGame();
   updateGameInfo();
+  updateBackground();
   generateRandomWorld();
   populateWorldButtonsEditor();
   updatePlayerTargetInfo();

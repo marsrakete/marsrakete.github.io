@@ -1,6 +1,8 @@
 /* common.css – Gemeinsame Basis-Stile für beide Modi */
 body {
-  background: #121212;
+  background-color: #121212;
+  background-repeat: repeat;
+  background-size: 2em 2em;
   color: white;
   font-family: monospace;
   text-align: center;

@@ -35,7 +35,8 @@
     ],
     "player": "🚀",
     "target": "🌍",
-    "description": "Eine galaktische Welt voller Sterne und fremder Planeten."
+    "description": "Eine galaktische Welt voller Sterne und fremder Planeten.",
+    "background": "🌌"
   },
   "flowers": {
     "symbols": [
@@ -63,7 +64,8 @@
     "bottom": [],
     "player": "🐝",
     "target": "🌹",
-    "description": "Eine blühende Welt, erfüllt von zarten Blumen und feinen Düften."
+    "description": "Eine blühende Welt, erfüllt von zarten Blumen und feinen Düften.",
+    "background": "#ffccff"
   },
   "water": {
     "symbols": [
@@ -101,7 +103,8 @@
     "bottom": [],
     "player": "🏊",
     "target": "🐋",
-    "description": "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen."
+    "description": "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen.",
+    "background": "🌊"
   },
   "forest": {
     "symbols": [
@@ -126,7 +129,8 @@
     "bottom": [],
     "player": "🦊",
     "target": "🍄",
-    "description": "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen."
+    "description": "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen.",
+    "background": "#013220"
   },
   "lava": {
     "symbols": [
@@ -145,7 +149,8 @@
     "bottom": [],
     "player": "😎",
     "target": "🔥",
-    "description": "Eine feurige Welt, in der Vulkane lodern und Magma den Boden bedeckt."
+    "description": "Eine feurige Welt, in der Vulkane lodern und Magma den Boden bedeckt.",
+    "background": "🔥"
   },
   "steampunk": {
     "symbols": [
@@ -164,7 +169,8 @@
     "bottom": [],
     "player": "🤖",
     "target": "⚙️",
-    "description": "Eine Steampunk-Welt, die mechanische Wunder und nostalgische Technik verbindet."
+    "description": "Eine Steampunk-Welt, die mechanische Wunder und nostalgische Technik verbindet.",
+    "background": "#704214"
   },
   "desert": {
     "symbols": [
@@ -183,7 +189,8 @@
     "bottom": [],
     "player": "🐫",
     "target": "🌵",
-    "description": "Eine wüstenartige Welt mit sengender Sonne und kargen Landschaften."
+    "description": "Eine wüstenartige Welt mit sengender Sonne und kargen Landschaften.",
+    "background": "🏜️"
   },
   "medieval": {
     "symbols": [
@@ -202,7 +209,8 @@
     "bottom": [],
     "player": "🧙‍♂️",
     "target": "👑",
-    "description": "Eine mittelalterliche Welt, in der Ritter, Burgen und Drachen zuhause sind."
+    "description": "Eine mittelalterliche Welt, in der Ritter, Burgen und Drachen zuhause sind.",
+    "background": "#708090"
   },
   "racing": {
     "symbols": [
@@ -221,7 +229,8 @@
     "bottom": [],
     "player": "🏎️",
     "target": "🚦",
-    "description": "Eine Welt für Adrenalinjunkies mit schnellen Autos und spannenden Rennen."
+    "description": "Eine Welt für Adrenalinjunkies mit schnellen Autos und spannenden Rennen.",
+    "background": "#222"
   },
   "airport": {
     "symbols": [
@@ -240,7 +249,8 @@
     "bottom": [],
     "player": "✈️",
     "target": "🛫",
-    "description": "Eine flughafenbezogene Welt, in der Flugzeuge und die Faszination des Fliegens im Mittelpunkt stehen."
+    "description": "Eine flughafenbezogene Welt, in der Flugzeuge und die Faszination des Fliegens im Mittelpunkt stehen.",
+    "background": "#87cefa"
   },
   "cyberpunk": {
     "symbols": [
@@ -259,7 +269,8 @@
     "bottom": [],
     "player": "🤖",
     "target": "💾",
-    "description": "Eine futuristische Cyberpunk-Welt mit Neonlichtern und digitalen Visionen."
+    "description": "Eine futuristische Cyberpunk-Welt mit Neonlichtern und digitalen Visionen.",
+    "background": "#0ff"
   },
   "northpole": {
     "symbols": [
@@ -278,7 +289,8 @@
     "bottom": [],
     "player": "⛄",
     "target": "❄️",
-    "description": "Eine frostige Welt am Nordpol, voll von Schnee, Eis und festlicher Stimmung."
+    "description": "Eine frostige Welt am Nordpol, voll von Schnee, Eis und festlicher Stimmung.",
+    "background": "#e0f7ff"
   },
   "volcano": {
     "symbols": [
@@ -297,7 +309,8 @@
     "bottom": [],
     "player": "🚒",
     "target": "🌋",
-    "description": "Eine vulkanische Welt, in der die Natur mit explosiver Kraft spielt."
+    "description": "Eine vulkanische Welt, in der die Natur mit explosiver Kraft spielt.",
+    "background": "#cc5500"
   },
   "office": {
     "symbols": [
@@ -325,7 +338,8 @@
     "bottom": [],
     "player": "👩‍💼",
     "target": "📎",
-    "description": "Eine bürokratische Welt, in der Computer, Akten und Kaffee das Geschäft bestimmen."
+    "description": "Eine bürokratische Welt, in der Computer, Akten und Kaffee das Geschäft bestimmen.",
+    "background": "#f0f0f0"
   },
   "candyland": {
     "symbols": [
@@ -349,7 +363,8 @@
     "bottom": [],
     "player": "🍭",
     "target": "🍬",
-    "description": "Eine süße Welt, in der Schokolade, Bonbons und Kuchen dominieren."
+    "description": "Eine süße Welt, in der Schokolade, Bonbons und Kuchen dominieren.",
+    "background": "#ffd1dc"
   },
   "jungle": {
     "symbols": [
@@ -368,7 +383,8 @@
     "bottom": [],
     "player": "🐒",
     "target": "🍌",
-    "description": "Eine dschungelartige Welt voller exotischer Tiere und üppiger Vegetation."
+    "description": "Eine dschungelartige Welt voller exotischer Tiere und üppiger Vegetation.",
+    "background": "#228b22"
   },
   "circus": {
     "symbols": [
@@ -387,7 +403,8 @@
     "bottom": [],
     "player": "🤹‍♂️",
     "target": "🎪",
-    "description": "Eine zirkusartige Welt, in der Akrobaten, Clowns und bunte Zelte zuhause sind."
+    "description": "Eine zirkusartige Welt, in der Akrobaten, Clowns und bunte Zelte zuhause sind.",
+    "background": "#ffe680"
   },
   "ruins": {
     "symbols": [
@@ -406,7 +423,8 @@
     "bottom": [],
     "player": "🏺",
     "target": "🗿",
-    "description": "Eine ruinöse Welt, in der alte Tempel und verfallene Bauwerke eine geheimnisvolle Atmosphäre schaffen."
+    "description": "Eine ruinöse Welt, in der alte Tempel und verfallene Bauwerke eine geheimnisvolle Atmosphäre schaffen.",
+    "background": "#696969"
   },
   "disco": {
     "symbols": [
@@ -425,7 +443,8 @@
     "bottom": [],
     "player": "🕺",
     "target": "💃",
-    "description": "Eine discoartige Welt, pulsierend mit Musik, Bewegung und bunten Lichtern."
+    "description": "Eine discoartige Welt, pulsierend mit Musik, Bewegung und bunten Lichtern.",
+    "background": "#8a2be2"
   },
   "concert": {
     "symbols": [
@@ -444,7 +463,8 @@
     "bottom": [],
     "player": "🎤",
     "target": "🎸",
-    "description": "Eine konzertbezogene Welt, in der Musik und Live-Auftritte das Herzstück bilden."
+    "description": "Eine konzertbezogene Welt, in der Musik und Live-Auftritte das Herzstück bilden.",
+    "background": "#222"
   },
   "pirate": {
     "symbols": [
@@ -463,7 +483,8 @@
     "bottom": [],
     "player": "🏴‍☠️",
     "target": "☠️",
-    "description": "Eine piratenhafte Welt, in der Abenteuer auf hoher See und Schatzsuchen zum Alltag gehören."
+    "description": "Eine piratenhafte Welt, in der Abenteuer auf hoher See und Schatzsuchen zum Alltag gehören.",
+    "background": "#add8e6"
   },
   "ghost": {
     "symbols": [
@@ -482,7 +503,8 @@
     "bottom": [],
     "player": "👻",
     "target": "🎃",
-    "description": "Eine geisterhafte Welt, in der Spukgestalten und mysteriöse Erscheinungen dominieren."
+    "description": "Eine geisterhafte Welt, in der Spukgestalten und mysteriöse Erscheinungen dominieren.",
+    "background": "#000000"
   },
   "party": {
     "symbols": [
@@ -501,7 +523,8 @@
     "bottom": [],
     "player": "🥳",
     "target": "🎉",
-    "description": "Eine partyorientierte Welt, in der Feierlaune und Spaß an erster Stelle stehen."
+    "description": "Eine partyorientierte Welt, in der Feierlaune und Spaß an erster Stelle stehen.",
+    "background": "🎉"
   },
   "fairytale": {
     "symbols": [
@@ -524,7 +547,8 @@
     "bottom": [],
     "player": "🧚‍♀️",
     "target": "🦄",
-    "description": "Eine märchenhafte Welt voller Magie und zauberhafter Kreaturen."
+    "description": "Eine märchenhafte Welt voller Magie und zauberhafter Kreaturen.",
+    "background": "#eee8aa"
   },
   "apocalypse": {
     "symbols": [
@@ -546,7 +570,8 @@
     "bottom": [],
     "player": "😷",
     "target": "🌅",
-    "description": "Eine apokalyptische Welt, in der Chaos und Zerstörung vorherrschen."
+    "description": "Eine apokalyptische Welt, in der Chaos und Zerstörung vorherrschen.",
+    "background": "#2f4f4f"
   },
   "cave": {
     "symbols": [
@@ -568,7 +593,8 @@
     "bottom": [],
     "player": "⛏️",
     "target": "🏺",
-    "description": "Eine höllische Welt unter der Erde, geprägt von Felsformationen und Dunkelheit."
+    "description": "Eine höllische Welt unter der Erde, geprägt von Felsformationen und Dunkelheit.",
+    "background": "#2d2d2d"
   },
   "cloud": {
     "symbols": [
@@ -590,7 +616,8 @@
     "bottom": [],
     "player": "☁️",
     "target": "🕊️",
-    "description": "Eine himmelhafte Welt, in der Wolken und Licht das Bild bestimmen."
+    "description": "Eine himmelhafte Welt, in der Wolken und Licht das Bild bestimmen.",
+    "background": "☁️"
   },
   "arcade": {
     "symbols": [
@@ -609,7 +636,8 @@
     "bottom": [],
     "player": "🎮",
     "target": "💎",
-    "description": "Eine retro-arcade Welt, voll von Pixeln, alten Spielen und Nostalgie."
+    "description": "Eine retro-arcade Welt, voll von Pixeln, alten Spielen und Nostalgie.",
+    "background": "#000"
   },
   "insects": {
     "symbols": [
@@ -637,7 +665,8 @@
     ],
     "player": "🕷️",
     "target": "🕸️",
-    "description": "Eine insektenreiche Welt voller Krabbeltiere und feiner Netze."
+    "description": "Eine insektenreiche Welt voller Krabbeltiere und feiner Netze.",
+    "background": "#98fb98"
   },
   "cars": {
     "symbols": [
@@ -668,7 +697,8 @@
     ],
     "player": "🚗",
     "target": "🛣️",
-    "description": "Eine autozentrierte Welt mit Straßen, Schildern und hupenden Fahrzeugen."
+    "description": "Eine autozentrierte Welt mit Straßen, Schildern und hupenden Fahrzeugen.",
+    "background": "#cccccc"
   },
   "human": {
     "symbols": [
@@ -695,7 +725,8 @@
     ],
     "player": "🧒",
     "target": "🤱",
-    "description": "Eine menschliche Welt voller Familien, Lachen und liebevoller Augenblicke."
+    "description": "Eine menschliche Welt voller Familien, Lachen und liebevoller Augenblicke.",
+    "background": "#ffe4e1"
   },
   "craftsmen": {
     "symbols": [
@@ -722,7 +753,8 @@
     ],
     "player": "🧑‍🔧",
     "target": "🔧",
-    "description": "Eine Welt der Handwerkskunst mit Werkzeugen, Maschinen und kreativen Erfindungen."
+    "description": "Eine Welt der Handwerkskunst mit Werkzeugen, Maschinen und kreativen Erfindungen.",
+    "background": "#d2691e"
   },
   "kart": {
     "symbols": [
@@ -748,7 +780,8 @@
     ],
     "player": "🏎️",
     "target": "🏁",
-    "description": "Eine bunte Kartwelt mit wilden Rennen und verrückten Hindernissen."
+    "description": "Eine bunte Kartwelt mit wilden Rennen und verrückten Hindernissen.",
+    "background": "#e600e6"
   },
   "frogger": {
     "symbols": [
@@ -774,7 +807,8 @@
     ],
     "player": "🐸",
     "target": "🏡",
-    "description": "Frösche überqueren hier Straßen und Flüsse, um sicher nach Hause zu gelangen."
+    "description": "Frösche überqueren hier Straßen und Flüsse, um sicher nach Hause zu gelangen.",
+    "background": "#00ff7f"
   },
   "heliport": {
     "symbols": [
@@ -800,7 +834,8 @@
     ],
     "player": "🚁",
     "target": "🏥",
-    "description": "Eine städtische Welt voller Helikopterlandeplätze und Flugverkehr."
+    "description": "Eine städtische Welt voller Helikopterlandeplätze und Flugverkehr.",
+    "background": "#b0c4de"
   },
   "spaceTaxi": {
     "symbols": [
@@ -826,7 +861,8 @@
     ],
     "player": "🚕",
     "target": "🪐",
-    "description": "Eine schräge Zukunftswelt, in der Taxis zwischen den Sternen pendeln."
+    "description": "Eine schräge Zukunftswelt, in der Taxis zwischen den Sternen pendeln.",
+    "background": "✨"
   },
   "superhero": {
     "symbols": [
@@ -852,6 +888,7 @@
     ],
     "player": "🦸‍♂️",
     "target": "🦹‍♂️",
-    "description": "Hier kämpfen Superhelden in schwindelerregenden Höhen gegen das Böse."
+    "description": "Hier kämpfen Superhelden in schwindelerregenden Höhen gegen das Böse.",
+    "background": "#ff0000"
   }
 }
