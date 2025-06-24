@@ -233,7 +233,7 @@ function populateWorldButtonsEditor() {
   const container=document.getElementById('worldButtonsEditor'); container.innerHTML='';
   for (let name in worldData) {
     const btn=document.createElement('button'); 
-    btn.innerText = worldData[name].title || name;
+    btn.innerText = (worldData[name] && worldData[name].title) ? worldData[name].title : name;
     btn.onclick=()=>{ currentWorld=name; highlightButton('worldButtonsEditor',name); updatePlayerTargetInfo(); populateSymbolPalette(); };
     container.appendChild(btn);
   }
