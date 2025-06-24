@@ -904,5 +904,53 @@
     "player": "📚",
     "target": "🍷",
     "description": "Eine gemütliche Leseecke mit Büchern, Kerzen und einem Glas Rotwein."
-  }
+  },
+    "beachclub": {
+        "symbols": ["🏖️", "🍹", "🏝️", "🕶️", "🌞", "🎶", "🩴", "🏄‍♂️", "🥥", "🐚"],
+        "rare": ["🧉", "🧜‍♀️", "🦀"],
+        "bottom": ["🏖️", "🏝️"],
+        "player": "🕶️",
+        "target": "🍹",
+        "description": "Eine sommerliche Strandwelt mit Musik, Sonne und Cocktails."
+    },
+    "radtour": {
+        "symbols": ["🚴", "🚵", "🌳", "🛤️", "🧺", "🧢", "🍎", "🗺️", "🚦", "🌻"],
+        "rare": ["🦅", "🐿️", "🧗‍♂️"],
+        "bottom": ["🛤️", "🚴"],
+        "player": "🚴",
+        "target": "🧺",
+        "description": "Eine entspannte Tour durch Natur, Felder und kleine Ortschaften."
+    },
+    "bergwanderung": {
+        "symbols": ["🥾", "🏔️", "⛺", "🥪", "🥶", "🎒", "🧭", "🧗‍♀️", "🌄", "🪨"],
+        "rare": ["🦅", "🐐", "⛰️"],
+        "bottom": ["🪨", "🧗‍♀️"],
+        "player": "🥾",
+        "target": "🏔️",
+        "description": "Eine alpine Landschaft mit anspruchsvollen Pfaden und atemberaubender Aussicht."
+    },
+    "officemanagement": {
+        "symbols": ["📈", "🗂️", "📅", "💼", "💬", "🧑‍💼", "📇", "🖇️", "🖥️", "📎"],
+        "rare": ["🧑‍🏫", "🤯", "🧾"],
+        "bottom": ["🪟", "🧑‍💼"],
+        "player": "💼",
+        "target": "📈",
+        "description": "Eine dynamische Management-Welt voller Aufgaben, Termine und Charts."
+    },
+    "fotografie": {
+        "symbols": ["📸", "🖼️", "🪞", "🌅", "👓", "🎞️", "🖌️", "🧍", "🧑‍🎨", "🕶️"],
+        "rare": ["🎥", "📷", "🖲️"],
+        "bottom": ["📸", "🧑‍🎨"],
+        "player": "📷",
+        "target": "🖼️",
+        "description": "Eine kreative Welt, in der Licht, Bildausschnitt und Motive alles sind."
+    },
+    "labor": {
+        "symbols": ["🧪", "⚗️", "🔬", "🧫", "🧬", "🔎", "💉", "💊", "🧯", "📖"],
+        "rare": ["☣️", "🧠", "🚨"],
+        "bottom": ["🔬", "⚗️"],
+        "player": "🧪",
+        "target": "🧬",
+        "description": "Eine wissenschaftliche Welt voller Reaktionen, Entdeckungen und Risiken."
+    }
 }
