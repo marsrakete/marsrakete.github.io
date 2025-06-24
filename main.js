@@ -35,8 +35,8 @@ window.addEventListener('keydown', e => {
 function populateWorldButtonsGame() {
   const container = document.getElementById('worldButtonsGame'); container.innerHTML = '';
   for (let name in worldData) {
-    const btn = document.createElement('button'); btn.innerText = name;
-    btn.onclick = () => { currentWorld = name; highlightButton('worldButtonsGame', name); updateGameInfo(); generateRandomWorld(); };
+    const btn = document.createElement('button'); btn.innerText = name.title;
+    btn.onclick = () => { currentWorld = name; highlightButton('worldButtonsGame', name.title); updateGameInfo(); generateRandomWorld(); };
     container.appendChild(btn);
   }
   highlightButton('worldButtonsGame', currentWorld);
