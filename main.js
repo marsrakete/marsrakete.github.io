@@ -232,7 +232,8 @@ document.getElementById('copyEditorText').addEventListener('click', ()=>{
 function populateWorldButtonsEditor() {
   const container=document.getElementById('worldButtonsEditor'); container.innerHTML='';
   for (let name in worldData) {
-    const btn=document.createElement('button'); btn.innerText=name;
+    const btn=document.createElement('button'); 
+    btn.innerText = worldData[name].title || name;
     btn.onclick=()=>{ currentWorld=name; highlightButton('worldButtonsEditor',name); updatePlayerTargetInfo(); populateSymbolPalette(); };
     container.appendChild(btn);
   }
