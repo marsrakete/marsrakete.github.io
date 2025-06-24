@@ -905,52 +905,429 @@
     "target": "🍷",
     "description": "Eine gemütliche Leseecke mit Büchern, Kerzen und einem Glas Rotwein."
   },
-    "beachclub": {
-        "symbols": ["🏖️", "🍹", "🏝️", "🕶️", "🌞", "🎶", "🩴", "🏄‍♂️", "🥥", "🐚"],
-        "rare": ["🧉", "🧜‍♀️", "🦀"],
-        "bottom": ["🏖️", "🏝️"],
-        "player": "🕶️",
-        "target": "🍹",
-        "description": "Eine sommerliche Strandwelt mit Musik, Sonne und Cocktails."
-    },
-    "radtour": {
-        "symbols": ["🚴", "🚵", "🌳", "🛤️", "🧺", "🧢", "🍎", "🗺️", "🚦", "🌻"],
-        "rare": ["🦅", "🐿️", "🧗‍♂️"],
-        "bottom": ["🛤️", "🚴"],
-        "player": "🚴",
-        "target": "🧺",
-        "description": "Eine entspannte Tour durch Natur, Felder und kleine Ortschaften."
-    },
-    "bergwanderung": {
-        "symbols": ["🥾", "🏔️", "⛺", "🥪", "🥶", "🎒", "🧭", "🧗‍♀️", "🌄", "🪨"],
-        "rare": ["🦅", "🐐", "⛰️"],
-        "bottom": ["🪨", "🧗‍♀️"],
-        "player": "🥾",
-        "target": "🏔️",
-        "description": "Eine alpine Landschaft mit anspruchsvollen Pfaden und atemberaubender Aussicht."
-    },
-    "officemanagement": {
-        "symbols": ["📈", "🗂️", "📅", "💼", "💬", "🧑‍💼", "📇", "🖇️", "🖥️", "📎"],
-        "rare": ["🧑‍🏫", "🤯", "🧾"],
-        "bottom": ["🪟", "🧑‍💼"],
-        "player": "💼",
-        "target": "📈",
-        "description": "Eine dynamische Management-Welt voller Aufgaben, Termine und Charts."
-    },
-    "fotografie": {
-        "symbols": ["📸", "🖼️", "🪞", "🌅", "👓", "🎞️", "🖌️", "🧍", "🧑‍🎨", "🕶️"],
-        "rare": ["🎥", "📷", "🖲️"],
-        "bottom": ["📸", "🧑‍🎨"],
-        "player": "📷",
-        "target": "🖼️",
-        "description": "Eine kreative Welt, in der Licht, Bildausschnitt und Motive alles sind."
-    },
-    "labor": {
-        "symbols": ["🧪", "⚗️", "🔬", "🧫", "🧬", "🔎", "💉", "💊", "🧯", "📖"],
-        "rare": ["☣️", "🧠", "🚨"],
-        "bottom": ["🔬", "⚗️"],
-        "player": "🧪",
-        "target": "🧬",
-        "description": "Eine wissenschaftliche Welt voller Reaktionen, Entdeckungen und Risiken."
-    }
+  "beachclub": {
+    "symbols": [
+      "🏖️",
+      "🍹",
+      "🏝️",
+      "🕶️",
+      "🌞",
+      "🎶",
+      "🩴",
+      "🏄‍♂️",
+      "🥥",
+      "🐚",
+      "🐠",
+      "🎇",
+      "🧴",
+      "🎧"
+    ],
+    "rare": [
+      "🧉",
+      "🧜‍♀️",
+      "🦀",
+      "🌇",
+      "🌃"
+    ],
+    "bottom": [
+      "🏖️",
+      "🏝️",
+      "👣"
+    ],
+    "player": "🕶️",
+    "target": "🍹",
+    "description": "Eine sommerliche Strandwelt mit Musik, Sonne und Cocktails."
+  },
+  "radtour": {
+    "symbols": [
+      "🚴",
+      "🚵",
+      "🌳",
+      "🛤️",
+      "🧺",
+      "🧢",
+      "🍎",
+      "🗺️",
+      "🚦",
+      "🌻",
+      "🚧",
+      "⛺",
+      "🧃",
+      "🌲"
+    ],
+    "rare": [
+      "🦅",
+      "🐿️",
+      "🧗‍♂️",
+      "🚴‍♀️",
+      "🦊"
+    ],
+    "bottom": [
+      "🛤️",
+      "🚴",
+      "🌿"
+    ],
+    "player": "🚴",
+    "target": "🧺",
+    "description": "Eine entspannte Tour durch Natur, Felder und kleine Ortschaften."
+  },
+  "bergwanderung": {
+    "symbols": [
+      "🥾",
+      "🏔️",
+      "⛺",
+      "🥪",
+      "🥶",
+      "🎒",
+      "🧭",
+      "🧗‍♀️",
+      "🌄",
+      "🪨",
+      "🐾",
+      "🌫️",
+      "🧗‍♂️",
+      "🔦"
+    ],
+    "rare": [
+      "🦅",
+      "🐐",
+      "⛰️",
+      "📍",
+      "🌨️"
+    ],
+    "bottom": [
+      "🪨",
+      "🧗‍♀️",
+      "🌄"
+    ],
+    "player": "🥾",
+    "target": "🏔️",
+    "description": "Eine alpine Landschaft mit anspruchsvollen Pfaden und atemberaubender Aussicht."
+  },
+  "officemanagement": {
+    "symbols": [
+      "📈",
+      "🗂️",
+      "📅",
+      "💼",
+      "💬",
+      "🧑‍💼",
+      "📇",
+      "🖇️",
+      "🖥️",
+      "📎",
+      "🧠",
+      "💬",
+      "📉",
+      "⏰"
+    ],
+    "rare": [
+      "🧑‍🏫",
+      "🤯",
+      "🧾",
+      "🧑‍💻",
+      "🤖"
+    ],
+    "bottom": [
+      "🪟",
+      "🧑‍💼",
+      "⌨️",
+      "🗃️"
+    ],
+    "player": "💼",
+    "target": "📈",
+    "description": "Eine dynamische Management-Welt voller Aufgaben, Termine und Charts."
+  },
+  "fotografie": {
+    "symbols": [
+      "📸",
+      "🖼️",
+      "🪞",
+      "🌅",
+      "👓",
+      "🎞️",
+      "🖌️",
+      "🧍",
+      "🧑‍🎨",
+      "🕶️",
+      "📍",
+      "🌇",
+      "🦢",
+      "🪂"
+    ],
+    "rare": [
+      "🎥",
+      "📷",
+      "🖲️",
+      "🔍",
+      "🌄"
+    ],
+    "bottom": [
+      "📸",
+      "🧑‍🎨",
+      "🎞️"
+    ],
+    "player": "📷",
+    "target": "🖼️",
+    "description": "Eine kreative Welt, in der Licht, Bildausschnitt und Motive alles sind."
+  },
+  "labor": {
+    "symbols": [
+      "🧪",
+      "⚗️",
+      "🔬",
+      "🧫",
+      "🧬",
+      "🔎",
+      "💉",
+      "💊",
+      "🧯",
+      "📖",
+      "📊",
+      "🧪",
+      "⚠️",
+      "🧯"
+    ],
+    "rare": [
+      "☣️",
+      "🧠",
+      "🚨",
+      "💥",
+      "⛑️"
+    ],
+    "bottom": [
+      "🔬",
+      "⚗️",
+      "⛑️"
+    ],
+    "player": "🧪",
+    "target": "🧬",
+    "description": "Eine wissenschaftliche Welt voller Reaktionen, Entdeckungen und Risiken."
+  },
+  "gebirgsfluss": {
+    "symbols": [
+      "🏞️",
+      "🌊",
+      "🐟",
+      "🪵",
+      "🐦",
+      "🏔️",
+      "🛶",
+      "🍂",
+      "🌬️",
+      "⛺"
+    ],
+    "rare": [
+      "🐻",
+      "🧗‍♂️",
+      "🦅"
+    ],
+    "bottom": [
+      "🛶",
+      "🌊"
+    ],
+    "player": "🛶",
+    "target": "🏞️",
+    "description": "Eine naturbelassene Flusswelt mit schnellen Strömungen und wilder Landschaft."
+  },
+  "savanne": {
+    "symbols": [
+      "🐘",
+      "🦒",
+      "🦓",
+      "🌾",
+      "🦁",
+      "🌞",
+      "🪵",
+      "🐆",
+      "🐃",
+      "🐜"
+    ],
+    "rare": [
+      "🧍‍♂️",
+      "🐊"
+    ],
+    "bottom": [
+      "🌾"
+    ],
+    "player": "🦒",
+    "target": "🦁",
+    "description": "Eine heiße, weite Landschaft mit majestätischen Tieren und goldener Sonne."
+  },
+  "arktis": {
+    "symbols": [
+      "🐧",
+      "❄️",
+      "🐻‍❄️",
+      "🧊",
+      "🌨️",
+      "🧥",
+      "🐟",
+      "⛸️",
+      "🌬️",
+      "🛷"
+    ],
+    "rare": [
+      "🌌",
+      "🧊"
+    ],
+    "bottom": [
+      "🧊"
+    ],
+    "player": "🐧",
+    "target": "🐟",
+    "description": "Eine eisige Welt, in der Kälte, Schnee und Leben im Eis aufeinandertreffen."
+  },
+  "kindergarten": {
+    "symbols": [
+      "🧸",
+      "🖍️",
+      "🪁",
+      "🛝",
+      "🎨",
+      "🎒",
+      "🧃",
+      "🏀",
+      "📚",
+      "🪀"
+    ],
+    "rare": [
+      "🧑‍🏫",
+      "🎂",
+      "🧩"
+    ],
+    "bottom": [
+      "🧸",
+      "🛝"
+    ],
+    "player": "🧸",
+    "target": "🧃",
+    "description": "Eine bunte, fröhliche Welt voller Spiel, Kreativität und Kinderlachen."
+  },
+  "traumwelt": {
+    "symbols": [
+      "🌙",
+      "✨",
+      "🛏️",
+      "🐑",
+      "🧸",
+      "🪐",
+      "🎠",
+      "☁️",
+      "💭",
+      "🧚"
+    ],
+    "rare": [
+      "🦄",
+      "🧞",
+      "🌈"
+    ],
+    "bottom": [
+      "☁️"
+    ],
+    "player": "🐑",
+    "target": "🌙",
+    "description": "Eine traumhafte Fantasiewelt für Kinder mit Magie, Licht und Fantasiegestalten."
+  },
+  "baustelle_kinder": {
+    "symbols": [
+      "🧱",
+      "🚧",
+      "🦺",
+      "🚜",
+      "🪛",
+      "🧰",
+      "🛠️",
+      "🧤",
+      "🧒",
+      "🧢"
+    ],
+    "rare": [
+      "🏗️",
+      "👷‍♂️",
+      "🛞"
+    ],
+    "bottom": [
+      "🧱"
+    ],
+    "player": "👷‍♂️",
+    "target": "🧰",
+    "description": "Eine kindgerechte Bauwelt, in der alles wie bei den Großen wirkt – aber sicher und bunt."
+  },
+  "liebeswelt": {
+    "symbols": [
+      "❤️",
+      "💋",
+      "💌",
+      "🌹",
+      "🛏️",
+      "🎶",
+      "🍷",
+      "🔥",
+      "🕯️",
+      "💃"
+    ],
+    "rare": [
+      "👩‍❤️‍👨",
+      "💑",
+      "💞"
+    ],
+    "bottom": [
+      "🛏️",
+      "🕯️"
+    ],
+    "player": "💋",
+    "target": "❤️",
+    "description": "Eine Welt voller Romantik, Zärtlichkeit und stilvoller Sinnlichkeit."
+  },
+  "bodyworld": {
+    "symbols": [
+      "🧠",
+      "❤️",
+      "🫁",
+      "🦴",
+      "🫀",
+      "👁️",
+      "🦶",
+      "🖐️",
+      "💪",
+      "🧬"
+    ],
+    "rare": [
+      "🧘‍♀️",
+      "🫦",
+      "🫃"
+    ],
+    "bottom": [
+      "🧬"
+    ],
+    "player": "🫀",
+    "target": "🧠",
+    "description": "Eine Welt rund um den menschlichen Körper – erforschend, lebendig, neutral."
+  },
+  "verfuehrung": {
+    "symbols": [
+      "👠",
+      "👙",
+      "🥂",
+      "🎭",
+      "🕯️",
+      "🎶",
+      "💄",
+      "🖤",
+      "🛏️",
+      "🍓"
+    ],
+    "rare": [
+      "🔐",
+      "💌",
+      "👩‍❤️‍💋‍👨"
+    ],
+    "bottom": [
+      "🛏️"
+    ],
+    "player": "👠",
+    "target": "💄",
+    "description": "Eine ästhetisch angehauchte Welt für Erwachsene mit Andeutungen und Spiel mit Sinnlichkeit."
+  }
 }
