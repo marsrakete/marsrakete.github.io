@@ -1329,5 +1329,183 @@
     "player": "👠",
     "target": "💄",
     "description": "Eine ästhetisch angehauchte Welt für Erwachsene mit Andeutungen und Spiel mit Sinnlichkeit."
-  }
+  },
+"arzt": {
+    "symbols": [
+      "🩺",
+      "💉",
+      "🩹",
+      "🏥",
+      "🧼",
+      "🩻",
+      "🧬",
+      "🧪",
+      "🧫",
+      "📋",
+      "🛏️",
+      "🧤",
+      "🫀",
+      "🧠",
+      "🫁"
+    ],
+    "rare": [
+      "👨‍⚕️",
+      "👩‍⚕️",
+      "⚕️",
+      "🧯",
+      "🔬",
+      "🩸",
+      "🧑‍⚕️"
+    ],
+    "bottom": [
+      "🏥",
+      "🛏️"
+    ],
+    "player": "👨‍⚕️",
+    "target": "🧬",
+    "description": "Eine medizinische Welt, in der Untersuchungen, Pflege und Operationen den Alltag bestimmen."
+  },
+  "vogelflug": {
+    "symbols": [
+      "🐦",
+      "🌥️",
+      "☁️",
+      "🪶",
+      "🌬️",
+      "🪁",
+      "🌄",
+      "🌈",
+      "✨",
+      "⛰️",
+      "🕊️",
+      "🦜"
+    ],
+    "rare": [
+      "🦅",
+      "🕊️",
+      "🌪️",
+      "🪽"
+    ],
+    "bottom": [
+      "⛰️",
+      "🌲"
+    ],
+    "player": "🐦",
+    "target": "🪶",
+    "description": "Du fliegst durch die Lüfte, sammelst Federn und weichst Windwirbeln aus."
+  },
+  "dyson_sphaere": {
+    "symbols": [
+      "🌞",
+      "⚙️",
+      "🛰️",
+      "💡",
+      "🌌",
+      "🛠️",
+      "🔋",
+      "🌐",
+      "🪐",
+      "🧠",
+      "🔭"
+    ],
+    "rare": [
+      "🤖",
+      "👾",
+      "🌠",
+      "🧪"
+    ],
+    "bottom": [
+      "🌌",
+      "🛰️"
+    ],
+    "player": "⚙️",
+    "target": "🌞",
+    "description": "Ein Sci-Fi-Megaprojekt im Weltall: Sammle Energie und schütze die Sonne."
+  },
+  "magnetfeld": {
+    "symbols": [
+      "🧲",
+      "⚡",
+      "🔩",
+      "🪛",
+      "⚙️",
+      "📎",
+      "💾",
+      "🖲️",
+      "💡",
+      "🧠",
+      "🔌",
+      "🔋"
+    ],
+    "rare": [
+      "🧬",
+      "🛠️",
+      "🛰️",
+      "⚠️"
+    ],
+    "bottom": [
+      "⚙️",
+      "🔋"
+    ],
+    "player": "🧲",
+    "target": "⚡",
+    "description": "Physikspielplatz – ziehe Objekte an oder stoße sie ab, um zum Ziel zu kommen."
+  },
+  "fruchtplanet": {
+    "symbols": [
+      "🍎",
+      "🍌",
+      "🍍",
+      "🥝",
+      "🍇",
+      "🍓",
+      "🍉",
+      "🍑",
+      "🍈",
+      "🍊",
+      "🍋",
+      "🍒"
+    ],
+    "rare": [
+      "🍒",
+      "🧃",
+      "🍋",
+      "🍏"
+    ],
+    "bottom": [
+      "🍃",
+      "🍂"
+    ],
+    "player": "🍍",
+    "target": "🧃",
+    "description": "Ein süßer Planet aus Früchten – alles ist essbar, aber voller Fallen."
+  },
+  "badewelt": {
+    "symbols": [
+      "🛁",
+      "🧽",
+      "🫧",
+      "🧴",
+      "🧼",
+      "🧖",
+      "🪮",
+      "🛀",
+      "🩲",
+      "🧖‍♀️",
+      "🧖‍♂️"
+    ],
+    "rare": [
+      "🐬",
+      "🦄",
+      "🫧",
+      "🛏️ mit Handtuch"
+    ],
+    "bottom": [
+      "🛁",
+      "🧼"
+    ],
+    "player": "🛁",
+    "target": "🧼",
+    "description": "Ein Badezimmer voller Schaum, Pflegeprodukte und Spaß – bleib sauber!"
+  }  
 }
