@@ -35,7 +35,8 @@ window.addEventListener('keydown', e => {
 function populateWorldButtonsGame() {
   const container = document.getElementById('worldButtonsGame'); container.innerHTML = '';
   for (let name in worldData) {
-    const btn = document.createElement('button'); btn.innerText = name.title;
+    const btn = document.createElement('button');
+    btn.innerText = (worldData[name] && worldData[name].title) ? worldData[name].title : name;
     btn.onclick = () => { currentWorld = name; highlightButton('worldButtonsGame', name.title); updateGameInfo(); generateRandomWorld(); };
     container.appendChild(btn);
   }
@@ -233,8 +234,7 @@ function populateWorldButtonsEditor() {
   const container=document.getElementById('worldButtonsEditor'); container.innerHTML='';
   for (let name in worldData) {
     const btn=document.createElement('button'); 
-    // btn.innerText = (worldData[name] && worldData[name].title) ? worldData[name].title : name;
-    btn.innerText = name;
+    btn.innerText = (worldData[name] && worldData[name].title) ? worldData[name].title : name;
     btn.onclick=()=>{ currentWorld=name; highlightButton('worldButtonsEditor',name); updatePlayerTargetInfo(); populateSymbolPalette(); };
     container.appendChild(btn);
   }
