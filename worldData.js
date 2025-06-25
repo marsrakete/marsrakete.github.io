@@ -4,7 +4,6 @@
 <!-- Fallback: JSON-Daten im HTML einbetten. Hier nur 2 Welten -->
   // Direkter Fallback als JavaScript-Objekt:
   const fallbackWorldData = {
-  {
   "galaxy": {
     "symbols": [
       "🧿",      "🕳️",      "✮",      "🎱",      "🌍",      "☾",      "🌌",      "🌑",      "🪐",      "🌕",      "☄️",      "💫",      "🚀",      "🛸",      "🌠",      "🌙",      "⭐️",      "🌜",      "🌚"    ],
