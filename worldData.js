@@ -104,6 +104,6 @@
   }
 
   // Beispiel: Nutzung
-  loadWorldData().then(data => console.log("Welt:", data));
+  // loadWorldData().then(data => console.log("Welt:", data));
 </script>
 
