@@ -2,7 +2,6 @@
 // Helper to load world data from the external JSON file
 
 <!-- Fallback: JSON-Daten im HTML einbetten. Hier nur 2 Welten -->
-<script>
   // Direkter Fallback als JavaScript-Objekt:
   const fallbackWorldData = {
   {
@@ -52,5 +51,3 @@ async function loadWorldData() {
 
   return worldData;
 }
-</script>
-
