@@ -1,5 +1,6 @@
 // worldData.js
 // Helper to load world data from the external JSON file
+let worldData;
 
 <!-- Fallback: JSON-Daten im HTML einbetten. Hier nur 2 Welten -->
   // Direkter Fallback als JavaScript-Objekt:
