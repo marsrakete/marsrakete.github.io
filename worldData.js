@@ -2,41 +2,18 @@
 // Helper to load world data from the external JSON file
 
 <!-- Fallback: JSON-Daten im HTML einbetten. Hier nur 2 Welten -->
-<script id="worldDataJson" type="application/json">
-{
+<script>
+  // Direkter Fallback als JavaScript-Objekt:
+  const fallbackWorldData = {
+  {
   "galaxy": {
     "symbols": [
-      "🧿",
-      "🕳️",
-      "✮",
-      "🎱",
-      "🌍",
-      "☾",
-      "🌌",
-      "🌑",
-      "🪐",
-      "🌕",
-      "☄️",
-      "💫",
-      "🚀",
-      "🛸",
-      "🌠",
-      "🌙",
-      "⭐️",
-      "🌜",
-      "🌚"
-    ],
+      "🧿",      "🕳️",      "✮",      "🎱",      "🌍",      "☾",      "🌌",      "🌑",      "🪐",      "🌕",      "☄️",      "💫",      "🚀",      "🛸",      "🌠",      "🌙",      "⭐️",      "🌜",      "🌚"    ],
     "rare": [
-      "👾",
-      "👽",
-      "🎮",
-      "👩‍🚀",
-      "🔫",
-      "🛰️"
+      "👾",      "👽",      "🎮",      "👩‍🚀",      "🔫",      "🛰️"
     ],
     "bottom": [
-      "🔭",
-      "📡"
+      "🔭",      "📡"
     ],
     "player": "🚀",
     "target": "🌍",
@@ -45,26 +22,10 @@
   },
   "flowers": {
     "symbols": [
-      "🌸",
-      "🌹",
-      "🌺",
-      "🌻",
-      "🌼",
-      "💐",
-      "🥀",
-      "🌷",
-      "🍀",
-      "🌱"
+      "🌸",      "🌹",      "🌺",      "🌻",      "🌼",      "💐",      "🥀",      "🌷",      "🍀",      "🌱"
     ],
     "rare": [
-      "🦋",
-      "🐞",
-      "🐝",
-      "🍄",
-      "🐇",
-      "🍄‍🟫",
-      "🪰",
-      "🪁"
+      "🦋",      "🐞",      "🐝",      "🍄",      "🐇",      "🍄‍🟫",      "🪰",      "🪁"
     ],
     "bottom": [],
     "player": "🐝",
@@ -72,38 +33,24 @@
     "description": "Eine blühende Welt, erfüllt von zarten Blumen und feinen Düften.",
     "title": "Blumenwiese"
   }
-}
-</script>
+};
 
-<script>
-  let worldData;
+async function loadWorldData() {
+  if (worldData) return worldData;
 
-  async function loadWorldData() {
-    // Falls Daten schon geladen wurden
-    if (worldData) return worldData;
-
-    try {
-      const response = await fetch('./worldData.json');
-
-      // Check: fetch erfolgreich UND JSON?
-      if (!response.ok || !response.headers.get("content-type")?.includes("application/json")) {
-        throw new Error("Fetch fehlgeschlagen oder kein JSON");
-      }
-
-      worldData = await response.json();
-      console.log("Daten per fetch geladen.");
-    } catch (err) {
-      // Fallback: JSON aus HTML-Tag laden
-      console.warn("Fetch fehlgeschlagen, Fallback wird genutzt:", err);
-      const jsonText = document.getElementById('worldDataJson')?.textContent;
-      worldData = JSON.parse(jsonText);
-      console.log("Daten per Fallback (script-tag) geladen.");
+  try {
+    const response = await fetch('./worldData.json');
+    if (!response.ok || !response.headers.get("content-type")?.includes("application/json")) {
+      throw new Error("Kein JSON oder fetch fehlgeschlagen");
     }
-
-    return worldData;
+    worldData = await response.json();
+    console.log("Daten per fetch geladen.");
+  } catch (err) {
+    console.warn("Fetch fehlgeschlagen, nutze Fallback-Daten:", err);
+    worldData = fallbackWorldData;
   }
 
-  // Beispiel: Nutzung
-  // loadWorldData().then(data => console.log("Welt:", data));
+  return worldData;
+}
 </script>
 
