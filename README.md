@@ -27,7 +27,8 @@ Example snippet:
     "bottom":  [],
     "player":  "🧑‍🔬",
     "target":  "🧬",
-    "description": "A science themed world."
+    "description": "A science themed world.",
+    "title": "Science"
   }
 }
 ```
