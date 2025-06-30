@@ -1567,5 +1567,41 @@
     "target": "🧼",
     "description": "Ein Badezimmer voller Schaum, Pflegeprodukte und Spaß – bleib sauber!",
     "title": "Badewelt"
-  }
+  },
+  "crossword": {
+  "symbols": ["🔠", "🔤", "🔡", "⬜", "🧠", "📘", "📝"],
+  "rare": ["❓", "❔", "💡", "🧩"],
+  "bottom": ["📚", "✏️"]
+  "player": "🧠",
+  "target": "💡",
+  "description": , "Dieses Bild zeigt eine rätselhafte Welt voller Buchstaben, Denkaufgaben und Symbolen aus der Welt der Kreuzworträtsel",
+  "title": "Kreuzworträtsel"
+},
+"aquarium": {
+  "symbols": ["🐟", "🐠", "🐡", "🦐", "🦀", "🪸", "🌊", "🫧"],
+  "rare": ["🧜‍♀️", "🧜‍♂️", "🐋", "🦈"],
+  "bottom": ["⚓", "🪙"],
+  "player": "🤿",
+  "target": "🐠",
+  "description": "Diese wasserlebendige Welt ist bevölkert von Fischen, Blasen, Korallen und geheimnisvollen Meereswesen",
+  "title": "Aquarium"
+},
+"garden": {
+  "symbols": ["🌸", "🌼", "🌿", "🌻", "🌱", "🐞", "🌷", "🪻"],
+  "rare": ["🐝", "🦋", "🐇"],
+  "bottom": ["🪴", "🪵"],
+  "player": "🐞",
+  "target": "🌼",
+  "description": "Dieses Bild zeigt eine blühende Gartenwelt voller Blumen, Insekten und frischem Grün",
+  "title": "Garten"
+},
+"heatwave": {
+  "symbols": ["🏠", "🌡️", "🔥", "😓", "💦", "🧊"],
+  "rare": ["🔥", "🧯", "🧊", "🪭"],
+  "bottom": ["🔌", "🌬️"],
+  "player": "😓",
+  "target": "🧯",
+  "description": "Diese überhitzte Welt zeigt die sommerliche Innenraum-Hölle: Schweiß, Hitzequellen und der verzweifelte Wunsch nach Abkühlung",
+  "title": "Hitze im Haus"
+}
 }
