@@ -1571,7 +1571,7 @@
   "crossword": {
   "symbols": ["🔠", "🔤", "🔡", "⬜", "🧠", "📘", "📝"],
   "rare": ["❓", "❔", "💡", "🧩"],
-  "bottom": ["📚", "✏️"]
+  "bottom": ["📚", "✏️"],
   "player": "🧠",
   "target": "💡",
   "description": , "Dieses Bild zeigt eine rätselhafte Welt voller Buchstaben, Denkaufgaben und Symbolen aus der Welt der Kreuzworträtsel",
