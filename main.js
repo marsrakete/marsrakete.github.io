@@ -274,8 +274,3 @@ window.addEventListener('load', async ()=>{
   initEditorGrid();
 });
 
-document.querySelectorAll("#virtualButtons button").forEach(button => {
-  button.addEventListener("touchstart", function(e) {
-    e.preventDefault(); // Verhindert Doppeltipp-Zoom
-  });
-});
