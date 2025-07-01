@@ -72,3 +72,26 @@ button:hover {
 .targetSymbol {
   border-color: red;
 }
+
+@media (max-width: 600px) {
+  #virtualButtons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  #virtualButtons button {
+    width: 3em;
+    height: 3em;
+    font-size: 1.2em;
+    margin: 5px;
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+  }
+}
