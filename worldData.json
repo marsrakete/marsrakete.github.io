@@ -1671,5 +1671,79 @@
 		"target": "🧯",
 		"description": "Diese überhitzte Welt zeigt die sommerliche Innenraum-Hölle: Schweiß, Hitzequellen und der verzweifelte Wunsch nach Abkühlung",
 		"title": "Hitze im Haus"
+	},
+	"regentag": {
+		"title": "Regentag",
+		"description": "Vermittelt eine ruhige, trübe Atmosphäre voller Tropfen, Fensterblicke und Gummistiefel",
+		"symbols": [
+			"🌧️",
+			"☁️",
+			"💧",
+			"🌂",
+			"🌦️",
+			"☔",
+			"🪟"
+		],
+		"rare": [
+			"⛈️",
+			"🌈",
+			"🌀",
+			"🧥",
+			"🚿"
+		],
+		"bottom": [
+			"🩴",
+			"🧼",
+			"🫧"
+		]
+	},
+	"sonnentag": {
+		"title": "Sonnentag",
+		"description": "Bringt Leichtigkeit und Sommerstimmung mit Sonnenbrillen, Sonnencreme und Wassereis",
+		"symbols": [
+			"☀️",
+			"🌞",
+			"😎",
+			"🕶️",
+			"🧴",
+			"🌻",
+			"🌼"
+		],
+		"rare": [
+			"🍦",
+			"🩳",
+			"🏖️",
+			"🍉",
+			"🏄"
+		],
+		"bottom": [
+			"🪁",
+			"🩱",
+			"⛱️"
+		]
+	},
+	"katastrophe": {
+		"title": "Katastrophe",
+		"description": "Eine dramatische, chaotische Umgebung mit Naturgewalten und Rettungselementen.",
+		"symbols": [
+			"🌪️",
+			"🌊",
+			"🔥",
+			"🌋",
+			"⚡",
+			"💣",
+			"☢️"
+		],
+		"rare": [
+			"🚒",
+			"🆘",
+			"🧯",
+			"📢",
+			"👷"
+		],
+		"bottom": [
+			"🧰",
+			"🚨"
+		]
 	}
 }
