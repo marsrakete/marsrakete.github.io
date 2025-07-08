@@ -1695,7 +1695,9 @@
 			"🩴",
 			"🧼",
 			"🫧"
-		]
+		],
+		"player": "☔",
+		"target": "🌈"
 	},
 	"sonnentag": {
 		"title": "Sonnentag",
@@ -1720,7 +1722,9 @@
 			"🪁",
 			"🩱",
 			"⛱️"
-		]
+		],
+		"player": "😎",
+		"target": "🍉"
 	},
 	"katastrophe": {
 		"title": "Katastrophe",
@@ -1744,6 +1748,8 @@
 		"bottom": [
 			"🧰",
 			"🚨"
-		]
+		],
+		"player": "👷",
+		"target": "🆘"
 	}
 }
