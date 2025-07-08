@@ -1751,5 +1751,111 @@
 		],
 		"player": "👷",
 		"target": "🆘"
+	},
+	"laenderreise": {
+		"title": "Länderreise",
+		"description": "eine globale Weltreise mit Flaggen, Sehenswürdigkeiten und Fernweh",
+		"symbols": [
+			"🇩🇪",
+			"🇯🇵",
+			"🇧🇷",
+			"🇫🇷",
+			"🇪🇸",
+			"🇨🇳",
+			"🇺🇸",
+			"🇮🇳",
+			"🗺️",
+			"🧳",
+			"✈️"
+		],
+		"rare": [
+			"🗽",
+			"🗿",
+			"🕌",
+			"🏯",
+			"🛕",
+			"🎎"
+		],
+		"bottom": [
+			"🧭",
+			"🎒"
+		],
+		"player": "✈️",
+		"target": "🗺️"
+	},
+	"uno": {
+		"title": "UNO",
+		"description": "eine diplomatische Welt voller Frieden, Reden und globaler Zusammenarbeit",
+		"symbols": [
+			"🇺🇳",
+			"🕊️",
+			"🤝",
+			"🗣️",
+			"📜",
+			"🏛️"
+		],
+		"rare": [
+			"🧑‍⚖️",
+			"⚖️",
+			"✉️",
+			"🛡️"
+		],
+		"bottom": [
+			"🎙️",
+			"📢"
+		],
+		"player": "🤝",
+		"target": "🕊️"
+	},
+	"krieg": {
+		"title": "Krieg",
+		"description": "eine kriegerische Welt voller Bedrohung, Waffen und Chaos",
+		"symbols": [
+			"💣",
+			"🪖",
+			"🪙",
+			"🛡️",
+			"🔫",
+			"🧨"
+		],
+		"rare": [
+			"🛩️",
+			"🚁",
+			"⚔️",
+			"🧯"
+		],
+		"bottom": [
+			"🪖",
+			"🏴"
+		],
+		"player": "🪖",
+		"target": "🛡️"
+	},
+	"frieden": {
+		"title": "Frieden",
+		"description": "eine friedliche Welt der Ruhe, Versöhnung und Harmonie",
+		"symbols": [
+			"🕊️",
+			"🌿",
+			"✌️",
+			"🤲",
+			"🫱",
+			"🫲",
+			"🌈",
+			"🤝",
+			"🧘"
+		],
+		"rare": [
+			"💞",
+			"🧡",
+			"🛐",
+			"☯️"
+		],
+		"bottom": [
+			"🪷",
+			"🪔"
+		],
+		"player": "🧘",
+		"target": "🕊️"
 	}
 }
