@@ -2303,5 +2303,152 @@
 		],
 		"player": "🧦",
 		"target": "🧺"
+	},
+		"ghosting": {
+		"title": "Ghosting",
+		"description": "eine stille Welt der Funkstille, verlorenen Chats und verpassten Chancen",
+		"symbols": [
+			"👻",
+			"📱",
+			"💬",
+			"💤",
+			"❌",
+			"🔕"
+		],
+		"rare": [
+			"😶",
+			"📭",
+			"📉",
+			"🪦"
+		],
+		"bottom": [
+			"📵",
+			"📴"
+		],
+		"player": "😶",
+		"target": "👻"
+	},
+	"verschwoerung": {
+		"title": "Verschwörung",
+		"description": "eine paranoide Welt voller Aluhüte, geheimen Plänen und unerklärlicher Verbindungen",
+		"symbols": [
+			"🧠",
+			"📜",
+			"🕵️‍♂️",
+			"📡",
+			"🔎",
+			"📌"
+		],
+		"rare": [
+			"👽",
+			"🛸",
+			"🧬",
+			"👁️"
+		],
+		"bottom": [
+			"📎",
+			"✏️"
+		],
+		"player": "🕵️‍♂️",
+		"target": "👁️"
+	},
+	"chaoskeller": {
+		"title": "Chaoskeller",
+		"description": "eine verstaubte Welt aus alten Kisten, Spinnweben und vergessenen Dingen",
+		"symbols": [
+			"📦",
+			"🧹",
+			"🕸️",
+			"🔦",
+			"🪣",
+			"🧤",
+			"🪵"
+		],
+		"rare": [
+			"🪛",
+			"🪜",
+			"📼",
+			"🔋"
+		],
+		"bottom": [
+			"🔑",
+			"🪠"
+		],
+		"player": "🔦",
+		"target": "📦"
+	},
+	"callcenter": {
+		"title": "Callcenter",
+		"description": "eine nervige Welt aus Warteschleifen, Headsets und Frust",
+		"symbols": [
+			"📞",
+			"☎️",
+			"📱",
+			"🎧",
+			"👨‍💼",
+			"📋"
+		],
+		"rare": [
+			"💥",
+			"🧯",
+			"😵‍💫",
+			"🗯️"
+		],
+		"bottom": [
+			"🖨️",
+			"💬"
+		],
+		"player": "🎧",
+		"target": "📞"
+	},
+	"veganland": {
+		"title": "Veganland",
+		"description": "eine pflanzliche Welt mit Brokkoli, Sojamilch und ganz viel Überzeugung",
+		"symbols": [
+			"🥦",
+			"🥕",
+			"🥒",
+			"🥬",
+			"🫘",
+			"🌱",
+			"🥗"
+		],
+		"rare": [
+			"🧘‍♂️",
+			"🥤",
+			"💚",
+			"🧄"
+		],
+		"bottom": [
+			"🍽️",
+			"🌽"
+		],
+		"player": "🌱",
+		"target": "🥦"
+	},
+	"zahnarzt": {
+		"title": "Zahnarzt",
+		"description": "eine bohrende Welt voller Zähne, Geräusche und Nervenkitzel",
+		"symbols": [
+			"🦷",
+			"🪥",
+			"🧼",
+			"🧴",
+			"😬",
+			"💺",
+			"📋"
+		],
+		"rare": [
+			"🧑‍⚕️",
+			"💊",
+			"😖",
+			"📞"
+		],
+		"bottom": [
+			"🧻",
+			"🚿"
+		],
+		"player": "😬",
+		"target": "🦷"
 	}
 }
