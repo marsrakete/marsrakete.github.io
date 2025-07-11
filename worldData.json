@@ -1857,5 +1857,226 @@
 		],
 		"player": "🧘",
 		"target": "🕊️"
+	},
+	"pipeline": {
+		"title": "Pipeline",
+		"description": "eine industrielle Welt aus Rohren, Druck, Öl und Technik",
+		"symbols": [
+			"🛢️",
+			"⚙️",
+			"🧰",
+			"🔩",
+			"🔧",
+			"🚧",
+			"🧱",
+			"🕳️",
+			"➖",
+			"➰",
+			"➿",
+			"🪠"
+		],
+		"rare": [
+			"💥",
+			"🛠️",
+			"🧪",
+			"⛽",
+			"🧯"
+		],
+		"bottom": [
+			"🪛",
+			"🛠️"
+		],
+		"player": "👷",
+		"target": "🛢️"
+	},
+	"baecker": {
+		"title": "Bäcker",
+		"description": "eine duftende Bäckerwelt mit Teig, Brot, Öfen und Mehlstaub",
+		"symbols": [
+			"🍞",
+			"🥖",
+			"🥐",
+			"🥨",
+			"🧈",
+			"🥯",
+			"🔥",
+			"🥞"
+		],
+		"rare": [
+			"👨‍🍳",
+			"👩‍🍳",
+			"🧁",
+			"🍩",
+			"🫓",
+			"🧺",
+			"🧱"
+		],
+		"bottom": [
+			"🧯",
+			"🍽️"
+		],
+		"player": "👨‍🍳",
+		"target": "🍞"
+	},
+	"zoo": {
+		"title": "Zoo",
+		"description": "eine tierische Zoowelt mit Gehegen, Aquarien und exotischen Kreaturen",
+		"symbols": [
+			"🦁",
+			"🐘",
+			"🦓",
+			"🐅",
+			"🐒",
+			"🦒",
+			"🦜",
+			"🐠",
+			"🐡",
+			"🦋",
+			"🐛",
+			"🐢"
+		],
+		"rare": [
+			"🦍",
+			"🦧",
+			"🐆",
+			"🦛",
+			"🦂",
+			"🪲"
+		],
+		"bottom": [
+			"🎟️",
+			"🪴",
+			"🐾"
+		],
+		"player": "👦",
+		"target": "🦁"
+	},
+	"kirmes": {
+		"title": "Kirmes",
+		"description": "eine bunte Jahrmarktwelt voller Karussells, Zuckerwatte und blinkender Lichter",
+		"symbols": [
+			"🎠",
+			"🎡",
+			"🎢",
+			"🎟️",
+			"🍭",
+			"🍿",
+			"🤹‍♂️",
+			"🎯"
+		],
+		"rare": [
+			"🎪",
+			"🎇",
+			"🧃",
+			"🧁"
+		],
+		"bottom": [
+			"🪩",
+			"🪅"
+		],
+		"player": "🤹‍♂️",
+		"target": "🎠"
+	},
+	"alptraum": {
+		"title": "Alptraum",
+		"description": "eine düstere Traumwelt voller Schatten, Augen und irrationaler Ängste",
+		"symbols": [
+			"😱",
+			"👁️",
+			"🕳️",
+			"😨",
+			"👻",
+			"🩸",
+			"🌑",
+			"😵‍💫"
+		],
+		"rare": [
+			"☠️",
+			"💀",
+			"🕷️",
+			"🧟"
+		],
+		"bottom": [
+			"🛌",
+			"🌫️"
+		],
+		"player": "😵‍💫",
+		"target": "👁️"
+	},
+	"muellhalde": {
+		"title": "Müllhalde",
+		"description": "eine chaotische Welt aus Abfall, Schrott und fliegenden Fliegen",
+		"symbols": [
+			"🗑️",
+			"♻️",
+			"🧃",
+			"🍌",
+			"🦟",
+			"🪰",
+			"🪱",
+			"🪵"
+		],
+		"rare": [
+			"🤢",
+			"☣️",
+			"🧤",
+			"🛠️"
+		],
+		"bottom": [
+			"🧼",
+			"🚮"
+		],
+		"player": "🤢",
+		"target": "♻️"
+	},
+	"zeitreise": {
+		"title": "Zeitreise",
+		"description": "eine Welt aus Vergangenheit, Zukunft und allem dazwischen",
+		"symbols": [
+			"🕰️",
+			"⏳",
+			"🛸",
+			"🦕",
+			"🤖",
+			"📜",
+			"🔮"
+		],
+		"rare": [
+			"🧑‍🚀",
+			"👴",
+			"👶",
+			"📅"
+		],
+		"bottom": [
+			"⚙️",
+			"🔁"
+		],
+		"player": "⏳",
+		"target": "🔮"
+	},
+	"fabrik": {
+		"title": "Fabrik",
+		"description": "eine mechanisierte Welt mit Zahnrädern, Förderbändern und Öl",
+		"symbols": [
+			"⚙️",
+			"🛠️",
+			"🏭",
+			"📦",
+			"🚧",
+			"🔩",
+			"🔧"
+		],
+		"rare": [
+			"💣",
+			"🔋",
+			"🧯",
+			"🛢️"
+		],
+		"bottom": [
+			"📦",
+			"📤"
+		],
+		"player": "🤖",
+		"target": "📦"
 	}
 }
