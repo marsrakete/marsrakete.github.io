@@ -65,6 +65,10 @@ function initGameGridEmpty() {
     gameGrid.push(row);
   }
 }
+function updateZoom(value) {
+  document.getElementById("gameOutput").style.fontSize = value + "em";
+  document.getElementById("zoomPercentage").innerText = Math.round(value * 100) + "%";
+}
 
 function renderGame() {
   const cells = document.querySelectorAll('#gameOutput .cell');
@@ -272,5 +276,6 @@ window.addEventListener('load', async ()=>{
   updatePlayerTargetInfo();
   populateSymbolPalette();
   initEditorGrid();
+  updateZoom(document.getElementById("zoomSlider").value);
 });
 
