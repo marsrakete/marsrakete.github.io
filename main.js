@@ -224,11 +224,17 @@ document.getElementById('applyToGame').addEventListener('click', ()=>{
   gameGrid = editorGrid.map(r=>r.slice()); initialTargets = gameGrid.flat().filter(c=>c===worldData[currentWorld].target).length; foundCount=0; timerStart=null; clearInterval(timerInterval);
   document.getElementById('foundCount').innerText='Gefundene Ziele: 0'; document.getElementById('timerDisplay').innerText='Zeit: 0 s'; renderGame(); switchMode();
 });
-document.getElementById('copyEditorGraphic').addEventListener('click', ()=>{
-  html2canvas(document.getElementById('editorOutput')).then(canvas=>{
-    canvas.toBlob(blob=>navigator.clipboard.write([new ClipboardItem({'image/png':blob})]).then(()=>alert('Grafik kopiert!')));
+
+document.getElementById('copyEditorGraphic').addEventListener('click', () => {
+  html2canvas(document.getElementById('editorOutput')).then(canvas => {
+    canvas.toBlob(blob => {
+      navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
+        .then(() => alert('Grafik kopiert!'))
+        .catch(err => alert('Fehler beim Kopieren: ' + err));
+    });
   });
 });
+
 document.getElementById('copyEditorText').addEventListener('click', ()=>{
   const text = editorGrid.map(row=>row.join('').replace(/\s+$/,'')).join('\r\n');
   navigator.clipboard.writeText(text).then(()=>alert('Text kopiert!'));
@@ -276,6 +282,9 @@ window.addEventListener('load', async ()=>{
   updatePlayerTargetInfo();
   populateSymbolPalette();
   initEditorGrid();
+  if (navigator.clipboard && window.ClipboardItem) {
+    document.getElementById('copyEditorGraphic').style.display = 'inline-block';
+  }
   updateZoom(document.getElementById("zoomSlider").value);
 });
 
