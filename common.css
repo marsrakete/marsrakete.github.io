@@ -226,3 +226,42 @@ input[type="radio"]:checked + .world-chip {
   border-color: #ff66cc;
   color: #ff66cc;
 }
+
+
+/* Weltenauswahl */
+#worldGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.world-card {
+  background: #1e1e1e;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.world-card:hover {
+  border-color: #555;
+  transform: scale(1.02);
+}
+
+.world-card.selected {
+  border-color: #0d6efd;
+  box-shadow: 0 0 10px #0d6efd88;
+}
+
+.world-title {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.world-symbols {
+  font-size: 1.5em;
+}
