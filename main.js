@@ -33,15 +33,37 @@ window.addEventListener('keydown', e => {
 
 // --- Spielfunktionen ---
 function populateWorldButtonsGame() {
-  const container = document.getElementById('worldButtonsGame'); container.innerHTML = '';
+  const container = document.getElementById('worldButtonsGame');
+  container.innerHTML = '';
+
   for (let name in worldData) {
-    const btn = document.createElement('button');
-    btn.innerText = (worldData[name] && worldData[name].title) ? worldData[name].title : name;
-    btn.onclick = () => { currentWorld = name; highlightButton('worldButtonsGame', name.title); updateGameInfo(); generateRandomWorld(); };
-    container.appendChild(btn);
+    const label = document.createElement('label');
+    label.style.display = 'inline-block';
+
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'worldSelect';
+    input.value = name;
+    input.style.display = 'none';
+    if (name === currentWorld) input.checked = true;
+
+    const span = document.createElement('span');
+    span.className = 'world-chip';
+    span.innerText = worldData[name]?.title || name;
+
+    input.addEventListener('change', () => {
+      currentWorld = name;
+      updateGameInfo();
+      generateRandomWorld();
+      // Optional: visuelles Highlight aktualisieren (siehe CSS)
+    });
+
+    label.appendChild(input);
+    label.appendChild(span);
+    container.appendChild(label);
   }
-  highlightButton('worldButtonsGame', currentWorld);
 }
+
 
 function highlightButton(containerId, selected) {
   document.querySelectorAll('#'+containerId+' button').forEach(b => b.style.background = b.innerText===selected?'#555':'#333');
@@ -252,8 +274,8 @@ document.getElementById('postToBsky').addEventListener('click', () => {
 });
 
 
-function populateWorldButtonsGame() {
-  const container = document.getElementById('worldButtonsGame');
+function populateWorldButtonsEditor() {
+  const container = document.getElementById('worldButtonsEditor');
   container.innerHTML = '';
 
   for (let name in worldData) {
