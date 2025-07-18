@@ -251,16 +251,40 @@ document.getElementById('postToBsky').addEventListener('click', () => {
   window.open(url, '_blank'); // Öffnet neuen Tab mit BlueSky-Post
 });
 
-function populateWorldButtonsEditor() {
-  const container=document.getElementById('worldButtonsEditor'); container.innerHTML='';
+
+function populateWorldButtonsGame() {
+  const container = document.getElementById('worldButtonsGame');
+  container.innerHTML = '';
+
   for (let name in worldData) {
-    const btn=document.createElement('button'); 
-    btn.innerText = (worldData[name] && worldData[name].title) ? worldData[name].title : name;
-    btn.onclick=()=>{ currentWorld=name; highlightButton('worldButtonsEditor',name); updatePlayerTargetInfo(); populateSymbolPalette(); };
-    container.appendChild(btn);
+    const label = document.createElement('label');
+    label.style.display = 'inline-block';
+
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'worldSelect';
+    input.value = name;
+    input.style.display = 'none';
+    if (name === currentWorld) input.checked = true;
+
+    const span = document.createElement('span');
+    span.className = 'world-chip';
+    span.innerText = worldData[name]?.title || name;
+
+    input.addEventListener('change', () => {
+      currentWorld = name;
+      updateGameInfo();
+      generateRandomWorld();
+      // Optional: visuelles Highlight aktualisieren (siehe CSS)
+    });
+
+    label.appendChild(input);
+    label.appendChild(span);
+    container.appendChild(label);
   }
-  highlightButton('worldButtonsEditor', currentWorld);
 }
+
+
 function updatePlayerTargetInfo() {
   const w=worldData[currentWorld]; document.getElementById('playerTargetInfo').innerHTML=
     `Spielersymbol: <span style="color:limegreen;">${w.player}</span> | Zielsymbol: <span style="color:red;">${w.target}</span>`;
