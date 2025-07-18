@@ -49,13 +49,15 @@ function populateWorldButtonsGame() {
 
     const span = document.createElement('span');
     span.className = 'world-chip';
-    span.innerText = worldData[name]?.title || name;
+
+    const title = worldData[name]?.title || name;
+    const playerSymbol = worldData[name]?.player || '';
+    span.innerText = `${title} ${playerSymbol}`;
 
     input.addEventListener('change', () => {
       currentWorld = name;
       updateGameInfo();
       generateRandomWorld();
-      // Optional: visuelles Highlight aktualisieren (siehe CSS)
     });
 
     label.appendChild(input);
@@ -63,7 +65,6 @@ function populateWorldButtonsGame() {
     container.appendChild(label);
   }
 }
-
 
 function highlightButton(containerId, selected) {
   document.querySelectorAll('#'+containerId+' button').forEach(b => b.style.background = b.innerText===selected?'#555':'#333');
