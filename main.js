@@ -263,26 +263,32 @@ document.getElementById('copyEditorText').addEventListener('click', ()=>{
 });
 
 document.getElementById('postToBsky').addEventListener('click', () => {
-  // const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join('\r\n');
+  // 1. Welt als Text
   const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join(' ');
-  
+
+  // 2. Längenprüfung (max. ~300 Zeichen bei BlueSky)
   if (text.length > 350) {
     alert("Die Anzahl Zeichen der Welt ist zu lang für einen BlueSky-Post. Bitte lösche im Editor bitte ein paar Zeichen.");
     return;
   }
 
+  // 3. Encoding
   const encodedText = encodeURIComponent(text);
-  const url = `https://bsky.app/intent/compose?text=${encodedText}`;
 
-  // 👉 Öffne sofort
-  const newTab = window.open(url, '_blank');
+  // 4. Plattform prüfen
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const baseURL = isMobile
+    ? 'bluesky://intent/compose'
+    : 'https://bsky.app/intent/compose';
 
-  // Optionaler Fallback
+  const fullURL = `${baseURL}?text=${encodedText}`;
+
+  // 5. Öffnen
+  const newTab = window.open(fullURL, '_blank');
   if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
     alert("Der Popup wurde blockiert. Bitte erlaube Popups für diese Seite.");
   }
 });
-
 
 function populateWorldButtonsEditor() {
   const container = document.getElementById('worldButtonsEditor');
