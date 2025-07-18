@@ -363,6 +363,7 @@ window.addEventListener('load', async ()=>{
   initEditorGrid();
   if (navigator.clipboard && window.ClipboardItem) {
     document.getElementById('copyEditorGraphic').style.display = 'inline-block';
+    document.getElementById('copyGameGraphic').style.display = 'inline-block';
   }
   updateZoom(document.getElementById("zoomSlider").value);
 });
