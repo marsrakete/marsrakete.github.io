@@ -216,11 +216,17 @@ document.getElementById('generateGameAltText').addEventListener('click', ()=>{
   const txt = `Alternativtext: Dieses Bild zeigt eine ${w.description} Welt erstellt mit dem Weltengenerator von Millux. Das Feld umfasst ${rows} Zeilen und ${cols} Spalten.`;
   navigator.clipboard.writeText(txt).then(()=>alert('ALT Text kopiert!'));
 });
-document.getElementById('copyGameGraphic').addEventListener('click', ()=>{
-  html2canvas(document.getElementById('gameOutput')).then(canvas=>{
-    canvas.toBlob(blob=>navigator.clipboard.write([new ClipboardItem({'image/png':blob})]).then(()=>alert('Grafik kopiert!')));
+
+document.getElementById('copyGameGraphic').addEventListener('click', () => {
+  html2canvas(document.getElementById('gameOutput')).then(canvas => {
+    canvas.toBlob(blob => {
+      navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
+        .then(() => alert('Grafik kopiert!'))
+        .catch(err => alert('Fehler beim Kopieren: ' + err));
+    });
   });
 });
+
 document.getElementById('copyGameText').addEventListener('click', ()=>{
   const text = gameGrid.map(row=>row.join('').replace(/\s+$/,'')).join('\r\n');
   navigator.clipboard.writeText(text).then(()=>alert('Text kopiert!'));
