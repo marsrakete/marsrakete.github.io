@@ -271,7 +271,7 @@ document.getElementById('postToBsky').addEventListener('click', () => {
   }
 
   const encodedText = encodeURIComponent(text);
-  const url = `https://bsky.app/compose?text=${encodedText}`;
+  const url = `https://bsky.app/intent/compose?text=${encodedText}`;
 
   // 👉 Öffne sofort
   const newTab = window.open(url, '_blank');
