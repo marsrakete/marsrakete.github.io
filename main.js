@@ -334,13 +334,43 @@ function updatePlayerTargetInfo() {
     `Spielersymbol: <span style="color:limegreen;">${w.player}</span> | Zielsymbol: <span style="color:red;">${w.target}</span>`;
 }
 function populateSymbolPalette() {
-  const p=document.getElementById('symbolPalette'); p.innerHTML=''; const w=worldData[currentWorld];
-  [...w.symbols,...w.rare,...w.bottom].forEach(sym=>{ const span=document.createElement('span'); span.className='symbol'; span.textContent=sym;
-    if(sym===w.player) span.classList.add('playerSymbol'); if(sym===w.target) span.classList.add('targetSymbol');
-    span.onclick=()=>{ document.querySelectorAll('#symbolPalette .symbol').forEach(el=>el.classList.remove('selected')); span.classList.add('selected'); selectedSymbol=sym; };
-    p.appendChild(span);
+  const palette = document.getElementById('symbolPalette');
+  palette.innerHTML = '';
+
+  const w = worldData[currentWorld];
+  const allSymbols = [...w.symbols, ...w.rare, ...w.bottom];
+
+  allSymbols.forEach(sym => {
+    const span = document.createElement('span');
+    span.className = 'symbol-chip';
+    span.textContent = sym;
+
+    if (sym === w.player) span.classList.add('symbol-player');
+    if (sym === w.target) span.classList.add('symbol-target');
+
+    span.onclick = () => {
+      document.querySelectorAll('#symbolPalette .symbol-chip').forEach(el => el.classList.remove('selected'));
+      span.classList.add('selected');
+      selectedSymbol = sym;
+    };
+
+    palette.appendChild(span);
   });
+
+  // Leeres Symbol am Ende hinzufügen
+  const emptySpan = document.createElement('span');
+  emptySpan.className = 'symbol-chip symbol-empty';
+  emptySpan.textContent = '␣'; // Alternativ: '□' oder '␢'
+
+  emptySpan.onclick = () => {
+    document.querySelectorAll('#symbolPalette .symbol-chip').forEach(el => el.classList.remove('selected'));
+    emptySpan.classList.add('selected');
+    selectedSymbol = " ";
+  };
+
+  palette.appendChild(emptySpan);
 }
+
 function initEditorGrid() {
   editorGrid=[]; const out=document.getElementById('editorOutput'); out.innerHTML='';
   for (let y=0; y<rows; y++) { const rowArr=[]; const line=document.createElement('div'); line.className='row';
