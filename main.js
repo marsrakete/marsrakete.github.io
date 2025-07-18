@@ -373,7 +373,12 @@ function populateSymbolPalette() {
   palette.innerHTML = '';
 
   const w = worldData[currentWorld];
-  const allSymbols = [...w.symbols, ...w.rare, ...w.bottom];
+  // Alle Symbole zusammenfassen und Duplikatentfernung 
+  const allSymbols = []
+  .concat(w.symbols || [])
+  .concat(w.rare || [])
+  .concat(w.bottom || []);
+
 
   allSymbols.forEach(sym => {
     const span = document.createElement('span');
