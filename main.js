@@ -242,7 +242,7 @@ document.getElementById('copyEditorText').addEventListener('click', ()=>{
 
 document.getElementById('postToBsky').addEventListener('click', () => {
   const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join('\r\n');
-  if (text.length > 320) {
+  if (text.length > 340) {
     alert("Der Text ist zu lang für einen BlueSky-Post. Kürze ihn bitte zuerst, indem du im Editor ein paar Zeichen entfernst.");
     return;
   }
