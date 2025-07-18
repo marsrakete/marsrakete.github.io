@@ -263,7 +263,8 @@ document.getElementById('copyEditorText').addEventListener('click', ()=>{
 });
 
 document.getElementById('postToBsky').addEventListener('click', () => {
-  const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join('\r\n');
+  // const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join('\r\n');
+  const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join(' ');
   
   if (text.length > 350) {
     alert("Die Anzahl Zeichen der Welt ist zu lang für einen BlueSky-Post. Bitte lösche im Editor bitte ein paar Zeichen.");
