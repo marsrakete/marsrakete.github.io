@@ -32,6 +32,40 @@ window.addEventListener('keydown', e => {
 });
 
 // --- Spielfunktionen ---
+function populateWorldGallery() {
+  const container = document.getElementById('worldGallery');
+  container.innerHTML = '';
+
+  for (let name in worldData) {
+    const world = worldData[name];
+    const card = document.createElement('div');
+    card.className = 'world-card';
+    if (name === currentWorld) card.classList.add('selected');
+
+    const title = document.createElement('div');
+    title.className = 'world-title';
+    title.textContent = world.title || name;
+
+    const symbols = document.createElement('div');
+    symbols.className = 'world-symbols';
+    symbols.textContent = `${world.player} → ${world.target}`;
+
+    card.appendChild(title);
+    card.appendChild(symbols);
+
+    card.onclick = () => {
+      currentWorld = name;
+      document.querySelectorAll('.world-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      updateGameInfo?.();
+      generateRandomWorld?.();
+    };
+
+    container.appendChild(card);
+  }
+}
+
+
 function populateWorldButtonsGame() {
   const container = document.getElementById('worldButtonsGame');
   container.innerHTML = '';
@@ -385,7 +419,8 @@ function initEditorGrid() {
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
   await loadWorldData();
-  populateWorldButtonsGame();
+  //populateWorldButtonsGame();
+  populateWorldGallery();
   updateGameInfo();
   generateRandomWorld();
   populateWorldButtonsEditor();
