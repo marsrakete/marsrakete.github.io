@@ -266,7 +266,7 @@ document.getElementById('postToBsky').addEventListener('click', () => {
   const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join('\r\n');
   
   if (text.length > 350) {
-    alert("Der Text ist zu lang für einen BlueSky-Post. Kürze ihn bitte zuerst.");
+    alert("Die Anzahl Zeichen der Welt ist zu lang für einen BlueSky-Post. Bitte lösche im Editor bitte ein paar Zeichen.");
     return;
   }
 
