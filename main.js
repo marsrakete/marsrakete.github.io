@@ -240,6 +240,17 @@ document.getElementById('copyEditorText').addEventListener('click', ()=>{
   navigator.clipboard.writeText(text).then(()=>alert('Text kopiert!'));
 });
 
+document.getElementById('postToBsky').addEventListener('click', () => {
+  const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join('\r\n');
+  if (text.length > 300) {
+    alert("Der Text ist zu lang für einen BlueSky-Post. Kürze ihn bitte zuerst, indem du im Editor ein paar Zeichen entfernst.");
+    return;
+  }
+  const encodedText = encodeURIComponent(text);
+  const url = `https://bsky.app/compose?text=${encodedText}`;
+  window.open(url, '_blank'); // Öffnet neuen Tab mit BlueSky-Post
+});
+
 function populateWorldButtonsEditor() {
   const container=document.getElementById('worldButtonsEditor'); container.innerHTML='';
   for (let name in worldData) {
