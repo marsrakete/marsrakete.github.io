@@ -264,13 +264,22 @@ document.getElementById('copyEditorText').addEventListener('click', ()=>{
 
 document.getElementById('postToBsky').addEventListener('click', () => {
   const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join('\r\n');
-  if (text.length > 340) {
-    alert("Der Text ist zu lang für einen BlueSky-Post. Kürze ihn bitte zuerst, indem du im Editor ein paar Zeichen entfernst.");
+  
+  if (text.length > 350) {
+    alert("Der Text ist zu lang für einen BlueSky-Post. Kürze ihn bitte zuerst.");
     return;
   }
+
   const encodedText = encodeURIComponent(text);
   const url = `https://bsky.app/compose?text=${encodedText}`;
-  window.open(url, '_blank'); // Öffnet neuen Tab mit BlueSky-Post
+
+  // 👉 Öffne sofort
+  const newTab = window.open(url, '_blank');
+
+  // Optionaler Fallback
+  if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
+    alert("Der Popup wurde blockiert. Bitte erlaube Popups für diese Seite.");
+  }
 });
 
 
