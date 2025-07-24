@@ -228,7 +228,7 @@ input[type="radio"]:checked + .world-chip {
 }
 
 
-/* Weltenauswahl */
+/* Grid für Galerie */
 #worldGallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -244,6 +244,7 @@ input[type="radio"]:checked + .world-chip {
   cursor: pointer;
   text-align: center;
   transition: 0.2s;
+  position: relative;
 }
 
 .world-card:hover {
@@ -266,18 +267,26 @@ input[type="radio"]:checked + .world-chip {
   font-size: 1.5em;
 }
 
+/* Tooltip-Text */
 .world-description {
   opacity: 0;
   max-height: 0;
-  transition: opacity 0.3s ease, max-height 0.3s ease;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
   font-size: 0.9em;
   margin-top: 8px;
   color: #aaa;
   overflow: hidden;
+  pointer-events: none;
 }
 
-.world-card:hover .world-description {
+/* Sichtbar bei Hover (Desktop) */
+.world-card:hover .world-description,
+.world-card.show-description .world-description {
   opacity: 1;
-  max-height: 100px; /* genug Platz für eine Zeile oder zwei */
+  max-height: 100px;
+  transform: translateY(0);
   color: #ffd700;
+  pointer-events: auto;
 }
+
