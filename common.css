@@ -265,3 +265,19 @@ input[type="radio"]:checked + .world-chip {
 .world-symbols {
   font-size: 1.5em;
 }
+
+.world-description {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+  font-size: 0.9em;
+  margin-top: 8px;
+  color: #aaa;
+  overflow: hidden;
+}
+
+.world-card:hover .world-description {
+  opacity: 1;
+  max-height: 100px; /* genug Platz für eine Zeile oder zwei */
+  color: #ffd700;
+}
