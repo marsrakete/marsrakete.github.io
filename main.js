@@ -50,8 +50,13 @@ function populateWorldGallery() {
     symbols.className = 'world-symbols';
     symbols.textContent = `${world.player} → ${world.target}`;
 
+    const desc = document.createElement('div');
+    desc.className = 'world-description';
+    desc.textContent = world.description || '';
+
     card.appendChild(title);
     card.appendChild(symbols);
+    card.appendChild(desc);
 
     card.onclick = () => {
       currentWorld = name;
@@ -64,7 +69,6 @@ function populateWorldGallery() {
     container.appendChild(card);
   }
 }
-
 
 function populateWorldButtonsGame() {
   const container = document.getElementById('worldButtonsGame');
