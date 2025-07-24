@@ -64,12 +64,25 @@ function populateWorldGallery() {
       card.classList.add('selected');
       updateGameInfo?.();
       generateRandomWorld?.();
+
+      // Tooltip für Touch-Geräte ein-/ausblenden
+      if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        card.classList.toggle('show-description');
+      }
     };
 
     container.appendChild(card);
   }
-}
 
+  // Tap außerhalb -> Tooltip ausblenden
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.world-card.show-description').forEach(card => {
+      if (!card.contains(e.target)) {
+        card.classList.remove('show-description');
+      }
+    });
+  });
+}
 function populateWorldButtonsGame() {
   const container = document.getElementById('worldButtonsGame');
   container.innerHTML = '';
