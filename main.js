@@ -87,6 +87,7 @@ function populateWorldButtonsGame() {
     const title = worldData[name]?.title || name;
     const playerSymbol = worldData[name]?.player || '';
     span.innerText = `${title} ${playerSymbol}`;
+    span.title = worldData[name]?.description || '';
 
     input.addEventListener('change', () => {
       currentWorld = name;
@@ -349,6 +350,7 @@ function populateWorldButtonsEditor() {
     const span = document.createElement('span');
     span.className = 'world-chip';
     span.innerText = worldData[name]?.title || name;
+    span.title = worldData[name]?.description || '';
 
     input.addEventListener('change', () => {
       currentWorld = name;
@@ -368,6 +370,7 @@ function updatePlayerTargetInfo() {
   const w=worldData[currentWorld]; document.getElementById('playerTargetInfo').innerHTML=
     `Spielersymbol: <span style="color:limegreen;">${w.player}</span> | Zielsymbol: <span style="color:red;">${w.target}</span>`;
 }
+
 function populateSymbolPalette() {
   const palette = document.getElementById('symbolPalette');
   palette.innerHTML = '';
