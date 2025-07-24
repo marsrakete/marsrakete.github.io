@@ -2079,7 +2079,7 @@
 		"player": "🤖",
 		"target": "📦"
 	},
-		"wohnkrise": {
+	"wohnkrise": {
 		"title": "Wohnkrise",
 		"description": "eine herausfordernde Welt aus Beton, Baustellen und Wohnungssuche",
 		"symbols": [
@@ -2104,7 +2104,7 @@
 		"player": "🚶",
 		"target": "🏠"
 	},
-		"zivilschutz": {
+	"zivilschutz": {
 		"title": "Zivilschutz",
 		"description": "eine vorsorgende Welt mit Alarmplänen, Notausgängen und Helferinnen",
 		"symbols": [
@@ -2128,7 +2128,7 @@
 		"player": "🧑‍🚒",
 		"target": "📦"
 	},
-		"gesundheit": {
+	"gesundheit": {
 		"title": "Gesundheit",
 		"description": "eine medizinische Welt aus Viren, Impfungen und Fürsorge",
 		"symbols": [
@@ -2153,7 +2153,7 @@
 		"player": "🧑‍⚕️",
 		"target": "💊"
 	},
-		"klimawandel": {
+	"klimawandel": {
 		"title": "Klimawandel",
 		"description": "eine bedrohte Welt zwischen Wetterextremen, Hoffnung und globalem Handeln",
 		"symbols": [
@@ -2179,7 +2179,7 @@
 		"player": "🌱",
 		"target": "♻️"
 	},
-		"essenschlacht": {
+	"essenschlacht": {
 		"title": "Essenschlacht",
 		"description": "eine chaotisch-köstliche Welt aus fliegender Pizza, Torten und Ketchup",
 		"symbols": [
@@ -2205,7 +2205,7 @@
 		"player": "🍕",
 		"target": "🎂"
 	},
-		"huehnerchaos": {
+	"huehnerchaos": {
 		"title": "Hühnerchaos",
 		"description": "eine flatternde Welt voller Eier, Federn und übermotivierter Hühner",
 		"symbols": [
@@ -2230,7 +2230,7 @@
 		"player": "🐣",
 		"target": "🥚"
 	},
-		"tvshow": {
+	"tvshow": {
 		"title": "TV-Show",
 		"description": "eine grelle Welt aus Gameshows, Kameras und peinlichen Auftritten",
 		"symbols": [
@@ -2255,7 +2255,7 @@
 		"player": "🎤",
 		"target": "🏆"
 	},
-		"picknick": {
+	"picknick": {
 		"title": "Picknick",
 		"description": "eine fröhliche Welt aus Decken, Ameisen, Getränken und Sonnenschein",
 		"symbols": [
@@ -2280,7 +2280,7 @@
 		"player": "🧃",
 		"target": "🧺"
 	},
-		"sockenwelt": {
+	"sockenwelt": {
 		"title": "Sockenwelt",
 		"description": "eine kuschelig-verlorene Welt aus Einzelstücken, Fusseln und Waschmaschinen",
 		"symbols": [
@@ -2304,7 +2304,7 @@
 		"player": "🧦",
 		"target": "🧺"
 	},
-		"ghosting": {
+	"ghosting": {
 		"title": "Ghosting",
 		"description": "eine stille Welt der Funkstille, verlorenen Chats und verpassten Chancen",
 		"symbols": [
@@ -2450,5 +2450,32 @@
 		],
 		"player": "😬",
 		"target": "🦷"
+	},
+	"coffee": {
+		"title": "Kaffeewelt",
+		"description": "Eine gemütliche Welt voller Kaffee, Gebäck und Koffeinträumen.",
+		"symbols": [
+			"☕",
+			"🍪",
+			"🥐",
+			"🧁",
+			"🍩",
+			"🥞",
+			"🍫",
+			"🫖",
+			"🥛"
+		],
+		"rare": [
+			"🧋",
+			"🍰",
+			"🍮",
+			"🧃"
+		],
+		"bottom": [
+			"🪑",
+			"📰"
+		],
+		"player": "👨‍🍳",
+		"target": "☕"
 	}
 }
