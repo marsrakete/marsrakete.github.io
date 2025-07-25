@@ -42,6 +42,43 @@ function setupMaxSymbolsSlider() {
   // Falls cols/rows dynamisch geändert werden, muss updateMax erneut aufgerufen werden!
 }
 
+// BFS-Suche ob die Welt gelöst werden kann
+function isPlayerToTargetReachable() {
+  // Finde Positionen von player und target
+  const w = worldData[currentWorld];
+  let start = null, target = null;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (gameGrid[y][x] === w.player) start = {x, y};
+      if (gameGrid[y][x] === w.target) target = {x, y};
+    }
+  }
+  if (!start || !target) return false;
+
+  // BFS
+  const queue = [start];
+  const visited = Array.from({length: rows}, () => Array(cols).fill(false));
+  visited[start.y][start.x] = true;
+  const directions = [
+    [0,1], [1,0], [0,-1], [-1,0]
+  ];
+  while (queue.length) {
+    const {x, y} = queue.shift();
+    if (x === target.x && y === target.y) return true;
+    for (const [dx, dy] of directions) {
+      const nx = x + dx, ny = y + dy;
+      if (nx >= 0 && ny >= 0 && nx < cols && ny < rows &&
+          !visited[ny][nx] &&
+          (gameGrid[ny][nx] === ' ' || gameGrid[ny][nx] === w.target)) {
+        visited[ny][nx] = true;
+        queue.push({x: nx, y: ny});
+      }
+    }
+  }
+  return false;
+}
+
+
 function switchMode() {
   if (mode === 'game') {
     mode = 'editor';
@@ -187,79 +224,96 @@ function renderGame() {
 }
 
 function generateRandomWorld() {
-// Timer zurücksetzen
-if (timerInterval) clearInterval(timerInterval);
-timerInterval = null;
-timerStart = null;
-foundCount = 0;
+  // Timer zurücksetzen
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = null;
+  timerStart = null;
+  foundCount = 0;
 
-const w = worldData[currentWorld];
-initGameGridEmpty();
+  const w = worldData[currentWorld];
+  initGameGridEmpty();
 
-// Pool aus normalen und seltenen Symbolen
-const symbolPool = [...w.symbols, ...w.rare];
+  // Pool aus normalen und seltenen Symbolen
+  const symbolPool = [...w.symbols, ...w.rare];
 
-// Zufällige Symbole platzieren
-for (let i = 0; i < maxSymbols; i++) {
-let x, y;
-do {
-  x = Math.floor(Math.random() * cols);
-  y = Math.floor(Math.random() * rows);
-} while (gameGrid[y][x] !== ' ');
-gameGrid[y][x] = symbolPool[Math.floor(Math.random() * symbolPool.length)];
+  // Zufällige Symbole platzieren
+  for (let i = 0; i < maxSymbols; i++) {
+    let x, y;
+    do {
+      x = Math.floor(Math.random() * cols);
+      y = Math.floor(Math.random() * rows);
+    } while (gameGrid[y][x] !== ' ');
+    gameGrid[y][x] = symbolPool[Math.floor(Math.random() * symbolPool.length)];
+  }
+
+  // Optionales Bottom-Element unten einfügen
+  if (w.bottom.length > 0) {
+    const x = Math.floor(Math.random() * cols);
+    gameGrid[rows - 1][x] = w.bottom[Math.floor(Math.random() * w.bottom.length)];
+  }
+
+  // Sicherstellen, dass mindestens ein Target vorhanden ist
+  let targetCount = gameGrid.flat().filter(c => c === w.target).length;
+  if (targetCount === 0) {
+    let tx, ty;
+    do {
+      tx = Math.floor(Math.random() * cols);
+      ty = Math.floor(Math.random() * rows);
+    } while (gameGrid[ty][tx] !== ' ');
+    gameGrid[ty][tx] = w.target;
+    targetCount = 1;
+  }
+  initialTargets = targetCount;
+
+  // Spielerposition wählen (entweder vorhandenes Player-Symbol oder zufällige freie Zelle)
+  const playerPositions = [];
+  gameGrid.forEach((row, ry) =>
+    row.forEach((c, cx) => {
+      if (c === w.player) playerPositions.push({
+        x: cx,
+        y: ry
+      });
+    })
+  );
+  let start;
+  if (playerPositions.length > 0) {
+    start = playerPositions[Math.floor(Math.random() * playerPositions.length)];
+  } else {
+    let px, py;
+    do {
+      px = Math.floor(Math.random() * cols);
+      py = Math.floor(Math.random() * rows);
+    } while (gameGrid[py][px] !== ' ');
+    start = {
+      x: px,
+      y: py
+    };
+  }
+  playerX = start.x;
+  playerY = start.y;
+  gameGrid[playerY][playerX] = w.player;
+
+  // Anzeige aktualisieren
+  renderGame();
+  updateGameInfo();
+  document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
+  document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+
+  // Ursprungszustand speichern
+  originalGrid = gameGrid.map(row => row.slice());
+
+  if (!isPlayerToTargetReachable()) {
+    // Optional: max. 10 Versuche, sonst lockere die Platzierung!
+    for (let tries = 0; tries < 10; tries++) {
+      generateRandomWorld();
+      if (isPlayerToTargetReachable()) break;
+    }
+    // Optional: Zeige Hinweis, falls nach 10 Versuchen kein Pfad da ist
+    if (!isPlayerToTargetReachable()) {
+      alert("Kein Pfad zwischen Spieler und Ziel möglich! Weniger Symbole wählen.");
+    }
+  }
 }
-
-// Optionales Bottom-Element unten einfügen
-if (w.bottom.length > 0) {
-const x = Math.floor(Math.random() * cols);
-gameGrid[rows - 1][x] = w.bottom[Math.floor(Math.random() * w.bottom.length)];
-}
-
-// Sicherstellen, dass mindestens ein Target vorhanden ist
-let targetCount = gameGrid.flat().filter(c => c === w.target).length;
-if (targetCount === 0) {
-let tx, ty;
-do {
-  tx = Math.floor(Math.random() * cols);
-  ty = Math.floor(Math.random() * rows);
-} while (gameGrid[ty][tx] !== ' ');
-gameGrid[ty][tx] = w.target;
-targetCount = 1;
-}
-initialTargets = targetCount;
-
-// Spielerposition wählen (entweder vorhandenes Player-Symbol oder zufällige freie Zelle)
-const playerPositions = [];
-gameGrid.forEach((row, ry) =>
-row.forEach((c, cx) => {
-  if (c === w.player) playerPositions.push({ x: cx, y: ry });
-})
-);
-let start;
-if (playerPositions.length > 0) {
-start = playerPositions[Math.floor(Math.random() * playerPositions.length)];
-} else {
-let px, py;
-do {
-  px = Math.floor(Math.random() * cols);
-  py = Math.floor(Math.random() * rows);
-} while (gameGrid[py][px] !== ' ');
-start = { x: px, y: py };
-}
-playerX = start.x;
-playerY = start.y;
-gameGrid[playerY][playerX] = w.player;
-
-// Anzeige aktualisieren
-renderGame();
-updateGameInfo();
-document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
-document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
-
-// Ursprungszustand speichern
-originalGrid = gameGrid.map(row => row.slice());
-}
-
 
 function movePlayer(dx,dy) {
   if (!timerStart) { timerStart = Date.now(); timerInterval = setInterval(() => {
