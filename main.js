@@ -44,40 +44,43 @@ function setupMaxSymbolsSlider() {
 
 // BFS-Suche ob die Welt gelöst werden kann
 function isPlayerToTargetReachable() {
-  // Finde Positionen von player und target
   const w = worldData[currentWorld];
-  let start = null, target = null;
+  // Starte direkt bei playerX/playerY
+  const start = { x: playerX, y: playerY };
+  let target = null;
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-      if (gameGrid[y][x] === w.player) start = {x, y};
-      if (gameGrid[y][x] === w.target) target = {x, y};
+      if (gameGrid[y][x] === w.target) {
+        target = { x, y };
+        break;
+      }
     }
+    if (target) break;
   }
-  if (!start || !target) return false;
+  if (!target) return false;
 
   // BFS
   const queue = [start];
-  const visited = Array.from({length: rows}, () => Array(cols).fill(false));
+  const visited = Array.from({ length: rows }, () => Array(cols).fill(false));
   visited[start.y][start.x] = true;
-  const directions = [
-    [0,1], [1,0], [0,-1], [-1,0]
-  ];
+  const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]];
   while (queue.length) {
-    const {x, y} = queue.shift();
+    const { x, y } = queue.shift();
     if (x === target.x && y === target.y) return true;
     for (const [dx, dy] of directions) {
       const nx = x + dx, ny = y + dy;
-      if (nx >= 0 && ny >= 0 && nx < cols && ny < rows &&
-          !visited[ny][nx] &&
-          (gameGrid[ny][nx] === ' ' || gameGrid[ny][nx] === w.target)) {
+      if (
+        nx >= 0 && ny >= 0 && nx < cols && ny < rows &&
+        !visited[ny][nx] &&
+        (gameGrid[ny][nx] === ' ' || gameGrid[ny][nx] === w.target)
+      ) {
         visited[ny][nx] = true;
-        queue.push({x: nx, y: ny});
+        queue.push({ x: nx, y: ny });
       }
     }
   }
   return false;
 }
-
 
 function switchMode() {
   if (mode === 'game') {
