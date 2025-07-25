@@ -1,4 +1,4 @@
-/* common.css – Aufgeräumte und strukturierte Version */
+/* common.css – Mit reparierter Card- und Description-Animation */
 
 /* --- Grundlayout --- */
 body {
@@ -8,7 +8,7 @@ body {
   text-align: center;
   margin: 0;
   padding: 20px;
-  padding-bottom: 4em; /* Platz für Buttons am unteren Rand */
+  padding-bottom: 4em;
 }
 
 /* --- Buttons --- */
@@ -101,11 +101,19 @@ button:hover,
   cursor: pointer;
   min-width: 120px;
   box-shadow: 0 2px 8px #0006;
-  transition: background 0.2s, box-shadow 0.2s;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.4s;
+  transform: scale(1);
+  will-change: transform, box-shadow, background;
 }
 .world-card.selected {
   background: #333;
   box-shadow: 0 4px 16px #0009;
+  transform: scale(1.04);
+}
+.world-card:hover {
+  box-shadow: 0 6px 24px #000a;
+  background: #2b2b2b;
+  transform: scale(1.06);
 }
 .world-title {
   font-size: 1.3em;
@@ -119,11 +127,20 @@ button:hover,
   font-size: 0.95em;
   opacity: 0.85;
   margin-top: 2px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.77,0,0.18,1), opacity 0.25s;
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* Tooltip für Touchgeräte */
-.world-card.show-description .world-description {
-  display: block;
+/* Tooltip für Touchgeräte und Card-Interaktion */
+.world-card.show-description .world-description,
+.world-card.selected .world-description {
+  max-height: 200px;
+  opacity: 1;
+  pointer-events: auto;
+  transition: max-height 0.4s cubic-bezier(0.77,0,0.18,1), opacity 0.3s;
 }
 
 /* --- Symbol-Palette --- */
