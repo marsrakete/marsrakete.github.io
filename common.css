@@ -1,6 +1,4 @@
-/* common.css – Mit reparierter Card- und Description-Animation */
-
-/* --- Grundlayout --- */
+/* common.css – Gemeinsame Basis-Stile für beide Modi */
 body {
   background: #121212;
   color: white;
@@ -8,12 +6,10 @@ body {
   text-align: center;
   margin: 0;
   padding: 20px;
-  padding-bottom: 4em;
+  padding-bottom: 4em; /* Platz für Buttons am unteren Rand */
 }
 
-/* --- Buttons --- */
-button,
-#worldButtons button {
+button {
   margin: 10px 5px;
   padding: 5px 10px;
   cursor: pointer;
@@ -21,65 +17,144 @@ button,
   border: none;
   color: white;
   transition: background 0.2s;
-  font-size: 1em;
 }
 
-button:hover,
-#worldButtons button:hover {
+button:hover {
   background-color: #555;
 }
 
-/* --- Welt-Auswahl Buttons --- */
 #worldButtons {
   margin-bottom: 15px;
 }
 
-/* --- Spieler-/Ziel-Info --- */
+#worldButtons button {
+  margin: 3px;
+  padding: 5px 10px;
+  font-size: 1em;
+  background-color: #333;
+  border: none;
+  color: white;
+}
+
+#worldButtons button:hover {
+  background-color: #555;
+}
+
 #playerTargetInfo {
   margin-bottom: 15px;
   font-size: 1.2em;
 }
 
-/* --- Spielfeld (Game & Editor) --- */
-#gameOutput,
-#editorOutput {
-  width: 64ch;
-  height: 22ch;
-  margin: 10px auto;
-  font-size: 2em;
-  line-height: 2ch;
-  white-space: pre-wrap;
-  overflow: visible;
+#playerTargetInfo span {
+  margin: 0 10px;
+  font-size: 1.8em;
+  font-weight: bold;
 }
 
-/* --- Grid-Struktur --- */
-.row {
-  display: block;
-  white-space: nowrap;
-}
-
-.cell {
+.symbol {
   display: inline-block;
-  width: 2ch;
-  height: 2ch;
-  text-align: center;
-  vertical-align: top;
-}
-
-/* --- Rahmen für Editorzellen --- */
-#editorOutput .cell {
+  padding: 5px;
+  margin: 2px;
   border: 1px solid white;
+  cursor: pointer;
+  font-size: 1.5em;
+  transition: background 0.2s, border-color 0.2s;
 }
 
-/* --- Virtuelle Steuer-Buttons unter dem Spielfeld --- */
+.symbol.selected {
+  background: white;
+  color: black;
+}
+
+.playerSymbol {
+  border-color: limegreen;
+}
+
+.targetSymbol {
+  border-color: red;
+}
+
+.world-chip {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+  margin: 4px;
+}
+
+.world-chip:hover {
+  background: #333;
+  border-color: #666;
+}
+
+input[type="radio"]:checked + .world-chip {
+  background: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+  box-shadow: 0 0 5px #0d6efd88;
+}
+    /* Spielmodus: Raster als CSS-Grid */
+    #gameOutput {
+      display: grid;
+      grid-template-columns: repeat(30, 2ch);
+      grid-template-rows: repeat(10, 2ch);
+      gap: 1px;
+      background: black;
+      padding: 10px;
+      border: 1px solid white;
+      margin: 10px auto;
+      font-size: 2em;
+      line-height: 1.2em;
+      width: fit-content;
+    }
+
+    /* Scale grid font size to fit on narrow screens */
+    @media (max-width: 1920px) {
+      #gameOutput {
+        font-size: calc(100vw / 60);
+      }
+    }
+
+    /* Editormodus: Ausgabefeld mit Zeilenumbrüchen */
+    #editorOutput {
+      width: 64ch;
+      height: 22ch;     /* Höhe angepasst für 10 Zeilen à 2ch */
+      margin: 10px auto;
+      overflow: visible;
+      font-size: 2em;
+      line-height: 2ch;
+      white-space: pre-wrap;
+      /* Kein Rahmen im Editormodus-Ausgabefeld */
+    }
+
+    .row { display: block; white-space: nowrap; }
+    .cell {
+      display: inline-block;
+      width: 2ch;
+      height: 2ch;
+      text-align: center;
+      vertical-align: top;
+      /* Kein Rahmen im Spielmodus */
+    }
+    /* Rahmen in Editorzellen */
+    #editorOutput .cell { border: 1px solid white; }
+
+    /* Steuer-Buttons */
+/* Steuer-Buttons */
 #virtualButtons {
-  position: static;
-  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: rgba(0, 0, 0, 0.8);
   padding: 5px 0;
   display: flex;
   justify-content: center;
-  margin-top: 12px;
+  position: fixed; /* <- jetzt immer sichtbar unten */
   z-index: 1000;
 }
 
@@ -91,59 +166,17 @@ button:hover,
   touch-action: manipulation;
 }
 
-/* --- Welt-Galerie und Chips --- */
-.world-card {
-  display: inline-block;
-  background: #222;
-  border-radius: 10px;
-  padding: 10px 14px;
-  margin: 8px;
-  cursor: pointer;
-  min-width: 120px;
-  box-shadow: 0 2px 8px #0006;
-  transition: background 0.3s, box-shadow 0.3s, transform 0.4s;
-  transform: scale(1);
-  will-change: transform, box-shadow, background;
-}
-.world-card.selected {
-  background: #333;
-  box-shadow: 0 4px 16px #0009;
-  transform: scale(1.04);
-}
-.world-card:hover {
-  box-shadow: 0 6px 24px #000a;
-  background: #2b2b2b;
-  transform: scale(1.06);
-}
-.world-title {
-  font-size: 1.3em;
-  font-weight: bold;
-}
-.world-symbols {
-  margin: 4px 0;
-  font-size: 1.2em;
-}
-.world-description {
-  font-size: 0.95em;
-  opacity: 0.85;
-  margin-top: 2px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.77,0,0.18,1), opacity 0.25s;
-  opacity: 0;
-  pointer-events: none;
+.symbol-empty {
+  opacity: 0.5;
+  font-style: italic;
+  color: #aaa;
 }
 
-/* Tooltip für Touchgeräte und Card-Interaktion */
-.world-card.show-description .world-description,
-.world-card.selected .world-description {
-  max-height: 200px;
+.symbol-empty:hover {
   opacity: 1;
-  pointer-events: auto;
-  transition: max-height 0.4s cubic-bezier(0.77,0,0.18,1), opacity 0.3s;
+  color: white;
 }
 
-/* --- Symbol-Palette --- */
 #symbolPalette {
   display: flex;
   flex-wrap: wrap;
@@ -169,27 +202,83 @@ button:hover,
 }
 
 .symbol-chip.selected {
-  background: #444;
-  border-color: #66f;
+  background: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+  box-shadow: 0 0 5px #0d6efd88;
 }
 
 .symbol-player {
-  color: limegreen;
+  border-color: #00ccff;
+  color: #00ccff;
 }
+
 .symbol-target {
-  color: red;
+  border-color: #ff66cc;
+  color: #ff66cc;
 }
 
-/* Leeres Symbol */
-.symbol-empty {
-  opacity: 0.5;
-  font-style: italic;
+
+/* Grid für Galerie */
+#worldGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.world-card {
+  background: #1e1e1e;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s;
+  position: relative;
+  user-select: none; /* 👈 verhindert Textauswahl */
+}
+
+.world-card:hover {
+  border-color: #555;
+  transform: scale(1.02);
+}
+
+.world-card.selected {
+  border-color: #0d6efd;
+  box-shadow: 0 0 10px #0d6efd88;
+}
+
+.world-title {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.world-symbols {
+  font-size: 1.5em;
+}
+
+/* Tooltip-Text */
+.world-description {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
+  font-size: 0.9em;
+  margin-top: 8px;
   color: #aaa;
-}
-.symbol-empty:hover {
-  opacity: 1;
-  color: white;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
 }
 
-/* --- Sonstiges --- */
-/* (Füge hier weitere individuelle Styles hinzu, falls nötig) */
+/* Sichtbar bei Hover (Desktop) */
+.world-card:hover .world-description,
+.world-card.show-description .world-description {
+  opacity: 1;
+  max-height: 100px;
+  transform: translateY(0);
+  color: #ffd700;
+  pointer-events: auto;
+}
