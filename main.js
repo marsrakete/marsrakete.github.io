@@ -320,7 +320,7 @@ function generateRandomWorld() {
     tries++;
   }
   if (!canPlayerReachAllTargets()) {
-    alert("Nicht alle Ziele sind erreichbar! Bitte weniger Symbole wählen oder das Spielfeld anpassen.");
+    alert("Nicht alle Ziele sind erreichbar! Bitte weniger Symbole wählen oder das Spielfeld neu erzeugen lassen.");
   }
 }
 
