@@ -12,7 +12,8 @@ let maxSymbolsValue = document.getElementById('maxSymbolsValue');
 
 // Berechne die maximale Symbolzahl: (cols * rows) - 25%
 function updateMaxSymbolsSlider() {
-    let max = Math.floor(cols * rows * 0.50);
+    //let max = Math.floor(cols * rows * 0.50);
+    let max = 100;
     maxSymbolsSlider.max = max;
     if (parseInt(maxSymbolsSlider.value) > max) {
         maxSymbolsSlider.value = max;
@@ -25,7 +26,8 @@ function setupMaxSymbolsSlider() {
   const valueDisplay = document.getElementById('maxSymbolsValue');
   // Dynamische Maximalgrenze berechnen:
   function updateMax() {
-    const max = Math.floor(cols * rows * 0.50);
+    //const max = Math.floor(cols * rows * 0.50);
+   let max = 100;
     slider.max = max;
     if (parseInt(slider.value) > max) slider.value = max;
     valueDisplay.textContent = slider.value;
