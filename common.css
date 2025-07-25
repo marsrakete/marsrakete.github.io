@@ -1,4 +1,6 @@
-/* common.css – Gemeinsame Basis-Stile für beide Modi */
+/* common.css – Aufgeräumte und strukturierte Version */
+
+/* --- Grundlayout --- */
 body {
   background: #121212;
   color: white;
@@ -9,7 +11,9 @@ body {
   padding-bottom: 4em; /* Platz für Buttons am unteren Rand */
 }
 
-button {
+/* --- Buttons --- */
+button,
+#worldButtons button {
   margin: 10px 5px;
   padding: 5px 10px;
   cursor: pointer;
@@ -17,146 +21,68 @@ button {
   border: none;
   color: white;
   transition: background 0.2s;
-}
-
-button:hover {
-  background-color: #555;
-}
-
-#worldButtons {
-  margin-bottom: 15px;
-}
-
-#worldButtons button {
-  margin: 3px;
-  padding: 5px 10px;
   font-size: 1em;
-  background-color: #333;
-  border: none;
-  color: white;
 }
 
+button:hover,
 #worldButtons button:hover {
   background-color: #555;
 }
 
+/* --- Welt-Auswahl Buttons --- */
+#worldButtons {
+  margin-bottom: 15px;
+}
+
+/* --- Spieler-/Ziel-Info --- */
 #playerTargetInfo {
   margin-bottom: 15px;
   font-size: 1.2em;
 }
 
-#playerTargetInfo span {
-  margin: 0 10px;
-  font-size: 1.8em;
-  font-weight: bold;
+/* --- Spielfeld (Game & Editor) --- */
+#gameOutput,
+#editorOutput {
+  width: 64ch;
+  height: 22ch;
+  margin: 10px auto;
+  font-size: 2em;
+  line-height: 2ch;
+  white-space: pre-wrap;
+  overflow: visible;
 }
 
-.symbol {
+/* --- Grid-Struktur --- */
+.row {
+  display: block;
+  white-space: nowrap;
+}
+
+.cell {
   display: inline-block;
-  padding: 5px;
-  margin: 2px;
+  width: 2ch;
+  height: 2ch;
+  text-align: center;
+  vertical-align: top;
+}
+
+/* --- Rahmen für Editorzellen --- */
+#editorOutput .cell {
   border: 1px solid white;
-  cursor: pointer;
-  font-size: 1.5em;
-  transition: background 0.2s, border-color 0.2s;
 }
 
-.symbol.selected {
-  background: white;
-  color: black;
-}
-
-.playerSymbol {
-  border-color: limegreen;
-}
-
-.targetSymbol {
-  border-color: red;
-}
-
-.world-chip {
-  display: inline-block;
-  padding: 8px 16px;
-  background: #222;
-  border: 1px solid #444;
-  border-radius: 20px;
-  font-size: 1em;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  user-select: none;
-  margin: 4px;
-}
-
-.world-chip:hover {
-  background: #333;
-  border-color: #666;
-}
-
-input[type="radio"]:checked + .world-chip {
-  background: #0d6efd;
-  color: white;
-  border-color: #0d6efd;
-  box-shadow: 0 0 5px #0d6efd88;
-}
-    /* Spielmodus: Raster als CSS-Grid */
-    #gameOutput {
-      display: grid;
-      grid-template-columns: repeat(30, 2ch);
-      grid-template-rows: repeat(10, 2ch);
-      gap: 1px;
-      background: black;
-      padding: 10px;
-      border: 1px solid white;
-      margin: 10px auto;
-      font-size: 2em;
-      line-height: 1.2em;
-      width: fit-content;
-    }
-
-    /* Scale grid font size to fit on narrow screens */
-    @media (max-width: 1920px) {
-      #gameOutput {
-        font-size: calc(100vw / 60);
-      }
-    }
-
-    /* Editormodus: Ausgabefeld mit Zeilenumbrüchen */
-    #editorOutput {
-      width: 64ch;
-      height: 22ch;     /* Höhe angepasst für 10 Zeilen à 2ch */
-      margin: 10px auto;
-      overflow: visible;
-      font-size: 2em;
-      line-height: 2ch;
-      white-space: pre-wrap;
-      /* Kein Rahmen im Editormodus-Ausgabefeld */
-    }
-
-    .row { display: block; white-space: nowrap; }
-    .cell {
-      display: inline-block;
-      width: 2ch;
-      height: 2ch;
-      text-align: center;
-      vertical-align: top;
-      /* Kein Rahmen im Spielmodus */
-    }
-    /* Rahmen in Editorzellen */
-    #editorOutput .cell { border: 1px solid white; }
-
-    /* Steuer-Buttons */
+/* --- Virtuelle Steuer-Buttons unter dem Spielfeld --- */
 #virtualButtons {
-  position: static;      /* vorher: fixed; jetzt im normalen Flow */
-  width: 100%;           /* volle Breite unter dem Spielfeld */
+  position: static;
+  width: 100%;
   background: rgba(0, 0, 0, 0.8);
   padding: 5px 0;
   display: flex;
   justify-content: center;
-  margin-top: 12px;      /* Abstand zum Spielfeld */
-  z-index: 1000;         /* kann ggf. entfallen */
+  margin-top: 12px;
+  z-index: 1000;
 }
 
-/* Die Button-Stile bleiben erhalten */
 #virtualButtons button {
   width: 3em;
   height: 3em;
@@ -165,17 +91,42 @@ input[type="radio"]:checked + .world-chip {
   touch-action: manipulation;
 }
 
-.symbol-empty {
-  opacity: 0.5;
-  font-style: italic;
-  color: #aaa;
+/* --- Welt-Galerie und Chips --- */
+.world-card {
+  display: inline-block;
+  background: #222;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 8px;
+  cursor: pointer;
+  min-width: 120px;
+  box-shadow: 0 2px 8px #0006;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.world-card.selected {
+  background: #333;
+  box-shadow: 0 4px 16px #0009;
+}
+.world-title {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.world-symbols {
+  margin: 4px 0;
+  font-size: 1.2em;
+}
+.world-description {
+  font-size: 0.95em;
+  opacity: 0.85;
+  margin-top: 2px;
 }
 
-.symbol-empty:hover {
-  opacity: 1;
-  color: white;
+/* Tooltip für Touchgeräte */
+.world-card.show-description .world-description {
+  display: block;
 }
 
+/* --- Symbol-Palette --- */
 #symbolPalette {
   display: flex;
   flex-wrap: wrap;
@@ -201,84 +152,27 @@ input[type="radio"]:checked + .world-chip {
 }
 
 .symbol-chip.selected {
-  background: #0d6efd;
-  color: white;
-  border-color: #0d6efd;
-  box-shadow: 0 0 5px #0d6efd88;
+  background: #444;
+  border-color: #66f;
 }
 
 .symbol-player {
-  border-color: #00ccff;
-  color: #00ccff;
+  color: limegreen;
 }
-
 .symbol-target {
-  border-color: #ff66cc;
-  color: #ff66cc;
+  color: red;
 }
 
-
-/* Grid für Galerie */
-#worldGallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.world-card {
-  background: #1e1e1e;
-  border: 2px solid #333;
-  border-radius: 10px;
-  padding: 10px;
-  cursor: pointer;
-  text-align: center;
-  transition: 0.2s;
-  position: relative;
-  user-select: none; /* 👈 verhindert Textauswahl */
-}
-
-.world-card:hover {
-  border-color: #555;
-  transform: scale(1.02);
-}
-
-.world-card.selected {
-  border-color: #0d6efd;
-  box-shadow: 0 0 10px #0d6efd88;
-}
-
-.world-title {
-  font-size: 1em;
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.world-symbols {
-  font-size: 1.5em;
-}
-
-/* Tooltip-Text */
-.world-description {
-  opacity: 0;
-  max-height: 0;
-  transform: translateY(8px);
-  transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
-  font-size: 0.9em;
-  margin-top: 8px;
+/* Leeres Symbol */
+.symbol-empty {
+  opacity: 0.5;
+  font-style: italic;
   color: #aaa;
-  overflow: hidden;
-  pointer-events: none;
-  user-select: none;
 }
-
-/* Sichtbar bei Hover (Desktop) */
-.world-card:hover .world-description,
-.world-card.show-description .world-description {
+.symbol-empty:hover {
   opacity: 1;
-  max-height: 100px;
-  transform: translateY(0);
-  color: #ffd700;
-  pointer-events: auto;
+  color: white;
 }
 
+/* --- Sonstiges --- */
+/* (Füge hier weitere individuelle Styles hinzu, falls nötig) */
