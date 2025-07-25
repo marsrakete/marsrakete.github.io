@@ -145,19 +145,18 @@ input[type="radio"]:checked + .world-chip {
     #editorOutput .cell { border: 1px solid white; }
 
     /* Steuer-Buttons */
-/* Steuer-Buttons */
 #virtualButtons {
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: static;      /* vorher: fixed; jetzt im normalen Flow */
+  width: 100%;           /* volle Breite unter dem Spielfeld */
   background: rgba(0, 0, 0, 0.8);
   padding: 5px 0;
   display: flex;
   justify-content: center;
-  position: fixed; /* <- jetzt immer sichtbar unten */
-  z-index: 1000;
+  margin-top: 12px;      /* Abstand zum Spielfeld */
+  z-index: 1000;         /* kann ggf. entfallen */
 }
 
+/* Die Button-Stile bleiben erhalten */
 #virtualButtons button {
   width: 3em;
   height: 3em;
