@@ -1,10 +1,46 @@
-const cols = 30, rows = 10, maxSymbols = 50;
+const cols = 30, rows = 10;
+let maxSymbols = 50;
 let mode = 'game';
 let currentWorld = 'galaxy';
 let gameGrid = [], originalGrid = [], editorGrid = [];
 let playerX = 0, playerY = 0, foundCount = 0, initialTargets = 0;
 let timerStart = null, timerInterval = null;
 let selectedSymbol = '';
+
+let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
+let maxSymbolsValue = document.getElementById('maxSymbolsValue');
+
+// Berechne die maximale Symbolzahl: (cols * rows) - 25%
+function updateMaxSymbolsSlider() {
+    let max = Math.floor(cols * rows * 0.75);
+    maxSymbolsSlider.max = max;
+    if (parseInt(maxSymbolsSlider.value) > max) {
+        maxSymbolsSlider.value = max;
+    }
+    maxSymbolsValue.textContent = maxSymbolsSlider.value;
+}
+
+function setupMaxSymbolsSlider() {
+  const slider = document.getElementById('maxSymbolsSlider');
+  const valueDisplay = document.getElementById('maxSymbolsValue');
+  // Dynamische Maximalgrenze berechnen:
+  function updateMax() {
+    const max = Math.floor(cols * rows * 0.75);
+    slider.max = max;
+    if (parseInt(slider.value) > max) slider.value = max;
+    valueDisplay.textContent = slider.value;
+    maxSymbols = parseInt(slider.value);
+  }
+  updateMax();
+
+  slider.addEventListener('input', function() {
+    maxSymbols = parseInt(this.value);
+    valueDisplay.textContent = this.value;
+    generateRandomWorld(); // Welt neu berechnen!
+  });
+
+  // Falls cols/rows dynamisch geändert werden, muss updateMax erneut aufgerufen werden!
+}
 
 function switchMode() {
   if (mode === 'game') {
@@ -457,5 +493,7 @@ window.addEventListener('load', async ()=>{
     document.getElementById('copyGameGraphic').style.display = 'inline-block';
   }
   updateZoom(document.getElementById("zoomSlider").value);
+  setupMaxSymbolsSlider();
+  updateMaxSymbolsSlider();
 });
 
