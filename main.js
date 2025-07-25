@@ -43,30 +43,30 @@ function setupMaxSymbolsSlider() {
 }
 
 // BFS-Suche ob die Welt gelöst werden kann
-function isPlayerToTargetReachable() {
+function canPlayerReachAllTargets() {
   const w = worldData[currentWorld];
-  // Starte direkt bei playerX/playerY
+  // Spielerposition über playerX, playerY
   const start = { x: playerX, y: playerY };
-  let target = null;
+
+  // Finde alle Ziel-Positionen
+  const targets = [];
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (gameGrid[y][x] === w.target) {
-        target = { x, y };
-        break;
+        targets.push({ x, y });
       }
     }
-    if (target) break;
   }
-  if (!target) return false;
+  if (targets.length === 0) return false;
 
-  // BFS
-  const queue = [start];
+  // BFS vom Spieler: alle erreichbaren Felder markieren
   const visited = Array.from({ length: rows }, () => Array(cols).fill(false));
+  const queue = [start];
   visited[start.y][start.x] = true;
   const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+
   while (queue.length) {
     const { x, y } = queue.shift();
-    if (x === target.x && y === target.y) return true;
     for (const [dx, dy] of directions) {
       const nx = x + dx, ny = y + dy;
       if (
@@ -79,7 +79,12 @@ function isPlayerToTargetReachable() {
       }
     }
   }
-  return false;
+
+  // Prüfe, ob alle Ziele erreichbar sind
+  for (const t of targets) {
+    if (!visited[t.y][t.x]) return false;
+  }
+  return true;
 }
 
 function switchMode() {
