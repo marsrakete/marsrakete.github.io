@@ -310,16 +310,15 @@ function generateRandomWorld() {
   // Ursprungszustand speichern
   originalGrid = gameGrid.map(row => row.slice());
 
-  if (!isPlayerToTargetReachable()) {
-    // Optional: max. 10 Versuche, sonst lockere die Platzierung!
-    for (let tries = 0; tries < 10; tries++) {
-      generateRandomWorld();
-      if (isPlayerToTargetReachable()) break;
-    }
-    // Optional: Zeige Hinweis, falls nach 10 Versuchen kein Pfad da ist
-    if (!isPlayerToTargetReachable()) {
-      alert("Kein Pfad zwischen Spieler und Ziel möglich! Weniger Symbole wählen.");
-    }
+  let tries = 0;
+  while (tries < 10 && !canPlayerReachAllTargets()) {
+    // Welt neu generieren, falls nicht alle Ziele erreichbar
+    // (Achtung: Endlosschleife vermeiden, max. 10 Versuche)
+    // Dein existierender Generierungscode hier...
+    tries++;
+  }
+  if (!canPlayerReachAllTargets()) {
+    alert("Nicht alle Ziele sind erreichbar! Bitte weniger Symbole wählen oder das Spielfeld anpassen.");
   }
 }
 
