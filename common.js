@@ -1,30 +1,33 @@
 // common.js
 
+// Zentralen AudioContext einmalig erzeugen
+const globalAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
 // Gemeinsame Sound-Funktionen
 function playPewSound() {
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = ctx.createOscillator();
-  const gain = ctx.createGain();
+  if (!globalAudioCtx) return;
+  const oscillator = globalAudioCtx.createOscillator();
+  const gain = globalAudioCtx.createGain();
   oscillator.type = "square";
-  oscillator.frequency.setValueAtTime(440, ctx.currentTime);
+  oscillator.frequency.setValueAtTime(440, globalAudioCtx.currentTime);
   oscillator.connect(gain);
-  gain.connect(ctx.destination);
+  gain.connect(globalAudioCtx.destination);
   oscillator.start();
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
-  oscillator.stop(ctx.currentTime + 0.2);
+  gain.gain.exponentialRampToValueAtTime(0.0001, globalAudioCtx.currentTime + 0.2);
+  oscillator.stop(globalAudioCtx.currentTime + 0.2);
 }
 
 function playPowSound() {
-  const ctx = new (window.AudioContext || window.webkitAudioContext)();
-  const oscillator = ctx.createOscillator();
-  const gain = ctx.createGain();
+  if (!globalAudioCtx) return;
+  const oscillator = globalAudioCtx.createOscillator();
+  const gain = globalAudioCtx.createGain();
   oscillator.type = "sawtooth";
-  oscillator.frequency.setValueAtTime(200, ctx.currentTime);
+  oscillator.frequency.setValueAtTime(200, globalAudioCtx.currentTime);
   oscillator.connect(gain);
-  gain.connect(ctx.destination);
+  gain.connect(globalAudioCtx.destination);
   oscillator.start();
-  gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.2);
-  oscillator.stop(ctx.currentTime + 0.2);
+  gain.gain.exponentialRampToValueAtTime(0.0001, globalAudioCtx.currentTime + 0.2);
+  oscillator.stop(globalAudioCtx.currentTime + 0.2);
 }
 
 // Funktion zum Erzeugen eines leeren Rasters
