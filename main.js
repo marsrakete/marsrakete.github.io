@@ -502,6 +502,7 @@ function populateWorldButtonsEditor() {
     input.addEventListener('change', () => {
       currentWorld = name;
       updateGameInfo();
+      populateSymbolPalette();
       generateRandomWorld();
       // Optional: visuelles Highlight aktualisieren (siehe CSS)
     });
