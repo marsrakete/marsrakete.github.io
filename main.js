@@ -92,12 +92,12 @@ function canPlayerReachAllTargets() {
 function switchMode() {
   const gameContainer = document.getElementById('gameContainer');
   const editorContainer = document.getElementById('editorContainer');
-  const toggleBtn = document.getElementById('toggleModeBtn');
+  const toggleBtn = document.getElementById('toggleMode');
   const w = worldData[currentWorld];
   const isEditorVisible = window.getComputedStyle(editorContainer).display !== "none";
 
   if (!isEditorVisible) {
-    // Wechsel ZUM Editor
+    // Wechsel ZUM Editor: aktuelles Spiel ins Editor-Grid übernehmen
     editorGrid = gameGrid.map(row => row.slice());
     renderEditor();
     gameContainer.style.display = "none";
@@ -106,11 +106,12 @@ function switchMode() {
     return;
   }
 
-  // Wechsel ZUM Spiel
+  // Wechsel ZUM Spiel: Vorher Editor-Welt prüfen
   if (!canPlayerReachAllTargets(editorGrid, w.player, w.target)) {
     alert("Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt im Editor an.");
     return;
   }
+  // Editor-Welt übernehmen
   gameGrid = editorGrid.map(row => row.slice());
   renderGame();
   gameContainer.style.display = "";
