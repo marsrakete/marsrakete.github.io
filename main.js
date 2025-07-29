@@ -117,7 +117,7 @@ function switchMode() {
 
   // Wechsel ZUM Spiel: Vorher Editor-Welt prüfen
   if (!canPlayerReachAllTargets(editorGrid, w.player, w.target)) {
-    alert("Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt im Editor an.");
+    alert("Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt im Editor an. Vielleicht fehlen Spieler- oder Ziel-Symbole.");
     return;
   }
   // Editor-Welt übernehmen
@@ -343,7 +343,7 @@ function generateRandomWorld() {
     }
     // Optional: Zeige Hinweis, falls nach 10 Versuchen kein Pfad da ist
     if (!canPlayerReachAllTargets()) {
-      alert("Kein Pfad zwischen Spieler und Ziel möglich! Weniger Symbole wählen oder Welt nochmal erzeugen.");
+      alert("Kein Pfad zwischen Spieler und Ziel möglich! Weniger Symbole wählen oder Welt nochmal erzeugen. Vielleicht fehlen Spieler- oder Ziel-Symbole.");
     }
   }
 }
@@ -431,7 +431,7 @@ document.getElementById('generateEditorAltText').addEventListener('click', ()=>{
 document.getElementById('applyToGame')?.addEventListener('click', () => {
   const w = worldData[currentWorld];
   if (!canPlayerReachAllTargets(editorGrid, w.player, w.target)) {
-    alert("Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt an.");
+    alert("Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt an. Vielleicht fehlen Spieler- oder Ziel-Symbole.");
     return;
   }
   gameGrid = editorGrid.map(r => r.slice());
