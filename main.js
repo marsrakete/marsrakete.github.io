@@ -92,6 +92,7 @@ function canPlayerReachAllTargets() {
 function switchMode() {
   const gameContainer = document.getElementById('gameContainer');
   const editorContainer = document.getElementById('editorContainer');
+  const toggleBtn = document.getElementById('toggleModeBtn');
   const w = worldData[currentWorld];
   const isEditorVisible = window.getComputedStyle(editorContainer).display !== "none";
 
@@ -101,6 +102,7 @@ function switchMode() {
     renderEditor();
     gameContainer.style.display = "none";
     editorContainer.style.display = "";
+    if (toggleBtn) toggleBtn.textContent = "Zum Spiel";
     return;
   }
 
@@ -113,6 +115,7 @@ function switchMode() {
   renderGame();
   gameContainer.style.display = "";
   editorContainer.style.display = "none";
+  if (toggleBtn) toggleBtn.textContent = "Zum Editor";
 }
 document.getElementById('toggleMode').addEventListener('click', switchMode);
 
