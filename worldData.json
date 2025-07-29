@@ -2477,5 +2477,54 @@
 		],
 		"player": "👨‍🍳",
 		"target": "☕"
+	},
+	"vegetables": {
+		"title": "Gemüsewelt",
+		"description": "Eine vitaminreiche Welt voller knackigem Gemüse, von Karotten bis Brokkoli. Perfekt für alle Gartenfreunde und Ernährungsbewussten",
+		"symbols": [
+			"🥕",
+			"🌽",
+			"🍅",
+			"🥒",
+			"🧄",
+			"🧅",
+			"🥬",
+			"🥦",
+			"🍆"
+		],
+		"rare": [
+			"🥗",
+			"🫛",
+			"🫑",
+			"🫘"
+		],
+		"bottom": [],
+		"player": "👨‍🌾",
+		"target": "🥕"
+	},
+	"fruits": {
+		"symbols": [
+			"🍎",
+			"🍌",
+			"🍇",
+			"🍉",
+			"🍓",
+			"🍍",
+			"🥭",
+			"🍊",
+			"🍑",
+			"🍒",
+			"🍐"
+		],
+		"rare": [
+			"🫐",
+			"🍈",
+			"🍏"
+		],
+		"bottom": [],
+		"player": "🧺",
+		"target": "🍓",
+		"title": "Obstwelt",
+		"description": "Eine fruchtige Welt voller süßer Leckereien – Äpfel, Erdbeeren, Bananen und vieles mehr. Saftig, bunt und voller Vitamine"
 	}
 }
