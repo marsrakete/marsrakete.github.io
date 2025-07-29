@@ -45,39 +45,48 @@ function setupMaxSymbolsSlider() {
 }
 
 // BFS-Suche ob die Welt gelöst werden kann
-function canPlayerReachAllTargets() {
+// Überladene Funktion: grid, playerSymbol, targetSymbol als Parameter
+function canPlayerReachAllTargets(grid = gameGrid, playerSymbol, targetSymbol) {
+  // Fallback auf aktuelle Welt, falls Symbole nicht übergeben werden
   const w = worldData[currentWorld];
-  // Spielerposition über playerX, playerY
-  const start = { x: playerX, y: playerY };
+  playerSymbol = playerSymbol || w.player;
+  targetSymbol = targetSymbol || w.target;
 
-  // Finde alle Ziel-Positionen
+  // Spielerposition suchen
+  let start = null;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (grid[y][x] === playerSymbol) start = {x, y};
+    }
+  }
+  if (!start) return false; // kein Spieler gefunden
+
+  // Ziele suchen
   const targets = [];
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-      if (gameGrid[y][x] === w.target) {
-        targets.push({ x, y });
-      }
+      if (grid[y][x] === targetSymbol) targets.push({x, y});
     }
   }
   if (targets.length === 0) return false;
 
-  // BFS vom Spieler: alle erreichbaren Felder markieren
-  const visited = Array.from({ length: rows }, () => Array(cols).fill(false));
+  // BFS
+  const visited = Array.from({length: rows}, () => Array(cols).fill(false));
   const queue = [start];
   visited[start.y][start.x] = true;
-  const directions = [[0, 1], [1, 0], [0, -1], [-1, 0]];
+  const directions = [[0,1],[1,0],[0,-1],[-1,0]];
 
   while (queue.length) {
-    const { x, y } = queue.shift();
+    const {x, y} = queue.shift();
     for (const [dx, dy] of directions) {
       const nx = x + dx, ny = y + dy;
       if (
         nx >= 0 && ny >= 0 && nx < cols && ny < rows &&
         !visited[ny][nx] &&
-        (gameGrid[ny][nx] === ' ' || gameGrid[ny][nx] === w.target)
+        (grid[ny][nx] === ' ' || grid[ny][nx] === targetSymbol)
       ) {
         visited[ny][nx] = true;
-        queue.push({ x: nx, y: ny });
+        queue.push({x: nx, y: ny});
       }
     }
   }
