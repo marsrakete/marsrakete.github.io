@@ -101,7 +101,6 @@ function canPlayerReachAllTargets(grid = gameGrid, playerSymbol, targetSymbol) {
 function switchMode() {
   const gameContainer = document.getElementById('gameContainer');
   const editorContainer = document.getElementById('editorContainer');
-  const toggleBtn = document.getElementById('toggleMode');
   const w = worldData[currentWorld];
   const isEditorVisible = window.getComputedStyle(editorContainer).display !== "none";
 
@@ -113,7 +112,6 @@ function switchMode() {
     populateSymbolPalette();
     gameContainer.style.display = "none";
     editorContainer.style.display = "";
-    if (toggleBtn) toggleBtn.textContent = "Zum Spiel";
     return;
   }
 
@@ -129,9 +127,9 @@ function switchMode() {
   populateSymbolPalette();
   gameContainer.style.display = "";
   editorContainer.style.display = "none";
-  if (toggleBtn) toggleBtn.textContent = "Zum Editor";
 }
-document.getElementById('toggleMode').addEventListener('click', switchMode);
+document.getElementById('toggleModeGame').addEventListener('click', switchMode);
+document.getElementById('toggleModeEditor').addEventListener('click', switchMode);
 
 window.addEventListener('keydown', e => {
   if (mode !== 'game') return;
