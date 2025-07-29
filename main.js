@@ -416,8 +416,8 @@ document.getElementById('applyToGame')?.addEventListener('click', () => {
   foundCount = 0;
   timerStart = null;
   clearInterval(timerInterval);
-  if (getElem('foundCount')) getElem('foundCount').innerText = 'Gefundene Ziele: 0';
-  if (getElem('timerDisplay')) getElem('timerDisplay').innerText = 'Zeit: 0 s';
+  if (document.getElementById('foundCount')) document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
+  if (document.getElementById('timerDisplay')) document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
   renderGame();
   switchMode();
 });
