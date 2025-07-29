@@ -109,6 +109,8 @@ function switchMode() {
     // Wechsel ZUM Editor: aktuelles Spiel ins Editor-Grid übernehmen
     editorGrid = gameGrid.map(row => row.slice());
     renderEditor();
+    updatePlayerTargetInfo();
+    populateSymbolPalette();
     gameContainer.style.display = "none";
     editorContainer.style.display = "";
     if (toggleBtn) toggleBtn.textContent = "Zum Spiel";
@@ -123,6 +125,8 @@ function switchMode() {
   // Editor-Welt übernehmen
   gameGrid = editorGrid.map(row => row.slice());
   renderGame();
+  updatePlayerTargetInfo();
+  populateSymbolPalette();
   gameContainer.style.display = "";
   editorContainer.style.display = "none";
   if (toggleBtn) toggleBtn.textContent = "Zum Editor";
