@@ -397,13 +397,29 @@ function generateRandomEditor() {
   editorGrid = originalGrid.map(r=>r.slice());
   renderEditor();
 }
+
 document.getElementById('newEditorRandom').addEventListener('click', generateRandomEditor);
 document.getElementById('generateEditorAltText').addEventListener('click', ()=>{
-  const w=worldData[currentWorld]; const txt=`Alternativtext: Diese ${w.description} Welt im Editor (${rows}x${cols}).`;
-  navigator.clipboard.writeText(txt).then(()=>alert('ALT Text kopiert!')); });
-document.getElementById('applyToGame').addEventListener('click', ()=>{
-  gameGrid = editorGrid.map(r=>r.slice()); initialTargets = gameGrid.flat().filter(c=>c===worldData[currentWorld].target).length; foundCount=0; timerStart=null; clearInterval(timerInterval);
-  document.getElementById('foundCount').innerText='Gefundene Ziele: 0'; document.getElementById('timerDisplay').innerText='Zeit: 0 s'; renderGame(); switchMode();
+    const w=worldData[currentWorld];
+    const txt=`Alternativtext: Diese ${w.description} Welt im Editor (${rows}x${cols}).`;
+    navigator.clipboard.writeText(txt).then(()=>alert('ALT Text kopiert!')); 
+});
+
+document.getElementById('applyToGame')?.addEventListener('click', () => {
+  const w = worldData[currentWorld];
+  if (!canPlayerReachAllTargets(editorGrid, w.player, w.target)) {
+    alert("Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt an.");
+    return;
+  }
+  gameGrid = editorGrid.map(r => r.slice());
+  initialTargets = gameGrid.flat().filter(c => c === w.target).length;
+  foundCount = 0;
+  timerStart = null;
+  clearInterval(timerInterval);
+  if (getElem('foundCount')) getElem('foundCount').innerText = 'Gefundene Ziele: 0';
+  if (getElem('timerDisplay')) getElem('timerDisplay').innerText = 'Zeit: 0 s';
+  renderGame();
+  switchMode();
 });
 
 document.getElementById('copyEditorGraphic').addEventListener('click', () => {
