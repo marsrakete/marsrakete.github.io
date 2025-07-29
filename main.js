@@ -479,7 +479,7 @@ document.getElementById('postToBsky').addEventListener('click', () => {
   }
 });
 
-function populateWorldButtonsEditorXXX() {
+function populateWorldButtonsEditor() {
   const container = document.getElementById('worldButtonsEditor');
   container.innerHTML = '';
 
@@ -578,7 +578,7 @@ window.addEventListener('load', async ()=>{
   populateWorldGallery();
   updateGameInfo();
   generateRandomWorld();
-  // populateWorldButtonsEditor();
+  populateWorldButtonsEditor();
   updatePlayerTargetInfo();
   populateSymbolPalette();
   initEditorGrid();
