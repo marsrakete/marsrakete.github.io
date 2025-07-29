@@ -90,8 +90,8 @@ function canPlayerReachAllTargets() {
 }
 
 function switchMode() {
-  const gameContainer = getElem('gameContainer');
-  const editorContainer = getElem('editorContainer');
+  const gameContainer = document.getElementById('gameContainer');
+  const editorContainer = document.getElementById('editorContainer');
   const w = worldData[currentWorld];
 
   if (gameContainer && editorContainer) {
