@@ -90,18 +90,28 @@ function canPlayerReachAllTargets() {
 }
 
 function switchMode() {
-  if (mode === 'game') {
-    mode = 'editor';
-    document.getElementById('gameContainer').style.display = 'none';
-    document.getElementById('editorContainer').style.display = 'block';
-    document.getElementById('toggleMode').innerText = 'Zum Spiel';
-    editorGrid = originalGrid.map(r => r.slice());
-    renderEditor();
-  } else {
-    mode = 'game';
-    document.getElementById('editorContainer').style.display = 'none';
-    document.getElementById('gameContainer').style.display = 'block';
-    document.getElementById('toggleMode').innerText = 'Zum Editor';
+  const gameContainer = getElem('gameContainer');
+  const editorContainer = getElem('editorContainer');
+  const w = worldData[currentWorld];
+
+  if (gameContainer && editorContainer) {
+    // Wechsel ZUM Editor
+    if (editorContainer.style.display === "none" || editorContainer.style.display === "") {
+      // Übernehme das aktuelle Spielfeld in den Editor
+      editorGrid = gameGrid.map(row => row.slice());
+      renderEditor();
+      gameContainer.style.display = "none";
+      editorContainer.style.display = "";
+    } else {
+      // Wechsel zurück zum Spiel
+      // Prüfe Spielbarkeit der Editor-Welt
+      if (!canPlayerReachAllTargets(editorGrid, w.player, w.target)) {
+        alert("Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt im Editor an.");
+        return;
+      }
+      gameContainer.style.display = "";
+      editorContainer.style.display = "none";
+    }
   }
 }
 document.getElementById('toggleMode').addEventListener('click', switchMode);
