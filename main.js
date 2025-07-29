@@ -110,6 +110,7 @@ function switchMode() {
     renderEditor();
     updatePlayerTargetInfo();
     populateSymbolPalette();
+    populateWorldButtonsEditor();
     gameContainer.style.display = "none";
     editorContainer.style.display = "";
     return;
@@ -125,6 +126,7 @@ function switchMode() {
   renderGame();
   updatePlayerTargetInfo();
   populateSymbolPalette();
+  populateWorldButtonsEditor();
   gameContainer.style.display = "";
   editorContainer.style.display = "none";
 }
