@@ -2521,10 +2521,32 @@
 			"🍈",
 			"🍏"
 		],
-		"bottom": [],
+		"bottom": ["🍉"],
 		"player": "🧺",
 		"target": "🍓",
 		"title": "Obstwelt",
 		"description": "Eine fruchtige Welt voller süßer Leckereien – Äpfel, Erdbeeren, Bananen und vieles mehr. Saftig, bunt und voller Vitamine"
-	}
+	},
+	"neanderthal": {
+		"symbols": [
+			"🪨",
+			"🔥",
+			"🦴",
+			"🐗",
+			"🦣",
+			"🛖",
+			"🌄",
+			"👣"
+		],
+		"rare": [
+			"🏺",
+			"🦕",
+			"🧬"
+		],
+		"bottom": ["🦕"],
+		"player": "🧑‍🌾",
+		"target": "🦣",
+		"title": "Neandertaler",
+		"description": "Eine urzeitliche Welt, inspiriert von der Zeit der Neandertaler"
+	}	
 }
