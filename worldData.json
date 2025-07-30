@@ -2548,5 +2548,32 @@
 		"target": "🦣",
 		"title": "Neandertaler",
 		"description": "Eine urzeitliche Welt, inspiriert von der Zeit der Neandertaler"
+	},
+	"spaceOdyssey2001": {
+		"symbols": [
+			"🧑‍🚀",
+			"🚀",
+			"🪐",
+			"🖥️",
+			"🧿",
+			"👶",
+			"🖲️",
+			"🌌",
+			"☄️",
+			"✨"
+		],
+		"rare": [
+			"🤖",
+			"👽"
+		],
+		"bottom": [
+			"🧿",
+			"🪐",
+			"🖥️"
+		],
+		"player": "🧑‍🚀",
+		"target": "🧿",
+		"description": "Eine futuristische Welt voller Monolithen, Raumschiffe, Jupiter, HAL und Menschheitsrätsel.",
+		"title": "2001 Space Odyssey"
 	}	
 }
