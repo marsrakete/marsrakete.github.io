@@ -835,7 +835,7 @@
 		"player": "🚁",
 		"target": "🏥",
 		"description": "Eine städtische Welt voller Helikopterlandeplätze und Flugverkehr.",
-		"title": "Hubschrauberlandeplatz"
+		"title": "Hubschrauber"
 	},
 	"spaceTaxi": {
 		"symbols": [
@@ -862,7 +862,7 @@
 		"player": "🚕",
 		"target": "🪐",
 		"description": "Eine schräge Zukunftswelt, in der Taxis zwischen den Sternen pendeln.",
-		"title": "Weltraumtaxi"
+		"title": "Space Taxi"
 	},
 	"superhero": {
 		"symbols": [
