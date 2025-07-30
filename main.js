@@ -586,6 +586,16 @@ function initEditorGrid() {
     editorGrid.push(rowArr); out.appendChild(line);
   }
 }
+
+function supportsClipboardImage() {
+  // Feature-Detection (Clipboard API & ClipboardItem)
+  const hasClipboard = !!(navigator.clipboard && window.ClipboardItem);
+  // User-Agent-Prüfung für Mobilgeräte
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile|IEMobile|BlackBerry|Opera Mini/i.test(navigator.userAgent);
+  // Nur auf Desktop und wenn Clipboard-API unterstützt wird
+  return hasClipboard && !isMobile;
+}
+
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
   await loadWorldData();
@@ -597,7 +607,7 @@ window.addEventListener('load', async ()=>{
   updatePlayerTargetInfo();
   populateSymbolPalette();
   initEditorGrid();
-  if (navigator.clipboard && window.ClipboardItem) {
+  if (supportsClipboardImage()) {
     document.getElementById('copyEditorGraphic').style.display = 'inline-block';
     document.getElementById('copyGameGraphic').style.display = 'inline-block';
   }
