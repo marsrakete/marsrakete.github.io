@@ -588,12 +588,9 @@ function initEditorGrid() {
 }
 
 function supportsClipboardImage() {
-  // Feature-Detection (Clipboard API & ClipboardItem)
   const hasClipboard = !!(navigator.clipboard && window.ClipboardItem);
-  // User-Agent-Prüfung für Mobilgeräte
-  const isMobile = /Android|iPhone|iPad|iPod|Mobile|IEMobile|BlackBerry|Opera Mini/i.test(navigator.userAgent);
-  // Nur auf Desktop und wenn Clipboard-API unterstützt wird
-  return hasClipboard && !isMobile;
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  return hasClipboard && !isTouchDevice;
 }
 
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
