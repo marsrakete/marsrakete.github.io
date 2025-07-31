@@ -3273,5 +3273,30 @@
 		"target": "🍣",
 		"description": "Tempel, Kirschblüten, Sushi – eine stille, elegante Welt mit klaren Linien.",
 		"title": "Japan"
+	},
+	"greenFuture": {
+		"symbols": [
+			"🌱",
+			"♻️",
+			"🧑‍🌾",
+			"🌿",
+			"🍀",
+			"☀️",
+			"💧",
+			"🪴",
+			"🚲"
+		],
+		"rare": [
+			"🌈",
+			"🕊️",
+			"🪷"
+		],
+		"bottom": [
+			"🌻"
+		],
+		"player": "🌱",
+		"target": "♻️",
+		"description": "Eine friedliche, nachhaltige Welt – finde den Kreislauf, der alles erhält.",
+		"title": "Grüne Zukunft"
 	}
 }
