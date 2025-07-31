@@ -698,6 +698,7 @@ window.addEventListener('load', async ()=>{
     if (supportsClipboardImage()) {
         document.getElementById('copyEditorGraphic').style.display = 'inline-block';
         document.getElementById('copyGameGraphic').style.display = 'inline-block';
+        document.getElementById('swipeHint').innerText = 'Klicke mit der Maus zur Steuerung oder nutze die Pfeiltasten.';
     }
     updateZoom(document.getElementById("zoomSlider").value);
     setupMaxSymbolsSlider();
