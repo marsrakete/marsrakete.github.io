@@ -86,31 +86,28 @@ document.addEventListener('touchend', function(e) {
 }, { passive: false });
 
 // Steuerung für Maus am PC
-let dragStartX = null;
-let dragStartY = null;
-const gameOutput = document.getElementById("gameOutput");
+document.getElementById("gameOutput").addEventListener("mousemove", (e) => {
+  const cells = document.querySelectorAll("#gameOutput .cell");
+  cells.forEach(c => c.classList.remove("hover-target"));
 
-gameOutput.addEventListener("mousedown", (e) => {
-  dragStartX = e.clientX;
-  dragStartY = e.clientY;
-});
+  const rect = e.currentTarget.getBoundingClientRect();
+  const cellSize = e.currentTarget.querySelector(".cell")?.offsetWidth || 0;
+  const mouseX = e.clientX - rect.left;
+  const mouseY = e.clientY - rect.top;
 
-document.addEventListener("mouseup", (e) => {
-  if (dragStartX === null || dragStartY === null) return;
+  const col = Math.floor(mouseX / cellSize);
+  const row = Math.floor(mouseY / cellSize);
 
-  const deltaX = e.clientX - dragStartX;
-  const deltaY = e.clientY - dragStartY;
+  const dx = col - playerX;
+  const dy = row - playerY;
 
-  if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    if (deltaX > 30) movePlayer(1, 0);       // rechts
-    else if (deltaX < -30) movePlayer(-1, 0); // links
-  } else {
-    if (deltaY > 30) movePlayer(0, 1);       // runter
-    else if (deltaY < -30) movePlayer(0, -1); // hoch
+  if ((Math.abs(dx) + Math.abs(dy)) === 1 || (Math.abs(dx) + Math.abs(dy)) === 2) {
+    const index = row * cols + col;
+    const cell = cells[index];
+    if (cell) {
+      cell.classList.add("hover-target");
+    }
   }
-
-  dragStartX = null;
-  dragStartY = null;
 });
 
 
