@@ -85,6 +85,34 @@ document.addEventListener('touchend', function(e) {
   touchInGame = false;
 }, { passive: false });
 
+// Steuerung für Maus am PC
+let dragStartX = null;
+let dragStartY = null;
+const gameOutput = document.getElementById("gameOutput");
+
+gameOutput.addEventListener("mousedown", (e) => {
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+});
+
+document.addEventListener("mouseup", (e) => {
+  if (dragStartX === null || dragStartY === null) return;
+
+  const deltaX = e.clientX - dragStartX;
+  const deltaY = e.clientY - dragStartY;
+
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    if (deltaX > 30) movePlayer(1, 0);       // rechts
+    else if (deltaX < -30) movePlayer(-1, 0); // links
+  } else {
+    if (deltaY > 30) movePlayer(0, 1);       // runter
+    else if (deltaY < -30) movePlayer(0, -1); // hoch
+  }
+
+  dragStartX = null;
+  dragStartY = null;
+});
+
 
 // BFS-Suche ob die Welt gelöst werden kann
 // Überladene Funktion: grid, playerSymbol, targetSymbol als Parameter
@@ -654,6 +682,5 @@ window.addEventListener('load', async ()=>{
     updateZoom(document.getElementById("zoomSlider").value);
     setupMaxSymbolsSlider();
     updateMaxSymbolsSlider();
-    const gameOutput = document.getElementById('gameOutput');
 });
 
