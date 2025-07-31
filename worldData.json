@@ -3298,5 +3298,255 @@
 		"target": "♻️",
 		"description": "Eine friedliche, nachhaltige Welt – finde den Kreislauf, der alles erhält.",
 		"title": "Grüne Zukunft"
+	},
+	"beerenwelt": {
+		"symbols": [
+			"🍓",
+			"🫐",
+			"🍒",
+			"🍇",
+			"🍈",
+			"🍉",
+			"🌿",
+			"🪻",
+			"🍀",
+			"🧺"
+		],
+		"rare": [
+			"🥧",
+			"🧁",
+			"🍯"
+		],
+		"bottom": [
+			"🧺"
+		],
+		"player": "🧺",
+		"target": "🍓",
+		"description": "Eine fruchtige Welt voller saftiger Beeren – pflücke sie, bevor sie verschwinden.",
+		"title": "Beerenwelt"
+	},
+	"pilzwald": {
+		"symbols": [
+			"🍄",
+			"🌲",
+			"🌳",
+			"🌫️",
+			"🍂",
+			"🪵",
+			"🦉",
+			"🐌",
+			"🐞",
+			"🕷️"
+		],
+		"rare": [
+			"🧙",
+			"🪺",
+			"🦊"
+		],
+		"bottom": [
+			"🍄"
+		],
+		"player": "🦔",
+		"target": "🍄",
+		"description": "Ein feuchter Wald voller Pilze, Moose und kleiner Wesen – finde den magischen Pilz.",
+		"title": "Pilzwald"
+	},
+	"gemuesebeet": {
+		"symbols": [
+			"🥕",
+			"🥬",
+			"🥦",
+			"🥒",
+			"🍅",
+			"🌱",
+			"🪴",
+			"🧑‍🌾",
+			"🧄"
+		],
+		"rare": [
+			"🫛",
+			"🫘",
+			"🌽"
+		],
+		"bottom": [
+			"🌱"
+		],
+		"player": "👨‍🌾",
+		"target": "🥕",
+		"description": "Hier wächst alles frisch! Ernte dein Lieblingsgemüse, bevor die Schnecken kommen.",
+		"title": "Gemüsebeet"
+	},
+	"waldfruehling": {
+		"symbols": [
+			"🌷",
+			"🌼",
+			"🌱",
+			"🌸",
+			"🦋",
+			"🐞",
+			"🐇",
+			"🌤️",
+			"🍃",
+			"🌻"
+		],
+		"rare": [
+			"🪺",
+			"🕊️",
+			"🌈"
+		],
+		"bottom": [
+			"🌸"
+		],
+		"player": "🐇",
+		"target": "🌷",
+		"description": "Der Wald erwacht – hüpfe durch Blüten und Falter zur ersten Frühlingsblume.",
+		"title": "Waldfrühling"
+	},
+	"bluetenwelt": {
+		"symbols": [
+			"🌺",
+			"🌼",
+			"🌻",
+			"🌸",
+			"💐",
+			"🌷",
+			"🌹",
+			"🍯",
+			"🐝",
+			"🦋"
+		],
+		"rare": [
+			"🧚",
+			"🧃",
+			"🍓"
+		],
+		"bottom": [
+			"🪴"
+		],
+		"player": "🐝",
+		"target": "🌺",
+		"description": "Eine farbenfrohe Welt für summende Sammler – bestäube die schönste Blüte.",
+		"title": "Blütengarten"
+	},
+	"schleckermaul": {
+		"symbols": [
+			"🍭",
+			"🍬",
+			"🍫",
+			"🍩",
+			"🧁",
+			"🍰",
+			"🍪",
+			"🍦"
+		],
+		"rare": [
+			"🎂",
+			"🍮",
+			"🍨"
+		],
+		"bottom": [
+			"🧃"
+		],
+		"player": "🍭",
+		"target": "🍬",
+		"description": "Eine zuckersüße Welt, in der du dich durch Bonbons und Torten zum Ziel schlemmst.",
+		"title": "Schleckermaul"
+	},
+	"suessmaus": {
+		"symbols": [
+			"🧁",
+			"🍓",
+			"🍫",
+			"🍡",
+			"🍯",
+			"🍩",
+			"🥞",
+			"🍪"
+		],
+		"rare": [
+			"🍰",
+			"🍮",
+			"🍒"
+		],
+		"bottom": [
+			"🍯"
+		],
+		"player": "🐭",
+		"target": "🧁",
+		"description": "Als süße Maus suchst du deinen Lieblingskuchen – aber Vorsicht: Naschfallen!",
+		"title": "Süßmaus"
+	},
+	"eiszeit": {
+		"symbols": [
+			"🍦",
+			"🍨",
+			"🍧",
+			"🧊",
+			"❄️",
+			"🍫",
+			"🍒",
+			"🥶"
+		],
+		"rare": [
+			"🍰",
+			"🧃",
+			"🍩"
+		],
+		"bottom": [
+			"❄️"
+		],
+		"player": "🍦",
+		"target": "🍧",
+		"description": "In dieser frostig-leckeren Welt wartet deine Lieblingseissorte irgendwo im Schneesturm.",
+		"title": "Eiszeit"
+	},
+	"herzhaft": {
+		"symbols": [
+			"🍕",
+			"🍔",
+			"🌭",
+			"🍟",
+			"🌮",
+			"🥓",
+			"🍗",
+			"🥪"
+		],
+		"rare": [
+			"🍝",
+			"🥩",
+			"🥘"
+		],
+		"bottom": [
+			"🥫"
+		],
+		"player": "🍔",
+		"target": "🌮",
+		"description": "Ein Land voller herzhafter Leckereien – finde deinen Snack des Tages!",
+		"title": "Herzhaftland"
+	},
+	"fruehstueck": {
+		"symbols": [
+			"🥐",
+			"🥖",
+			"🍳",
+			"🥞",
+			"🥯",
+			"🍯",
+			"🥣",
+			"🧈",
+			"🫐"
+		],
+		"rare": [
+			"🍓",
+			"🍒",
+			"🍌"
+		],
+		"bottom": [
+			"🧃"
+		],
+		"player": "🥐",
+		"target": "🧃",
+		"description": "Ein duftender Morgen wartet – finde den Saft, der alles aufweckt.",
+		"title": "Frühstückswelt"
 	}
 }
