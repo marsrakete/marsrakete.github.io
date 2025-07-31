@@ -44,6 +44,34 @@ function setupMaxSymbolsSlider() {
   // Falls cols/rows dynamisch geändert werden, muss updateMax erneut aufgerufen werden!
 }
 
+// Swipe-Steuerung für Mobilgeräte
+let touchStartX = 0, touchStartY = 0;
+
+function handleTouchStart(evt) {
+  const touch = evt.changedTouches[0];
+  touchStartX = touch.clientX;
+  touchStartY = touch.clientY;
+}
+
+function handleTouchEnd(evt) {
+  if (mode !== 'game') return;
+  const touch = evt.changedTouches[0];
+  const dx = touch.clientX - touchStartX;
+  const dy = touch.clientY - touchStartY;
+
+  // Mindestbewegung für Swipe
+  const minDist = 30;
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    if (dx > minDist) movePlayer(1, 0);      // Swipe → rechts
+    else if (dx < -minDist) movePlayer(-1, 0); // Swipe → links
+  } else {
+    if (dy > minDist) movePlayer(0, 1);      // Swipe ↓
+    else if (dy < -minDist) movePlayer(0, -1); // Swipe ↑
+  }
+}
+
+
 // BFS-Suche ob die Welt gelöst werden kann
 // Überladene Funktion: grid, playerSymbol, targetSymbol als Parameter
 function canPlayerReachAllTargets(grid = gameGrid, playerSymbol, targetSymbol) {
@@ -595,21 +623,24 @@ function supportsClipboardImage() {
 
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
-  await loadWorldData();
-  //populateWorldButtonsGame();
-  populateWorldGallery();
-  updateGameInfo();
-  generateRandomWorld();
-  populateWorldButtonsEditor();
-  updatePlayerTargetInfo();
-  populateSymbolPalette();
-  initEditorGrid();
-  if (supportsClipboardImage()) {
-    document.getElementById('copyEditorGraphic').style.display = 'inline-block';
-    document.getElementById('copyGameGraphic').style.display = 'inline-block';
-  }
-  updateZoom(document.getElementById("zoomSlider").value);
-  setupMaxSymbolsSlider();
-  updateMaxSymbolsSlider();
+    await loadWorldData();
+    //populateWorldButtonsGame();
+    populateWorldGallery();
+    updateGameInfo();
+    generateRandomWorld();
+    populateWorldButtonsEditor();
+    updatePlayerTargetInfo();
+    populateSymbolPalette();
+    initEditorGrid();
+    if (supportsClipboardImage()) {
+        document.getElementById('copyEditorGraphic').style.display = 'inline-block';
+        document.getElementById('copyGameGraphic').style.display = 'inline-block';
+    }
+    updateZoom(document.getElementById("zoomSlider").value);
+    setupMaxSymbolsSlider();
+    updateMaxSymbolsSlider();
+    const gameOutput = document.getElementById('gameOutput');
+    gameOutput.addEventListener('touchstart', handleTouchStart, {passive: true});
+    gameOutput.addEventListener('touchend', handleTouchEnd, {passive: true});    
 });
 
