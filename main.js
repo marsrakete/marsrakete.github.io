@@ -45,31 +45,45 @@ function setupMaxSymbolsSlider() {
 }
 
 // Swipe-Steuerung für Mobilgeräte
-let touchStartX = 0, touchStartY = 0;
+let touchStartX = null;
+let touchStartY = null;
+let touchInGame = false;
 
-function handleTouchStart(evt) {
-  const touch = evt.changedTouches[0];
-  touchStartX = touch.clientX;
-  touchStartY = touch.clientY;
-}
-
-function handleTouchEnd(evt) {
-  if (mode !== 'game') return;
-  const touch = evt.changedTouches[0];
-  const dx = touch.clientX - touchStartX;
-  const dy = touch.clientY - touchStartY;
-
-  // Mindestbewegung für Swipe
-  const minDist = 30;
-
-  if (Math.abs(dx) > Math.abs(dy)) {
-    if (dx > minDist) movePlayer(1, 0);      // Swipe → rechts
-    else if (dx < -minDist) movePlayer(-1, 0); // Swipe → links
+document.addEventListener('touchstart', function(e) {
+  const target = e.target.closest('#gameOutput');
+  if (target && e.touches.length === 1) {
+    touchInGame = true;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
   } else {
-    if (dy > minDist) movePlayer(0, 1);      // Swipe ↓
-    else if (dy < -minDist) movePlayer(0, -1); // Swipe ↑
+    touchInGame = false;
   }
-}
+}, { passive: false });
+
+document.addEventListener('touchmove', function(e) {
+  if (touchInGame && touchStartX !== null && touchStartY !== null) {
+    e.preventDefault(); // ✅ verhindert Scrollen der Seite
+  }
+}, { passive: false });
+
+document.addEventListener('touchend', function(e) {
+  if (!touchInGame || touchStartX === null || touchStartY === null) return;
+
+  const deltaX = e.changedTouches[0].clientX - touchStartX;
+  const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    if (deltaX > 30) movePlayer(1, 0);
+    else if (deltaX < -30) movePlayer(-1, 0);
+  } else {
+    if (deltaY > 30) movePlayer(0, 1);
+    else if (deltaY < -30) movePlayer(0, -1);
+  }
+
+  touchStartX = null;
+  touchStartY = null;
+  touchInGame = false;
+}, { passive: false });
 
 
 // BFS-Suche ob die Welt gelöst werden kann
