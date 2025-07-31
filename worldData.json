@@ -2978,5 +2978,300 @@
 		"target": "🧸",
 		"description": "Ein Ort zum Ankommen. Finde den Teddybär, der alles wieder gut macht.",
 		"title": "Geborgenheit"
+	},
+	"germany": {
+		"symbols": [
+			"🍺",
+			"🥨",
+			"🎶",
+			"🏰",
+			"🌲",
+			"🚗",
+			"🎡",
+			"📚",
+			"🧺",
+			"🌧️"
+		],
+		"rare": [
+			"👨‍🔧",
+			"🎓",
+			"🛠️"
+		],
+		"bottom": [
+			"🎠"
+		],
+		"player": "🚶",
+		"target": "🍺",
+		"description": "Eine Welt der Wälder, Fachwerkhäuser und Biergärten – entdecke, was typisch deutsch ist.",
+		"title": "Deutschland"
+	},
+	"berlin": {
+		"symbols": [
+			"🕊️",
+			"🧑‍🎤",
+			"🚇",
+			"🎨",
+			"🍛",
+			"🎧",
+			"🏙️",
+			"🪧",
+			"🌈",
+			"🎭"
+		],
+		"rare": [
+			"📢",
+			"🧱",
+			"🛹"
+		],
+		"bottom": [
+			"🚦"
+		],
+		"player": "🧑‍🎤",
+		"target": "🍛",
+		"description": "Zwischen Club und Currywurst – erkunde die rebellische, kreative Hauptstadt.",
+		"title": "Berlin"
+	},
+	"cologne": {
+		"symbols": [
+			"🎭",
+			"🍻",
+			"🎺",
+			"🕍",
+			"🚤",
+			"🎉",
+			"🌉",
+			"🧼",
+			"🤡"
+		],
+		"rare": [
+			"👑",
+			"📯",
+			"🎊"
+		],
+		"bottom": [
+			"🛶"
+		],
+		"player": "🤡",
+		"target": "🕍",
+		"description": "Karneval, Dom und Kölsch – eine feierfreudige Stadt am Rhein mit Herz.",
+		"title": "Köln"
+	},
+	"mexico": {
+		"symbols": [
+			"🌮",
+			"🎺",
+			"🪅",
+			"🪇",
+			"🪗",
+			"🧂",
+			"🌵",
+			"💀",
+			"🎉",
+			"🫔"
+		],
+		"rare": [
+			"🧣",
+			"🧿",
+			"🧤"
+		],
+		"bottom": [
+			"🪅"
+		],
+		"player": "🎺",
+		"target": "🌮",
+		"description": "Eine farbenfrohe Welt aus Mariachi, Straßenfesten und scharfem Essen.",
+		"title": "Mexiko"
+	},
+	"paris": {
+		"symbols": [
+			"🥐",
+			"🍷",
+			"🎨",
+			"🖼️",
+			"🎭",
+			"🗼",
+			"☕",
+			"👗",
+			"💋"
+		],
+		"rare": [
+			"💄",
+			"🎻",
+			"🎶"
+		],
+		"bottom": [
+			"🪑"
+		],
+		"player": "🧑‍🎨",
+		"target": "🗼",
+		"description": "Ein Spaziergang durch Boulevards, Croissants und Kunstwerke – finde den Eiffelturm!",
+		"title": "Paris"
+	},
+	"rom": {
+		"symbols": [
+			"🏛️",
+			"🏺",
+			"⛲",
+			"🍝",
+			"🎭",
+			"⛪",
+			"🐴",
+			"🍕"
+		],
+		"rare": [
+			"🧔‍♂️",
+			"🍷",
+			"🎬"
+		],
+		"bottom": [
+			"🪑"
+		],
+		"player": "🏛️",
+		"target": "🍕",
+		"description": "In der Ewigen Stadt suchst du Pizza zwischen Säulen, Vespa und Vino.",
+		"title": "Rom"
+	},
+	"china": {
+		"symbols": [
+			"🐉",
+			"🧧",
+			"🏮",
+			"🍜",
+			"🐼",
+			"🏯",
+			"🎎",
+			"🥠"
+		],
+		"rare": [
+			"🧪",
+			"🀄",
+			"🎐"
+		],
+		"bottom": [
+			"🧧"
+		],
+		"player": "🐉",
+		"target": "🥡",
+		"description": "Eine Welt voller Traditionen, Rätsel, Drachen – und dampfender Dumplings.",
+		"title": "China"
+	},
+	"indien": {
+		"symbols": [
+			"🕌",
+			"🪔",
+			"🥘",
+			"🛕",
+			"🎉",
+			"🪭",
+			"🧘‍♀️",
+			"🪷"
+		],
+		"rare": [
+			"🐘",
+			"🎨",
+			"💫"
+		],
+		"bottom": [
+			"🎆"
+		],
+		"player": "🕌",
+		"target": "🪷",
+		"description": "Zwischen Tempeln und Märkten findest du das Heilige im Trubel.",
+		"title": "Indien"
+	},
+	"rio": {
+		"symbols": [
+			"🎭",
+			"🌞",
+			"🥁",
+			"🏖️",
+			"🕺",
+			"🦜",
+			"🍹"
+		],
+		"rare": [
+			"🎇",
+			"🎊",
+			"🎶"
+		],
+		"bottom": [
+			"🪘"
+		],
+		"player": "🥁",
+		"target": "🎉",
+		"description": "Karneval, Küste, Klang – tanze durch eine Welt voller Farben und Rhythmus.",
+		"title": "Rio de Janeiro"
+	},
+	"kairo": {
+		"symbols": [
+			"🐫",
+			"🏜️",
+			"🌞",
+			"🏺",
+			"🏛️",
+			"⛲",
+			"⌛",
+			"🪔"
+		],
+		"rare": [
+			"🏰",
+			"🐍",
+			"🔱"
+		],
+		"bottom": [
+			"⛏️"
+		],
+		"player": "🐫",
+		"target": "🏺",
+		"description": "Staubige Gassen, Pyramidengeflüster und ein Schatz tief im Sand.",
+		"title": "Kairo"
+	},
+	"newyork": {
+		"symbols": [
+			"🗽",
+			"🏙️",
+			"🚖",
+			"🏢",
+			"🍎",
+			"🎷",
+			"🎭",
+			"💼"
+		],
+		"rare": [
+			"📰",
+			"💵",
+			"🌆"
+		],
+		"bottom": [
+			"🚇"
+		],
+		"player": "🗽",
+		"target": "🗞️",
+		"description": "In der Stadt, die nie schläft, kämpfst du dich durch Lärm und Licht zum Ziel.",
+		"title": "New York"
+	},
+	"japan": {
+		"symbols": [
+			"🏯",
+			"🎴",
+			"🍜",
+			"🗾",
+			"🍵",
+			"🎌",
+			"🥢",
+			"🌸"
+		],
+		"rare": [
+			"🥷",
+			"👘",
+			"⛩️"
+		],
+		"bottom": [
+			"🍱"
+		],
+		"player": "🎌",
+		"target": "🍣",
+		"description": "Tempel, Kirschblüten, Sushi – eine stille, elegante Welt mit klaren Linien.",
+		"title": "Japan"
 	}
 }
