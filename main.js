@@ -86,6 +86,29 @@ document.addEventListener('touchend', function(e) {
 }, { passive: false });
 
 // Steuerung für Maus am PC
+document.getElementById("gameOutput").addEventListener("click", (e) => {
+  const cellSize = e.currentTarget.querySelector(".cell")?.offsetWidth || 0;
+  const rect = e.currentTarget.getBoundingClientRect();
+  const clickX = e.clientX - rect.left;
+  const clickY = e.clientY - rect.top;
+
+  const col = Math.floor(clickX / cellSize);
+  const row = Math.floor(clickY / cellSize);
+
+  const dx = col - playerX;
+  const dy = row - playerY;
+
+  if (Math.abs(dx) + Math.abs(dy) === 1 || Math.abs(dx) + Math.abs(dy) === 2) {
+    if (Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) movePlayer(-1, 0);
+      else if (dx > 0) movePlayer(1, 0);
+    } else {
+      if (dy < 0) movePlayer(0, -1);
+      else if (dy > 0) movePlayer(0, 1);
+    }
+  }
+});
+// Anzeige Maus-Hover berechnen
 document.getElementById("gameOutput").addEventListener("mousemove", (e) => {
   const cells = document.querySelectorAll("#gameOutput .cell");
   cells.forEach(c => c.classList.remove("hover-target"));
