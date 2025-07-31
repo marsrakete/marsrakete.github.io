@@ -655,7 +655,5 @@ window.addEventListener('load', async ()=>{
     setupMaxSymbolsSlider();
     updateMaxSymbolsSlider();
     const gameOutput = document.getElementById('gameOutput');
-    gameOutput.addEventListener('touchstart', handleTouchStart, {passive: true});
-    gameOutput.addEventListener('touchend', handleTouchEnd, {passive: true});    
 });
 
