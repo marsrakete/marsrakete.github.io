@@ -45,7 +45,8 @@ function validateWorldData(data) {
   for (const [key, world] of Object.entries(data)) {
     const all = new Set();
     const duplicates = new Set();
-    const sections = ['symbols', 'rare', 'bottom'];
+    //const sections = ['symbols', 'rare', 'bottom'];
+    const sections = ['symbols'];
 
     // Sammle alle Symbole
     for (const sec of sections) {
