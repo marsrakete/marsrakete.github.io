@@ -624,6 +624,7 @@ function supportsClipboardImage() {
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
     await loadWorldData();
+    validateWorldData(worldData);
     //populateWorldButtonsGame();
     populateWorldGallery();
     updateGameInfo();
