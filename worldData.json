@@ -3428,30 +3428,6 @@
 		"description": "Eine farbenfrohe Welt für summende Sammler – bestäube die schönste Blüte.",
 		"title": "Blütengarten"
 	},
-	"schleckermaul": {
-		"symbols": [
-			"🍭",
-			"🍬",
-			"🍫",
-			"🍩",
-			"🧁",
-			"🍰",
-			"🍪",
-			"🍦"
-		],
-		"rare": [
-			"🎂",
-			"🍮",
-			"🍨"
-		],
-		"bottom": [
-			"🧃"
-		],
-		"player": "🍭",
-		"target": "🍬",
-		"description": "Eine zuckersüße Welt, in der du dich durch Bonbons und Torten zum Ziel schlemmst.",
-		"title": "Schleckermaul"
-	},
 	"suessmaus": {
 		"symbols": [
 			"🧁",
