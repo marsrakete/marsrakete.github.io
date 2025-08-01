@@ -273,6 +273,12 @@ function populateWorldGallery() {
     };
 
     container.appendChild(card);
+    // --- Anzahl der Welten anzeigen ---
+    const countDiv = document.getElementById('worldCount');
+    if (countDiv) {
+        const n = Object.keys(worldData).length;
+        countDiv.textContent = `${n} Welten verfügbar`;
+    }      
   }
 
   // Tap außerhalb -> Tooltip ausblenden
