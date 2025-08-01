@@ -505,7 +505,7 @@ document.getElementById('copyGameText').addEventListener('click', ()=>{
 document.getElementById('generateGamePermalink').addEventListener('click', () => {
   const url = transferToPage(currentWorld, gameGrid);
   navigator.clipboard.writeText(window.location.origin + url)
-    .then(() => alert("Permalink kopiert:\n" + url))
+    .then(() => alert("Permalink kopiert. Die URL kann nun in Chats, Mail oder in anderen Browsern eingefügt werden."))
     .catch(err => alert("Fehler beim Kopieren: " + err));
 });
 
