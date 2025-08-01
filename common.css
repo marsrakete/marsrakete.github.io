@@ -289,7 +289,7 @@ input[type="radio"]:checked + .world-chip {
   cursor: pointer;
 }
 
-// Hihglight Player vor erstem Move
+/* Highlight Player vor erstem Move */
 #gameOutput .cell.player-highlight {
   background: radial-gradient(ellipse at center, #0ff6 50%, transparent 100%);
   outline: 3px solid #0ff;
