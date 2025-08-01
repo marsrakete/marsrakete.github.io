@@ -738,6 +738,7 @@ function applyUrlParameters() {
       renderGame();
       updateGameInfo();
       updatePlayerTargetInfo();
+      populateWorldGallery();
       document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
       document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
     } else {
