@@ -472,6 +472,7 @@ function movePlayer(dx,dy) {
       setTimeout(() => {
         alert(msg);
         resetToOriginalGrid();
+        renderGame();
       }, 50);
     }
   } else { playPowSound(); }
