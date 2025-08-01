@@ -502,6 +502,13 @@ document.getElementById('copyGameText').addEventListener('click', ()=>{
   navigator.clipboard.writeText(text).then(()=>alert('Text kopiert!'));
 });
 
+document.getElementById('generateGamePermalink').addEventListener('click', () => {
+  const url = transferToPage(currentWorld, gameGrid);
+  navigator.clipboard.writeText(window.location.origin + url)
+    .then(() => alert("Permalink kopiert:\n" + url))
+    .catch(err => alert("Fehler beim Kopieren: " + err));
+});
+
 // Editorfunktionen
 function renderEditor() {
   document.querySelectorAll('#editorOutput .cell').forEach((cell,idx) => {
