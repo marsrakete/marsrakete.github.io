@@ -724,6 +724,7 @@ function applyUrlParameters() {
       foundCount = 0;
       renderGame();
       updateGameInfo();
+      updatePlayerTargetInfo();
       document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
       document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
     }
