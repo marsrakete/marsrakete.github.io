@@ -306,9 +306,25 @@ input[type="radio"]:checked + .world-chip {
 }
 
 #worldCount {
-  margin-top: 8px;
-  font-size: 1.1em;
+  margin-top: 10px;
+  font-size: 1.15em;
   color: #ffd700;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
   letter-spacing: 0.03em;
+  user-select: none;
+}
+
+#worldCount .icon {
+  font-size: 1.35em;
+  filter: drop-shadow(0 0 2px #fff2);
+  animation: worldSpin 1.4s linear infinite;
+}
+
+@keyframes worldSpin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
 }
