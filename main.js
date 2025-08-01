@@ -694,47 +694,58 @@ function supportsClipboardImage() {
 function applyUrlParameters() {
   const params = new URLSearchParams(window.location.search);
 
-  // Welt aus Parameter setzen (falls gültig)
+  // Welt aus Parameter setzen
   const world = params.get("world");
   if (world && worldData[world]) {
     currentWorld = world;
   }
 
-  // Grid übernehmen (falls vorhanden)
+  // Grid aus Parameter setzen
   const gridParam = params.get("grid");
   if (gridParam) {
-      const gridText = decodeURIComponent(gridParam.replace(/\+/g, " "));
-      const lines = gridText.split(/\r?\n/).map(line => [...line]);
-    
-      console.log("Grid-Zeilen:", lines.length);
-      console.log("Zeilenlängen:", lines.map(l => l.length));
-    
-      if (lines.length === rows && lines.every(line => [...line].length === cols)) {
-        gameGrid = lines;
-        originalGrid = lines.map(row => [...row]);
+    const gridText = decodeURIComponent(gridParam.replace(/\+/g, " "));
+    const lines = gridText.split(/\r?\n/);
 
-        const w = worldData[currentWorld];
-        for (let y = 0; y < rows; y++) {
-          for (let x = 0; x < cols; x++) {
-            if (gameGrid[y][x] === w.player) {
-              playerX = x;
-              playerY = y;
-            }
+    // Unicode-sichere Segmentierung für Emojis
+    const segmenter = new Intl.Segmenter("de", { granularity: "grapheme" });
+
+    const isValidGrid = lines.length === rows &&
+      lines.every(line => Array.from(segmenter.segment(line)).length === cols);
+
+    if (isValidGrid) {
+      const parsedGrid = lines.map(line =>
+        Array.from(segmenter.segment(line), s => s.segment)
+      );
+
+      gameGrid = parsedGrid;
+      originalGrid = parsedGrid.map(row => [...row]);
+
+      // Spielerposition finden
+      const w = worldData[currentWorld];
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          if (gameGrid[y][x] === w.player) {
+            playerX = x;
+            playerY = y;
           }
         }
-    
-        initialTargets = gameGrid.flat().filter(c => c === w.target).length;
-        foundCount = 0;
-        renderGame();
-        updateGameInfo();
-        updatePlayerTargetInfo();
-        document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
-        document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
-      } else {
-        console.warn("Ungültiges Grid übergeben – Abbruch.");
       }
+
+      // Zielanzahl berechnen
+      initialTargets = gameGrid.flat().filter(c => c === w.target).length;
+      foundCount = 0;
+
+      renderGame();
+      updateGameInfo();
+      updatePlayerTargetInfo();
+      document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
+      document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+    } else {
+      console.warn("Ungültiges Gridformat – erwartete 30x10 Zeichen mit voller Unicode-Kompatibilität.");
+    }
   }
 }
+
 
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
