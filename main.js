@@ -273,12 +273,13 @@ function populateWorldGallery() {
     };
 
     container.appendChild(card);
-    // --- Anzahl der Welten anzeigen ---
+    // --- Anzahl der Welten mit Icon anzeigen ---
     const countDiv = document.getElementById('worldCount');
     if (countDiv) {
         const n = Object.keys(worldData).length;
-        countDiv.textContent = `${n} Welten verfügbar`;
-    }      
+        // Beispielicon 🌍, du kannst auch 🪐, 🌏, ✨ etc. nehmen!
+        countDiv.innerHTML = `<span class="icon">✨</span> <span>${n} Welt${n === 1 ? '' : 'en'} verfügbar</span>`;
+    }  
   }
 
   // Tap außerhalb -> Tooltip ausblenden
