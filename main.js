@@ -703,31 +703,36 @@ function applyUrlParameters() {
   // Grid übernehmen (falls vorhanden)
   const gridParam = params.get("grid");
   if (gridParam) {
-    const lines = gridParam.split("\n").map(line => line.split(""));
-    if (lines.length === rows && lines.every(line => line.length === cols)) {
-      gameGrid = lines;
-      originalGrid = lines.map(row => [...row]);
+      const gridText = decodeURIComponent(gridParam.replace(/\+/g, " "));
+      const lines = gridText.split(/\r?\n/).map(line => [...line]);
+    
+      console.log("Grid-Zeilen:", lines.length);
+      console.log("Zeilenlängen:", lines.map(l => l.length));
+    
+      if (lines.length === rows && lines.every(line => line.length === cols)) {
+        gameGrid = lines;
+        originalGrid = lines.map(row => [...row]);
 
-      // Spielerposition ermitteln
-      const w = worldData[currentWorld];
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          if (gameGrid[y][x] === w.player) {
-            playerX = x;
-            playerY = y;
+        const w = worldData[currentWorld];
+        for (let y = 0; y < rows; y++) {
+          for (let x = 0; x < cols; x++) {
+            if (gameGrid[y][x] === w.player) {
+              playerX = x;
+              playerY = y;
+            }
           }
         }
+    
+        initialTargets = gameGrid.flat().filter(c => c === w.target).length;
+        foundCount = 0;
+        renderGame();
+        updateGameInfo();
+        updatePlayerTargetInfo();
+        document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
+        document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+      } else {
+        console.warn("Ungültiges Grid übergeben – Abbruch.");
       }
-
-      // Ziele zählen
-      initialTargets = gameGrid.flat().filter(c => c === w.target).length;
-      foundCount = 0;
-      renderGame();
-      updateGameInfo();
-      updatePlayerTargetInfo();
-      document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
-      document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
-    }
   }
 }
 
