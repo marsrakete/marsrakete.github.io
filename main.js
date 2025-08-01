@@ -6,6 +6,7 @@ let gameGrid = [], originalGrid = [], editorGrid = [];
 let playerX = 0, playerY = 0, foundCount = 0, initialTargets = 0;
 let timerStart = null, timerInterval = null;
 let selectedSymbol = '';
+let playerJustSpawned = true;
 
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
@@ -346,8 +347,15 @@ function updateZoom(value) {
 }
 
 function renderGame() {
-  const cells = document.querySelectorAll('#gameOutput .cell');
-  gameGrid.forEach((row,y) => row.forEach((sym,x) => cells[y*cols+x].textContent = sym));
+    const cells = document.querySelectorAll('#gameOutput .cell');
+    gameGrid.forEach((row,y) => row.forEach((sym,x) => {
+        const cell = cells[y*cols+x];
+        cell.textContent = sym;
+        cell.classList.remove('player-highlight');
+        if (x === playerX && y === playerY && playerJustSpawned) {
+            cell.classList.add('player-highlight');
+        }
+    }));    
 }
 
 function generateRandomWorld() {
@@ -356,6 +364,7 @@ function generateRandomWorld() {
   timerInterval = null;
   timerStart = null;
   foundCount = 0;
+  playerJustSpawned = true;
 
   const w = worldData[currentWorld];
   initGameGridEmpty();
@@ -443,6 +452,10 @@ function generateRandomWorld() {
 }
 
 function movePlayer(dx,dy) {
+  if (playerJustSpawned) {
+    playerJustSpawned = false;
+    renderGame();
+  }    
   if (!timerStart) { timerStart = Date.now(); timerInterval = setInterval(() => {
     document.getElementById('timerDisplay').innerText = `Zeit: ${Math.floor((Date.now()-timerStart)/1000)} s`;
   }, 1000); }
