@@ -690,6 +690,46 @@ function supportsClipboardImage() {
   return hasClipboard && !isTouchDevice;
 }
 
+// Übergabe als Parameter
+function applyUrlParameters() {
+  const params = new URLSearchParams(window.location.search);
+
+  // Welt aus Parameter setzen (falls gültig)
+  const world = params.get("world");
+  if (world && worldData[world]) {
+    currentWorld = world;
+  }
+
+  // Grid übernehmen (falls vorhanden)
+  const gridParam = params.get("grid");
+  if (gridParam) {
+    const lines = gridParam.split("\n").map(line => line.split(""));
+    if (lines.length === rows && lines.every(line => line.length === cols)) {
+      gameGrid = lines;
+      originalGrid = lines.map(row => [...row]);
+
+      // Spielerposition ermitteln
+      const w = worldData[currentWorld];
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          if (gameGrid[y][x] === w.player) {
+            playerX = x;
+            playerY = y;
+          }
+        }
+      }
+
+      // Ziele zählen
+      initialTargets = gameGrid.flat().filter(c => c === w.target).length;
+      foundCount = 0;
+      renderGame();
+      updateGameInfo();
+      document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
+      document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+    }
+  }
+}
+
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
     await loadWorldData();
@@ -710,5 +750,7 @@ window.addEventListener('load', async ()=>{
     updateZoom(document.getElementById("zoomSlider").value);
     setupMaxSymbolsSlider();
     updateMaxSymbolsSlider();
+
+    applyUrlParameters(); 
 });
 
