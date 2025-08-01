@@ -1,4 +1,98 @@
 {
+    "galaxy": {
+        "symbols": [
+            "🧿",
+            "🕳️",
+            "✮",
+            "🎱",
+            "🌍",
+            "☾",
+            "🌌",
+            "🌑",
+            "🪐",
+            "🌕",
+            "☄️",
+            "💫",
+            "🚀",
+            "🛸",
+            "🌠",
+            "🌙",
+            "⭐️",
+            "🌜",
+            "🌚"
+        ],
+        "rare": [
+            "👾",
+            "👽",
+            "🎮",
+            "👩‍🚀",
+            "🔫",
+            "🛰️"
+        ],
+        "bottom": [
+            "🔭",
+            "📡"
+        ],
+        "player": "🚀",
+        "target": "🌍",
+        "description": "Eine galaktische Welt voller Sterne und fremder Planeten.",
+        "title": "Galaxie"
+    },    
+    "flowers": {
+        "symbols": [
+            "🌸",
+            "🌹",
+            "🌺",
+            "🌻",
+            "🌼",
+            "💐",
+            "🥀",
+            "🌷",
+            "🍀",
+            "🌱"
+        ],
+        "rare": [
+            "🦋",
+            "🐞",
+            "🐝",
+            "🍄",
+            "🐇",
+            "🍄‍🟫",
+            "🪰",
+            "🪁"
+        ],
+        "bottom": [],
+        "player": "🐝",
+        "target": "🌹",
+        "description": "Eine blühende Welt, erfüllt von zarten Blumen und feinen Düften.",
+        "title": "Blumenwiese"
+    },
+    "forest": {
+        "symbols": [
+            "🌲",
+            "🌳",
+            "🌴",
+            "🍄",
+            "🌿",
+            "🍃",
+            "🍂",
+            "🦉",
+            "🐿️",
+            "🦌",
+            "🐻",
+            "🐇"
+        ],
+        "rare": [
+            "🦅",
+            "🪺",
+            "🪹"
+        ],
+        "bottom": [],
+        "player": "🦊",
+        "target": "🍄",
+        "description": "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen.",
+        "title": "Wald"
+    },    
     "airport": {
         "symbols": [
             "✈️",
@@ -991,61 +1085,6 @@
         "description": "Eine märchenhafte Welt voller Magie und zauberhafter Kreaturen.",
         "title": "Märchenwald"
     },
-    "flowers": {
-        "symbols": [
-            "🌸",
-            "🌹",
-            "🌺",
-            "🌻",
-            "🌼",
-            "💐",
-            "🥀",
-            "🌷",
-            "🍀",
-            "🌱"
-        ],
-        "rare": [
-            "🦋",
-            "🐞",
-            "🐝",
-            "🍄",
-            "🐇",
-            "🍄‍🟫",
-            "🪰",
-            "🪁"
-        ],
-        "bottom": [],
-        "player": "🐝",
-        "target": "🌹",
-        "description": "Eine blühende Welt, erfüllt von zarten Blumen und feinen Düften.",
-        "title": "Blumenwiese"
-    },
-    "forest": {
-        "symbols": [
-            "🌲",
-            "🌳",
-            "🌴",
-            "🍄",
-            "🌿",
-            "🍃",
-            "🍂",
-            "🦉",
-            "🐿️",
-            "🦌",
-            "🐻",
-            "🐇"
-        ],
-        "rare": [
-            "🦅",
-            "🪺",
-            "🪹"
-        ],
-        "bottom": [],
-        "player": "🦊",
-        "target": "🍄",
-        "description": "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen.",
-        "title": "Wald"
-    },
     "fotografie": {
         "symbols": [
             "📸",
@@ -1239,45 +1278,6 @@
         "target": "🍓",
         "title": "Obstwelt",
         "description": "Eine fruchtige Welt voller süßer Leckereien – Äpfel, Erdbeeren, Bananen und vieles mehr. Saftig, bunt und voller Vitamine"
-    },
-    "galaxy": {
-        "symbols": [
-            "🧿",
-            "🕳️",
-            "✮",
-            "🎱",
-            "🌍",
-            "☾",
-            "🌌",
-            "🌑",
-            "🪐",
-            "🌕",
-            "☄️",
-            "💫",
-            "🚀",
-            "🛸",
-            "🌠",
-            "🌙",
-            "⭐️",
-            "🌜",
-            "🌚"
-        ],
-        "rare": [
-            "👾",
-            "👽",
-            "🎮",
-            "👩‍🚀",
-            "🔫",
-            "🛰️"
-        ],
-        "bottom": [
-            "🔭",
-            "📡"
-        ],
-        "player": "🚀",
-        "target": "🌍",
-        "description": "Eine galaktische Welt voller Sterne und fremder Planeten.",
-        "title": "Galaxie"
     },
     "galaxyMuseum": {
         "symbols": [
