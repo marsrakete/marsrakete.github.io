@@ -304,3 +304,11 @@ input[type="radio"]:checked + .world-chip {
   0% { box-shadow: 0 0 12px 2px #0ffb, 0 0 3px 1px #fff3; }
   100% { box-shadow: 0 0 30px 10px #0ffb, 0 0 9px 3px #fff9; }
 }
+
+#worldCount {
+  margin-top: 8px;
+  font-size: 1.1em;
+  color: #ffd700;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+}
