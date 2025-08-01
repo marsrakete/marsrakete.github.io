@@ -472,7 +472,6 @@ function movePlayer(dx,dy) {
       setTimeout(() => {
         alert(msg);
         resetToOriginalGrid();
-        renderGame();
       }, 50);
     }
   } else { playPowSound(); }
@@ -490,6 +489,7 @@ function resetToOriginalGrid() {
   }));
   document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
   document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+  playerJustSpawned = true;    
   renderGame();
 }
 
