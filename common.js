@@ -65,10 +65,10 @@ function renderGameGrid(gridData, gridCols, gridRows) {
 }
 
 // Funktion zur Parameterübergabe mit URLSearchParams
-function transferToPage(targetUrl, worldKey, gridData) {
+function transferToPage(worldKey, gridData) {
   const params = new URLSearchParams();
   params.set("world", worldKey);
   const gridText = gridData.map(row => row.join("")).join("\n");
   params.set("grid", gridText);
-  return targetUrl + "?" + params.toString();
+  return window.location.pathname + "?" + params.toString();
 }
