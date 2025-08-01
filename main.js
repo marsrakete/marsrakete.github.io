@@ -709,7 +709,7 @@ function applyUrlParameters() {
       console.log("Grid-Zeilen:", lines.length);
       console.log("Zeilenlängen:", lines.map(l => l.length));
     
-      if (lines.length === rows && lines.every(line => line.length === cols)) {
+      if (lines.length === rows && lines.every(line => [...line].length === cols)) {
         gameGrid = lines;
         originalGrid = lines.map(row => [...row]);
 
