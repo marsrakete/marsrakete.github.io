@@ -64,11 +64,30 @@ function renderGameGrid(gridData, gridCols, gridRows) {
   }
 }
 
+// String zu Uint8Array umwandeln
+function str2ab(str) {
+  const buf = new Uint8Array(str.length);
+  for (let i = 0; i < str.length; ++i) buf[i] = str.charCodeAt(i);
+  return buf;
+}
+
+// SHA-256-Hash als Hex-String berechnen (async!)
+async function calcHash(str) {
+  const hashBuffer = await crypto.subtle.digest('SHA-256', str2ab(str));
+  return Array.from(new Uint8Array(hashBuffer))
+    .map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
 // Funktion zur Parameterübergabe mit URLSearchParams
-function transferToPage(worldKey, gridData) {
+async function transferToPage(worldKey, gridData) {
   const params = new URLSearchParams();
   params.set("world", worldKey);
   const gridText = gridData.map(row => row.join("")).join("\n");
   params.set("grid", gridText);
+
+  // Hash berechnen (Welt + Grid)
+  const hash = await calcHash(worldKey + ':' + gridText);
+  params.set("hash", hash);
+
   return window.location.pathname + "?" + params.toString();
 }
