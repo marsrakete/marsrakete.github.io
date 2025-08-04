@@ -45,37 +45,6 @@ function switchLang() {
     document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
 }
 
-// UI-Texte aktualisieren (nur Beispiel – hier kannst du ALLE UI-Elemente nach Bedarf ergänzen!)
-function updateUIText() {
-    document.title = t('game_title');
-    if (document.getElementById('gameInfo')) document.getElementById('gameInfo').innerText = t('game_title');
-    if (document.getElementById('newRandomGame')) document.getElementById('newRandomGame').innerText = t('btn_new_game');
-    if (document.getElementById('copyGameText')) document.getElementById('copyGameText').innerText = t('btn_copy_text');
-    if (document.getElementById('copyGameGraphic')) document.getElementById('copyGameGraphic').innerText = t('btn_copy_graphic');
-    if (document.getElementById('generateGamePermalink')) document.getElementById('generateGamePermalink').innerText = t('btn_permalink');
-    if (document.getElementById('toggleModeGame')) document.getElementById('toggleModeGame').innerText = t('btn_switch_mode');
-    if (document.getElementById('postToBsky')) document.getElementById('postToBsky').innerText = t('btn_post_bsky');
-    if (document.getElementById('generateGameAltText')) document.getElementById('generateGameAltText').innerText = t('btn_alt_text');
-    if (document.getElementById('toggleModeEditor')) document.getElementById('toggleModeEditor').innerText = t('btn_switch_mode_game');
-    if (document.getElementById('clearGrid')) document.getElementById('clearGrid').innerText = t('btn_clear_grid');
-    if (document.getElementById('newEditorRandom')) document.getElementById('newEditorRandom').innerText = t('btn_new_editor_random');
-    if (document.getElementById('generateEditorAltText')) document.getElementById('generateEditorAltText').innerText = t('btn_alt_text');
-    if (document.getElementById('copyEditorText')) document.getElementById('copyEditorText').innerText = t('btn_copy_editor_text');
-    if (document.getElementById('copyEditorGraphic')) document.getElementById('copyEditorGraphic').innerText = t('btn_copy_editor_graphic');
-    if (document.getElementById('swipeHint')) {
-        document.getElementById('swipeHint').innerText =
-            ('ontouchstart' in window || navigator.maxTouchPoints > 0)
-            ? t('hint_swipe')
-            : t('hint_mouse');
-    }
-    // Weltzähler (dynamisch)
-    const countDiv = document.getElementById('worldCount');
-    if (countDiv) {
-        const n = Object.keys(worldData).length;
-        countDiv.innerHTML = `<span class="icon">✨</span> <span>${t('worlds_available', {count:n})}</span>`;
-    }
-}
-
 // Berechne die maximale Symbolzahl: (cols * rows) - 25%
 function updateMaxSymbolsSlider() {
     //let max = Math.floor(cols * rows * 0.50);
