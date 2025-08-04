@@ -277,10 +277,9 @@ function populateWorldGallery() {
       const titleA = (a[1].title || a[0]).toLocaleLowerCase();
       const titleB = (b[1].title || b[0]).toLocaleLowerCase();
       return titleA.localeCompare(titleB, 'de');
-    });    
+    });
 
-  for (let name in sortedWorlds) {
-    const world = worldData[name];
+  for (let [name, world] of sortedWorlds) {
     const card = document.createElement('div');
     card.className = 'world-card';
     if (name === currentWorld) card.classList.add('selected');
@@ -315,13 +314,13 @@ function populateWorldGallery() {
     };
 
     container.appendChild(card);
-    // --- Anzahl der Welten mit Icon anzeigen ---
-    const countDiv = document.getElementById('worldCount');
-    if (countDiv) {
-        const n = Object.keys(worldData).length;
-        // Beispielicon 🌍, du kannst auch 🪐, 🌏, ✨ etc. nehmen!
-        countDiv.innerHTML = `<span class="icon">✨</span> <span>${n} Welt${n === 1 ? '' : 'en'} verfügbar</span>`;
-    }  
+  }
+
+  // --- Anzahl der Welten mit Icon anzeigen ---
+  const countDiv = document.getElementById('worldCount');
+  if (countDiv) {
+      const n = Object.keys(worldData).length;
+      countDiv.innerHTML = `<span class="icon">✨</span> <span>${n} Welt${n === 1 ? '' : 'en'} verfügbar</span>`;
   }
 
   // Tap außerhalb -> Tooltip ausblenden
@@ -333,6 +332,7 @@ function populateWorldGallery() {
     });
   });
 }
+
 function populateWorldButtonsGame() {
   const container = document.getElementById('worldButtonsGame');
   container.innerHTML = '';
