@@ -524,7 +524,7 @@ document.getElementById('copyGameText').addEventListener('click', ()=>{
 });
 
 document.getElementById('generateGamePermalink').addEventListener('click', () => {
-  const url = transferToPage(currentWorld, gameGrid);
+  const url = await transferToPage(currentWorld, gameGrid);
   navigator.clipboard.writeText(window.location.origin + url)
     .then(() => alert("Permalink kopiert. Die URL kann nun in Chats, Mail oder in anderen Browsern eingefügt werden."))
     .catch(err => alert("Fehler beim Kopieren: " + err));
@@ -712,59 +712,87 @@ function supportsClipboardImage() {
 }
 
 // Übergabe als Parameter
-function applyUrlParameters() {
+async function applyUrlParameters() {
   const params = new URLSearchParams(window.location.search);
 
   // Welt aus Parameter setzen
   const world = params.get("world");
+  const gridParam = params.get("grid");
+  const hashParam = params.get("hash");
+
+  // Buffer-/Exploit-Schutz: Limits setzen
+  if (world && world.length > 32) {
+    alert("Ungültiger Weltname.");
+    return;
+  }
+  if (gridParam && gridParam.length > 2000) {
+    alert("Das Grid ist zu lang.");
+    return;
+  }
+  if (hashParam && hashParam.length > 128) {
+    alert("Ungültiger Hash.");
+    return;
+  }
+
+  // Existiert Hash und Grid?
+  if (!world || !gridParam || !hashParam) {
+    // Kein Grid-Link oder manipuliert
+    return;
+  }
+
+  // Hash berechnen und prüfen
+  const gridDecoded = decodeURIComponent(gridParam.replace(/\+/g, " "));
+  const calc = await calcHash(world + ':' + gridDecoded);
+  if (calc !== hashParam) {
+    alert("Fehler: Ungültige Prüfsumme – der Link wurde verändert oder ist defekt.");
+    return;
+  }
+
+  // Welt prüfen und setzen
   if (world && worldData[world]) {
     currentWorld = world;
   }
 
-  // Grid aus Parameter setzen
-  const gridParam = params.get("grid");
-  if (gridParam) {
-    const gridText = decodeURIComponent(gridParam.replace(/\+/g, " "));
-    const lines = gridText.split(/\r?\n/);
+  const gridText = gridDecoded;
+  const lines = gridText.split(/\r?\n/);
 
-    // Unicode-sichere Segmentierung für Emojis
-    const segmenter = new Intl.Segmenter("de", { granularity: "grapheme" });
+  // Unicode-sichere Segmentierung für Emojis
+  const segmenter = new Intl.Segmenter("de", { granularity: "grapheme" });
 
-    const isValidGrid = lines.length === rows &&
-      lines.every(line => Array.from(segmenter.segment(line)).length === cols);
+  const isValidGrid = lines.length === rows &&
+    lines.every(line => Array.from(segmenter.segment(line)).length === cols);
 
-    if (isValidGrid) {
-      const parsedGrid = lines.map(line =>
-        Array.from(segmenter.segment(line), s => s.segment)
-      );
+  if (isValidGrid) {
+    const parsedGrid = lines.map(line =>
+      Array.from(segmenter.segment(line), s => s.segment)
+    );
 
-      gameGrid = parsedGrid;
-      originalGrid = parsedGrid.map(row => [...row]);
+    gameGrid = parsedGrid;
+    originalGrid = parsedGrid.map(row => [...row]);
 
-      // Spielerposition finden
-      const w = worldData[currentWorld];
-      for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < cols; x++) {
-          if (gameGrid[y][x] === w.player) {
-            playerX = x;
-            playerY = y;
-          }
+    // Spielerposition finden
+    const w = worldData[currentWorld];
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        if (gameGrid[y][x] === w.player) {
+          playerX = x;
+          playerY = y;
         }
       }
-
-      // Zielanzahl berechnen
-      initialTargets = gameGrid.flat().filter(c => c === w.target).length;
-      foundCount = 0;
-
-      renderGame();
-      updateGameInfo();
-      updatePlayerTargetInfo();
-      populateWorldGallery();
-      document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
-      document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
-    } else {
-      console.warn("Ungültiges Gridformat – erwartete 30x10 Zeichen mit voller Unicode-Kompatibilität.");
     }
+
+    // Zielanzahl berechnen
+    initialTargets = gameGrid.flat().filter(c => c === w.target).length;
+    foundCount = 0;
+
+    renderGame();
+    updateGameInfo();
+    updatePlayerTargetInfo();
+    populateWorldGallery();
+    document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
+    document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+  } else {
+    alert("Ungültiges Gridformat – erwartete 30x10 Zeichen mit voller Unicode-Kompatibilität.");
   }
 }
 
@@ -790,6 +818,6 @@ window.addEventListener('load', async ()=>{
     setupMaxSymbolsSlider();
     updateMaxSymbolsSlider();
 
-    applyUrlParameters(); 
+    await applyUrlParameters(); 
 });
 
