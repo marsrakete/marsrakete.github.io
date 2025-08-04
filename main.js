@@ -7,9 +7,74 @@ let playerX = 0, playerY = 0, foundCount = 0, initialTargets = 0;
 let timerStart = null, timerInterval = null;
 let selectedSymbol = '';
 let playerJustSpawned = true;
+let lang = 'de';
+let langData = {};
+const supportedLangs = ['de', 'en'];
 
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
+
+// Sprachlogik
+// Lade Sprachdatei (lang.json)
+async function loadLangData() {
+    const res = await fetch('lang.json');
+    langData = await res.json();
+}
+
+// Erkenne die Sprache des Browsers
+function detectLang() {
+    const browserLang = navigator.language?.slice(0,2).toLowerCase();
+    if (supportedLangs.includes(browserLang)) return browserLang;
+    return 'de';
+}
+
+// Text holen, mit Platzhalter-Ersatz
+function t(key, vars={}) {
+    let str = langData[lang]?.[key] || langData['de']?.[key] || key;
+    Object.keys(vars).forEach(k => {
+        str = str.replaceAll(`{${k}}`, vars[k]);
+    });
+    return str;
+}
+
+// Sprache wechseln
+function switchLang() {
+    lang = (lang === 'de') ? 'en' : 'de';
+    updateUIText();
+    localStorage.setItem('appLang', lang);
+    document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
+}
+
+// UI-Texte aktualisieren (nur Beispiel – hier kannst du ALLE UI-Elemente nach Bedarf ergänzen!)
+function updateUIText() {
+    document.title = t('game_title');
+    if (document.getElementById('gameInfo')) document.getElementById('gameInfo').innerText = t('game_title');
+    if (document.getElementById('newRandomGame')) document.getElementById('newRandomGame').innerText = t('btn_new_game');
+    if (document.getElementById('copyGameText')) document.getElementById('copyGameText').innerText = t('btn_copy_text');
+    if (document.getElementById('copyGameGraphic')) document.getElementById('copyGameGraphic').innerText = t('btn_copy_graphic');
+    if (document.getElementById('generateGamePermalink')) document.getElementById('generateGamePermalink').innerText = t('btn_permalink');
+    if (document.getElementById('toggleModeGame')) document.getElementById('toggleModeGame').innerText = t('btn_switch_mode');
+    if (document.getElementById('postToBsky')) document.getElementById('postToBsky').innerText = t('btn_post_bsky');
+    if (document.getElementById('generateGameAltText')) document.getElementById('generateGameAltText').innerText = t('btn_alt_text');
+    if (document.getElementById('toggleModeEditor')) document.getElementById('toggleModeEditor').innerText = t('btn_switch_mode_game');
+    if (document.getElementById('clearGrid')) document.getElementById('clearGrid').innerText = t('btn_clear_grid');
+    if (document.getElementById('newEditorRandom')) document.getElementById('newEditorRandom').innerText = t('btn_new_editor_random');
+    if (document.getElementById('generateEditorAltText')) document.getElementById('generateEditorAltText').innerText = t('btn_alt_text');
+    if (document.getElementById('copyEditorText')) document.getElementById('copyEditorText').innerText = t('btn_copy_editor_text');
+    if (document.getElementById('copyEditorGraphic')) document.getElementById('copyEditorGraphic').innerText = t('btn_copy_editor_graphic');
+    if (document.getElementById('swipeHint')) {
+        document.getElementById('swipeHint').innerText =
+            ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+            ? t('hint_swipe')
+            : t('hint_mouse');
+    }
+    // Weltzähler (dynamisch)
+    const countDiv = document.getElementById('worldCount');
+    if (countDiv) {
+        const n = Object.keys(worldData).length;
+        countDiv.innerHTML = `<span class="icon">✨</span> <span>${t('worlds_available', {count:n})}</span>`;
+    }
+}
 
 // Berechne die maximale Symbolzahl: (cols * rows) - 25%
 function updateMaxSymbolsSlider() {
@@ -818,6 +883,13 @@ document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.
 window.addEventListener('load', async ()=>{
     await loadWorldData();
     validateWorldData(worldData);
+    await loadLangData();
+    // Sprache wählen
+    lang = localStorage.getItem('appLang') || detectLang();
+    // Button-Label passend setzen
+    document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
+    updateUIText();
+    
     //populateWorldButtonsGame();
     populateWorldGallery();
     updateGameInfo();
