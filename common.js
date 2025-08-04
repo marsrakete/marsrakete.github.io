@@ -91,3 +91,66 @@ async function transferToPage(worldKey, gridData) {
 
   return window.location.pathname + "?" + params.toString();
 }
+
+function updateUIText() {
+    // Dokument-Titel
+    document.title = t('game_title');
+
+    // --- SPIELMODUS ---
+    // Headline
+    if (document.getElementById('gameInfo')) document.getElementById('gameInfo').innerText = t('game_title');
+    // Buttons
+    if (document.getElementById('toggleModeGame')) document.getElementById('toggleModeGame').innerText = t('btn_switch_mode');
+    if (document.getElementById('newRandomGame')) document.getElementById('newRandomGame').innerText = t('btn_new_game');
+    if (document.getElementById('generateGameAltText')) document.getElementById('generateGameAltText').innerText = t('btn_alt_text');
+    if (document.getElementById('copyGameGraphic')) document.getElementById('copyGameGraphic').innerText = t('btn_copy_graphic');
+    if (document.getElementById('copyGameText')) document.getElementById('copyGameText').innerText = t('btn_copy_text');
+    if (document.getElementById('generateGamePermalink')) document.getElementById('generateGamePermalink').innerText = t('btn_permalink');
+    if (document.getElementById('postToBsky')) document.getElementById('postToBsky').innerText = t('btn_post_bsky');
+
+    // Zeit & Ziele in Statusleiste (werden dynamisch ergänzt, aber für Initialanzeige sinnvoll)
+    if (document.getElementById('timerDisplay')) document.getElementById('timerDisplay').innerText = t('time', {seconds: 0});
+    if (document.getElementById('foundCount')) document.getElementById('foundCount').innerText = t('found_targets', {count: 0});
+
+    // Hinweistext unter Steuerfeld
+    if (document.getElementById('swipeHint')) {
+        document.getElementById('swipeHint').innerText =
+            ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+            ? t('hint_swipe')
+            : t('hint_mouse');
+    }
+
+    // --- EDITORMODUS ---
+    if (document.getElementById('toggleModeEditor')) document.getElementById('toggleModeEditor').innerText = t('btn_switch_mode_game');
+    if (document.getElementById('clearGrid')) document.getElementById('clearGrid').innerText = t('btn_clear_grid');
+    if (document.getElementById('newEditorRandom')) document.getElementById('newEditorRandom').innerText = t('btn_new_editor_random');
+    if (document.getElementById('generateEditorAltText')) document.getElementById('generateEditorAltText').innerText = t('btn_alt_text');
+    if (document.getElementById('copyEditorGraphic')) document.getElementById('copyEditorGraphic').innerText = t('btn_copy_editor_graphic');
+    if (document.getElementById('copyEditorText')) document.getElementById('copyEditorText').innerText = t('btn_copy_editor_text');
+    // Falls aktiviert:
+    if (document.getElementById('applyToGame')) document.getElementById('applyToGame').innerText = t('btn_apply_to_game');
+
+    // Überschriften/Labels im Editormodus
+    if (document.querySelector('#editorContainer h1')) document.querySelector('#editorContainer h1').innerText = t('editor_mode');
+    if (document.querySelector('#editorContainer h2')) document.querySelector('#editorContainer h2').innerText = t('output_field');
+
+    // --- SLIDER & LABELS ---
+    // Zoom
+    const zoomLabel = document.querySelector('label[for="zoomSlider"]');
+    if (zoomLabel) zoomLabel.innerText = t('zoom');
+    // Symbolanzahl
+    const symbolsLabel = document.querySelector('label[for="maxSymbolsSlider"]');
+    if (symbolsLabel) symbolsLabel.innerText = `| ${t('symbols')}`;
+
+    // --- WELTENZÄHLER ---
+    const countDiv = document.getElementById('worldCount');
+    if (countDiv) {
+        const n = Object.keys(worldData).length;
+        countDiv.innerHTML = `<span class="icon">✨</span> <span>${t('worlds_available', {count: n})}</span>`;
+    }
+
+    // --- Sprache-Umschaltbutton (Label aktualisieren) ---
+    if (document.getElementById('langSwitchBtn')) {
+        document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
+    }
+}
