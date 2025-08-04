@@ -847,6 +847,12 @@ async function applyUrlParameters() {
   }
 }
 
+// Sprachumschaltung
+document.getElementById('langSwitchBtn').addEventListener('click', () => {
+    switchLang();
+    // Aktualisiere das Label des Buttons:
+    document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
+});
 
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
