@@ -35,8 +35,10 @@
 		],
 		"player": "🚀",
 		"target": "🌍",
-		"description": "Eine galaktische Welt voller Sterne und fremder Planeten.",
-		"title": "Galaxie"
+		"description": "Eine galaktische Welt voller Sterne und fremder Planeten",
+		"title": "Galaxie",
+		"title_en": "Galaxy",
+		"description_en": "A galactic world full of stars and strange planets"
 	},
 	"flowers": {
 		"symbols": [
@@ -64,8 +66,10 @@
 		"bottom": [],
 		"player": "🐝",
 		"target": "🌹",
-		"description": "Eine blühende Welt, erfüllt von zarten Blumen und feinen Düften.",
-		"title": "Blumenwiese"
+		"description": "Eine blühende Welt, erfüllt von zarten Blumen und feinen Düften",
+		"title": "Blumenwiese",
+		"title_en": "Flower Meadow",
+		"description_en": "A blooming world, filled with delicate flowers and fine scents"
 	},
 	"forest": {
 		"symbols": [
@@ -90,8 +94,10 @@
 		"bottom": [],
 		"player": "🦊",
 		"target": "🍄",
-		"description": "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen.",
-		"title": "Wald"
+		"description": "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen",
+		"title": "Wald",
+		"title_en": "Forest",
+		"description_en": "A forest-like paradise full of trees, animals, and mysterious clearings"
 	},
 	"airport": {
 		"symbols": [
@@ -110,12 +116,16 @@
 		"bottom": [],
 		"player": "✈️",
 		"target": "🛫",
-		"description": "Eine flughafenbezogene Welt, in der Flugzeuge und die Faszination des Fliegens im Mittelpunkt stehen.",
-		"title": "Flughafen"
+		"description": "Eine flughafenbezogene Welt, in der Flugzeuge und die Faszination des Fliegens im Mittelpunkt stehen",
+		"title": "Flughafen",
+		"title_en": "Airport",
+		"description_en": "An airport-related world, where airplanes and the fascination of flying are the focus"
 	},
 	"alptraum": {
 		"title": "Alptraum",
 		"description": "eine düstere Traumwelt voller Schatten, Augen und irrationaler Ängste",
+		"title_en": "Nightmare",
+		"description_en": "A dark dream world full of shadows, eyes, and irrational fears",
 		"symbols": [
 			"😱",
 			"👁️",
@@ -160,8 +170,10 @@
 		],
 		"player": "😱",
 		"target": "🔦",
-		"description": "Dein Herz rast, das Licht flackert. Finde die Taschenlampe – oder stirb im Dunkeln.",
-		"title": "Angst"
+		"description": "Dein Herz rast, das Licht flackert. Finde die Taschenlampe – oder stirb im Dunkeln",
+		"title": "Angst",
+		"title_en": "Fear",
+		"description_en": "Your heart is racing, the light flickers. Find the flashlight - or die in the dark"
 	},
 	"apocalypse": {
 		"symbols": [
@@ -183,8 +195,10 @@
 		"bottom": [],
 		"player": "😷",
 		"target": "🌅",
-		"description": "Eine apokalyptische Welt, in der Chaos und Zerstörung vorherrschen.",
-		"title": "Apokalypse"
+		"description": "Eine apokalyptische Welt, in der Chaos und Zerstörung vorherrschen",
+		"title": "Apokalypse",
+		"title_en": "Apocalypse",
+		"description_en": "An apocalyptic world where chaos and destruction prevail"
 	},
 	"aquarium": {
 		"symbols": [
@@ -210,7 +224,9 @@
 		"player": "🤿",
 		"target": "🐠",
 		"description": "Diese wasserlebendige Welt ist bevölkert von Fischen, Blasen, Korallen und geheimnisvollen Meereswesen",
-		"title": "Aquarium"
+		"title": "Aquarium",
+		"title_en": "Aquarium",
+		"description_en": "This water-living world is populated by fish, bubbles, corals, and mysterious sea creatures"
 	},
 	"arcade": {
 		"symbols": [
@@ -229,8 +245,10 @@
 		"bottom": [],
 		"player": "🎮",
 		"target": "💎",
-		"description": "Eine retro-arcade Welt, voll von Pixeln, alten Spielen und Nostalgie.",
-		"title": "Arcade"
+		"description": "Eine retro-arcade Welt, voll von Pixeln, alten Spielen und Nostalgie",
+		"title": "Arcade",
+		"title_en": "Arcade",
+		"description_en": "A retro-arcade world, full of pixels, old games, and nostalgia"
 	},
 	"arktis": {
 		"symbols": [
@@ -254,8 +272,10 @@
 		],
 		"player": "🐧",
 		"target": "🐟",
-		"description": "Eine eisige Welt, in der Kälte, Schnee und Leben im Eis aufeinandertreffen.",
-		"title": "Arktis"
+		"description": "Eine eisige Welt, in der Kälte, Schnee und Leben im Eis aufeinandertreffen",
+		"title": "Arktis",
+		"title_en": "Arctic",
+		"description_en": "An icy world where cold, snow, and life on ice meet"
 	},
 	"arzt": {
 		"symbols": [
@@ -290,8 +310,10 @@
 		],
 		"player": "👨‍⚕️",
 		"target": "🧬",
-		"description": "Eine medizinische Welt, in der Untersuchungen, Pflege und Operationen den Alltag bestimmen.",
-		"title": "Arztpraxis"
+		"description": "Eine medizinische Welt, in der Untersuchungen, Pflege und Operationen den Alltag bestimmen",
+		"title": "Arztpraxis",
+		"title_en": "Doctor's Office",
+		"description_en": "A medical world where examinations, care, and operations determine daily life"
 	},
 	"atelier": {
 		"symbols": [
@@ -317,8 +339,10 @@
 		],
 		"player": "🧵",
 		"target": "✂️",
-		"description": "Eine kreative Welt voller Stoffe, Nadeln und inspirierender Designs.",
-		"title": "Nähatelier"
+		"description": "Eine kreative Welt voller Stoffe, Nadeln und inspirierender Designs",
+		"title": "Nähatelier",
+		"title_en": "Sewing Studio",
+		"description_en": "A creative world full of fabrics, needles, and inspiring designs"
 	},
 	"badewelt": {
 		"symbols": [
@@ -347,11 +371,15 @@
 		"player": "🛁",
 		"target": "🧼",
 		"description": "Ein Badezimmer voller Schaum, Pflegeprodukte und Spaß – bleib sauber!",
-		"title": "Badewelt"
+		"title": "Badewelt",
+		"title_en": "Bath World",
+		"description_en": "A bathroom full of foam, care products, and fun - stay clean!"
 	},
 	"baecker": {
 		"title": "Bäcker",
 		"description": "eine duftende Bäckerwelt mit Teig, Brot, Öfen und Mehlstaub",
+		"title_en": "Baker",
+		"description_en": "A fragrant baker's world with dough, bread, ovens, and flour dust",
 		"symbols": [
 			"🍞",
 			"🥖",
@@ -401,8 +429,10 @@
 		],
 		"player": "👷‍♂️",
 		"target": "🧰",
-		"description": "Eine kindgerechte Bauwelt, in der alles wie bei den Großen wirkt – aber sicher und bunt.",
-		"title": "Kinderbaustelle"
+		"description": "Eine kindgerechte Bauwelt, in der alles wie bei den Großen wirkt – aber sicher und bunt",
+		"title": "Kinderbaustelle",
+		"title_en": "Children's Construction Site",
+		"description_en": "A child-friendly construction world where everything looks like the big ones - but safe and colorful"
 	},
 	"beachclub": {
 		"symbols": [
@@ -435,8 +465,10 @@
 		],
 		"player": "🕶️",
 		"target": "🍹",
-		"description": "Eine sommerliche Strandwelt mit Musik, Sonne und Cocktails.",
-		"title": "Beachclub"
+		"description": "Eine sommerliche Strandwelt mit Musik, Sonne und Cocktails",
+		"title": "Beachclub",
+		"title_en": "Beach Club",
+		"description_en": "A summer beach world with music, sun, and cocktails"
 	},
 	"beerenwelt": {
 		"symbols": [
@@ -461,8 +493,10 @@
 		],
 		"player": "🧺",
 		"target": "🍓",
-		"description": "Eine fruchtige Welt voller saftiger Beeren – pflücke sie, bevor sie verschwinden.",
-		"title": "Beerenwelt"
+		"description": "Eine fruchtige Welt voller saftiger Beeren – pflücke sie, bevor sie verschwinden",
+		"title": "Beerenwelt",
+		"title_en": "Berry World",
+		"description_en": "A fruity world full of juicy berries - pick them before they disappear"
 	},
 	"bergwanderung": {
 		"symbols": [
@@ -495,8 +529,10 @@
 		],
 		"player": "🥾",
 		"target": "🏔️",
-		"description": "Eine alpine Landschaft mit anspruchsvollen Pfaden und atemberaubender Aussicht.",
-		"title": "Bergwanderung"
+		"description": "Eine alpine Landschaft mit anspruchsvollen Pfaden und atemberaubender Aussicht",
+		"title": "Bergwanderung",
+		"title_en": "Mountain Hike",
+		"description_en": "An alpine landscape with challenging paths and breathtaking views"
 	},
 	"berlin": {
 		"symbols": [
@@ -521,8 +557,10 @@
 		],
 		"player": "🧑‍🎤",
 		"target": "🍛",
-		"description": "Zwischen Club und Currywurst – erkunde die rebellische, kreative Hauptstadt.",
-		"title": "Berlin"
+		"description": "Zwischen Club und Currywurst – erkunde die rebellische, kreative Hauptstadt",
+		"title": "Berlin",
+		"title_en": "Berlin",
+		"description_en": "Between clubs and currywurst - explore the rebellious, creative capital"
 	},
 	"bluetenwelt": {
 		"symbols": [
@@ -547,8 +585,10 @@
 		],
 		"player": "🐝",
 		"target": "🌺",
-		"description": "Eine farbenfrohe Welt für summende Sammler – bestäube die schönste Blüte.",
-		"title": "Blütengarten"
+		"description": "Eine farbenfrohe Welt für summende Sammler – bestäube die schönste Blüte",
+		"title": "Blütengarten",
+		"title_en": "Flower Garden",
+		"description_en": "A colorful world for buzzing collectors - pollinate the most beautiful flower"
 	},
 	"bodyworld": {
 		"symbols": [
@@ -573,12 +613,16 @@
 		],
 		"player": "🫀",
 		"target": "🧠",
-		"description": "Eine Welt rund um den menschlichen Körper – erforschend, lebendig, neutral.",
-		"title": "Körperwelt"
+		"description": "Eine Welt rund um den menschlichen Körper – erforschend, lebendig, neutral",
+		"title": "Körperwelt",
+		"title_en": "Body World",
+		"description_en": "A world all about the human body - exploring, lively, neutral"
 	},
 	"callcenter": {
 		"title": "Callcenter",
 		"description": "eine nervige Welt aus Warteschleifen, Headsets und Frust",
+		"title_en": "Call Center",
+		"description_en": "An annoying world of waiting loops, headsets, and frustration",
 		"symbols": [
 			"📞",
 			"☎️",
@@ -622,8 +666,10 @@
 		"bottom": [],
 		"player": "🍭",
 		"target": "🍬",
-		"description": "Eine süße Welt, in der Schokolade, Bonbons und Kuchen dominieren.",
-		"title": "Süßigkeitenwelt"
+		"description": "Eine süße Welt, in der Schokolade, Bonbons und Kuchen dominieren",
+		"title": "Süßigkeitenwelt",
+		"title_en": "Candy World",
+		"description_en": "A sweet world dominated by chocolate, candies, and cakes"
 	},
 	"cars": {
 		"symbols": [
@@ -654,8 +700,10 @@
 		],
 		"player": "🚗",
 		"target": "🛣️",
-		"description": "Eine autozentrierte Welt mit Straßen, Schildern und hupenden Fahrzeugen.",
-		"title": "Autowelt"
+		"description": "Eine autozentrierte Welt mit Straßen, Schildern und hupenden Fahrzeugen",
+		"title": "Autowelt",
+		"title_en": "Car World",
+		"description_en": "A car-centered world with roads, signs, and honking vehicles"
 	},
 	"cave": {
 		"symbols": [
@@ -677,12 +725,16 @@
 		"bottom": [],
 		"player": "⛏️",
 		"target": "🏺",
-		"description": "Eine höllische Welt unter der Erde, geprägt von Felsformationen und Dunkelheit.",
-		"title": "Höhle"
+		"description": "Eine höllische Welt unter der Erde, geprägt von Felsformationen und Dunkelheit",
+		"title": "Höhle",
+		"title_en": "Cave",
+		"description_en": "A hellish world under the earth, characterized by rock formations and darkness"
 	},
 	"chaoskeller": {
 		"title": "Chaoskeller",
 		"description": "eine verstaubte Welt aus alten Kisten, Spinnweben und vergessenen Dingen",
+		"title_en": "Chaos Cellar",
+		"description_en": "A dusty world of old boxes, spiderwebs, and forgotten things",
 		"symbols": [
 			"📦",
 			"🧹",
@@ -726,8 +778,10 @@
 		],
 		"player": "🐉",
 		"target": "🥡",
-		"description": "Eine Welt voller Traditionen, Rätsel, Drachen – und dampfender Dumplings.",
-		"title": "China"
+		"description": "Eine Welt voller Traditionen, Rätsel, Drachen – und dampfender Dumplings",
+		"title": "China",
+		"title_en": "China",
+		"description_en": "A world full of traditions, riddles, dragons - and steaming dumplings"
 	},
 	"circus": {
 		"symbols": [
@@ -746,8 +800,10 @@
 		"bottom": [],
 		"player": "🤹‍♂️",
 		"target": "🎪",
-		"description": "Eine zirkusartige Welt, in der Akrobaten, Clowns und bunte Zelte zuhause sind.",
-		"title": "Zirkus"
+		"description": "Eine zirkusartige Welt, in der Akrobaten, Clowns und bunte Zelte zuhause sind",
+		"title": "Zirkus",
+		"title_en": "Circus",
+		"description_en": "A circus-like world where acrobats, clowns, and colorful tents are at home"
 	},
 	"cloud": {
 		"symbols": [
@@ -769,12 +825,16 @@
 		"bottom": [],
 		"player": "☁️",
 		"target": "🕊️",
-		"description": "Eine himmelhafte Welt, in der Wolken und Licht das Bild bestimmen.",
-		"title": "Wolkenwelt"
+		"description": "Eine himmelhafte Welt, in der Wolken und Licht das Bild bestimmen",
+		"title": "Wolkenwelt",
+		"title_en": "Cloud World",
+		"description_en": "A heavenly world where clouds and light determine the image"
 	},
 	"coffee": {
 		"title": "Kaffeewelt",
-		"description": "Eine gemütliche Welt voller Kaffee, Gebäck und Koffeinträumen.",
+		"description": "Eine gemütliche Welt voller Kaffee, Gebäck und Koffeinträumen",
+		"title_en": "Coffee World",
+		"description_en": "A cozy world full of coffee, pastries, and caffeine dreams",
 		"symbols": [
 			"☕",
 			"🍪",
@@ -821,8 +881,10 @@
 		],
 		"player": "🤡",
 		"target": "🕍",
-		"description": "Karneval, Dom und Kölsch – eine feierfreudige Stadt am Rhein mit Herz.",
-		"title": "Köln"
+		"description": "Karneval, Dom und Kölsch – eine feierfreudige Stadt am Rhein mit Herz",
+		"title": "Köln",
+		"title_en": "Cologne",
+		"description_en": "Carnival, cathedral, and Kölsch - a festive city on the Rhine with a heart"
 	},
 	"concert": {
 		"symbols": [
@@ -841,8 +903,10 @@
 		"bottom": [],
 		"player": "🎤",
 		"target": "🎸",
-		"description": "Eine konzertbezogene Welt, in der Musik und Live-Auftritte das Herzstück bilden.",
-		"title": "Konzert"
+		"description": "Eine konzertbezogene Welt, in der Musik und Live-Auftritte das Herzstück bilden",
+		"title": "Konzert",
+		"title_en": "Concert",
+		"description_en": "A concert-related world where music and live performances are the centerpiece"
 	},
 	"craftsmen": {
 		"symbols": [
@@ -869,8 +933,10 @@
 		],
 		"player": "🧑‍🔧",
 		"target": "🔧",
-		"description": "Eine Welt der Handwerkskunst mit Werkzeugen, Maschinen und kreativen Erfindungen.",
-		"title": "Handwerker"
+		"description": "Eine Welt der Handwerkskunst mit Werkzeugen, Maschinen und kreativen Erfindungen",
+		"title": "Handwerker",
+		"title_en": "Craftsmen",
+		"description_en": "A world of craftsmanship with tools, machines, and creative inventions"
 	},
 	"crossword": {
 		"symbols": [
@@ -895,7 +961,9 @@
 		"player": "🧠",
 		"target": "💡",
 		"description": "Dieses Bild zeigt eine rätselhafte Welt voller Buchstaben, Denkaufgaben und Symbolen aus der Welt der Kreuzworträtsel",
-		"title": "Kreuzworträtsel"
+		"title": "Kreuzworträtsel",
+		"title_en": "Crossword Puzzle",
+		"description_en": "This image shows a mysterious world full of letters, puzzles, and symbols from the world of crossword puzzles"
 	},
 	"cyberpunk": {
 		"symbols": [
@@ -914,8 +982,10 @@
 		"bottom": [],
 		"player": "🤖",
 		"target": "💾",
-		"description": "Eine futuristische Cyberpunk-Welt mit Neonlichtern und digitalen Visionen.",
-		"title": "Cyberpunk"
+		"description": "Eine futuristische Cyberpunk-Welt mit Neonlichtern und digitalen Visionen",
+		"title": "Cyberpunk",
+		"title_en": "Cyberpunk",
+		"description_en": "A futuristic cyberpunk world with neon lights and digital visions"
 	},
 	"desert": {
 		"symbols": [
@@ -934,8 +1004,10 @@
 		"bottom": [],
 		"player": "🐫",
 		"target": "🌵",
-		"description": "Eine wüstenartige Welt mit sengender Sonne und kargen Landschaften.",
-		"title": "Wüste"
+		"description": "Eine wüstenartige Welt mit sengender Sonne und kargen Landschaften",
+		"title": "Wüste",
+		"title_en": "Desert",
+		"description_en": "A desert-like world with scorching sun and barren landscapes"
 	},
 	"disco": {
 		"symbols": [
@@ -954,8 +1026,10 @@
 		"bottom": [],
 		"player": "🕺",
 		"target": "💃",
-		"description": "Eine discoartige Welt, pulsierend mit Musik, Bewegung und bunten Lichtern.",
-		"title": "Disco"
+		"description": "Eine discoartige Welt, pulsierend mit Musik, Bewegung und bunten Lichtern",
+		"title": "Disco",
+		"title_en": "Disco",
+		"description_en": "A disco-like world, pulsating with music, movement, and colorful lights"
 	},
 	"dyson_sphaere": {
 		"symbols": [
@@ -983,8 +1057,10 @@
 		],
 		"player": "⚙️",
 		"target": "🌞",
-		"description": "Ein Sci-Fi-Megaprojekt im Weltall: Sammle Energie und schütze die Sonne.",
-		"title": "Dyson-Sphäre"
+		"description": "Ein Sci-Fi-Megaprojekt im Weltall: Sammle Energie und schütze die Sonne",
+		"title": "Dyson-Sphäre",
+		"title_en": "Dyson Sphere",
+		"description_en": "A sci-fi megaproject in space: collect energy and protect the sun"
 	},
 	"eiszeit": {
 		"symbols": [
@@ -1007,12 +1083,16 @@
 		],
 		"player": "🍦",
 		"target": "🍧",
-		"description": "In dieser frostig-leckeren Welt wartet deine Lieblingseissorte irgendwo im Schneesturm.",
-		"title": "Eiszeit"
+		"description": "In dieser frostig-leckeren Welt wartet deine Lieblingseissorte irgendwo im Schneesturm",
+		"title": "Eiszeit",
+		"title_en": "Ice Age",
+		"description_en": "In this frosty-delicious world, your favorite ice cream flavor is waiting somewhere in the snowstorm"
 	},
 	"essenschlacht": {
 		"title": "Essenschlacht",
 		"description": "eine chaotisch-köstliche Welt aus fliegender Pizza, Torten und Ketchup",
+		"title_en": "Food Fight",
+		"description_en": "A chaotic-delicious world of flying pizza, cakes, and ketchup",
 		"symbols": [
 			"🍕",
 			"🍔",
@@ -1039,6 +1119,8 @@
 	"fabrik": {
 		"title": "Fabrik",
 		"description": "eine mechanisierte Welt mit Zahnrädern, Förderbändern und Öl",
+		"title_en": "Factory",
+		"description_en": "A mechanized world with gears, conveyor belts, and oil",
 		"symbols": [
 			"⚙️",
 			"🛠️",
@@ -1082,8 +1164,10 @@
 		"bottom": [],
 		"player": "🧚‍♀️",
 		"target": "🦄",
-		"description": "Eine märchenhafte Welt voller Magie und zauberhafter Kreaturen.",
-		"title": "Märchenwald"
+		"description": "Eine märchenhafte Welt voller Magie und zauberhafter Kreaturen",
+		"title": "Märchenwald",
+		"title_en": "Fairy Tale Forest",
+		"description_en": "A fairytale world full of magic and enchanting creatures"
 	},
 	"fotografie": {
 		"symbols": [
@@ -1116,8 +1200,10 @@
 		],
 		"player": "📷",
 		"target": "🖼️",
-		"description": "Eine kreative Welt, in der Licht, Bildausschnitt und Motive alles sind.",
-		"title": "Fotografie"
+		"description": "Eine kreative Welt, in der Licht, Bildausschnitt und Motive alles sind",
+		"title": "Fotografie",
+		"title_en": "Photography",
+		"description_en": "A creative world where light, composition, and subjects are everything"
 	},
 	"freezer": {
 		"symbols": [
@@ -1141,11 +1227,15 @@
 		"player": "🧊",
 		"target": "🍦",
 		"description": "Diese eisige Welt steckt voller Tiefkühlleckereien – bleib cool und finde das Eis!",
-		"title": "Tiefkühltruhe"
+		"title": "Tiefkühltruhe",
+		"title_en": "Freezer",
+		"description_en": "This icy world is full of frozen treats - stay cool and find the ice cream!"
 	},
 	"frieden": {
 		"title": "Frieden",
 		"description": "eine friedliche Welt der Ruhe, Versöhnung und Harmonie",
+		"title_en": "Peace",
+		"description_en": "A peaceful world of calm, reconciliation, and harmony",
 		"symbols": [
 			"🕊️",
 			"🌿",
@@ -1194,8 +1284,10 @@
 		],
 		"player": "🐸",
 		"target": "🏡",
-		"description": "Frösche überqueren hier Straßen und Flüsse, um sicher nach Hause zu gelangen.",
-		"title": "Frogger"
+		"description": "Frösche überqueren hier Straßen und Flüsse, um sicher nach Hause zu gelangen",
+		"title": "Frogger",
+		"title_en": "Frogger",
+		"description_en": "Frogs cross roads and rivers here to get home safely"
 	},
 	"fruchtplanet": {
 		"symbols": [
@@ -1224,8 +1316,10 @@
 		],
 		"player": "🍍",
 		"target": "🧃",
-		"description": "Ein süßer Planet aus Früchten – alles ist essbar, aber voller Fallen.",
-		"title": "Fruchtplanet"
+		"description": "Ein süßer Planet aus Früchten – alles ist essbar, aber voller Fallen",
+		"title": "Fruchtplanet",
+		"title_en": "Fruit Planet",
+		"description_en": "A sweet planet made of fruit - everything is edible, but full of traps"
 	},
 	"fruehstueck": {
 		"symbols": [
@@ -1249,8 +1343,10 @@
 		],
 		"player": "🥐",
 		"target": "🧃",
-		"description": "Ein duftender Morgen wartet – finde den Saft, der alles aufweckt.",
-		"title": "Frühstückswelt"
+		"description": "Ein duftender Morgen wartet – finde den Saft, der alles aufweckt",
+		"title": "Frühstückswelt",
+		"title_en": "Breakfast World",
+		"description_en": "A fragrant morning awaits - find the juice that wakes everything up"
 	},
 	"fruits": {
 		"symbols": [
@@ -1277,7 +1373,9 @@
 		"player": "🧺",
 		"target": "🍓",
 		"title": "Obstwelt",
-		"description": "Eine fruchtige Welt voller süßer Leckereien – Äpfel, Erdbeeren, Bananen und vieles mehr. Saftig, bunt und voller Vitamine"
+		"description": "Eine fruchtige Welt voller süßer Leckereien – Äpfel, Erdbeeren, Bananen und vieles mehr. Saftig, bunt und voller Vitamine",
+		"title_en": "Fruit world",
+		"description_en": "A fruity world full of sweet treats – apples, strawberries, bananas and much more. Juicy, colourful and full of vitamins"
 	},
 	"galaxyMuseum": {
 		"symbols": [
@@ -1302,8 +1400,10 @@
 		],
 		"player": "👨‍🚀",
 		"target": "🖼️",
-		"description": "Ein kosmisches Museum mit Artefakten aus dem ganzen Universum – finde das gestohlene Exponat.",
-		"title": "Galaktisches Museum"
+		"description": "Ein kosmisches Museum mit Artefakten aus dem ganzen Universum – finde das gestohlene Exponat",
+		"title": "Galaktisches Museum",
+		"title_en": "Galactic museum",
+		"description_en": "A cosmic museum with artefacts from across the universe – find the stolen exhibit"
 	},
 	"garden": {
 		"symbols": [
@@ -1328,7 +1428,9 @@
 		"player": "🐞",
 		"target": "🌼",
 		"description": "Dieses Bild zeigt eine blühende Gartenwelt voller Blumen, Insekten und frischem Grün",
-		"title": "Garten"
+		"title": "Garten",
+		"title_en": "Garden",
+		"description_en": "this image shows a blossoming garden world full of flowers, insects and fresh greenery"
 	},
 	"gebirgsfluss": {
 		"symbols": [
@@ -1354,8 +1456,10 @@
 		],
 		"player": "🛶",
 		"target": "🏞️",
-		"description": "Eine naturbelassene Flusswelt mit schnellen Strömungen und wilder Landschaft.",
-		"title": "Gebirgsfluss"
+		"description": "Eine naturbelassene Flusswelt mit schnellen Strömungen und wilder Landschaft",
+		"title": "Gebirgsfluss",
+		"title_en": "Mountain river",
+		"description_en": "A natural river world with fast currents and wild landscapes"
 	},
 	"geborgenheit": {
 		"symbols": [
@@ -1378,8 +1482,10 @@
 		],
 		"player": "🤗",
 		"target": "🧸",
-		"description": "Ein Ort zum Ankommen. Finde den Teddybär, der alles wieder gut macht.",
-		"title": "Geborgenheit"
+		"description": "Ein Ort zum Ankommen. Finde den Teddybär, der alles wieder gut macht",
+		"title": "Geborgenheit",
+		"title_en": "Security",
+		"description_en": "A place to arrive. Find the teddy bear that will make everything better"
 	},
 	"gemuesebeet": {
 		"symbols": [
@@ -1403,8 +1509,10 @@
 		],
 		"player": "👨‍🌾",
 		"target": "🥕",
-		"description": "Hier wächst alles frisch! Ernte dein Lieblingsgemüse, bevor die Schnecken kommen.",
-		"title": "Gemüsebeet"
+		"description": "Hier wächst alles frisch! Ernte dein Lieblingsgemüse, bevor die Schnecken kommen",
+		"title": "Gemüsebeet",
+		"title_en": "Vegetable patch",
+		"description_en": "Everything grows fresh here! Harvest your favourite vegetables before the snails come"
 	},
 	"germany": {
 		"symbols": [
@@ -1429,12 +1537,16 @@
 		],
 		"player": "🚶",
 		"target": "🍺",
-		"description": "Eine Welt der Wälder, Fachwerkhäuser und Biergärten – entdecke, was typisch deutsch ist.",
-		"title": "Deutschland"
+		"description": "Eine Welt der Wälder, Fachwerkhäuser und Biergärten – entdecke, was typisch deutsch ist",
+		"title": "Deutschland",
+		"title_en": "Germany",
+		"description_en": "A world of forests, half-timbered houses and beer gardens – discover what is typically German"
 	},
 	"gesundheit": {
 		"title": "Gesundheit",
 		"description": "eine medizinische Welt aus Viren, Impfungen und Fürsorge",
+		"title_en": "Health",
+		"description_en": "A medical world of viruses, vaccinations and care",
 		"symbols": [
 			"🦠",
 			"💉",
@@ -1474,12 +1586,16 @@
 		"bottom": [],
 		"player": "👻",
 		"target": "🎃",
-		"description": "Eine geisterhafte Welt, in der Spukgestalten und mysteriöse Erscheinungen dominieren.",
-		"title": "Geisterwelt"
+		"description": "Eine geisterhafte Welt, in der Spukgestalten und mysteriöse Erscheinungen dominieren",
+		"title": "Geisterwelt",
+		"title_en": "Ghost world",
+		"description_en": "A ghostly world dominated by haunted figures and mysterious apparitions"
 	},
 	"ghosting": {
 		"title": "Ghosting",
 		"description": "eine stille Welt der Funkstille, verlorenen Chats und verpassten Chancen",
+		"title_en": "Ghosting",
+		"description_en": "A silent world of radio silence, lost chats and missed opportunities",
 		"symbols": [
 			"👻",
 			"📱",
@@ -1523,8 +1639,10 @@
 		],
 		"player": "🌱",
 		"target": "♻️",
-		"description": "Eine friedliche, nachhaltige Welt – finde den Kreislauf, der alles erhält.",
-		"title": "Grüne Zukunft"
+		"description": "Eine friedliche, nachhaltige Welt – finde den Kreislauf, der alles erhält",
+		"title": "Grüne Zukunft",
+		"title_en": "Green future",
+		"description_en": "A peaceful, sustainable world – find the cycle that sustains everything"
 	},
 	"heatwave": {
 		"symbols": [
@@ -1548,7 +1666,9 @@
 		"player": "😓",
 		"target": "🧯",
 		"description": "Diese überhitzte Welt zeigt die sommerliche Innenraum-Hölle: Schweiß, Hitzequellen und der verzweifelte Wunsch nach Abkühlung",
-		"title": "Hitze im Haus"
+		"title": "Hitze im Haus",
+		"title_en": "Heat in the house",
+		"description_en": "this overheated world shows the summer hell inside: sweat, heat sources and the desperate desire to cool down"
 	},
 	"heliport": {
 		"symbols": [
@@ -1574,8 +1694,10 @@
 		],
 		"player": "🚁",
 		"target": "🏥",
-		"description": "Eine städtische Welt voller Helikopterlandeplätze und Flugverkehr.",
-		"title": "Hubschrauber"
+		"description": "Eine städtische Welt voller Helikopterlandeplätze und Flugverkehr",
+		"title": "Hubschrauber",
+		"title_en": "Helicopter",
+		"description_en": "An urban world full of helicopter landing pads and air traffic"
 	},
 	"herzhaft": {
 		"symbols": [
@@ -1599,11 +1721,15 @@
 		"player": "🍔",
 		"target": "🌮",
 		"description": "Ein Land voller herzhafter Leckereien – finde deinen Snack des Tages!",
-		"title": "Herzhaftland"
+		"title": "Herzhaftland",
+		"title_en": "Heartland",
+		"description_en": "A land full of hearty treats – find your snack of the day!"
 	},
 	"huehnerchaos": {
 		"title": "Hühnerchaos",
 		"description": "eine flatternde Welt voller Eier, Federn und übermotivierter Hühner",
+		"title_en": "Chicken chaos",
+		"description_en": "A fluttering world full of eggs, feathers and over-motivated chickens",
 		"symbols": [
 			"🐓",
 			"🥚",
@@ -1651,8 +1777,10 @@
 		],
 		"player": "🧒",
 		"target": "🤱",
-		"description": "Eine menschliche Welt voller Familien, Lachen und liebevoller Augenblicke.",
-		"title": "Menschenwelt"
+		"description": "Eine menschliche Welt voller Familien, Lachen und liebevoller Augenblicke",
+		"title": "Menschenwelt",
+		"title_en": "Human world",
+		"description_en": "A human world full of families, laughter and loving moments"
 	},
 	"indien": {
 		"symbols": [
@@ -1675,8 +1803,10 @@
 		],
 		"player": "🕌",
 		"target": "🪷",
-		"description": "Zwischen Tempeln und Märkten findest du das Heilige im Trubel.",
-		"title": "Indien"
+		"description": "Zwischen Tempeln und Märkten findest du das Heilige im Trubel",
+		"title": "Indien",
+		"title_en": "India",
+		"description_en": "Between temples and markets, you will find the sacred in the hustle and bustle"
 	},
 	"insects": {
 		"symbols": [
@@ -1704,8 +1834,10 @@
 		],
 		"player": "🕷️",
 		"target": "🕸️",
-		"description": "Eine insektenreiche Welt voller Krabbeltiere und feiner Netze.",
-		"title": "Insektenwelt"
+		"description": "Eine insektenreiche Welt voller Krabbeltiere und feiner Netze",
+		"title": "Insektenwelt",
+		"title_en": "Insect world",
+		"description_en": "An insect-filled world full of crawling creatures and delicate webs"
 	},
 	"japan": {
 		"symbols": [
@@ -1728,8 +1860,10 @@
 		],
 		"player": "🎌",
 		"target": "🍣",
-		"description": "Tempel, Kirschblüten, Sushi – eine stille, elegante Welt mit klaren Linien.",
-		"title": "Japan"
+		"description": "Tempel, Kirschblüten, Sushi – eine stille, elegante Welt mit klaren Linien",
+		"title": "Japan",
+		"title_en": "Japan",
+		"description_en": "temples, cherry blossoms, sushi – a quiet, elegant world with clean lines"
 	},
 	"jungle": {
 		"symbols": [
@@ -1748,8 +1882,10 @@
 		"bottom": [],
 		"player": "🐒",
 		"target": "🍌",
-		"description": "Eine dschungelartige Welt voller exotischer Tiere und üppiger Vegetation.",
-		"title": "Dschungel"
+		"description": "Eine dschungelartige Welt voller exotischer Tiere und üppiger Vegetation",
+		"title": "Dschungel",
+		"title_en": "Jungle",
+		"description_en": "A jungle-like world full of exotic animals and lush vegetation"
 	},
 	"kairo": {
 		"symbols": [
@@ -1772,8 +1908,10 @@
 		],
 		"player": "🐫",
 		"target": "🏺",
-		"description": "Staubige Gassen, Pyramidengeflüster und ein Schatz tief im Sand.",
-		"title": "Kairo"
+		"description": "Staubige Gassen, Pyramidengeflüster und ein Schatz tief im Sand",
+		"title": "Kairo",
+		"title_en": "Cairo",
+		"description_en": "Dusty alleys, whispers of pyramids and a treasure deep in the sand"
 	},
 	"kart": {
 		"symbols": [
@@ -1799,12 +1937,16 @@
 		],
 		"player": "🏎️",
 		"target": "🏁",
-		"description": "Eine bunte Kartwelt mit wilden Rennen und verrückten Hindernissen.",
-		"title": "Kartbahn"
+		"description": "Eine bunte Kartwelt mit wilden Rennen und verrückten Hindernissen",
+		"title": "Kartbahn",
+		"title_en": "Go-kart track",
+		"description_en": "A colourful kart world with wild races and crazy obstacles"
 	},
 	"katastrophe": {
 		"title": "Katastrophe",
-		"description": "Eine dramatische, chaotische Umgebung mit Naturgewalten und Rettungselementen.",
+		"description": "Eine dramatische, chaotische Umgebung mit Naturgewalten und Rettungselementen",
+		"title_en": "Disaster",
+		"description_en": "A dramatic, chaotic environment with forces of nature and rescue elements",
 		"symbols": [
 			"🌪️",
 			"🌊",
@@ -1852,12 +1994,16 @@
 		],
 		"player": "🧸",
 		"target": "🧃",
-		"description": "Eine bunte, fröhliche Welt voller Spiel, Kreativität und Kinderlachen.",
-		"title": "Kindergarten"
+		"description": "Eine bunte, fröhliche Welt voller Spiel, Kreativität und Kinderlachen",
+		"title": "Kindergarten",
+		"title_en": "Kindergarten",
+		"description_en": "A colourful, cheerful world full of play, creativity and children's laughter"
 	},
 	"kirmes": {
 		"title": "Kirmes",
 		"description": "eine bunte Jahrmarktwelt voller Karussells, Zuckerwatte und blinkender Lichter",
+		"title_en": "Funfair",
+		"description_en": "A colourful fairground world full of carousels, candyfloss and flashing lights",
 		"symbols": [
 			"🎠",
 			"🎡",
@@ -1906,12 +2052,16 @@
 		"bottom": [],
 		"player": "🧑‍🍳",
 		"target": "🍲",
-		"description": "Eine geschäftige Küche voller Utensilien, Lebensmitteln und leckerer Gerichte.",
-		"title": "Küche"
+		"description": "Eine geschäftige Küche voller Utensilien, Lebensmitteln und leckerer Gerichte",
+		"title": "Küche",
+		"title_en": "Kitchen",
+		"description_en": "A busy kitchen full of utensils, food and delicious dishes"
 	},
 	"klimawandel": {
 		"title": "Klimawandel",
 		"description": "eine bedrohte Welt zwischen Wetterextremen, Hoffnung und globalem Handeln",
+		"title_en": "Climate change",
+		"description_en": "A threatened world between extreme weather, hope and global action",
 		"symbols": [
 			"🔥",
 			"🌪️",
@@ -1938,6 +2088,8 @@
 	"krieg": {
 		"title": "Krieg",
 		"description": "eine kriegerische Welt voller Bedrohung, Waffen und Chaos",
+		"title_en": "War",
+		"description_en": "A war-torn world full of threats, weapons and chaos",
 		"symbols": [
 			"💣",
 			"🪖",
@@ -1988,12 +2140,16 @@
 		],
 		"player": "🧪",
 		"target": "🧬",
-		"description": "Eine wissenschaftliche Welt voller Reaktionen, Entdeckungen und Risiken.",
-		"title": "Labor"
+		"description": "Eine wissenschaftliche Welt voller Reaktionen, Entdeckungen und Risiken",
+		"title": "Labor",
+		"title_en": "Laboratory",
+		"description_en": "A scientific world full of reactions, discoveries and risks"
 	},
 	"laenderreise": {
 		"title": "Länderreise",
 		"description": "eine globale Weltreise mit Flaggen, Sehenswürdigkeiten und Fernweh",
+		"title_en": "Country trip",
+		"description_en": "A global world tour with flags, sights and wanderlust",
 		"symbols": [
 			"🇩🇪",
 			"🇯🇵",
@@ -2039,8 +2195,10 @@
 		"bottom": [],
 		"player": "😎",
 		"target": "🔥",
-		"description": "Eine feurige Welt, in der Vulkane lodern und Magma den Boden bedeckt.",
-		"title": "Lavawelt"
+		"description": "Eine feurige Welt, in der Vulkane lodern und Magma den Boden bedeckt",
+		"title": "Lavawelt",
+		"title_en": "Lava world",
+		"description_en": "A fiery world where volcanoes blaze and magma covers the ground"
 	},
 	"library": {
 		"symbols": [
@@ -2064,8 +2222,10 @@
 		"bottom": [],
 		"player": "📚",
 		"target": "🍷",
-		"description": "Eine gemütliche Leseecke mit Büchern, Kerzen und einem Glas Rotwein.",
-		"title": "Bibliothek"
+		"description": "Eine gemütliche Leseecke mit Büchern, Kerzen und einem Glas Rotwein",
+		"title": "Bibliothek",
+		"title_en": "Library",
+		"description_en": "A cosy reading corner with books, candles and a glass of red wine"
 	},
 	"liebeswelt": {
 		"symbols": [
@@ -2091,8 +2251,10 @@
 		],
 		"player": "💋",
 		"target": "❤️",
-		"description": "Eine Welt voller Romantik, Zärtlichkeit und stilvoller Sinnlichkeit.",
-		"title": "Liebeswelt"
+		"description": "Eine Welt voller Romantik, Zärtlichkeit und stilvoller Sinnlichkeit",
+		"title": "Liebeswelt",
+		"title_en": "World of love",
+		"description_en": "A world full of romance, tenderness and stylish sensuality"
 	},
 	"logistics": {
 		"symbols": [
@@ -2115,8 +2277,10 @@
 		],
 		"player": "🛒",
 		"target": "📦",
-		"description": "Ein Meer aus Paketen – finde die richtige Lieferung im Labyrinth der Logistik.",
-		"title": "Logistikzentrum"
+		"description": "Ein Meer aus Paketen – finde die richtige Lieferung im Labyrinth der Logistik",
+		"title": "Logistikzentrum",
+		"title_en": "Logistics centre",
+		"description_en": "A sea of parcels – find the right delivery in the logistics maze"
 	},
 	"magicHome": {
 		"symbols": [
@@ -2141,8 +2305,10 @@
 		],
 		"player": "🧹",
 		"target": "🪄",
-		"description": "In diesem Haushalt ist nichts normal – hier tanzen Besen und Magie liegt in der Luft.",
-		"title": "Magischer Haushalt"
+		"description": "In diesem Haushalt ist nichts normal – hier tanzen Besen und Magie liegt in der Luft",
+		"title": "Magischer Haushalt",
+		"title_en": "Magical household",
+		"description_en": "Nothing is normal in this household – brooms dance and magic is in the air"
 	},
 	"magnetfeld": {
 		"symbols": [
@@ -2171,8 +2337,10 @@
 		],
 		"player": "🧲",
 		"target": "⚡",
-		"description": "Physikspielplatz – ziehe Objekte an oder stoße sie ab, um zum Ziel zu kommen.",
-		"title": "Magnetfeld"
+		"description": "Physikspielplatz – ziehe Objekte an oder stoße sie ab, um zum Ziel zu kommen",
+		"title": "Magnetfeld",
+		"title_en": "Magnetic field",
+		"description_en": "Physics playground – attract or repel objects to reach your goal"
 	},
 	"market": {
 		"symbols": [
@@ -2197,8 +2365,10 @@
 		],
 		"player": "🧺",
 		"target": "🪙",
-		"description": "Ein quirliger Marktplatz voller Waren – finde das wertvolle Goldstück im Durcheinander.",
-		"title": "Marktplatz"
+		"description": "Ein quirliger Marktplatz voller Waren – finde das wertvolle Goldstück im Durcheinander",
+		"title": "Marktplatz",
+		"title_en": "Marketplace",
+		"description_en": "A bustling market square full of goods – find the valuable gold coin in the chaos"
 	},
 	"medieval": {
 		"symbols": [
@@ -2217,8 +2387,10 @@
 		"bottom": [],
 		"player": "🧙‍♂️",
 		"target": "👑",
-		"description": "Eine mittelalterliche Welt, in der Ritter, Burgen und Drachen zuhause sind.",
-		"title": "Mittelalter"
+		"description": "Eine mittelalterliche Welt, in der Ritter, Burgen und Drachen zuhause sind",
+		"title": "Mittelalter",
+		"title_en": "Middle Ages",
+		"description_en": "A medieval world where knights, castles and dragons live"
 	},
 	"mexico": {
 		"symbols": [
@@ -2243,8 +2415,10 @@
 		],
 		"player": "🎺",
 		"target": "🌮",
-		"description": "Eine farbenfrohe Welt aus Mariachi, Straßenfesten und scharfem Essen.",
-		"title": "Mexiko"
+		"description": "Eine farbenfrohe Welt aus Mariachi, Straßenfesten und scharfem Essen",
+		"title": "Mexiko",
+		"title_en": "Mexico",
+		"description_en": "A colourful world of mariachis, street festivals and spicy food"
 	},
 	"mindscape": {
 		"symbols": [
@@ -2269,12 +2443,16 @@
 		],
 		"player": "🧠",
 		"target": "💡",
-		"description": "Eine surreale Gedankenreise voller Fragen, Ideen und plötzlicher Eingebungen.",
-		"title": "Gedankenwelt"
+		"description": "Eine surreale Gedankenreise voller Fragen, Ideen und plötzlicher Eingebungen",
+		"title": "Gedankenwelt",
+		"title_en": "World of thoughts",
+		"description_en": "A surreal journey of the mind full of questions, ideas and sudden inspirations"
 	},
 	"muellhalde": {
 		"title": "Müllhalde",
 		"description": "eine chaotische Welt aus Abfall, Schrott und fliegenden Fliegen",
+		"title_en": "Rubbish dump",
+		"description_en": "A chaotic world of rubbish, scrap and flying flies",
 		"symbols": [
 			"🗑️",
 			"♻️",
@@ -2320,7 +2498,9 @@
 		"player": "🧑‍🌾",
 		"target": "🦣",
 		"title": "Neandertaler",
-		"description": "Eine urzeitliche Welt, inspiriert von der Zeit der Neandertaler"
+		"description": "Eine urzeitliche Welt, inspiriert von der Zeit der Neandertaler",
+		"title_en": "Neanderthal",
+		"description_en": "A primeval world inspired by the Neanderthal era"
 	},
 	"newyork": {
 		"symbols": [
@@ -2343,8 +2523,10 @@
 		],
 		"player": "🗽",
 		"target": "🗞️",
-		"description": "In der Stadt, die nie schläft, kämpfst du dich durch Lärm und Licht zum Ziel.",
-		"title": "New York"
+		"description": "In der Stadt, die nie schläft, kämpfst du dich durch Lärm und Licht zum Ziel",
+		"title": "New York",
+		"title_en": "New York",
+		"description_en": "In the city that never sleeps, you fight your way through noise and light to reach your goal"
 	},
 	"northpole": {
 		"symbols": [
@@ -2363,8 +2545,10 @@
 		"bottom": [],
 		"player": "⛄",
 		"target": "❄️",
-		"description": "Eine frostige Welt am Nordpol, voll von Schnee, Eis und festlicher Stimmung.",
-		"title": "Nordpol"
+		"description": "Eine frostige Welt am Nordpol, voll von Schnee, Eis und festlicher Stimmung",
+		"title": "Nordpol",
+		"title_en": "North Pole",
+		"description_en": "A frosty world at the North Pole, full of snow, ice and festive cheer"
 	},
 	"office": {
 		"symbols": [
@@ -2392,8 +2576,10 @@
 		"bottom": [],
 		"player": "👩‍💼",
 		"target": "📎",
-		"description": "Eine bürokratische Welt, in der Computer, Akten und Kaffee das Geschäft bestimmen.",
-		"title": "Büro"
+		"description": "Eine bürokratische Welt, in der Computer, Akten und Kaffee das Geschäft bestimmen",
+		"title": "Büro",
+		"title_en": "Office",
+		"description_en": "A bureaucratic world where computers, files and coffee rule the business"
 	},
 	"officemanagement": {
 		"symbols": [
@@ -2426,8 +2612,10 @@
 		],
 		"player": "💼",
 		"target": "📈",
-		"description": "Eine dynamische Management-Welt voller Aufgaben, Termine und Charts.",
-		"title": "Büromanagement"
+		"description": "Eine dynamische Management-Welt voller Aufgaben, Termine und Charts",
+		"title": "Büromanagement",
+		"title_en": "Office management",
+		"description_en": "A dynamic management world full of tasks, deadlines and charts"
 	},
 	"paris": {
 		"symbols": [
@@ -2452,7 +2640,9 @@
 		"player": "🧑‍🎨",
 		"target": "🗼",
 		"description": "Ein Spaziergang durch Boulevards, Croissants und Kunstwerke – finde den Eiffelturm!",
-		"title": "Paris"
+		"title": "Paris",
+		"title_en": "Paris",
+		"description_en": "A stroll through boulevards, croissants and works of art – find the Eiffel Tower!"
 	},
 	"party": {
 		"symbols": [
@@ -2471,12 +2661,16 @@
 		"bottom": [],
 		"player": "🥳",
 		"target": "🎉",
-		"description": "Eine partyorientierte Welt, in der Feierlaune und Spaß an erster Stelle stehen.",
-		"title": "Party"
+		"description": "Eine partyorientierte Welt, in der Feierlaune und Spaß an erster Stelle stehen",
+		"title": "Party",
+		"title_en": "Party",
+		"description_en": "A party-oriented world where celebration and fun come first"
 	},
 	"picknick": {
 		"title": "Picknick",
 		"description": "eine fröhliche Welt aus Decken, Ameisen, Getränken und Sonnenschein",
+		"title_en": "Picnic",
+		"description_en": "A cheerful world of blankets, ants, drinks and sunshine",
 		"symbols": [
 			"🧃",
 			"🍉",
@@ -2522,12 +2716,16 @@
 		],
 		"player": "🦔",
 		"target": "🍄",
-		"description": "Ein feuchter Wald voller Pilze, Moose und kleiner Wesen – finde den magischen Pilz.",
-		"title": "Pilzwald"
+		"description": "Ein feuchter Wald voller Pilze, Moose und kleiner Wesen – finde den magischen Pilz",
+		"title": "Pilzwald",
+		"title_en": "Mushroom forest",
+		"description_en": "A damp forest full of mushrooms, moss and little creatures – find the magic mushroom"
 	},
 	"pipeline": {
 		"title": "Pipeline",
 		"description": "eine industrielle Welt aus Rohren, Druck, Öl und Technik",
+		"title_en": "Pipeline",
+		"description_en": "An industrial world of pipes, pressure, oil and technology",
 		"symbols": [
 			"🛢️",
 			"⚙️",
@@ -2573,8 +2771,10 @@
 		"bottom": [],
 		"player": "🏴‍☠️",
 		"target": "☠️",
-		"description": "Eine piratenhafte Welt, in der Abenteuer auf hoher See und Schatzsuchen zum Alltag gehören.",
-		"title": "Pirat"
+		"description": "Eine piratenhafte Welt, in der Abenteuer auf hoher See und Schatzsuchen zum Alltag gehören",
+		"title": "Pirat",
+		"title_en": "Pirate",
+		"description_en": "A pirate-like world where adventures on the high seas and treasure hunts are part of everyday life"
 	},
 	"racing": {
 		"symbols": [
@@ -2593,8 +2793,10 @@
 		"bottom": [],
 		"player": "🏎️",
 		"target": "🚦",
-		"description": "Eine Welt für Adrenalinjunkies mit schnellen Autos und spannenden Rennen.",
-		"title": "Rennstrecke"
+		"description": "Eine Welt für Adrenalinjunkies mit schnellen Autos und spannenden Rennen",
+		"title": "Rennstrecke",
+		"title_en": "Racetrack",
+		"description_en": "A world for adrenaline junkies with fast cars and exciting races"
 	},
 	"radtour": {
 		"symbols": [
@@ -2627,12 +2829,16 @@
 		],
 		"player": "🚴",
 		"target": "🧺",
-		"description": "Eine entspannte Tour durch Natur, Felder und kleine Ortschaften.",
-		"title": "Radtour"
+		"description": "Eine entspannte Tour durch Natur, Felder und kleine Ortschaften",
+		"title": "Radtour",
+		"title_en": "Bike tour",
+		"description_en": "A relaxed tour through nature, fields and small villages"
 	},
 	"regentag": {
 		"title": "Regentag",
 		"description": "Vermittelt eine ruhige, trübe Atmosphäre voller Tropfen, Fensterblicke und Gummistiefel",
+		"title_en": "Rainy day",
+		"description_en": "Conveys a calm, gloomy atmosphere full of raindrops, window views and rubber boots",
 		"symbols": [
 			"🌧️",
 			"☁️",
@@ -2677,8 +2883,10 @@
 		],
 		"player": "🥁",
 		"target": "🎉",
-		"description": "Karneval, Küste, Klang – tanze durch eine Welt voller Farben und Rhythmus.",
-		"title": "Rio de Janeiro"
+		"description": "Karneval, Küste, Klang – tanze durch eine Welt voller Farben und Rhythmus",
+		"title": "Rio de Janeiro",
+		"title_en": "Rio de Janeiro",
+		"description_en": "Carnival, coast, sound – dance through a world full of colour and rhythm"
 	},
 	"rom": {
 		"symbols": [
@@ -2701,8 +2909,10 @@
 		],
 		"player": "🏛️",
 		"target": "🍕",
-		"description": "In der Ewigen Stadt suchst du Pizza zwischen Säulen, Vespa und Vino.",
-		"title": "Rom"
+		"description": "In der Ewigen Stadt suchst du Pizza zwischen Säulen, Vespa und Vino",
+		"title": "Rom",
+		"title_en": "Rome",
+		"description_en": "In the Eternal City, you search for pizza among columns, Vespas and vino"
 	},
 	"ruhe": {
 		"symbols": [
@@ -2725,8 +2935,10 @@
 		],
 		"player": "🧘",
 		"target": "🪷",
-		"description": "Atme. Spüre. Finde das Zentrum. Hier ist nichts eilig – außer deine Gedanken.",
-		"title": "Innere Ruhe"
+		"description": "Atme. Spüre. Finde das Zentrum. Hier ist nichts eilig – außer deine Gedanken",
+		"title": "Innere Ruhe",
+		"title_en": "Inner peace",
+		"description_en": "Breathe. Feel. Find your centre. Nothing is in a hurry here – except your thoughts"
 	},
 	"ruins": {
 		"symbols": [
@@ -2745,8 +2957,10 @@
 		"bottom": [],
 		"player": "🏺",
 		"target": "🗿",
-		"description": "Eine ruinöse Welt, in der alte Tempel und verfallene Bauwerke eine geheimnisvolle Atmosphäre schaffen.",
-		"title": "Ruinen"
+		"description": "Eine ruinöse Welt, in der alte Tempel und verfallene Bauwerke eine geheimnisvolle Atmosphäre schaffen",
+		"title": "Ruinen",
+		"title_en": "Ruins",
+		"description_en": "A ruined world where ancient temples and dilapidated buildings create a mysterious atmosphere"
 	},
 	"savanne": {
 		"symbols": [
@@ -2770,8 +2984,10 @@
 		],
 		"player": "🦒",
 		"target": "🦁",
-		"description": "Eine heiße, weite Landschaft mit majestätischen Tieren und goldener Sonne.",
-		"title": "Savanne"
+		"description": "Eine heiße, weite Landschaft mit majestätischen Tieren und goldener Sonne",
+		"title": "Savanne",
+		"title_en": "Savannah",
+		"description_en": "A hot, wide landscape with majestic animals and golden sun"
 	},
 	"schlaf": {
 		"symbols": [
@@ -2794,12 +3010,16 @@
 		],
 		"player": "😴",
 		"target": "🛏️",
-		"description": "Eine schläfrige Welt voller Träume, flauschiger Decken und dunkler Ecken.",
-		"title": "Traumwelt"
+		"description": "Eine schläfrige Welt voller Träume, flauschiger Decken und dunkler Ecken",
+		"title": "Traumwelt",
+		"title_en": "Sleep",
+		"description_en": "A sleepy world full of dreams, fluffy blankets and a world of its own"
 	},
 	"sockenwelt": {
 		"title": "Sockenwelt",
 		"description": "eine kuschelig-verlorene Welt aus Einzelstücken, Fusseln und Waschmaschinen",
+		"title_en": "Sock world",
+		"description_en": "A cosy, lost world of unique items, fluff and washing machines",
 		"symbols": [
 			"🧦",
 			"🧺",
@@ -2824,6 +3044,8 @@
 	"sonnentag": {
 		"title": "Sonnentag",
 		"description": "Bringt Leichtigkeit und Sommerstimmung mit Sonnenbrillen, Sonnencreme und Wassereis",
+		"title_en": "Sunny day",
+		"description_en": "Bring lightness and summer vibes with sunglasses, sunscreen and ice lollies",
 		"symbols": [
 			"☀️",
 			"🌞",
@@ -2872,8 +3094,10 @@
 		],
 		"player": "🧑‍🚀",
 		"target": "🖲️",
-		"description": "Eine futuristische Welt voller Monolithen, Raumschiffe, Jupiter, HAL und Menschheitsrätsel.",
-		"title": "2001 Space Odyssey"
+		"description": "Eine futuristische Welt voller Monolithen, Raumschiffe, Jupiter, HAL und Menschheitsrätsel",
+		"title": "2001 Space Odyssey",
+		"title_en": "2001 Space Odyssey",
+		"description_en": "A futuristic world full of monoliths, spaceships, Jupiter, HAL and the mysteries of humanity"
 	},
 	"spaceTaxi": {
 		"symbols": [
@@ -2899,8 +3123,10 @@
 		],
 		"player": "🚕",
 		"target": "🪐",
-		"description": "Eine schräge Zukunftswelt, in der Taxis zwischen den Sternen pendeln.",
-		"title": "Space Taxi"
+		"description": "Eine schräge Zukunftswelt, in der Taxis zwischen den Sternen pendeln",
+		"title": "Space Taxi",
+		"title_en": "Space taxi",
+		"description_en": "A bizarre future world where taxis shuttle between the stars"
 	},
 	"steampunk": {
 		"symbols": [
@@ -2919,8 +3145,10 @@
 		"bottom": [],
 		"player": "🤖",
 		"target": "⚙️",
-		"description": "Eine Steampunk-Welt, die mechanische Wunder und nostalgische Technik verbindet.",
-		"title": "Steampunk"
+		"description": "Eine Steampunk-Welt, die mechanische Wunder und nostalgische Technik verbindet",
+		"title": "Steampunk",
+		"title_en": "Steampunk",
+		"description_en": "A steampunk world that combines mechanical wonders and nostalgic technology"
 	},
 	"suessmaus": {
 		"symbols": [
@@ -2944,7 +3172,9 @@
 		"player": "🐭",
 		"target": "🧁",
 		"description": "Als süße Maus suchst du deinen Lieblingskuchen – aber Vorsicht: Naschfallen!",
-		"title": "Süßmaus"
+		"title": "Süßmaus",
+		"title_en": "Sweet mouse",
+		"description_en": "As a cute mouse, you search for your favourite cake – but be careful: snack traps!"
 	},
 	"superhero": {
 		"symbols": [
@@ -2970,8 +3200,10 @@
 		],
 		"player": "🦸‍♂️",
 		"target": "🦹‍♂️",
-		"description": "Hier kämpfen Superhelden in schwindelerregenden Höhen gegen das Böse.",
-		"title": "Superhelden"
+		"description": "Hier kämpfen Superhelden in schwindelerregenden Höhen gegen das Böse",
+		"title": "Superhelden",
+		"title_en": "Superheroes",
+		"description_en": "Here, superheroes fight evil at dizzying heights"
 	},
 	"traumwelt": {
 		"symbols": [
@@ -2996,8 +3228,10 @@
 		],
 		"player": "🐑",
 		"target": "🌙",
-		"description": "Eine traumhafte Fantasiewelt für Kinder mit Magie, Licht und Fantasiegestalten.",
-		"title": "Traumwelt"
+		"description": "Eine traumhafte Fantasiewelt für Kinder mit Magie, Licht und Fantasiegestalten",
+		"title": "Traumwelt",
+		"title_en": "Dream world",
+		"description_en": "A dreamlike fantasy world for children with magic, light and fantastical creatures"
 	},
 	"traurigkeit": {
 		"symbols": [
@@ -3020,12 +3254,16 @@
 		],
 		"player": "😢",
 		"target": "🧻",
-		"description": "Langsame Tropfen auf Fensterglas – finde Trost in einer grauen Welt.",
-		"title": "Traurigkeit"
+		"description": "Langsame Tropfen auf Fensterglas – finde Trost in einer grauen Welt",
+		"title": "Traurigkeit",
+		"title_en": "Sadness",
+		"description_en": "Slow drops on window glass – find comfort in a grey world"
 	},
 	"tvshow": {
 		"title": "TV-Show",
 		"description": "eine grelle Welt aus Gameshows, Kameras und peinlichen Auftritten",
+		"title_en": "Overwhelmed",
+		"description_en": "to-do lists are exploding. You need a flash of inspiration before everything collapses",
 		"symbols": [
 			"📺",
 			"🎥",
@@ -3069,12 +3307,16 @@
 		],
 		"player": "🤯",
 		"target": "💡",
-		"description": "To-do-Listen explodieren. Du brauchst einen Geistesblitz, bevor alles kollabiert.",
-		"title": "Überforderung"
+		"description": "To-do-Listen explodieren. Du brauchst einen Geistesblitz, bevor alles kollabiert",
+		"title": "Überforderung",
+		"title_en": "Overwhelmed",
+		"description_en": "to-do lists are exploding. You need a flash of inspiration before everything collapses"
 	},
 	"uno": {
 		"title": "UNO",
 		"description": "eine diplomatische Welt voller Frieden, Reden und globaler Zusammenarbeit",
+		"title_en": "UNO",
+		"description_en": "A diplomatic world full of peace, speeches and global cooperation",
 		"symbols": [
 			"🇺🇳",
 			"🕊️",
@@ -3099,6 +3341,8 @@
 	"veganland": {
 		"title": "Veganland",
 		"description": "eine pflanzliche Welt mit Brokkoli, Sojamilch und ganz viel Überzeugung",
+		"title_en": "Vegan land",
+		"description_en": "A plant-based world with broccoli, soy milk and lots of conviction",
 		"symbols": [
 			"🥦",
 			"🥕",
@@ -3124,6 +3368,8 @@
 	"vegetables": {
 		"title": "Gemüsewelt",
 		"description": "Eine vitaminreiche Welt voller knackigem Gemüse, von Karotten bis Brokkoli. Perfekt für alle Gartenfreunde und Ernährungsbewussten",
+		"title_en": "Vegetable world",
+		"description_en": "A vitamin-rich world full of crunchy vegetables, from carrots to broccoli. Perfect for all gardening enthusiasts and nutrition-conscious people",
 		"symbols": [
 			"🥕",
 			"🌽",
@@ -3168,8 +3414,10 @@
 		],
 		"player": "👠",
 		"target": "💄",
-		"description": "Eine ästhetisch angehauchte Welt für Erwachsene mit Andeutungen und Spiel mit Sinnlichkeit.",
-		"title": "Verführung"
+		"description": "Eine ästhetisch angehauchte Welt für Erwachsene mit Andeutungen und Spiel mit Sinnlichkeit",
+		"title": "Verführung",
+		"title_en": "Seduction",
+		"description_en": "An aesthetically inspired world for adults with hints and playful sensuality"
 	},
 	"verliebt": {
 		"symbols": [
@@ -3193,12 +3441,16 @@
 		],
 		"player": "💘",
 		"target": "❤️",
-		"description": "Eine Welt voller Herzklopfen, Blickkontakte und zarter Gesten.",
-		"title": "Verliebt"
+		"description": "Eine Welt voller Herzklopfen, Blickkontakte und zarter Gesten",
+		"title": "Verliebt",
+		"title_en": "In love",
+		"description_en": "A world full of heartbeats, eye contact and tender gestures"
 	},
 	"verschwoerung": {
 		"title": "Verschwörung",
 		"description": "eine paranoide Welt voller Aluhüte, geheimen Plänen und unerklärlicher Verbindungen",
+		"title_en": "Conspiracy",
+		"description_en": "A paranoid world full of tin foil hats, secret plans and inexplicable connections",
 		"symbols": [
 			"🧠",
 			"📜",
@@ -3251,8 +3503,10 @@
 		],
 		"player": "🐦",
 		"target": "🪶",
-		"description": "Du fliegst durch die Lüfte, sammelst Federn und weichst Windwirbeln aus.",
-		"title": "Vogelflug"
+		"description": "Du fliegst durch die Lüfte, sammelst Federn und weichst Windwirbeln aus",
+		"title": "Vogelflug",
+		"title_en": "Bird flight",
+		"description_en": "You fly through the air, collecting feathers and dodging whirlwinds"
 	},
 	"volcano": {
 		"symbols": [
@@ -3271,8 +3525,10 @@
 		"bottom": [],
 		"player": "🚒",
 		"target": "🌋",
-		"description": "Eine vulkanische Welt, in der die Natur mit explosiver Kraft spielt.",
-		"title": "Vulkan"
+		"description": "Eine vulkanische Welt, in der die Natur mit explosiver Kraft spielt",
+		"title": "Vulkan",
+		"title_en": "Volcano",
+		"description_en": "A volcanic world where nature plays with explosive force"
 	},
 	"waldfruehling": {
 		"symbols": [
@@ -3297,8 +3553,10 @@
 		],
 		"player": "🐇",
 		"target": "🌷",
-		"description": "Der Wald erwacht – hüpfe durch Blüten und Falter zur ersten Frühlingsblume.",
-		"title": "Waldfrühling"
+		"description": "Der Wald erwacht – hüpfe durch Blüten und Falter zur ersten Frühlingsblume",
+		"title": "Waldfrühling",
+		"title_en": "Forest spring",
+		"description_en": "the forest awakens – hop through flowers and butterflies to the first spring flower"
 	},
 	"water": {
 		"symbols": [
@@ -3336,12 +3594,16 @@
 		"bottom": [],
 		"player": "🏊",
 		"target": "🐋",
-		"description": "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen.",
-		"title": "Wasserwelt"
+		"description": "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen",
+		"title": "Wasserwelt",
+		"title_en": "Water world",
+		"description_en": "A water-based world with oceans, sea creatures and gentle waves"
 	},
 	"wohnkrise": {
 		"title": "Wohnkrise",
 		"description": "eine herausfordernde Welt aus Beton, Baustellen und Wohnungssuche",
+		"title_en": "Housing crisis",
+		"description_en": "A challenging world of concrete, construction sites and apartment hunting",
 		"symbols": [
 			"🏚️",
 			"🏠",
@@ -3385,12 +3647,16 @@
 		],
 		"player": "😡",
 		"target": "💥",
-		"description": "Hier kocht alles über. Zerstörung ist leicht – der Ausweg ist schwer.",
-		"title": "Wutwelt"
+		"description": "Hier kocht alles über. Zerstörung ist leicht – der Ausweg ist schwer",
+		"title": "Wutwelt",
+		"title_en": "World of anger",
+		"description_en": "Everything is boiling over here. Destruction is easy – escape is hard"
 	},
 	"zahnarzt": {
 		"title": "Zahnarzt",
 		"description": "eine bohrende Welt voller Zähne, Geräusche und Nervenkitzel",
+		"title_en": "Dentist",
+		"description_en": "A piercing world full of teeth, noises and thrills",
 		"symbols": [
 			"🦷",
 			"🪥",
@@ -3416,6 +3682,8 @@
 	"zeitreise": {
 		"title": "Zeitreise",
 		"description": "eine Welt aus Vergangenheit, Zukunft und allem dazwischen",
+		"title_en": "time travel",
+		"description_en": "A world of the past, the future and everything in between",
 		"symbols": [
 			"🕰️",
 			"⏳",
@@ -3441,6 +3709,8 @@
 	"zivilschutz": {
 		"title": "Zivilschutz",
 		"description": "eine vorsorgende Welt mit Alarmplänen, Notausgängen und Helferinnen",
+		"title_en": "Civil defence",
+		"description_en": "A precautionary world with alarm plans, emergency exits and helpers",
 		"symbols": [
 			"🧯",
 			"🚨",
@@ -3485,12 +3755,16 @@
 		],
 		"player": "😱",
 		"target": "🚪",
-		"description": "In dieser postapokalyptischen Stadt streifen Untote umher – finde den rettenden Ausgang.",
-		"title": "Zombie-Stadt"
+		"description": "In dieser postapokalyptischen Stadt streifen Untote umher – finde den rettenden Ausgang",
+		"title": "Zombie-Stadt",
+		"title_en": "Zombie city",
+		"description_en": "In this post-apocalyptic city, the undead roam – find the exit to safety"
 	},
 	"zoo": {
 		"title": "Zoo",
 		"description": "eine tierische Zoowelt mit Gehegen, Aquarien und exotischen Kreaturen",
+		"title_en": "Zoo",
+		"description_en": "An animal zoo world with enclosures, aquariums and exotic creatures",
 		"symbols": [
 			"🦁",
 			"🐘",
@@ -3523,7 +3797,9 @@
 	},
 	"sushibar": {
 		"title": "Sushi-Bar",
-		"description": "Genieße frischen Fisch, Maki, Nigiri und gute Gesellschaft an der Theke.",
+		"description": "Genieße frischen Fisch, Maki, Nigiri und gute Gesellschaft an der Theke",
+		"title_en": "Sushi bar",
+		"description_en": "Enjoy fresh fish, maki, nigiri and good company at the counter",
 		"symbols": [
 			"🍣",
 			"🍤",
@@ -3552,7 +3828,9 @@
 	},
 	"olympia": {
 		"title": "Olympia",
-		"description": "Die besten Athleten der Welt messen sich in klassischen und modernen Disziplinen.",
+		"description": "Die besten Athleten der Welt messen sich in klassischen und modernen Disziplinen",
+		"title_en": "Olympics",
+		"description_en": "the world's best athletes compete in classic and modern disciplines",
 		"symbols": [
 			"🥇",
 			"🥈",
@@ -3588,7 +3866,9 @@
 	},
 	"starfleet": {
 		"title": "Sternenflotte",
-		"description": "Beame dich durch Raumschiffe, Aliens und Galaxien in der Zukunft.",
+		"description": "Beame dich durch Raumschiffe, Aliens und Galaxien in der Zukunft",
+		"title_en": "Starfleet",
+		"description_en": "Beam yourself through spaceships, aliens and galaxies in the future",
 		"symbols": [
 			"🚀",
 			"🛸",
@@ -3616,7 +3896,9 @@
 	},
 	"sportarena": {
 		"title": "Sportarena",
-		"description": "Actionreiche Wettkämpfe auf Rasen, im Wasser und in der Luft.",
+		"description": "Actionreiche Wettkämpfe auf Rasen, im Wasser und in der Luft",
+		"title_en": "Sports arena",
+		"description_en": "Action-packed competitions on grass, in water and in the air",
 		"symbols": [
 			"⚽",
 			"🏀",
