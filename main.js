@@ -523,12 +523,13 @@ document.getElementById('copyGameText').addEventListener('click', ()=>{
   navigator.clipboard.writeText(text).then(()=>alert('Text kopiert!'));
 });
 
-document.getElementById('generateGamePermalink').addEventListener('click', () => {
+document.getElementById('generateGamePermalink').addEventListener('click', async () => {
   const url = await transferToPage(currentWorld, gameGrid);
   navigator.clipboard.writeText(window.location.origin + url)
     .then(() => alert("Permalink kopiert. Die URL kann nun in Chats, Mail oder in anderen Browsern eingefügt werden."))
     .catch(err => alert("Fehler beim Kopieren: " + err));
 });
+
 
 // Editorfunktionen
 function renderEditor() {
