@@ -623,7 +623,15 @@ function populateWorldButtonsEditor() {
   const container = document.getElementById('worldButtonsEditor');
   container.innerHTML = '';
 
-  for (let name in worldData) {
+  // Welten sortieren nach Titel (fällt zurück auf name, falls kein Titel)
+  const sortedWorlds = Object.entries(worldData)
+    .sort((a, b) => {
+      const titleA = (a[1].title || a[0]).toLocaleLowerCase();
+      const titleB = (b[1].title || b[0]).toLocaleLowerCase();
+      return titleA.localeCompare(titleB, 'de');
+    });
+    
+  for (let name in sortedWorlds) {
     const label = document.createElement('label');
     label.style.display = 'inline-block';
 
