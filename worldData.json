@@ -1,3524 +1,3649 @@
 {
-    "galaxy": {
-        "symbols": [
-            "🧿",
-            "🕳️",
-            "✮",
-            "🎱",
-            "🌍",
-            "☾",
-            "🌌",
-            "🌑",
-            "🪐",
-            "🌕",
-            "☄️",
-            "💫",
-            "🚀",
-            "🛸",
-            "🌠",
-            "🌙",
-            "⭐️",
-            "🌜",
-            "🌚"
-        ],
-        "rare": [
-            "👾",
-            "👽",
-            "🎮",
-            "👩‍🚀",
-            "🔫",
-            "🛰️"
-        ],
-        "bottom": [
-            "🔭",
-            "📡"
-        ],
-        "player": "🚀",
-        "target": "🌍",
-        "description": "Eine galaktische Welt voller Sterne und fremder Planeten.",
-        "title": "Galaxie"
-    },    
-    "flowers": {
-        "symbols": [
-            "🌸",
-            "🌹",
-            "🌺",
-            "🌻",
-            "🌼",
-            "💐",
-            "🥀",
-            "🌷",
-            "🍀",
-            "🌱"
-        ],
-        "rare": [
-            "🦋",
-            "🐞",
-            "🐝",
-            "🍄",
-            "🐇",
-            "🍄‍🟫",
-            "🪰",
-            "🪁"
-        ],
-        "bottom": [],
-        "player": "🐝",
-        "target": "🌹",
-        "description": "Eine blühende Welt, erfüllt von zarten Blumen und feinen Düften.",
-        "title": "Blumenwiese"
-    },
-    "forest": {
-        "symbols": [
-            "🌲",
-            "🌳",
-            "🌴",
-            "🍄",
-            "🌿",
-            "🍃",
-            "🍂",
-            "🦉",
-            "🐿️",
-            "🦌",
-            "🐻",
-            "🐇"
-        ],
-        "rare": [
-            "🦅",
-            "🪺",
-            "🪹"
-        ],
-        "bottom": [],
-        "player": "🦊",
-        "target": "🍄",
-        "description": "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen.",
-        "title": "Wald"
-    },    
-    "airport": {
-        "symbols": [
-            "✈️",
-            "🛫",
-            "🛬",
-            "🛄",
-            "🎫",
-            "🛩️",
-            "🚁",
-            "🧳",
-            "💺",
-            "🛂"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "✈️",
-        "target": "🛫",
-        "description": "Eine flughafenbezogene Welt, in der Flugzeuge und die Faszination des Fliegens im Mittelpunkt stehen.",
-        "title": "Flughafen"
-    },
-    "alptraum": {
-        "title": "Alptraum",
-        "description": "eine düstere Traumwelt voller Schatten, Augen und irrationaler Ängste",
-        "symbols": [
-            "😱",
-            "👁️",
-            "🕳️",
-            "😨",
-            "👻",
-            "🩸",
-            "🌑",
-            "😵‍💫"
-        ],
-        "rare": [
-            "☠️",
-            "💀",
-            "🕷️",
-            "🧟"
-        ],
-        "bottom": [
-            "🛌",
-            "🌫️"
-        ],
-        "player": "😵‍💫",
-        "target": "👁️"
-    },
-    "angst": {
-        "symbols": [
-            "👁️",
-            "🕳️",
-            "💀",
-            "🕷️",
-            "😨",
-            "🩸",
-            "🕸️",
-            "😰"
-        ],
-        "rare": [
-            "👻",
-            "🧟‍♂️",
-            "☠️"
-        ],
-        "bottom": [
-            "🕯️"
-        ],
-        "player": "😱",
-        "target": "🔦",
-        "description": "Dein Herz rast, das Licht flackert. Finde die Taschenlampe – oder stirb im Dunkeln.",
-        "title": "Angst"
-    },
-    "apocalypse": {
-        "symbols": [
-            "☢️",
-            "🏚️",
-            "🔥",
-            "🌑",
-            "🌫️",
-            "🩸",
-            "⚠️",
-            "☠️",
-            "🔪",
-            "💥"
-        ],
-        "rare": [
-            "💣",
-            "🌅"
-        ],
-        "bottom": [],
-        "player": "😷",
-        "target": "🌅",
-        "description": "Eine apokalyptische Welt, in der Chaos und Zerstörung vorherrschen.",
-        "title": "Apokalypse"
-    },
-    "aquarium": {
-        "symbols": [
-            "🐟",
-            "🐠",
-            "🐡",
-            "🦐",
-            "🦀",
-            "🪸",
-            "🌊",
-            "🫧"
-        ],
-        "rare": [
-            "🧜‍♀️",
-            "🧜‍♂️",
-            "🐋",
-            "🦈"
-        ],
-        "bottom": [
-            "⚓",
-            "🪙"
-        ],
-        "player": "🤿",
-        "target": "🐠",
-        "description": "Diese wasserlebendige Welt ist bevölkert von Fischen, Blasen, Korallen und geheimnisvollen Meereswesen",
-        "title": "Aquarium"
-    },
-    "arcade": {
-        "symbols": [
-            "🎮",
-            "👾",
-            "🕹️",
-            "🎲",
-            "🎯",
-            "🏆",
-            "🎰",
-            "📼",
-            "🔊",
-            "🎵"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🎮",
-        "target": "💎",
-        "description": "Eine retro-arcade Welt, voll von Pixeln, alten Spielen und Nostalgie.",
-        "title": "Arcade"
-    },
-    "arktis": {
-        "symbols": [
-            "🐧",
-            "❄️",
-            "🐻‍❄️",
-            "🧊",
-            "🌨️",
-            "🧥",
-            "🐟",
-            "⛸️",
-            "🌬️",
-            "🛷"
-        ],
-        "rare": [
-            "🌌",
-            "🧊"
-        ],
-        "bottom": [
-            "🧊"
-        ],
-        "player": "🐧",
-        "target": "🐟",
-        "description": "Eine eisige Welt, in der Kälte, Schnee und Leben im Eis aufeinandertreffen.",
-        "title": "Arktis"
-    },
-    "arzt": {
-        "symbols": [
-            "🩺",
-            "💉",
-            "🩹",
-            "🏥",
-            "🧼",
-            "🩻",
-            "🧬",
-            "🧪",
-            "🧫",
-            "📋",
-            "🛏️",
-            "🧤",
-            "🫀",
-            "🧠",
-            "🫁"
-        ],
-        "rare": [
-            "👨‍⚕️",
-            "👩‍⚕️",
-            "⚕️",
-            "🧯",
-            "🔬",
-            "🩸",
-            "🧑‍⚕️"
-        ],
-        "bottom": [
-            "🏥",
-            "🛏️"
-        ],
-        "player": "👨‍⚕️",
-        "target": "🧬",
-        "description": "Eine medizinische Welt, in der Untersuchungen, Pflege und Operationen den Alltag bestimmen.",
-        "title": "Arztpraxis"
-    },
-    "atelier": {
-        "symbols": [
-            "🧵",
-            "🧶",
-            "🪡",
-            "🪢",
-            "👗",
-            "👚",
-            "🧥",
-            "🧣",
-            "🪺",
-            "🧷"
-        ],
-        "rare": [
-            "🪡",
-            "👘",
-            "🧵"
-        ],
-        "bottom": [
-            "🧷",
-            "🧵"
-        ],
-        "player": "🧵",
-        "target": "✂️",
-        "description": "Eine kreative Welt voller Stoffe, Nadeln und inspirierender Designs.",
-        "title": "Nähatelier"
-    },
-    "badewelt": {
-        "symbols": [
-            "🛁",
-            "🧽",
-            "🫧",
-            "🧴",
-            "🧼",
-            "🧖",
-            "🪮",
-            "🛀",
-            "🩲",
-            "🧖‍♀️",
-            "🧖‍♂️"
-        ],
-        "rare": [
-            "🐬",
-            "🦄",
-            "🫧",
-            "🛏️"
-        ],
-        "bottom": [
-            "🛁",
-            "🧼"
-        ],
-        "player": "🛁",
-        "target": "🧼",
-        "description": "Ein Badezimmer voller Schaum, Pflegeprodukte und Spaß – bleib sauber!",
-        "title": "Badewelt"
-    },
-    "baecker": {
-        "title": "Bäcker",
-        "description": "eine duftende Bäckerwelt mit Teig, Brot, Öfen und Mehlstaub",
-        "symbols": [
-            "🍞",
-            "🥖",
-            "🥐",
-            "🥨",
-            "🧈",
-            "🥯",
-            "🔥",
-            "🥞"
-        ],
-        "rare": [
-            "👨‍🍳",
-            "👩‍🍳",
-            "🧁",
-            "🍩",
-            "🫓",
-            "🧺",
-            "🧱"
-        ],
-        "bottom": [
-            "🧯",
-            "🍽️"
-        ],
-        "player": "👨‍🍳",
-        "target": "🍞"
-    },
-    "baustelle_kinder": {
-        "symbols": [
-            "🧱",
-            "🚧",
-            "🦺",
-            "🚜",
-            "🪛",
-            "🧰",
-            "🛠️",
-            "🧤",
-            "🧒",
-            "🧢"
-        ],
-        "rare": [
-            "🏗️",
-            "👷‍♂️",
-            "🛞"
-        ],
-        "bottom": [
-            "🧱"
-        ],
-        "player": "👷‍♂️",
-        "target": "🧰",
-        "description": "Eine kindgerechte Bauwelt, in der alles wie bei den Großen wirkt – aber sicher und bunt.",
-        "title": "Kinderbaustelle"
-    },
-    "beachclub": {
-        "symbols": [
-            "🏖️",
-            "🍹",
-            "🏝️",
-            "🕶️",
-            "🌞",
-            "🎶",
-            "🩴",
-            "🏄‍♂️",
-            "🥥",
-            "🐚",
-            "🐠",
-            "🎇",
-            "🧴",
-            "🎧"
-        ],
-        "rare": [
-            "🧉",
-            "🧜‍♀️",
-            "🦀",
-            "🌇",
-            "🌃"
-        ],
-        "bottom": [
-            "🏖️",
-            "🏝️",
-            "👣"
-        ],
-        "player": "🕶️",
-        "target": "🍹",
-        "description": "Eine sommerliche Strandwelt mit Musik, Sonne und Cocktails.",
-        "title": "Beachclub"
-    },
-    "beerenwelt": {
-        "symbols": [
-            "🍓",
-            "🫐",
-            "🍒",
-            "🍇",
-            "🍈",
-            "🍉",
-            "🌿",
-            "🪻",
-            "🍀",
-            "🧺"
-        ],
-        "rare": [
-            "🥧",
-            "🧁",
-            "🍯"
-        ],
-        "bottom": [
-            "🧺"
-        ],
-        "player": "🧺",
-        "target": "🍓",
-        "description": "Eine fruchtige Welt voller saftiger Beeren – pflücke sie, bevor sie verschwinden.",
-        "title": "Beerenwelt"
-    },
-    "bergwanderung": {
-        "symbols": [
-            "🥾",
-            "🏔️",
-            "⛺",
-            "🥪",
-            "🥶",
-            "🎒",
-            "🧭",
-            "🧗‍♀️",
-            "🌄",
-            "🪨",
-            "🐾",
-            "🌫️",
-            "🧗‍♂️",
-            "🔦"
-        ],
-        "rare": [
-            "🦅",
-            "🐐",
-            "⛰️",
-            "📍",
-            "🌨️"
-        ],
-        "bottom": [
-            "🪨",
-            "🧗‍♀️",
-            "🌄"
-        ],
-        "player": "🥾",
-        "target": "🏔️",
-        "description": "Eine alpine Landschaft mit anspruchsvollen Pfaden und atemberaubender Aussicht.",
-        "title": "Bergwanderung"
-    },
-    "berlin": {
-        "symbols": [
-            "🕊️",
-            "🧑‍🎤",
-            "🚇",
-            "🎨",
-            "🍛",
-            "🎧",
-            "🏙️",
-            "🪧",
-            "🌈",
-            "🎭"
-        ],
-        "rare": [
-            "📢",
-            "🧱",
-            "🛹"
-        ],
-        "bottom": [
-            "🚦"
-        ],
-        "player": "🧑‍🎤",
-        "target": "🍛",
-        "description": "Zwischen Club und Currywurst – erkunde die rebellische, kreative Hauptstadt.",
-        "title": "Berlin"
-    },
-    "bluetenwelt": {
-        "symbols": [
-            "🌺",
-            "🌼",
-            "🌻",
-            "🌸",
-            "💐",
-            "🌷",
-            "🌹",
-            "🍯",
-            "🐝",
-            "🦋"
-        ],
-        "rare": [
-            "🧚",
-            "🧃",
-            "🍓"
-        ],
-        "bottom": [
-            "🪴"
-        ],
-        "player": "🐝",
-        "target": "🌺",
-        "description": "Eine farbenfrohe Welt für summende Sammler – bestäube die schönste Blüte.",
-        "title": "Blütengarten"
-    },
-    "bodyworld": {
-        "symbols": [
-            "🧠",
-            "❤️",
-            "🫁",
-            "🦴",
-            "🫀",
-            "👁️",
-            "🦶",
-            "🖐️",
-            "💪",
-            "🧬"
-        ],
-        "rare": [
-            "🧘‍♀️",
-            "🫦",
-            "🫃"
-        ],
-        "bottom": [
-            "🧬"
-        ],
-        "player": "🫀",
-        "target": "🧠",
-        "description": "Eine Welt rund um den menschlichen Körper – erforschend, lebendig, neutral.",
-        "title": "Körperwelt"
-    },
-    "callcenter": {
-        "title": "Callcenter",
-        "description": "eine nervige Welt aus Warteschleifen, Headsets und Frust",
-        "symbols": [
-            "📞",
-            "☎️",
-            "📱",
-            "🎧",
-            "👨‍💼",
-            "📋"
-        ],
-        "rare": [
-            "💥",
-            "🧯",
-            "😵‍💫",
-            "🗯️"
-        ],
-        "bottom": [
-            "🖨️",
-            "💬"
-        ],
-        "player": "🎧",
-        "target": "📞"
-    },
-    "candyland": {
-        "symbols": [
-            "🍭",
-            "🍫",
-            "🍩",
-            "🍪",
-            "🍬",
-            "🍰",
-            "🎂",
-            "🍧",
-            "🍦",
-            "🍮"
-        ],
-        "rare": [
-            "🍨",
-            "🧁",
-            "🍠",
-            "🧇"
-        ],
-        "bottom": [],
-        "player": "🍭",
-        "target": "🍬",
-        "description": "Eine süße Welt, in der Schokolade, Bonbons und Kuchen dominieren.",
-        "title": "Süßigkeitenwelt"
-    },
-    "cars": {
-        "symbols": [
-            "🚗",
-            "🚕",
-            "🚙",
-            "🚌",
-            "🚎",
-            "🏎️",
-            "🚑",
-            "🚒",
-            "🚓",
-            "🚚",
-            "🚛",
-            "🚜",
-            "🚲",
-            "🛻",
-            "🚐"
-        ],
-        "rare": [
-            "🚀",
-            "🛳️",
-            "✈️"
-        ],
-        "bottom": [
-            "🛣️",
-            "🚧"
-        ],
-        "player": "🚗",
-        "target": "🛣️",
-        "description": "Eine autozentrierte Welt mit Straßen, Schildern und hupenden Fahrzeugen.",
-        "title": "Autowelt"
-    },
-    "cave": {
-        "symbols": [
-            "🪨",
-            "⛰️",
-            "🕸️",
-            "🗿",
-            "🏔️",
-            "🌌",
-            "🧱",
-            "🔦",
-            "🌑",
-            "🛠️"
-        ],
-        "rare": [
-            "🏺",
-            "🕯️"
-        ],
-        "bottom": [],
-        "player": "⛏️",
-        "target": "🏺",
-        "description": "Eine höllische Welt unter der Erde, geprägt von Felsformationen und Dunkelheit.",
-        "title": "Höhle"
-    },
-    "chaoskeller": {
-        "title": "Chaoskeller",
-        "description": "eine verstaubte Welt aus alten Kisten, Spinnweben und vergessenen Dingen",
-        "symbols": [
-            "📦",
-            "🧹",
-            "🕸️",
-            "🔦",
-            "🪣",
-            "🧤",
-            "🪵"
-        ],
-        "rare": [
-            "🪛",
-            "🪜",
-            "📼",
-            "🔋"
-        ],
-        "bottom": [
-            "🔑",
-            "🪠"
-        ],
-        "player": "🔦",
-        "target": "📦"
-    },
-    "china": {
-        "symbols": [
-            "🐉",
-            "🧧",
-            "🏮",
-            "🍜",
-            "🐼",
-            "🏯",
-            "🎎",
-            "🥠"
-        ],
-        "rare": [
-            "🧪",
-            "🀄",
-            "🎐"
-        ],
-        "bottom": [
-            "🧧"
-        ],
-        "player": "🐉",
-        "target": "🥡",
-        "description": "Eine Welt voller Traditionen, Rätsel, Drachen – und dampfender Dumplings.",
-        "title": "China"
-    },
-    "circus": {
-        "symbols": [
-            "🎪",
-            "🤹‍♂️",
-            "🎭",
-            "🐘",
-            "🎠",
-            "🤡",
-            "🎟️",
-            "🎫",
-            "🃏",
-            "🎩"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🤹‍♂️",
-        "target": "🎪",
-        "description": "Eine zirkusartige Welt, in der Akrobaten, Clowns und bunte Zelte zuhause sind.",
-        "title": "Zirkus"
-    },
-    "cloud": {
-        "symbols": [
-            "☁️",
-            "🌤️",
-            "🌈",
-            "💨",
-            "🌥️",
-            "🌀",
-            "✨",
-            "🌞",
-            "☀️",
-            "🌦️"
-        ],
-        "rare": [
-            "🕊️",
-            "🦋"
-        ],
-        "bottom": [],
-        "player": "☁️",
-        "target": "🕊️",
-        "description": "Eine himmelhafte Welt, in der Wolken und Licht das Bild bestimmen.",
-        "title": "Wolkenwelt"
-    },
-    "coffee": {
-        "title": "Kaffeewelt",
-        "description": "Eine gemütliche Welt voller Kaffee, Gebäck und Koffeinträumen.",
-        "symbols": [
-            "☕",
-            "🍪",
-            "🥐",
-            "🧁",
-            "🍩",
-            "🥞",
-            "🍫",
-            "🫖",
-            "🥛"
-        ],
-        "rare": [
-            "🧋",
-            "🍰",
-            "🍮",
-            "🧃"
-        ],
-        "bottom": [
-            "🪑",
-            "📰"
-        ],
-        "player": "👨‍🍳",
-        "target": "☕"
-    },
-    "cologne": {
-        "symbols": [
-            "🎭",
-            "🍻",
-            "🎺",
-            "🕍",
-            "🚤",
-            "🎉",
-            "🌉",
-            "🧼",
-            "🤡"
-        ],
-        "rare": [
-            "👑",
-            "📯",
-            "🎊"
-        ],
-        "bottom": [
-            "🛶"
-        ],
-        "player": "🤡",
-        "target": "🕍",
-        "description": "Karneval, Dom und Kölsch – eine feierfreudige Stadt am Rhein mit Herz.",
-        "title": "Köln"
-    },
-    "concert": {
-        "symbols": [
-            "🎤",
-            "🎸",
-            "🥁",
-            "🎵",
-            "🎧",
-            "🎹",
-            "🎺",
-            "🎷",
-            "🎼",
-            "🎻"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🎤",
-        "target": "🎸",
-        "description": "Eine konzertbezogene Welt, in der Musik und Live-Auftritte das Herzstück bilden.",
-        "title": "Konzert"
-    },
-    "craftsmen": {
-        "symbols": [
-            "🔨",
-            "🪚",
-            "🛠️",
-            "🔩",
-            "🔧",
-            "🪛",
-            "🔗",
-            "⚙️",
-            "🧰",
-            "🧱",
-            "🏗️"
-        ],
-        "rare": [
-            "👷",
-            "🦺",
-            "🔬"
-        ],
-        "bottom": [
-            "🧰",
-            "🔧"
-        ],
-        "player": "🧑‍🔧",
-        "target": "🔧",
-        "description": "Eine Welt der Handwerkskunst mit Werkzeugen, Maschinen und kreativen Erfindungen.",
-        "title": "Handwerker"
-    },
-    "crossword": {
-        "symbols": [
-            "🔠",
-            "🔤",
-            "🔡",
-            "⬜",
-            "🧠",
-            "📘",
-            "📝"
-        ],
-        "rare": [
-            "❓",
-            "❔",
-            "💡",
-            "🧩"
-        ],
-        "bottom": [
-            "📚",
-            "✏️"
-        ],
-        "player": "🧠",
-        "target": "💡",
-        "description": "Dieses Bild zeigt eine rätselhafte Welt voller Buchstaben, Denkaufgaben und Symbolen aus der Welt der Kreuzworträtsel",
-        "title": "Kreuzworträtsel"
-    },
-    "cyberpunk": {
-        "symbols": [
-            "🔮",
-            "💾",
-            "🕶️",
-            "🛸",
-            "🤖",
-            "⚡",
-            "🎛️",
-            "🖥️",
-            "💡",
-            "📡"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🤖",
-        "target": "💾",
-        "description": "Eine futuristische Cyberpunk-Welt mit Neonlichtern und digitalen Visionen.",
-        "title": "Cyberpunk"
-    },
-    "desert": {
-        "symbols": [
-            "🏜️",
-            "🌵",
-            "🐫",
-            "🦂",
-            "☀️",
-            "🌞",
-            "🐍",
-            "🦎",
-            "🧭",
-            "🌄"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🐫",
-        "target": "🌵",
-        "description": "Eine wüstenartige Welt mit sengender Sonne und kargen Landschaften.",
-        "title": "Wüste"
-    },
-    "disco": {
-        "symbols": [
-            "🪩",
-            "💃",
-            "🕺",
-            "🎶",
-            "🔊",
-            "🌈",
-            "🎧",
-            "💿",
-            "🎵",
-            "💥"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🕺",
-        "target": "💃",
-        "description": "Eine discoartige Welt, pulsierend mit Musik, Bewegung und bunten Lichtern.",
-        "title": "Disco"
-    },
-    "dyson_sphaere": {
-        "symbols": [
-            "🌞",
-            "⚙️",
-            "🛰️",
-            "💡",
-            "🌌",
-            "🛠️",
-            "🔋",
-            "🌐",
-            "🪐",
-            "🧠",
-            "🔭"
-        ],
-        "rare": [
-            "🤖",
-            "👾",
-            "🌠",
-            "🧪"
-        ],
-        "bottom": [
-            "🌌",
-            "🛰️"
-        ],
-        "player": "⚙️",
-        "target": "🌞",
-        "description": "Ein Sci-Fi-Megaprojekt im Weltall: Sammle Energie und schütze die Sonne.",
-        "title": "Dyson-Sphäre"
-    },
-    "eiszeit": {
-        "symbols": [
-            "🍦",
-            "🍨",
-            "🍧",
-            "🧊",
-            "❄️",
-            "🍫",
-            "🍒",
-            "🥶"
-        ],
-        "rare": [
-            "🍰",
-            "🧃",
-            "🍩"
-        ],
-        "bottom": [
-            "❄️"
-        ],
-        "player": "🍦",
-        "target": "🍧",
-        "description": "In dieser frostig-leckeren Welt wartet deine Lieblingseissorte irgendwo im Schneesturm.",
-        "title": "Eiszeit"
-    },
-    "essenschlacht": {
-        "title": "Essenschlacht",
-        "description": "eine chaotisch-köstliche Welt aus fliegender Pizza, Torten und Ketchup",
-        "symbols": [
-            "🍕",
-            "🍔",
-            "🍟",
-            "🍗",
-            "🍩",
-            "🌭",
-            "🍰",
-            "🥫"
-        ],
-        "rare": [
-            "🎂",
-            "🍝",
-            "🍳",
-            "🥞"
-        ],
-        "bottom": [
-            "🧽",
-            "🧴"
-        ],
-        "player": "🍕",
-        "target": "🎂"
-    },
-    "fabrik": {
-        "title": "Fabrik",
-        "description": "eine mechanisierte Welt mit Zahnrädern, Förderbändern und Öl",
-        "symbols": [
-            "⚙️",
-            "🛠️",
-            "🏭",
-            "📦",
-            "🚧",
-            "🔩",
-            "🔧"
-        ],
-        "rare": [
-            "💣",
-            "🔋",
-            "🧯",
-            "🛢️"
-        ],
-        "bottom": [
-            "📦",
-            "📤"
-        ],
-        "player": "🤖",
-        "target": "📦"
-    },
-    "fairytale": {
-        "symbols": [
-            "🧚",
-            "✨",
-            "🌈",
-            "🦋",
-            "🌟",
-            "🌙",
-            "💫",
-            "🎆",
-            "🌹",
-            "🍄"
-        ],
-        "rare": [
-            "🦄",
-            "🔮",
-            "🪄"
-        ],
-        "bottom": [],
-        "player": "🧚‍♀️",
-        "target": "🦄",
-        "description": "Eine märchenhafte Welt voller Magie und zauberhafter Kreaturen.",
-        "title": "Märchenwald"
-    },
-    "fotografie": {
-        "symbols": [
-            "📸",
-            "🖼️",
-            "🪞",
-            "🌅",
-            "👓",
-            "🎞️",
-            "🖌️",
-            "🧍",
-            "🧑‍🎨",
-            "🕶️",
-            "📍",
-            "🌇",
-            "🦢",
-            "🪂"
-        ],
-        "rare": [
-            "🎥",
-            "📷",
-            "🖲️",
-            "🔍",
-            "🌄"
-        ],
-        "bottom": [
-            "📸",
-            "🧑‍🎨",
-            "🎞️"
-        ],
-        "player": "📷",
-        "target": "🖼️",
-        "description": "Eine kreative Welt, in der Licht, Bildausschnitt und Motive alles sind.",
-        "title": "Fotografie"
-    },
-    "freezer": {
-        "symbols": [
-            "🧊",
-            "❄️",
-            "🥶",
-            "🧁",
-            "🍧",
-            "🧴",
-            "🧃",
-            "🍦",
-            "🍨"
-        ],
-        "rare": [
-            "🍨",
-            "🧊"
-        ],
-        "bottom": [
-            "❄️"
-        ],
-        "player": "🧊",
-        "target": "🍦",
-        "description": "Diese eisige Welt steckt voller Tiefkühlleckereien – bleib cool und finde das Eis!",
-        "title": "Tiefkühltruhe"
-    },
-    "frieden": {
-        "title": "Frieden",
-        "description": "eine friedliche Welt der Ruhe, Versöhnung und Harmonie",
-        "symbols": [
-            "🕊️",
-            "🌿",
-            "✌️",
-            "🤲",
-            "🫱",
-            "🫲",
-            "🌈",
-            "🤝",
-            "🧘"
-        ],
-        "rare": [
-            "💞",
-            "🧡",
-            "🛐",
-            "☯️"
-        ],
-        "bottom": [
-            "🪷",
-            "🪔"
-        ],
-        "player": "🧘",
-        "target": "🕊️"
-    },
-    "frogger": {
-        "symbols": [
-            "🐸",
-            "🚗",
-            "🚓",
-            "🚚",
-            "🐢",
-            "🚦",
-            "🌊",
-            "🪵",
-            "🌲",
-            "🛣️"
-        ],
-        "rare": [
-            "🐊",
-            "🚤",
-            "🐍"
-        ],
-        "bottom": [
-            "🪷",
-            "🌊"
-        ],
-        "player": "🐸",
-        "target": "🏡",
-        "description": "Frösche überqueren hier Straßen und Flüsse, um sicher nach Hause zu gelangen.",
-        "title": "Frogger"
-    },
-    "fruchtplanet": {
-        "symbols": [
-            "🍎",
-            "🍌",
-            "🍍",
-            "🥝",
-            "🍇",
-            "🍓",
-            "🍉",
-            "🍑",
-            "🍈",
-            "🍊",
-            "🍋",
-            "🍒"
-        ],
-        "rare": [
-            "🍒",
-            "🧃",
-            "🍋",
-            "🍏"
-        ],
-        "bottom": [
-            "🍃",
-            "🍂"
-        ],
-        "player": "🍍",
-        "target": "🧃",
-        "description": "Ein süßer Planet aus Früchten – alles ist essbar, aber voller Fallen.",
-        "title": "Fruchtplanet"
-    },
-    "fruehstueck": {
-        "symbols": [
-            "🥐",
-            "🥖",
-            "🍳",
-            "🥞",
-            "🥯",
-            "🍯",
-            "🥣",
-            "🧈",
-            "🫐"
-        ],
-        "rare": [
-            "🍓",
-            "🍒",
-            "🍌"
-        ],
-        "bottom": [
-            "🧃"
-        ],
-        "player": "🥐",
-        "target": "🧃",
-        "description": "Ein duftender Morgen wartet – finde den Saft, der alles aufweckt.",
-        "title": "Frühstückswelt"
-    },
-    "fruits": {
-        "symbols": [
-            "🍎",
-            "🍌",
-            "🍇",
-            "🍉",
-            "🍓",
-            "🍍",
-            "🥭",
-            "🍊",
-            "🍑",
-            "🍒",
-            "🍐"
-        ],
-        "rare": [
-            "🫐",
-            "🍈",
-            "🍏"
-        ],
-        "bottom": [
-            "🍉"
-        ],
-        "player": "🧺",
-        "target": "🍓",
-        "title": "Obstwelt",
-        "description": "Eine fruchtige Welt voller süßer Leckereien – Äpfel, Erdbeeren, Bananen und vieles mehr. Saftig, bunt und voller Vitamine"
-    },
-    "galaxyMuseum": {
-        "symbols": [
-            "🛸",
-            "👽",
-            "🖼️",
-            "🚀",
-            "🔭",
-            "📜",
-            "🌌",
-            "🪐",
-            "🧠",
-            "🛰️"
-        ],
-        "rare": [
-            "👾",
-            "🪐",
-            "🌠"
-        ],
-        "bottom": [
-            "🎫"
-        ],
-        "player": "👨‍🚀",
-        "target": "🖼️",
-        "description": "Ein kosmisches Museum mit Artefakten aus dem ganzen Universum – finde das gestohlene Exponat.",
-        "title": "Galaktisches Museum"
-    },
-    "garden": {
-        "symbols": [
-            "🌸",
-            "🌼",
-            "🌿",
-            "🌻",
-            "🌱",
-            "🐞",
-            "🌷",
-            "🪻"
-        ],
-        "rare": [
-            "🐝",
-            "🦋",
-            "🐇"
-        ],
-        "bottom": [
-            "🪴",
-            "🪵"
-        ],
-        "player": "🐞",
-        "target": "🌼",
-        "description": "Dieses Bild zeigt eine blühende Gartenwelt voller Blumen, Insekten und frischem Grün",
-        "title": "Garten"
-    },
-    "gebirgsfluss": {
-        "symbols": [
-            "🏞️",
-            "🌊",
-            "🐟",
-            "🪵",
-            "🐦",
-            "🏔️",
-            "🛶",
-            "🍂",
-            "🌬️",
-            "⛺"
-        ],
-        "rare": [
-            "🐻",
-            "🧗‍♂️",
-            "🦅"
-        ],
-        "bottom": [
-            "🛶",
-            "🌊"
-        ],
-        "player": "🛶",
-        "target": "🏞️",
-        "description": "Eine naturbelassene Flusswelt mit schnellen Strömungen und wilder Landschaft.",
-        "title": "Gebirgsfluss"
-    },
-    "geborgenheit": {
-        "symbols": [
-            "☁️",
-            "🧸",
-            "🫶",
-            "🛋️",
-            "🧦",
-            "📖",
-            "🛏️",
-            "✨"
-        ],
-        "rare": [
-            "🧺",
-            "🍪",
-            "🧁"
-        ],
-        "bottom": [
-            "🧺"
-        ],
-        "player": "🤗",
-        "target": "🧸",
-        "description": "Ein Ort zum Ankommen. Finde den Teddybär, der alles wieder gut macht.",
-        "title": "Geborgenheit"
-    },
-    "gemuesebeet": {
-        "symbols": [
-            "🥕",
-            "🥬",
-            "🥦",
-            "🥒",
-            "🍅",
-            "🌱",
-            "🪴",
-            "🧑‍🌾",
-            "🧄"
-        ],
-        "rare": [
-            "🫛",
-            "🫘",
-            "🌽"
-        ],
-        "bottom": [
-            "🌱"
-        ],
-        "player": "👨‍🌾",
-        "target": "🥕",
-        "description": "Hier wächst alles frisch! Ernte dein Lieblingsgemüse, bevor die Schnecken kommen.",
-        "title": "Gemüsebeet"
-    },
-    "germany": {
-        "symbols": [
-            "🍺",
-            "🥨",
-            "🎶",
-            "🏰",
-            "🌲",
-            "🚗",
-            "🎡",
-            "📚",
-            "🧺",
-            "🌧️"
-        ],
-        "rare": [
-            "👨‍🔧",
-            "🎓",
-            "🛠️"
-        ],
-        "bottom": [
-            "🎠"
-        ],
-        "player": "🚶",
-        "target": "🍺",
-        "description": "Eine Welt der Wälder, Fachwerkhäuser und Biergärten – entdecke, was typisch deutsch ist.",
-        "title": "Deutschland"
-    },
-    "gesundheit": {
-        "title": "Gesundheit",
-        "description": "eine medizinische Welt aus Viren, Impfungen und Fürsorge",
-        "symbols": [
-            "🦠",
-            "💉",
-            "🩺",
-            "😷",
-            "🏥",
-            "🧼",
-            "🩹"
-        ],
-        "rare": [
-            "🧪",
-            "🧑‍⚕️",
-            "💊",
-            "🧠"
-        ],
-        "bottom": [
-            "🚿",
-            "🪥"
-        ],
-        "player": "🧑‍⚕️",
-        "target": "💊"
-    },
-    "ghost": {
-        "symbols": [
-            "👻",
-            "💀",
-            "🕯️",
-            "🎃",
-            "🧟‍♂️",
-            "🕸️",
-            "🌑",
-            "👽",
-            "💭",
-            "🧛‍♂️"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "👻",
-        "target": "🎃",
-        "description": "Eine geisterhafte Welt, in der Spukgestalten und mysteriöse Erscheinungen dominieren.",
-        "title": "Geisterwelt"
-    },
-    "ghosting": {
-        "title": "Ghosting",
-        "description": "eine stille Welt der Funkstille, verlorenen Chats und verpassten Chancen",
-        "symbols": [
-            "👻",
-            "📱",
-            "💬",
-            "💤",
-            "❌",
-            "🔕"
-        ],
-        "rare": [
-            "😶",
-            "📭",
-            "📉",
-            "🪦"
-        ],
-        "bottom": [
-            "📵",
-            "📴"
-        ],
-        "player": "😶",
-        "target": "👻"
-    },
-    "greenFuture": {
-        "symbols": [
-            "🌱",
-            "♻️",
-            "🧑‍🌾",
-            "🌿",
-            "🍀",
-            "☀️",
-            "💧",
-            "🪴",
-            "🚲"
-        ],
-        "rare": [
-            "🌈",
-            "🕊️",
-            "🪷"
-        ],
-        "bottom": [
-            "🌻"
-        ],
-        "player": "🌱",
-        "target": "♻️",
-        "description": "Eine friedliche, nachhaltige Welt – finde den Kreislauf, der alles erhält.",
-        "title": "Grüne Zukunft"
-    },
-    "heatwave": {
-        "symbols": [
-            "🏠",
-            "🌡️",
-            "🔥",
-            "😓",
-            "💦",
-            "🧊"
-        ],
-        "rare": [
-            "🔥",
-            "🧯",
-            "🧊",
-            "🪭"
-        ],
-        "bottom": [
-            "🔌",
-            "🌬️"
-        ],
-        "player": "😓",
-        "target": "🧯",
-        "description": "Diese überhitzte Welt zeigt die sommerliche Innenraum-Hölle: Schweiß, Hitzequellen und der verzweifelte Wunsch nach Abkühlung",
-        "title": "Hitze im Haus"
-    },
-    "heliport": {
-        "symbols": [
-            "🚁",
-            "🛬",
-            "🛫",
-            "🗼",
-            "🏥",
-            "🅿️",
-            "🛩️",
-            "🪂",
-            "🌆",
-            "🚦"
-        ],
-        "rare": [
-            "🛤️",
-            "🛑",
-            "🔦"
-        ],
-        "bottom": [
-            "🅷",
-            "🛬"
-        ],
-        "player": "🚁",
-        "target": "🏥",
-        "description": "Eine städtische Welt voller Helikopterlandeplätze und Flugverkehr.",
-        "title": "Hubschrauber"
-    },
-    "herzhaft": {
-        "symbols": [
-            "🍕",
-            "🍔",
-            "🌭",
-            "🍟",
-            "🌮",
-            "🥓",
-            "🍗",
-            "🥪"
-        ],
-        "rare": [
-            "🍝",
-            "🥩",
-            "🥘"
-        ],
-        "bottom": [
-            "🥫"
-        ],
-        "player": "🍔",
-        "target": "🌮",
-        "description": "Ein Land voller herzhafter Leckereien – finde deinen Snack des Tages!",
-        "title": "Herzhaftland"
-    },
-    "huehnerchaos": {
-        "title": "Hühnerchaos",
-        "description": "eine flatternde Welt voller Eier, Federn und übermotivierter Hühner",
-        "symbols": [
-            "🐓",
-            "🥚",
-            "🐣",
-            "🐥",
-            "🌾",
-            "🪶",
-            "🥄"
-        ],
-        "rare": [
-            "👩‍🌾",
-            "🪺",
-            "🪵",
-            "🍳"
-        ],
-        "bottom": [
-            "🪤",
-            "🧺"
-        ],
-        "player": "🐣",
-        "target": "🥚"
-    },
-    "human": {
-        "symbols": [
-            "👶",
-            "🧒",
-            "👧",
-            "🧑",
-            "👨",
-            "👩",
-            "👵",
-            "👴",
-            "🧓",
-            "👩‍🦰",
-            "👨‍🦱"
-        ],
-        "rare": [
-            "🤱",
-            "🤰",
-            "🧑‍🤝‍🧑"
-        ],
-        "bottom": [
-            "🏠",
-            "🏡"
-        ],
-        "player": "🧒",
-        "target": "🤱",
-        "description": "Eine menschliche Welt voller Familien, Lachen und liebevoller Augenblicke.",
-        "title": "Menschenwelt"
-    },
-    "indien": {
-        "symbols": [
-            "🕌",
-            "🪔",
-            "🥘",
-            "🛕",
-            "🎉",
-            "🪭",
-            "🧘‍♀️",
-            "🪷"
-        ],
-        "rare": [
-            "🐘",
-            "🎨",
-            "💫"
-        ],
-        "bottom": [
-            "🎆"
-        ],
-        "player": "🕌",
-        "target": "🪷",
-        "description": "Zwischen Tempeln und Märkten findest du das Heilige im Trubel.",
-        "title": "Indien"
-    },
-    "insects": {
-        "symbols": [
-            "🐜",
-            "🦋",
-            "🐞",
-            "🐝",
-            "🦗",
-            "🦟",
-            "🪲",
-            "🦂",
-            "🕷️",
-            "🕸️",
-            "🪰",
-            "🐌"
-        ],
-        "rare": [
-            "🪳",
-            "🪱",
-            "🦠"
-        ],
-        "bottom": [
-            "🍂",
-            "🍃"
-        ],
-        "player": "🕷️",
-        "target": "🕸️",
-        "description": "Eine insektenreiche Welt voller Krabbeltiere und feiner Netze.",
-        "title": "Insektenwelt"
-    },
-    "japan": {
-        "symbols": [
-            "🏯",
-            "🎴",
-            "🍜",
-            "🗾",
-            "🍵",
-            "🎌",
-            "🥢",
-            "🌸"
-        ],
-        "rare": [
-            "🥷",
-            "👘",
-            "⛩️"
-        ],
-        "bottom": [
-            "🍱"
-        ],
-        "player": "🎌",
-        "target": "🍣",
-        "description": "Tempel, Kirschblüten, Sushi – eine stille, elegante Welt mit klaren Linien.",
-        "title": "Japan"
-    },
-    "jungle": {
-        "symbols": [
-            "🌴",
-            "🐒",
-            "🦜",
-            "🍌",
-            "🐍",
-            "🐅",
-            "🐆",
-            "🦁",
-            "🐘",
-            "🍃"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🐒",
-        "target": "🍌",
-        "description": "Eine dschungelartige Welt voller exotischer Tiere und üppiger Vegetation.",
-        "title": "Dschungel"
-    },
-    "kairo": {
-        "symbols": [
-            "🐫",
-            "🏜️",
-            "🌞",
-            "🏺",
-            "🏛️",
-            "⛲",
-            "⌛",
-            "🪔"
-        ],
-        "rare": [
-            "🏰",
-            "🐍",
-            "🔱"
-        ],
-        "bottom": [
-            "⛏️"
-        ],
-        "player": "🐫",
-        "target": "🏺",
-        "description": "Staubige Gassen, Pyramidengeflüster und ein Schatz tief im Sand.",
-        "title": "Kairo"
-    },
-    "kart": {
-        "symbols": [
-            "🏎️",
-            "🚦",
-            "🏁",
-            "🚧",
-            "🍌",
-            "🛞",
-            "🚗",
-            "🎮",
-            "💨",
-            "🏆"
-        ],
-        "rare": [
-            "🌈",
-            "⭐️",
-            "🍄"
-        ],
-        "bottom": [
-            "🛣️",
-            "🚧"
-        ],
-        "player": "🏎️",
-        "target": "🏁",
-        "description": "Eine bunte Kartwelt mit wilden Rennen und verrückten Hindernissen.",
-        "title": "Kartbahn"
-    },
-    "katastrophe": {
-        "title": "Katastrophe",
-        "description": "Eine dramatische, chaotische Umgebung mit Naturgewalten und Rettungselementen.",
-        "symbols": [
-            "🌪️",
-            "🌊",
-            "🔥",
-            "🌋",
-            "⚡",
-            "💣",
-            "☢️"
-        ],
-        "rare": [
-            "🚒",
-            "🆘",
-            "🧯",
-            "📢",
-            "👷"
-        ],
-        "bottom": [
-            "🧰",
-            "🚨"
-        ],
-        "player": "👷",
-        "target": "🆘"
-    },
-    "kindergarten": {
-        "symbols": [
-            "🧸",
-            "🖍️",
-            "🪁",
-            "🛝",
-            "🎨",
-            "🎒",
-            "🧃",
-            "🏀",
-            "📚",
-            "🪀"
-        ],
-        "rare": [
-            "🧑‍🏫",
-            "🎂",
-            "🧩"
-        ],
-        "bottom": [
-            "🧸",
-            "🛝"
-        ],
-        "player": "🧸",
-        "target": "🧃",
-        "description": "Eine bunte, fröhliche Welt voller Spiel, Kreativität und Kinderlachen.",
-        "title": "Kindergarten"
-    },
-    "kirmes": {
-        "title": "Kirmes",
-        "description": "eine bunte Jahrmarktwelt voller Karussells, Zuckerwatte und blinkender Lichter",
-        "symbols": [
-            "🎠",
-            "🎡",
-            "🎢",
-            "🎟️",
-            "🍭",
-            "🍿",
-            "🤹‍♂️",
-            "🎯"
-        ],
-        "rare": [
-            "🎪",
-            "🎇",
-            "🧃",
-            "🧁"
-        ],
-        "bottom": [
-            "🪩",
-            "🪅"
-        ],
-        "player": "🤹‍♂️",
-        "target": "🎠"
-    },
-    "kitchen": {
-        "symbols": [
-            "🍳",
-            "🍽️",
-            "🔪",
-            "🥄",
-            "🥣",
-            "🍞",
-            "🍔",
-            "🍟",
-            "🍕",
-            "🥗",
-            "🍰",
-            "🍲"
-        ],
-        "rare": [
-            "🥘",
-            "🧂",
-            "🍱",
-            "🥓",
-            "🍇"
-        ],
-        "bottom": [],
-        "player": "🧑‍🍳",
-        "target": "🍲",
-        "description": "Eine geschäftige Küche voller Utensilien, Lebensmitteln und leckerer Gerichte.",
-        "title": "Küche"
-    },
-    "klimawandel": {
-        "title": "Klimawandel",
-        "description": "eine bedrohte Welt zwischen Wetterextremen, Hoffnung und globalem Handeln",
-        "symbols": [
-            "🔥",
-            "🌪️",
-            "💧",
-            "🌊",
-            "🌡️",
-            "🧊",
-            "☀️"
-        ],
-        "rare": [
-            "♻️",
-            "🌱",
-            "📉",
-            "🚴",
-            "🧑‍🔬"
-        ],
-        "bottom": [
-            "📢",
-            "📈"
-        ],
-        "player": "🌱",
-        "target": "♻️"
-    },
-    "krieg": {
-        "title": "Krieg",
-        "description": "eine kriegerische Welt voller Bedrohung, Waffen und Chaos",
-        "symbols": [
-            "💣",
-            "🪖",
-            "🪙",
-            "🛡️",
-            "🔫",
-            "🧨"
-        ],
-        "rare": [
-            "🛩️",
-            "🚁",
-            "⚔️",
-            "🧯"
-        ],
-        "bottom": [
-            "🪖",
-            "🏴"
-        ],
-        "player": "🪖",
-        "target": "🛡️"
-    },
-    "labor": {
-        "symbols": [
-            "🧪",
-            "⚗️",
-            "🔬",
-            "🧫",
-            "🧬",
-            "🔎",
-            "💉",
-            "💊",
-            "🧯",
-            "📖",
-            "📊",
-            "⚠️"
-        ],
-        "rare": [
-            "☣️",
-            "🧠",
-            "🚨",
-            "💥",
-            "⛑️"
-        ],
-        "bottom": [
-            "🔬",
-            "⚗️",
-            "⛑️"
-        ],
-        "player": "🧪",
-        "target": "🧬",
-        "description": "Eine wissenschaftliche Welt voller Reaktionen, Entdeckungen und Risiken.",
-        "title": "Labor"
-    },
-    "laenderreise": {
-        "title": "Länderreise",
-        "description": "eine globale Weltreise mit Flaggen, Sehenswürdigkeiten und Fernweh",
-        "symbols": [
-            "🇩🇪",
-            "🇯🇵",
-            "🇧🇷",
-            "🇫🇷",
-            "🇪🇸",
-            "🇨🇳",
-            "🇺🇸",
-            "🇮🇳",
-            "🗺️",
-            "🧳",
-            "✈️"
-        ],
-        "rare": [
-            "🗽",
-            "🗿",
-            "🕌",
-            "🏯",
-            "🛕",
-            "🎎"
-        ],
-        "bottom": [
-            "🧭",
-            "🎒"
-        ],
-        "player": "✈️",
-        "target": "🗺️"
-    },
-    "lava": {
-        "symbols": [
-            "🔥",
-            "🌋",
-            "🪨",
-            "💀",
-            "👹",
-            "⚔️",
-            "♨️",
-            "🌡️",
-            "🥵",
-            "💥"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "😎",
-        "target": "🔥",
-        "description": "Eine feurige Welt, in der Vulkane lodern und Magma den Boden bedeckt.",
-        "title": "Lavawelt"
-    },
-    "library": {
-        "symbols": [
-            "📚",
-            "📖",
-            "🕯️",
-            "🍷",
-            "🛋️",
-            "📘",
-            "📗",
-            "📕",
-            "📙",
-            "🪑"
-        ],
-        "rare": [
-            "📜",
-            "🔖",
-            "👓",
-            "🥂"
-        ],
-        "bottom": [],
-        "player": "📚",
-        "target": "🍷",
-        "description": "Eine gemütliche Leseecke mit Büchern, Kerzen und einem Glas Rotwein.",
-        "title": "Bibliothek"
-    },
-    "liebeswelt": {
-        "symbols": [
-            "❤️",
-            "💋",
-            "💌",
-            "🌹",
-            "🛏️",
-            "🎶",
-            "🍷",
-            "🔥",
-            "🕯️",
-            "💃"
-        ],
-        "rare": [
-            "👩‍❤️‍👨",
-            "💑",
-            "💞"
-        ],
-        "bottom": [
-            "🛏️",
-            "🕯️"
-        ],
-        "player": "💋",
-        "target": "❤️",
-        "description": "Eine Welt voller Romantik, Zärtlichkeit und stilvoller Sinnlichkeit.",
-        "title": "Liebeswelt"
-    },
-    "logistics": {
-        "symbols": [
-            "📦",
-            "📫",
-            "📮",
-            "🚚",
-            "🛒",
-            "🧯",
-            "📋",
-            "🗂️"
-        ],
-        "rare": [
-            "📦",
-            "🛳️",
-            "📡"
-        ],
-        "bottom": [
-            "🧭"
-        ],
-        "player": "🛒",
-        "target": "📦",
-        "description": "Ein Meer aus Paketen – finde die richtige Lieferung im Labyrinth der Logistik.",
-        "title": "Logistikzentrum"
-    },
-    "magicHome": {
-        "symbols": [
-            "🧺",
-            "🧹",
-            "🪣",
-            "🪄",
-            "🧽",
-            "🕯️",
-            "🪞",
-            "🧴",
-            "🧻",
-            "🛋️"
-        ],
-        "rare": [
-            "🧙‍♀️",
-            "✨",
-            "🪄"
-        ],
-        "bottom": [
-            "🧼"
-        ],
-        "player": "🧹",
-        "target": "🪄",
-        "description": "In diesem Haushalt ist nichts normal – hier tanzen Besen und Magie liegt in der Luft.",
-        "title": "Magischer Haushalt"
-    },
-    "magnetfeld": {
-        "symbols": [
-            "🧲",
-            "⚡",
-            "🔩",
-            "🪛",
-            "⚙️",
-            "📎",
-            "💾",
-            "🖲️",
-            "💡",
-            "🧠",
-            "🔌",
-            "🔋"
-        ],
-        "rare": [
-            "🧬",
-            "🛠️",
-            "🛰️",
-            "⚠️"
-        ],
-        "bottom": [
-            "⚙️",
-            "🔋"
-        ],
-        "player": "🧲",
-        "target": "⚡",
-        "description": "Physikspielplatz – ziehe Objekte an oder stoße sie ab, um zum Ziel zu kommen.",
-        "title": "Magnetfeld"
-    },
-    "market": {
-        "symbols": [
-            "🍎",
-            "🥖",
-            "🧄",
-            "🛒",
-            "🧺",
-            "🪙",
-            "🥬",
-            "📦",
-            "🪵",
-            "🎒"
-        ],
-        "rare": [
-            "🎁",
-            "🪙",
-            "🧑‍🌾"
-        ],
-        "bottom": [
-            "📦"
-        ],
-        "player": "🧺",
-        "target": "🪙",
-        "description": "Ein quirliger Marktplatz voller Waren – finde das wertvolle Goldstück im Durcheinander.",
-        "title": "Marktplatz"
-    },
-    "medieval": {
-        "symbols": [
-            "⚔️",
-            "🛡️",
-            "🏰",
-            "🐉",
-            "🧙‍♂️",
-            "👑",
-            "🏹",
-            "🗡️",
-            "📜",
-            "⚜️"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🧙‍♂️",
-        "target": "👑",
-        "description": "Eine mittelalterliche Welt, in der Ritter, Burgen und Drachen zuhause sind.",
-        "title": "Mittelalter"
-    },
-    "mexico": {
-        "symbols": [
-            "🌮",
-            "🎺",
-            "🪅",
-            "🪇",
-            "🪗",
-            "🧂",
-            "🌵",
-            "💀",
-            "🎉",
-            "🫔"
-        ],
-        "rare": [
-            "🧣",
-            "🧿",
-            "🧤"
-        ],
-        "bottom": [
-            "🪅"
-        ],
-        "player": "🎺",
-        "target": "🌮",
-        "description": "Eine farbenfrohe Welt aus Mariachi, Straßenfesten und scharfem Essen.",
-        "title": "Mexiko"
-    },
-    "mindscape": {
-        "symbols": [
-            "🧠",
-            "💭",
-            "📚",
-            "📘",
-            "📎",
-            "🌀",
-            "🕳️",
-            "❓",
-            "🧩",
-            "📖"
-        ],
-        "rare": [
-            "💡",
-            "🔮",
-            "🤯"
-        ],
-        "bottom": [
-            "📚"
-        ],
-        "player": "🧠",
-        "target": "💡",
-        "description": "Eine surreale Gedankenreise voller Fragen, Ideen und plötzlicher Eingebungen.",
-        "title": "Gedankenwelt"
-    },
-    "muellhalde": {
-        "title": "Müllhalde",
-        "description": "eine chaotische Welt aus Abfall, Schrott und fliegenden Fliegen",
-        "symbols": [
-            "🗑️",
-            "♻️",
-            "🧃",
-            "🍌",
-            "🦟",
-            "🪰",
-            "🪱",
-            "🪵"
-        ],
-        "rare": [
-            "🤢",
-            "☣️",
-            "🧤",
-            "🛠️"
-        ],
-        "bottom": [
-            "🧼",
-            "🚮"
-        ],
-        "player": "🤢",
-        "target": "♻️"
-    },
-    "neanderthal": {
-        "symbols": [
-            "🪨",
-            "🔥",
-            "🦴",
-            "🐗",
-            "🦣",
-            "🛖",
-            "🌄",
-            "👣"
-        ],
-        "rare": [
-            "🏺",
-            "🦕",
-            "🧬"
-        ],
-        "bottom": [
-            "🦕"
-        ],
-        "player": "🧑‍🌾",
-        "target": "🦣",
-        "title": "Neandertaler",
-        "description": "Eine urzeitliche Welt, inspiriert von der Zeit der Neandertaler"
-    },
-    "newyork": {
-        "symbols": [
-            "🗽",
-            "🏙️",
-            "🚖",
-            "🏢",
-            "🍎",
-            "🎷",
-            "🎭",
-            "💼"
-        ],
-        "rare": [
-            "📰",
-            "💵",
-            "🌆"
-        ],
-        "bottom": [
-            "🚇"
-        ],
-        "player": "🗽",
-        "target": "🗞️",
-        "description": "In der Stadt, die nie schläft, kämpfst du dich durch Lärm und Licht zum Ziel.",
-        "title": "New York"
-    },
-    "northpole": {
-        "symbols": [
-            "❄️",
-            "⛄",
-            "🎅",
-            "🦌",
-            "🏔️",
-            "🌨️",
-            "🎁",
-            "🛷",
-            "🌲",
-            "☃️"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "⛄",
-        "target": "❄️",
-        "description": "Eine frostige Welt am Nordpol, voll von Schnee, Eis und festlicher Stimmung.",
-        "title": "Nordpol"
-    },
-    "office": {
-        "symbols": [
-            "⌨️",
-            "☕",
-            "🖥️",
-            "📎",
-            "📁",
-            "🖨️",
-            "📊",
-            "📅",
-            "🖋️",
-            "📞",
-            "💻",
-            "📠"
-        ],
-        "rare": [
-            "🖇️",
-            "🗃️",
-            "🏢",
-            "🗂️",
-            "🧑‍💼",
-            "👩‍💼"
-        ],
-        "bottom": [],
-        "player": "👩‍💼",
-        "target": "📎",
-        "description": "Eine bürokratische Welt, in der Computer, Akten und Kaffee das Geschäft bestimmen.",
-        "title": "Büro"
-    },
-    "officemanagement": {
-        "symbols": [
-            "📈",
-            "🗂️",
-            "📅",
-            "💼",
-            "💬",
-            "🧑‍💼",
-            "📇",
-            "🖇️",
-            "🖥️",
-            "📎",
-            "🧠",
-            "📉",
-            "⏰"
-        ],
-        "rare": [
-            "🧑‍🏫",
-            "🤯",
-            "🧾",
-            "🧑‍💻",
-            "🤖"
-        ],
-        "bottom": [
-            "🪟",
-            "🧑‍💼",
-            "⌨️",
-            "🗃️"
-        ],
-        "player": "💼",
-        "target": "📈",
-        "description": "Eine dynamische Management-Welt voller Aufgaben, Termine und Charts.",
-        "title": "Büromanagement"
-    },
-    "paris": {
-        "symbols": [
-            "🥐",
-            "🍷",
-            "🎨",
-            "🖼️",
-            "🎭",
-            "🗼",
-            "☕",
-            "👗",
-            "💋"
-        ],
-        "rare": [
-            "💄",
-            "🎻",
-            "🎶"
-        ],
-        "bottom": [
-            "🪑"
-        ],
-        "player": "🧑‍🎨",
-        "target": "🗼",
-        "description": "Ein Spaziergang durch Boulevards, Croissants und Kunstwerke – finde den Eiffelturm!",
-        "title": "Paris"
-    },
-    "party": {
-        "symbols": [
-            "🥳",
-            "🎉",
-            "🍾",
-            "🎊",
-            "💥",
-            "🎈",
-            "🎁",
-            "🎶",
-            "🥂",
-            "🍹"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🥳",
-        "target": "🎉",
-        "description": "Eine partyorientierte Welt, in der Feierlaune und Spaß an erster Stelle stehen.",
-        "title": "Party"
-    },
-    "picknick": {
-        "title": "Picknick",
-        "description": "eine fröhliche Welt aus Decken, Ameisen, Getränken und Sonnenschein",
-        "symbols": [
-            "🧃",
-            "🍉",
-            "🥪",
-            "🍇",
-            "🧺",
-            "🐜",
-            "☀️"
-        ],
-        "rare": [
-            "🧻",
-            "🧴",
-            "🎒",
-            "🍯"
-        ],
-        "bottom": [
-            "🌳",
-            "🍂"
-        ],
-        "player": "🧃",
-        "target": "🧺"
-    },
-    "pilzwald": {
-        "symbols": [
-            "🍄",
-            "🌲",
-            "🌳",
-            "🌫️",
-            "🍂",
-            "🪵",
-            "🦉",
-            "🐌",
-            "🐞",
-            "🕷️"
-        ],
-        "rare": [
-            "🧙",
-            "🪺",
-            "🦊"
-        ],
-        "bottom": [
-            "🍄"
-        ],
-        "player": "🦔",
-        "target": "🍄",
-        "description": "Ein feuchter Wald voller Pilze, Moose und kleiner Wesen – finde den magischen Pilz.",
-        "title": "Pilzwald"
-    },
-    "pipeline": {
-        "title": "Pipeline",
-        "description": "eine industrielle Welt aus Rohren, Druck, Öl und Technik",
-        "symbols": [
-            "🛢️",
-            "⚙️",
-            "🧰",
-            "🔩",
-            "🔧",
-            "🚧",
-            "🧱",
-            "🕳️",
-            "➖",
-            "➰",
-            "➿",
-            "🪠"
-        ],
-        "rare": [
-            "💥",
-            "🛠️",
-            "🧪",
-            "⛽",
-            "🧯"
-        ],
-        "bottom": [
-            "🪛",
-            "🛠️"
-        ],
-        "player": "👷",
-        "target": "🛢️"
-    },
-    "pirate": {
-        "symbols": [
-            "🏴‍☠️",
-            "⚓",
-            "🏝️",
-            "🗺️",
-            "☠️",
-            "🚢",
-            "🦜",
-            "🎣",
-            "⚔️",
-            "🏴"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🏴‍☠️",
-        "target": "☠️",
-        "description": "Eine piratenhafte Welt, in der Abenteuer auf hoher See und Schatzsuchen zum Alltag gehören.",
-        "title": "Pirat"
-    },
-    "racing": {
-        "symbols": [
-            "🏎️",
-            "🚦",
-            "🛣️",
-            "🏁",
-            "🚗",
-            "💨",
-            "🚘",
-            "⛽",
-            "🛞",
-            "🚙"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🏎️",
-        "target": "🚦",
-        "description": "Eine Welt für Adrenalinjunkies mit schnellen Autos und spannenden Rennen.",
-        "title": "Rennstrecke"
-    },
-    "radtour": {
-        "symbols": [
-            "🚴",
-            "🚵",
-            "🌳",
-            "🛤️",
-            "🧺",
-            "🧢",
-            "🍎",
-            "🗺️",
-            "🚦",
-            "🌻",
-            "🚧",
-            "⛺",
-            "🧃",
-            "🌲"
-        ],
-        "rare": [
-            "🦅",
-            "🐿️",
-            "🧗‍♂️",
-            "🚴‍♀️",
-            "🦊"
-        ],
-        "bottom": [
-            "🛤️",
-            "🚴",
-            "🌿"
-        ],
-        "player": "🚴",
-        "target": "🧺",
-        "description": "Eine entspannte Tour durch Natur, Felder und kleine Ortschaften.",
-        "title": "Radtour"
-    },
-    "regentag": {
-        "title": "Regentag",
-        "description": "Vermittelt eine ruhige, trübe Atmosphäre voller Tropfen, Fensterblicke und Gummistiefel",
-        "symbols": [
-            "🌧️",
-            "☁️",
-            "💧",
-            "🌂",
-            "🌦️",
-            "☔",
-            "🪟"
-        ],
-        "rare": [
-            "⛈️",
-            "🌈",
-            "🌀",
-            "🧥",
-            "🚿"
-        ],
-        "bottom": [
-            "🩴",
-            "🧼",
-            "🫧"
-        ],
-        "player": "☔",
-        "target": "🌈"
-    },
-    "rio": {
-        "symbols": [
-            "🎭",
-            "🌞",
-            "🥁",
-            "🏖️",
-            "🕺",
-            "🦜",
-            "🍹"
-        ],
-        "rare": [
-            "🎇",
-            "🎊",
-            "🎶"
-        ],
-        "bottom": [
-            "🪘"
-        ],
-        "player": "🥁",
-        "target": "🎉",
-        "description": "Karneval, Küste, Klang – tanze durch eine Welt voller Farben und Rhythmus.",
-        "title": "Rio de Janeiro"
-    },
-    "rom": {
-        "symbols": [
-            "🏛️",
-            "🏺",
-            "⛲",
-            "🍝",
-            "🎭",
-            "⛪",
-            "🐴",
-            "🍕"
-        ],
-        "rare": [
-            "🧔‍♂️",
-            "🍷",
-            "🎬"
-        ],
-        "bottom": [
-            "🪑"
-        ],
-        "player": "🏛️",
-        "target": "🍕",
-        "description": "In der Ewigen Stadt suchst du Pizza zwischen Säulen, Vespa und Vino.",
-        "title": "Rom"
-    },
-    "ruhe": {
-        "symbols": [
-            "🌿",
-            "✨",
-            "🧘",
-            "☁️",
-            "🧘‍♀️",
-            "☯️",
-            "🔔",
-            "📿"
-        ],
-        "rare": [
-            "🕉️",
-            "🧿",
-            "🪔"
-        ],
-        "bottom": [
-            "🪷"
-        ],
-        "player": "🧘",
-        "target": "🪷",
-        "description": "Atme. Spüre. Finde das Zentrum. Hier ist nichts eilig – außer deine Gedanken.",
-        "title": "Innere Ruhe"
-    },
-    "ruins": {
-        "symbols": [
-            "🏺",
-            "🗿",
-            "⛏️",
-            "🏛️",
-            "🔦",
-            "🏚️",
-            "🗺️",
-            "🪨",
-            "⚱️",
-            "📜"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🏺",
-        "target": "🗿",
-        "description": "Eine ruinöse Welt, in der alte Tempel und verfallene Bauwerke eine geheimnisvolle Atmosphäre schaffen.",
-        "title": "Ruinen"
-    },
-    "savanne": {
-        "symbols": [
-            "🐘",
-            "🦒",
-            "🦓",
-            "🌾",
-            "🦁",
-            "🌞",
-            "🪵",
-            "🐆",
-            "🐃",
-            "🐜"
-        ],
-        "rare": [
-            "🧍‍♂️",
-            "🐊"
-        ],
-        "bottom": [
-            "🌾"
-        ],
-        "player": "🦒",
-        "target": "🦁",
-        "description": "Eine heiße, weite Landschaft mit majestätischen Tieren und goldener Sonne.",
-        "title": "Savanne"
-    },
-    "schlaf": {
-        "symbols": [
-            "💤",
-            "🌙",
-            "🛏️",
-            "😪",
-            "☁️",
-            "🧸",
-            "🕯️",
-            "🛌"
-        ],
-        "rare": [
-            "🧚",
-            "🦄",
-            "🪐"
-        ],
-        "bottom": [
-            "🕯️"
-        ],
-        "player": "😴",
-        "target": "🛏️",
-        "description": "Eine schläfrige Welt voller Träume, flauschiger Decken und dunkler Ecken.",
-        "title": "Traumwelt"
-    },
-    "sockenwelt": {
-        "title": "Sockenwelt",
-        "description": "eine kuschelig-verlorene Welt aus Einzelstücken, Fusseln und Waschmaschinen",
-        "symbols": [
-            "🧦",
-            "🧺",
-            "🧼",
-            "🌀",
-            "🧽",
-            "👣"
-        ],
-        "rare": [
-            "🪣",
-            "🧤",
-            "🫧",
-            "🐾"
-        ],
-        "bottom": [
-            "🧦",
-            "🪫"
-        ],
-        "player": "🧦",
-        "target": "🧺"
-    },
-    "sonnentag": {
-        "title": "Sonnentag",
-        "description": "Bringt Leichtigkeit und Sommerstimmung mit Sonnenbrillen, Sonnencreme und Wassereis",
-        "symbols": [
-            "☀️",
-            "🌞",
-            "😎",
-            "🕶️",
-            "🧴",
-            "🌻",
-            "🌼"
-        ],
-        "rare": [
-            "🍦",
-            "🩳",
-            "🏖️",
-            "🍉",
-            "🏄"
-        ],
-        "bottom": [
-            "🪁",
-            "🩱",
-            "⛱️"
-        ],
-        "player": "😎",
-        "target": "🍉"
-    },
-    "spaceOdyssey2001": {
-        "symbols": [
-            "🧑‍🚀",
-            "🚀",
-            "🪐",
-            "🖥️",
-            "🧿",
-            "👶",
-            "🖲️",
-            "🌌",
-            "☄️",
-            "✨"
-        ],
-        "rare": [
-            "🤖",
-            "👽"
-        ],
-        "bottom": [
-            "🧿",
-            "🪐",
-            "🖥️"
-        ],
-        "player": "🧑‍🚀",
-        "target": "🖲️",
-        "description": "Eine futuristische Welt voller Monolithen, Raumschiffe, Jupiter, HAL und Menschheitsrätsel.",
-        "title": "2001 Space Odyssey"
-    },
-    "spaceTaxi": {
-        "symbols": [
-            "🚕",
-            "🚀",
-            "🛸",
-            "🌌",
-            "🪐",
-            "⭐️",
-            "🌜",
-            "✨",
-            "🛰️",
-            "🚏"
-        ],
-        "rare": [
-            "👽",
-            "🛸",
-            "🌠"
-        ],
-        "bottom": [
-            "🌌",
-            "🛰️"
-        ],
-        "player": "🚕",
-        "target": "🪐",
-        "description": "Eine schräge Zukunftswelt, in der Taxis zwischen den Sternen pendeln.",
-        "title": "Space Taxi"
-    },
-    "steampunk": {
-        "symbols": [
-            "⚙️",
-            "🔩",
-            "🛠️",
-            "⏳",
-            "🚂",
-            "🎩",
-            "🕰️",
-            "🔧",
-            "🧰",
-            "📻"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🤖",
-        "target": "⚙️",
-        "description": "Eine Steampunk-Welt, die mechanische Wunder und nostalgische Technik verbindet.",
-        "title": "Steampunk"
-    },
-    "suessmaus": {
-        "symbols": [
-            "🧁",
-            "🍓",
-            "🍫",
-            "🍡",
-            "🍯",
-            "🍩",
-            "🥞",
-            "🍪"
-        ],
-        "rare": [
-            "🍰",
-            "🍮",
-            "🍒"
-        ],
-        "bottom": [
-            "🍯"
-        ],
-        "player": "🐭",
-        "target": "🧁",
-        "description": "Als süße Maus suchst du deinen Lieblingskuchen – aber Vorsicht: Naschfallen!",
-        "title": "Süßmaus"
-    },
-    "superhero": {
-        "symbols": [
-            "🦸‍♂️",
-            "🦸‍♀️",
-            "🏙️",
-            "💥",
-            "🦹‍♂️",
-            "🌆",
-            "🪝",
-            "🚁",
-            "🚓",
-            "⚡"
-        ],
-        "rare": [
-            "🦹‍♀️",
-            "🛡️",
-            "🚨"
-        ],
-        "bottom": [
-            "🏢",
-            "🏙️"
-        ],
-        "player": "🦸‍♂️",
-        "target": "🦹‍♂️",
-        "description": "Hier kämpfen Superhelden in schwindelerregenden Höhen gegen das Böse.",
-        "title": "Superhelden"
-    },
-    "traumwelt": {
-        "symbols": [
-            "🌙",
-            "✨",
-            "🛏️",
-            "🐑",
-            "🧸",
-            "🪐",
-            "🎠",
-            "☁️",
-            "💭",
-            "🧚"
-        ],
-        "rare": [
-            "🦄",
-            "🧞",
-            "🌈"
-        ],
-        "bottom": [
-            "☁️"
-        ],
-        "player": "🐑",
-        "target": "🌙",
-        "description": "Eine traumhafte Fantasiewelt für Kinder mit Magie, Licht und Fantasiegestalten.",
-        "title": "Traumwelt"
-    },
-    "traurigkeit": {
-        "symbols": [
-            "😔",
-            "☔",
-            "💧",
-            "🌧️",
-            "😥",
-            "📓",
-            "🕯️",
-            "🛏️"
-        ],
-        "rare": [
-            "🪦",
-            "👻",
-            "💔"
-        ],
-        "bottom": [
-            "🧻"
-        ],
-        "player": "😢",
-        "target": "🧻",
-        "description": "Langsame Tropfen auf Fensterglas – finde Trost in einer grauen Welt.",
-        "title": "Traurigkeit"
-    },
-    "tvshow": {
-        "title": "TV-Show",
-        "description": "eine grelle Welt aus Gameshows, Kameras und peinlichen Auftritten",
-        "symbols": [
-            "📺",
-            "🎥",
-            "🎤",
-            "🎬",
-            "📸",
-            "🎭",
-            "🎙️"
-        ],
-        "rare": [
-            "💡",
-            "🏆",
-            "🎮",
-            "🤡"
-        ],
-        "bottom": [
-            "🎞️",
-            "🔴"
-        ],
-        "player": "🎤",
-        "target": "🏆"
-    },
-    "ueberforderung": {
-        "symbols": [
-            "🧠",
-            "📅",
-            "📈",
-            "💬",
-            "⚠️",
-            "📋",
-            "🧾",
-            "😵‍💫"
-        ],
-        "rare": [
-            "💣",
-            "📢",
-            "📉"
-        ],
-        "bottom": [
-            "🪫"
-        ],
-        "player": "🤯",
-        "target": "💡",
-        "description": "To-do-Listen explodieren. Du brauchst einen Geistesblitz, bevor alles kollabiert.",
-        "title": "Überforderung"
-    },
-    "uno": {
-        "title": "UNO",
-        "description": "eine diplomatische Welt voller Frieden, Reden und globaler Zusammenarbeit",
-        "symbols": [
-            "🇺🇳",
-            "🕊️",
-            "🤝",
-            "🗣️",
-            "📜",
-            "🏛️"
-        ],
-        "rare": [
-            "🧑‍⚖️",
-            "⚖️",
-            "✉️",
-            "🛡️"
-        ],
-        "bottom": [
-            "🎙️",
-            "📢"
-        ],
-        "player": "🤝",
-        "target": "🕊️"
-    },
-    "veganland": {
-        "title": "Veganland",
-        "description": "eine pflanzliche Welt mit Brokkoli, Sojamilch und ganz viel Überzeugung",
-        "symbols": [
-            "🥦",
-            "🥕",
-            "🥒",
-            "🥬",
-            "🫘",
-            "🌱",
-            "🥗"
-        ],
-        "rare": [
-            "🧘‍♂️",
-            "🥤",
-            "💚",
-            "🧄"
-        ],
-        "bottom": [
-            "🍽️",
-            "🌽"
-        ],
-        "player": "🌱",
-        "target": "🥦"
-    },
-    "vegetables": {
-        "title": "Gemüsewelt",
-        "description": "Eine vitaminreiche Welt voller knackigem Gemüse, von Karotten bis Brokkoli. Perfekt für alle Gartenfreunde und Ernährungsbewussten",
-        "symbols": [
-            "🥕",
-            "🌽",
-            "🍅",
-            "🥒",
-            "🧄",
-            "🧅",
-            "🥬",
-            "🥦",
-            "🍆"
-        ],
-        "rare": [
-            "🥗",
-            "🫛",
-            "🫑",
-            "🫘"
-        ],
-        "bottom": [],
-        "player": "👨‍🌾",
-        "target": "🥕"
-    },
-    "verfuehrung": {
-        "symbols": [
-            "👠",
-            "👙",
-            "🥂",
-            "🎭",
-            "🕯️",
-            "🎶",
-            "💄",
-            "🖤",
-            "🛏️",
-            "🍓"
-        ],
-        "rare": [
-            "🔐",
-            "💌",
-            "👩‍❤️‍💋‍👨"
-        ],
-        "bottom": [
-            "🛏️"
-        ],
-        "player": "👠",
-        "target": "💄",
-        "description": "Eine ästhetisch angehauchte Welt für Erwachsene mit Andeutungen und Spiel mit Sinnlichkeit.",
-        "title": "Verführung"
-    },
-    "verliebt": {
-        "symbols": [
-            "💌",
-            "🌹",
-            "🥰",
-            "🫶",
-            "💑",
-            "💋",
-            "💓",
-            "💗",
-            "🎶"
-        ],
-        "rare": [
-            "👩‍❤️‍👨",
-            "💞",
-            "💍"
-        ],
-        "bottom": [
-            "🕯️"
-        ],
-        "player": "💘",
-        "target": "❤️",
-        "description": "Eine Welt voller Herzklopfen, Blickkontakte und zarter Gesten.",
-        "title": "Verliebt"
-    },
-    "verschwoerung": {
-        "title": "Verschwörung",
-        "description": "eine paranoide Welt voller Aluhüte, geheimen Plänen und unerklärlicher Verbindungen",
-        "symbols": [
-            "🧠",
-            "📜",
-            "🕵️‍♂️",
-            "📡",
-            "🔎",
-            "📌"
-        ],
-        "rare": [
-            "👽",
-            "🛸",
-            "🧬",
-            "👁️"
-        ],
-        "bottom": [
-            "📎",
-            "✏️"
-        ],
-        "player": "🕵️‍♂️",
-        "target": "👁️"
-    },
-    "vogelflug": {
-        "symbols": [
-            "🐦",
-            "🐦‍⬛",
-            "🌥️",
-            "☁️",
-            "🪶",
-            "🌬️",
-            "🪁",
-            "🌄",
-            "🌈",
-            "✨",
-            "⛰️",
-            "🕊️",
-            "🦜",
-            "🦉",
-            "🦚"
-        ],
-        "rare": [
-            "🦅",
-            "🕊️",
-            "🌪️",
-            "🪽",
-            "🦚"
-        ],
-        "bottom": [
-            "⛰️",
-            "🌲"
-        ],
-        "player": "🐦",
-        "target": "🪶",
-        "description": "Du fliegst durch die Lüfte, sammelst Federn und weichst Windwirbeln aus.",
-        "title": "Vogelflug"
-    },
-    "volcano": {
-        "symbols": [
-            "🌋",
-            "🔥",
-            "🪨",
-            "💀",
-            "⛏️",
-            "🌪️",
-            "♨️",
-            "🚒",
-            "🥵",
-            "💥"
-        ],
-        "rare": [],
-        "bottom": [],
-        "player": "🚒",
-        "target": "🌋",
-        "description": "Eine vulkanische Welt, in der die Natur mit explosiver Kraft spielt.",
-        "title": "Vulkan"
-    },
-    "waldfruehling": {
-        "symbols": [
-            "🌷",
-            "🌼",
-            "🌱",
-            "🌸",
-            "🦋",
-            "🐞",
-            "🐇",
-            "🌤️",
-            "🍃",
-            "🌻"
-        ],
-        "rare": [
-            "🪺",
-            "🕊️",
-            "🌈"
-        ],
-        "bottom": [
-            "🌸"
-        ],
-        "player": "🐇",
-        "target": "🌷",
-        "description": "Der Wald erwacht – hüpfe durch Blüten und Falter zur ersten Frühlingsblume.",
-        "title": "Waldfrühling"
-    },
-    "water": {
-        "symbols": [
-            "🐠",
-            "🐟",
-            "🐬",
-            "🐳",
-            "🐋",
-            "🦈",
-            "🦑",
-            "🐙",
-            "🌊",
-            "🚤",
-            "⛵",
-            "🚢",
-            "🛥️"
-        ],
-        "rare": [
-            "🧜‍♂️",
-            "🧜‍♀️",
-            "🐋",
-            "🤿",
-            "🥽",
-            "🔱",
-            "⚓",
-            "🦈",
-            "🛟",
-            "🩳",
-            "🏊‍♀️",
-            "🏊‍♂️",
-            "🏊",
-            "🏄",
-            "🤽‍♂️"
-        ],
-        "bottom": [],
-        "player": "🏊",
-        "target": "🐋",
-        "description": "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen.",
-        "title": "Wasserwelt"
-    },
-    "wohnkrise": {
-        "title": "Wohnkrise",
-        "description": "eine herausfordernde Welt aus Beton, Baustellen und Wohnungssuche",
-        "symbols": [
-            "🏚️",
-            "🏠",
-            "🏘️",
-            "🔨",
-            "📦",
-            "🛏️",
-            "🚪"
-        ],
-        "rare": [
-            "💸",
-            "📄",
-            "🧳",
-            "🔑"
-        ],
-        "bottom": [
-            "🪜",
-            "🪟"
-        ],
-        "player": "🚶",
-        "target": "🏠"
-    },
-    "wut": {
-        "symbols": [
-            "💢",
-            "🔥",
-            "💣",
-            "💥",
-            "😤",
-            "⚡",
-            "😠",
-            "🤬"
-        ],
-        "rare": [
-            "🧨",
-            "😾",
-            "🧯"
-        ],
-        "bottom": [
-            "🔨"
-        ],
-        "player": "😡",
-        "target": "💥",
-        "description": "Hier kocht alles über. Zerstörung ist leicht – der Ausweg ist schwer.",
-        "title": "Wutwelt"
-    },
-    "zahnarzt": {
-        "title": "Zahnarzt",
-        "description": "eine bohrende Welt voller Zähne, Geräusche und Nervenkitzel",
-        "symbols": [
-            "🦷",
-            "🪥",
-            "🧼",
-            "🧴",
-            "😬",
-            "💺",
-            "📋"
-        ],
-        "rare": [
-            "🧑‍⚕️",
-            "💊",
-            "😖",
-            "📞"
-        ],
-        "bottom": [
-            "🧻",
-            "🚿"
-        ],
-        "player": "😬",
-        "target": "🦷"
-    },
-    "zeitreise": {
-        "title": "Zeitreise",
-        "description": "eine Welt aus Vergangenheit, Zukunft und allem dazwischen",
-        "symbols": [
-            "🕰️",
-            "⏳",
-            "🛸",
-            "🦕",
-            "🤖",
-            "📜",
-            "🔮"
-        ],
-        "rare": [
-            "🧑‍🚀",
-            "👴",
-            "👶",
-            "📅"
-        ],
-        "bottom": [
-            "⚙️",
-            "🔁"
-        ],
-        "player": "⏳",
-        "target": "🔮"
-    },
-    "zivilschutz": {
-        "title": "Zivilschutz",
-        "description": "eine vorsorgende Welt mit Alarmplänen, Notausgängen und Helferinnen",
-        "symbols": [
-            "🧯",
-            "🚨",
-            "🚪",
-            "🧰",
-            "📢",
-            "📦"
-        ],
-        "rare": [
-            "🧑‍🚒",
-            "🧑‍⚕️",
-            "🚒",
-            "🏥"
-        ],
-        "bottom": [
-            "🪫",
-            "🚿"
-        ],
-        "player": "🧑‍🚒",
-        "target": "📦"
-    },
-    "zombieTown": {
-        "symbols": [
-            "🧟",
-            "🩸",
-            "🪦",
-            "🧠",
-            "🪓",
-            "🔪",
-            "💀",
-            "🧌",
-            "🧛",
-            "🪙"
-        ],
-        "rare": [
-            "🚨",
-            "🧯",
-            "😈"
-        ],
-        "bottom": [
-            "🛑"
-        ],
-        "player": "😱",
-        "target": "🚪",
-        "description": "In dieser postapokalyptischen Stadt streifen Untote umher – finde den rettenden Ausgang.",
-        "title": "Zombie-Stadt"
-    },
-    "zoo": {
-        "title": "Zoo",
-        "description": "eine tierische Zoowelt mit Gehegen, Aquarien und exotischen Kreaturen",
-        "symbols": [
-            "🦁",
-            "🐘",
-            "🦓",
-            "🐅",
-            "🐒",
-            "🦒",
-            "🦜",
-            "🐠",
-            "🐡",
-            "🦋",
-            "🐛",
-            "🐢"
-        ],
-        "rare": [
-            "🦍",
-            "🦧",
-            "🐆",
-            "🦛",
-            "🦂",
-            "🪲"
-        ],
-        "bottom": [
-            "🎟️",
-            "🪴",
-            "🐾"
-        ],
-        "player": "👦",
-        "target": "🦁"
-    }
+	"galaxy": {
+		"symbols": [
+			"🧿",
+			"🕳️",
+			"✮",
+			"🎱",
+			"🌍",
+			"☾",
+			"🌌",
+			"🌑",
+			"🪐",
+			"🌕",
+			"☄️",
+			"💫",
+			"🚀",
+			"🛸",
+			"🌠",
+			"🌙",
+			"⭐️",
+			"🌜",
+			"🌚"
+		],
+		"rare": [
+			"👾",
+			"👽",
+			"🎮",
+			"👩‍🚀",
+			"🔫",
+			"🛰️"
+		],
+		"bottom": [
+			"🔭",
+			"📡"
+		],
+		"player": "🚀",
+		"target": "🌍",
+		"description": "Eine galaktische Welt voller Sterne und fremder Planeten.",
+		"title": "Galaxie"
+	},
+	"flowers": {
+		"symbols": [
+			"🌸",
+			"🌹",
+			"🌺",
+			"🌻",
+			"🌼",
+			"💐",
+			"🥀",
+			"🌷",
+			"🍀",
+			"🌱"
+		],
+		"rare": [
+			"🦋",
+			"🐞",
+			"🐝",
+			"🍄",
+			"🐇",
+			"🍄‍🟫",
+			"🪰",
+			"🪁"
+		],
+		"bottom": [],
+		"player": "🐝",
+		"target": "🌹",
+		"description": "Eine blühende Welt, erfüllt von zarten Blumen und feinen Düften.",
+		"title": "Blumenwiese"
+	},
+	"forest": {
+		"symbols": [
+			"🌲",
+			"🌳",
+			"🌴",
+			"🍄",
+			"🌿",
+			"🍃",
+			"🍂",
+			"🦉",
+			"🐿️",
+			"🦌",
+			"🐻",
+			"🐇"
+		],
+		"rare": [
+			"🦅",
+			"🪺",
+			"🪹"
+		],
+		"bottom": [],
+		"player": "🦊",
+		"target": "🍄",
+		"description": "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen.",
+		"title": "Wald"
+	},
+	"airport": {
+		"symbols": [
+			"✈️",
+			"🛫",
+			"🛬",
+			"🛄",
+			"🎫",
+			"🛩️",
+			"🚁",
+			"🧳",
+			"💺",
+			"🛂"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "✈️",
+		"target": "🛫",
+		"description": "Eine flughafenbezogene Welt, in der Flugzeuge und die Faszination des Fliegens im Mittelpunkt stehen.",
+		"title": "Flughafen"
+	},
+	"alptraum": {
+		"title": "Alptraum",
+		"description": "eine düstere Traumwelt voller Schatten, Augen und irrationaler Ängste",
+		"symbols": [
+			"😱",
+			"👁️",
+			"🕳️",
+			"😨",
+			"👻",
+			"🩸",
+			"🌑",
+			"😵‍💫"
+		],
+		"rare": [
+			"☠️",
+			"💀",
+			"🕷️",
+			"🧟"
+		],
+		"bottom": [
+			"🛌",
+			"🌫️"
+		],
+		"player": "😵‍💫",
+		"target": "👁️"
+	},
+	"angst": {
+		"symbols": [
+			"👁️",
+			"🕳️",
+			"💀",
+			"🕷️",
+			"😨",
+			"🩸",
+			"🕸️",
+			"😰"
+		],
+		"rare": [
+			"👻",
+			"🧟‍♂️",
+			"☠️"
+		],
+		"bottom": [
+			"🕯️"
+		],
+		"player": "😱",
+		"target": "🔦",
+		"description": "Dein Herz rast, das Licht flackert. Finde die Taschenlampe – oder stirb im Dunkeln.",
+		"title": "Angst"
+	},
+	"apocalypse": {
+		"symbols": [
+			"☢️",
+			"🏚️",
+			"🔥",
+			"🌑",
+			"🌫️",
+			"🩸",
+			"⚠️",
+			"☠️",
+			"🔪",
+			"💥"
+		],
+		"rare": [
+			"💣",
+			"🌅"
+		],
+		"bottom": [],
+		"player": "😷",
+		"target": "🌅",
+		"description": "Eine apokalyptische Welt, in der Chaos und Zerstörung vorherrschen.",
+		"title": "Apokalypse"
+	},
+	"aquarium": {
+		"symbols": [
+			"🐟",
+			"🐠",
+			"🐡",
+			"🦐",
+			"🦀",
+			"🪸",
+			"🌊",
+			"🫧"
+		],
+		"rare": [
+			"🧜‍♀️",
+			"🧜‍♂️",
+			"🐋",
+			"🦈"
+		],
+		"bottom": [
+			"⚓",
+			"🪙"
+		],
+		"player": "🤿",
+		"target": "🐠",
+		"description": "Diese wasserlebendige Welt ist bevölkert von Fischen, Blasen, Korallen und geheimnisvollen Meereswesen",
+		"title": "Aquarium"
+	},
+	"arcade": {
+		"symbols": [
+			"🎮",
+			"👾",
+			"🕹️",
+			"🎲",
+			"🎯",
+			"🏆",
+			"🎰",
+			"📼",
+			"🔊",
+			"🎵"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🎮",
+		"target": "💎",
+		"description": "Eine retro-arcade Welt, voll von Pixeln, alten Spielen und Nostalgie.",
+		"title": "Arcade"
+	},
+	"arktis": {
+		"symbols": [
+			"🐧",
+			"❄️",
+			"🐻‍❄️",
+			"🧊",
+			"🌨️",
+			"🧥",
+			"🐟",
+			"⛸️",
+			"🌬️",
+			"🛷"
+		],
+		"rare": [
+			"🌌",
+			"🧊"
+		],
+		"bottom": [
+			"🧊"
+		],
+		"player": "🐧",
+		"target": "🐟",
+		"description": "Eine eisige Welt, in der Kälte, Schnee und Leben im Eis aufeinandertreffen.",
+		"title": "Arktis"
+	},
+	"arzt": {
+		"symbols": [
+			"🩺",
+			"💉",
+			"🩹",
+			"🏥",
+			"🧼",
+			"🩻",
+			"🧬",
+			"🧪",
+			"🧫",
+			"📋",
+			"🛏️",
+			"🧤",
+			"🫀",
+			"🧠",
+			"🫁"
+		],
+		"rare": [
+			"👨‍⚕️",
+			"👩‍⚕️",
+			"⚕️",
+			"🧯",
+			"🔬",
+			"🩸",
+			"🧑‍⚕️"
+		],
+		"bottom": [
+			"🏥",
+			"🛏️"
+		],
+		"player": "👨‍⚕️",
+		"target": "🧬",
+		"description": "Eine medizinische Welt, in der Untersuchungen, Pflege und Operationen den Alltag bestimmen.",
+		"title": "Arztpraxis"
+	},
+	"atelier": {
+		"symbols": [
+			"🧵",
+			"🧶",
+			"🪡",
+			"🪢",
+			"👗",
+			"👚",
+			"🧥",
+			"🧣",
+			"🪺",
+			"🧷"
+		],
+		"rare": [
+			"🪡",
+			"👘",
+			"🧵"
+		],
+		"bottom": [
+			"🧷",
+			"🧵"
+		],
+		"player": "🧵",
+		"target": "✂️",
+		"description": "Eine kreative Welt voller Stoffe, Nadeln und inspirierender Designs.",
+		"title": "Nähatelier"
+	},
+	"badewelt": {
+		"symbols": [
+			"🛁",
+			"🧽",
+			"🫧",
+			"🧴",
+			"🧼",
+			"🧖",
+			"🪮",
+			"🛀",
+			"🩲",
+			"🧖‍♀️",
+			"🧖‍♂️"
+		],
+		"rare": [
+			"🐬",
+			"🦄",
+			"🫧",
+			"🛏️"
+		],
+		"bottom": [
+			"🛁",
+			"🧼"
+		],
+		"player": "🛁",
+		"target": "🧼",
+		"description": "Ein Badezimmer voller Schaum, Pflegeprodukte und Spaß – bleib sauber!",
+		"title": "Badewelt"
+	},
+	"baecker": {
+		"title": "Bäcker",
+		"description": "eine duftende Bäckerwelt mit Teig, Brot, Öfen und Mehlstaub",
+		"symbols": [
+			"🍞",
+			"🥖",
+			"🥐",
+			"🥨",
+			"🧈",
+			"🥯",
+			"🔥",
+			"🥞"
+		],
+		"rare": [
+			"👨‍🍳",
+			"👩‍🍳",
+			"🧁",
+			"🍩",
+			"🫓",
+			"🧺",
+			"🧱"
+		],
+		"bottom": [
+			"🧯",
+			"🍽️"
+		],
+		"player": "👨‍🍳",
+		"target": "🍞"
+	},
+	"baustelle_kinder": {
+		"symbols": [
+			"🧱",
+			"🚧",
+			"🦺",
+			"🚜",
+			"🪛",
+			"🧰",
+			"🛠️",
+			"🧤",
+			"🧒",
+			"🧢"
+		],
+		"rare": [
+			"🏗️",
+			"👷‍♂️",
+			"🛞"
+		],
+		"bottom": [
+			"🧱"
+		],
+		"player": "👷‍♂️",
+		"target": "🧰",
+		"description": "Eine kindgerechte Bauwelt, in der alles wie bei den Großen wirkt – aber sicher und bunt.",
+		"title": "Kinderbaustelle"
+	},
+	"beachclub": {
+		"symbols": [
+			"🏖️",
+			"🍹",
+			"🏝️",
+			"🕶️",
+			"🌞",
+			"🎶",
+			"🩴",
+			"🏄‍♂️",
+			"🥥",
+			"🐚",
+			"🐠",
+			"🎇",
+			"🧴",
+			"🎧"
+		],
+		"rare": [
+			"🧉",
+			"🧜‍♀️",
+			"🦀",
+			"🌇",
+			"🌃"
+		],
+		"bottom": [
+			"🏖️",
+			"🏝️",
+			"👣"
+		],
+		"player": "🕶️",
+		"target": "🍹",
+		"description": "Eine sommerliche Strandwelt mit Musik, Sonne und Cocktails.",
+		"title": "Beachclub"
+	},
+	"beerenwelt": {
+		"symbols": [
+			"🍓",
+			"🫐",
+			"🍒",
+			"🍇",
+			"🍈",
+			"🍉",
+			"🌿",
+			"🪻",
+			"🍀",
+			"🧺"
+		],
+		"rare": [
+			"🥧",
+			"🧁",
+			"🍯"
+		],
+		"bottom": [
+			"🧺"
+		],
+		"player": "🧺",
+		"target": "🍓",
+		"description": "Eine fruchtige Welt voller saftiger Beeren – pflücke sie, bevor sie verschwinden.",
+		"title": "Beerenwelt"
+	},
+	"bergwanderung": {
+		"symbols": [
+			"🥾",
+			"🏔️",
+			"⛺",
+			"🥪",
+			"🥶",
+			"🎒",
+			"🧭",
+			"🧗‍♀️",
+			"🌄",
+			"🪨",
+			"🐾",
+			"🌫️",
+			"🧗‍♂️",
+			"🔦"
+		],
+		"rare": [
+			"🦅",
+			"🐐",
+			"⛰️",
+			"📍",
+			"🌨️"
+		],
+		"bottom": [
+			"🪨",
+			"🧗‍♀️",
+			"🌄"
+		],
+		"player": "🥾",
+		"target": "🏔️",
+		"description": "Eine alpine Landschaft mit anspruchsvollen Pfaden und atemberaubender Aussicht.",
+		"title": "Bergwanderung"
+	},
+	"berlin": {
+		"symbols": [
+			"🕊️",
+			"🧑‍🎤",
+			"🚇",
+			"🎨",
+			"🍛",
+			"🎧",
+			"🏙️",
+			"🪧",
+			"🌈",
+			"🎭"
+		],
+		"rare": [
+			"📢",
+			"🧱",
+			"🛹"
+		],
+		"bottom": [
+			"🚦"
+		],
+		"player": "🧑‍🎤",
+		"target": "🍛",
+		"description": "Zwischen Club und Currywurst – erkunde die rebellische, kreative Hauptstadt.",
+		"title": "Berlin"
+	},
+	"bluetenwelt": {
+		"symbols": [
+			"🌺",
+			"🌼",
+			"🌻",
+			"🌸",
+			"💐",
+			"🌷",
+			"🌹",
+			"🍯",
+			"🐝",
+			"🦋"
+		],
+		"rare": [
+			"🧚",
+			"🧃",
+			"🍓"
+		],
+		"bottom": [
+			"🪴"
+		],
+		"player": "🐝",
+		"target": "🌺",
+		"description": "Eine farbenfrohe Welt für summende Sammler – bestäube die schönste Blüte.",
+		"title": "Blütengarten"
+	},
+	"bodyworld": {
+		"symbols": [
+			"🧠",
+			"❤️",
+			"🫁",
+			"🦴",
+			"🫀",
+			"👁️",
+			"🦶",
+			"🖐️",
+			"💪",
+			"🧬"
+		],
+		"rare": [
+			"🧘‍♀️",
+			"🫦",
+			"🫃"
+		],
+		"bottom": [
+			"🧬"
+		],
+		"player": "🫀",
+		"target": "🧠",
+		"description": "Eine Welt rund um den menschlichen Körper – erforschend, lebendig, neutral.",
+		"title": "Körperwelt"
+	},
+	"callcenter": {
+		"title": "Callcenter",
+		"description": "eine nervige Welt aus Warteschleifen, Headsets und Frust",
+		"symbols": [
+			"📞",
+			"☎️",
+			"📱",
+			"🎧",
+			"👨‍💼",
+			"📋"
+		],
+		"rare": [
+			"💥",
+			"🧯",
+			"😵‍💫",
+			"🗯️"
+		],
+		"bottom": [
+			"🖨️",
+			"💬"
+		],
+		"player": "🎧",
+		"target": "📞"
+	},
+	"candyland": {
+		"symbols": [
+			"🍭",
+			"🍫",
+			"🍩",
+			"🍪",
+			"🍬",
+			"🍰",
+			"🎂",
+			"🍧",
+			"🍦",
+			"🍮"
+		],
+		"rare": [
+			"🍨",
+			"🧁",
+			"🍠",
+			"🧇"
+		],
+		"bottom": [],
+		"player": "🍭",
+		"target": "🍬",
+		"description": "Eine süße Welt, in der Schokolade, Bonbons und Kuchen dominieren.",
+		"title": "Süßigkeitenwelt"
+	},
+	"cars": {
+		"symbols": [
+			"🚗",
+			"🚕",
+			"🚙",
+			"🚌",
+			"🚎",
+			"🏎️",
+			"🚑",
+			"🚒",
+			"🚓",
+			"🚚",
+			"🚛",
+			"🚜",
+			"🚲",
+			"🛻",
+			"🚐"
+		],
+		"rare": [
+			"🚀",
+			"🛳️",
+			"✈️"
+		],
+		"bottom": [
+			"🛣️",
+			"🚧"
+		],
+		"player": "🚗",
+		"target": "🛣️",
+		"description": "Eine autozentrierte Welt mit Straßen, Schildern und hupenden Fahrzeugen.",
+		"title": "Autowelt"
+	},
+	"cave": {
+		"symbols": [
+			"🪨",
+			"⛰️",
+			"🕸️",
+			"🗿",
+			"🏔️",
+			"🌌",
+			"🧱",
+			"🔦",
+			"🌑",
+			"🛠️"
+		],
+		"rare": [
+			"🏺",
+			"🕯️"
+		],
+		"bottom": [],
+		"player": "⛏️",
+		"target": "🏺",
+		"description": "Eine höllische Welt unter der Erde, geprägt von Felsformationen und Dunkelheit.",
+		"title": "Höhle"
+	},
+	"chaoskeller": {
+		"title": "Chaoskeller",
+		"description": "eine verstaubte Welt aus alten Kisten, Spinnweben und vergessenen Dingen",
+		"symbols": [
+			"📦",
+			"🧹",
+			"🕸️",
+			"🔦",
+			"🪣",
+			"🧤",
+			"🪵"
+		],
+		"rare": [
+			"🪛",
+			"🪜",
+			"📼",
+			"🔋"
+		],
+		"bottom": [
+			"🔑",
+			"🪠"
+		],
+		"player": "🔦",
+		"target": "📦"
+	},
+	"china": {
+		"symbols": [
+			"🐉",
+			"🧧",
+			"🏮",
+			"🍜",
+			"🐼",
+			"🏯",
+			"🎎",
+			"🥠"
+		],
+		"rare": [
+			"🧪",
+			"🀄",
+			"🎐"
+		],
+		"bottom": [
+			"🧧"
+		],
+		"player": "🐉",
+		"target": "🥡",
+		"description": "Eine Welt voller Traditionen, Rätsel, Drachen – und dampfender Dumplings.",
+		"title": "China"
+	},
+	"circus": {
+		"symbols": [
+			"🎪",
+			"🤹‍♂️",
+			"🎭",
+			"🐘",
+			"🎠",
+			"🤡",
+			"🎟️",
+			"🎫",
+			"🃏",
+			"🎩"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🤹‍♂️",
+		"target": "🎪",
+		"description": "Eine zirkusartige Welt, in der Akrobaten, Clowns und bunte Zelte zuhause sind.",
+		"title": "Zirkus"
+	},
+	"cloud": {
+		"symbols": [
+			"☁️",
+			"🌤️",
+			"🌈",
+			"💨",
+			"🌥️",
+			"🌀",
+			"✨",
+			"🌞",
+			"☀️",
+			"🌦️"
+		],
+		"rare": [
+			"🕊️",
+			"🦋"
+		],
+		"bottom": [],
+		"player": "☁️",
+		"target": "🕊️",
+		"description": "Eine himmelhafte Welt, in der Wolken und Licht das Bild bestimmen.",
+		"title": "Wolkenwelt"
+	},
+	"coffee": {
+		"title": "Kaffeewelt",
+		"description": "Eine gemütliche Welt voller Kaffee, Gebäck und Koffeinträumen.",
+		"symbols": [
+			"☕",
+			"🍪",
+			"🥐",
+			"🧁",
+			"🍩",
+			"🥞",
+			"🍫",
+			"🫖",
+			"🥛"
+		],
+		"rare": [
+			"🧋",
+			"🍰",
+			"🍮",
+			"🧃"
+		],
+		"bottom": [
+			"🪑",
+			"📰"
+		],
+		"player": "👨‍🍳",
+		"target": "☕"
+	},
+	"cologne": {
+		"symbols": [
+			"🎭",
+			"🍻",
+			"🎺",
+			"🕍",
+			"🚤",
+			"🎉",
+			"🌉",
+			"🧼",
+			"🤡"
+		],
+		"rare": [
+			"👑",
+			"📯",
+			"🎊"
+		],
+		"bottom": [
+			"🛶"
+		],
+		"player": "🤡",
+		"target": "🕍",
+		"description": "Karneval, Dom und Kölsch – eine feierfreudige Stadt am Rhein mit Herz.",
+		"title": "Köln"
+	},
+	"concert": {
+		"symbols": [
+			"🎤",
+			"🎸",
+			"🥁",
+			"🎵",
+			"🎧",
+			"🎹",
+			"🎺",
+			"🎷",
+			"🎼",
+			"🎻"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🎤",
+		"target": "🎸",
+		"description": "Eine konzertbezogene Welt, in der Musik und Live-Auftritte das Herzstück bilden.",
+		"title": "Konzert"
+	},
+	"craftsmen": {
+		"symbols": [
+			"🔨",
+			"🪚",
+			"🛠️",
+			"🔩",
+			"🔧",
+			"🪛",
+			"🔗",
+			"⚙️",
+			"🧰",
+			"🧱",
+			"🏗️"
+		],
+		"rare": [
+			"👷",
+			"🦺",
+			"🔬"
+		],
+		"bottom": [
+			"🧰",
+			"🔧"
+		],
+		"player": "🧑‍🔧",
+		"target": "🔧",
+		"description": "Eine Welt der Handwerkskunst mit Werkzeugen, Maschinen und kreativen Erfindungen.",
+		"title": "Handwerker"
+	},
+	"crossword": {
+		"symbols": [
+			"🔠",
+			"🔤",
+			"🔡",
+			"⬜",
+			"🧠",
+			"📘",
+			"📝"
+		],
+		"rare": [
+			"❓",
+			"❔",
+			"💡",
+			"🧩"
+		],
+		"bottom": [
+			"📚",
+			"✏️"
+		],
+		"player": "🧠",
+		"target": "💡",
+		"description": "Dieses Bild zeigt eine rätselhafte Welt voller Buchstaben, Denkaufgaben und Symbolen aus der Welt der Kreuzworträtsel",
+		"title": "Kreuzworträtsel"
+	},
+	"cyberpunk": {
+		"symbols": [
+			"🔮",
+			"💾",
+			"🕶️",
+			"🛸",
+			"🤖",
+			"⚡",
+			"🎛️",
+			"🖥️",
+			"💡",
+			"📡"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🤖",
+		"target": "💾",
+		"description": "Eine futuristische Cyberpunk-Welt mit Neonlichtern und digitalen Visionen.",
+		"title": "Cyberpunk"
+	},
+	"desert": {
+		"symbols": [
+			"🏜️",
+			"🌵",
+			"🐫",
+			"🦂",
+			"☀️",
+			"🌞",
+			"🐍",
+			"🦎",
+			"🧭",
+			"🌄"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🐫",
+		"target": "🌵",
+		"description": "Eine wüstenartige Welt mit sengender Sonne und kargen Landschaften.",
+		"title": "Wüste"
+	},
+	"disco": {
+		"symbols": [
+			"🪩",
+			"💃",
+			"🕺",
+			"🎶",
+			"🔊",
+			"🌈",
+			"🎧",
+			"💿",
+			"🎵",
+			"💥"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🕺",
+		"target": "💃",
+		"description": "Eine discoartige Welt, pulsierend mit Musik, Bewegung und bunten Lichtern.",
+		"title": "Disco"
+	},
+	"dyson_sphaere": {
+		"symbols": [
+			"🌞",
+			"⚙️",
+			"🛰️",
+			"💡",
+			"🌌",
+			"🛠️",
+			"🔋",
+			"🌐",
+			"🪐",
+			"🧠",
+			"🔭"
+		],
+		"rare": [
+			"🤖",
+			"👾",
+			"🌠",
+			"🧪"
+		],
+		"bottom": [
+			"🌌",
+			"🛰️"
+		],
+		"player": "⚙️",
+		"target": "🌞",
+		"description": "Ein Sci-Fi-Megaprojekt im Weltall: Sammle Energie und schütze die Sonne.",
+		"title": "Dyson-Sphäre"
+	},
+	"eiszeit": {
+		"symbols": [
+			"🍦",
+			"🍨",
+			"🍧",
+			"🧊",
+			"❄️",
+			"🍫",
+			"🍒",
+			"🥶"
+		],
+		"rare": [
+			"🍰",
+			"🧃",
+			"🍩"
+		],
+		"bottom": [
+			"❄️"
+		],
+		"player": "🍦",
+		"target": "🍧",
+		"description": "In dieser frostig-leckeren Welt wartet deine Lieblingseissorte irgendwo im Schneesturm.",
+		"title": "Eiszeit"
+	},
+	"essenschlacht": {
+		"title": "Essenschlacht",
+		"description": "eine chaotisch-köstliche Welt aus fliegender Pizza, Torten und Ketchup",
+		"symbols": [
+			"🍕",
+			"🍔",
+			"🍟",
+			"🍗",
+			"🍩",
+			"🌭",
+			"🍰",
+			"🥫"
+		],
+		"rare": [
+			"🎂",
+			"🍝",
+			"🍳",
+			"🥞"
+		],
+		"bottom": [
+			"🧽",
+			"🧴"
+		],
+		"player": "🍕",
+		"target": "🎂"
+	},
+	"fabrik": {
+		"title": "Fabrik",
+		"description": "eine mechanisierte Welt mit Zahnrädern, Förderbändern und Öl",
+		"symbols": [
+			"⚙️",
+			"🛠️",
+			"🏭",
+			"📦",
+			"🚧",
+			"🔩",
+			"🔧"
+		],
+		"rare": [
+			"💣",
+			"🔋",
+			"🧯",
+			"🛢️"
+		],
+		"bottom": [
+			"📦",
+			"📤"
+		],
+		"player": "🤖",
+		"target": "📦"
+	},
+	"fairytale": {
+		"symbols": [
+			"🧚",
+			"✨",
+			"🌈",
+			"🦋",
+			"🌟",
+			"🌙",
+			"💫",
+			"🎆",
+			"🌹",
+			"🍄"
+		],
+		"rare": [
+			"🦄",
+			"🔮",
+			"🪄"
+		],
+		"bottom": [],
+		"player": "🧚‍♀️",
+		"target": "🦄",
+		"description": "Eine märchenhafte Welt voller Magie und zauberhafter Kreaturen.",
+		"title": "Märchenwald"
+	},
+	"fotografie": {
+		"symbols": [
+			"📸",
+			"🖼️",
+			"🪞",
+			"🌅",
+			"👓",
+			"🎞️",
+			"🖌️",
+			"🧍",
+			"🧑‍🎨",
+			"🕶️",
+			"📍",
+			"🌇",
+			"🦢",
+			"🪂"
+		],
+		"rare": [
+			"🎥",
+			"📷",
+			"🖲️",
+			"🔍",
+			"🌄"
+		],
+		"bottom": [
+			"📸",
+			"🧑‍🎨",
+			"🎞️"
+		],
+		"player": "📷",
+		"target": "🖼️",
+		"description": "Eine kreative Welt, in der Licht, Bildausschnitt und Motive alles sind.",
+		"title": "Fotografie"
+	},
+	"freezer": {
+		"symbols": [
+			"🧊",
+			"❄️",
+			"🥶",
+			"🧁",
+			"🍧",
+			"🧴",
+			"🧃",
+			"🍦",
+			"🍨"
+		],
+		"rare": [
+			"🍨",
+			"🧊"
+		],
+		"bottom": [
+			"❄️"
+		],
+		"player": "🧊",
+		"target": "🍦",
+		"description": "Diese eisige Welt steckt voller Tiefkühlleckereien – bleib cool und finde das Eis!",
+		"title": "Tiefkühltruhe"
+	},
+	"frieden": {
+		"title": "Frieden",
+		"description": "eine friedliche Welt der Ruhe, Versöhnung und Harmonie",
+		"symbols": [
+			"🕊️",
+			"🌿",
+			"✌️",
+			"🤲",
+			"🫱",
+			"🫲",
+			"🌈",
+			"🤝",
+			"🧘"
+		],
+		"rare": [
+			"💞",
+			"🧡",
+			"🛐",
+			"☯️"
+		],
+		"bottom": [
+			"🪷",
+			"🪔"
+		],
+		"player": "🧘",
+		"target": "🕊️"
+	},
+	"frogger": {
+		"symbols": [
+			"🐸",
+			"🚗",
+			"🚓",
+			"🚚",
+			"🐢",
+			"🚦",
+			"🌊",
+			"🪵",
+			"🌲",
+			"🛣️"
+		],
+		"rare": [
+			"🐊",
+			"🚤",
+			"🐍"
+		],
+		"bottom": [
+			"🪷",
+			"🌊"
+		],
+		"player": "🐸",
+		"target": "🏡",
+		"description": "Frösche überqueren hier Straßen und Flüsse, um sicher nach Hause zu gelangen.",
+		"title": "Frogger"
+	},
+	"fruchtplanet": {
+		"symbols": [
+			"🍎",
+			"🍌",
+			"🍍",
+			"🥝",
+			"🍇",
+			"🍓",
+			"🍉",
+			"🍑",
+			"🍈",
+			"🍊",
+			"🍋",
+			"🍒"
+		],
+		"rare": [
+			"🍒",
+			"🧃",
+			"🍋",
+			"🍏"
+		],
+		"bottom": [
+			"🍃",
+			"🍂"
+		],
+		"player": "🍍",
+		"target": "🧃",
+		"description": "Ein süßer Planet aus Früchten – alles ist essbar, aber voller Fallen.",
+		"title": "Fruchtplanet"
+	},
+	"fruehstueck": {
+		"symbols": [
+			"🥐",
+			"🥖",
+			"🍳",
+			"🥞",
+			"🥯",
+			"🍯",
+			"🥣",
+			"🧈",
+			"🫐"
+		],
+		"rare": [
+			"🍓",
+			"🍒",
+			"🍌"
+		],
+		"bottom": [
+			"🧃"
+		],
+		"player": "🥐",
+		"target": "🧃",
+		"description": "Ein duftender Morgen wartet – finde den Saft, der alles aufweckt.",
+		"title": "Frühstückswelt"
+	},
+	"fruits": {
+		"symbols": [
+			"🍎",
+			"🍌",
+			"🍇",
+			"🍉",
+			"🍓",
+			"🍍",
+			"🥭",
+			"🍊",
+			"🍑",
+			"🍒",
+			"🍐"
+		],
+		"rare": [
+			"🫐",
+			"🍈",
+			"🍏"
+		],
+		"bottom": [
+			"🍉"
+		],
+		"player": "🧺",
+		"target": "🍓",
+		"title": "Obstwelt",
+		"description": "Eine fruchtige Welt voller süßer Leckereien – Äpfel, Erdbeeren, Bananen und vieles mehr. Saftig, bunt und voller Vitamine"
+	},
+	"galaxyMuseum": {
+		"symbols": [
+			"🛸",
+			"👽",
+			"🖼️",
+			"🚀",
+			"🔭",
+			"📜",
+			"🌌",
+			"🪐",
+			"🧠",
+			"🛰️"
+		],
+		"rare": [
+			"👾",
+			"🪐",
+			"🌠"
+		],
+		"bottom": [
+			"🎫"
+		],
+		"player": "👨‍🚀",
+		"target": "🖼️",
+		"description": "Ein kosmisches Museum mit Artefakten aus dem ganzen Universum – finde das gestohlene Exponat.",
+		"title": "Galaktisches Museum"
+	},
+	"garden": {
+		"symbols": [
+			"🌸",
+			"🌼",
+			"🌿",
+			"🌻",
+			"🌱",
+			"🐞",
+			"🌷",
+			"🪻"
+		],
+		"rare": [
+			"🐝",
+			"🦋",
+			"🐇"
+		],
+		"bottom": [
+			"🪴",
+			"🪵"
+		],
+		"player": "🐞",
+		"target": "🌼",
+		"description": "Dieses Bild zeigt eine blühende Gartenwelt voller Blumen, Insekten und frischem Grün",
+		"title": "Garten"
+	},
+	"gebirgsfluss": {
+		"symbols": [
+			"🏞️",
+			"🌊",
+			"🐟",
+			"🪵",
+			"🐦",
+			"🏔️",
+			"🛶",
+			"🍂",
+			"🌬️",
+			"⛺"
+		],
+		"rare": [
+			"🐻",
+			"🧗‍♂️",
+			"🦅"
+		],
+		"bottom": [
+			"🛶",
+			"🌊"
+		],
+		"player": "🛶",
+		"target": "🏞️",
+		"description": "Eine naturbelassene Flusswelt mit schnellen Strömungen und wilder Landschaft.",
+		"title": "Gebirgsfluss"
+	},
+	"geborgenheit": {
+		"symbols": [
+			"☁️",
+			"🧸",
+			"🫶",
+			"🛋️",
+			"🧦",
+			"📖",
+			"🛏️",
+			"✨"
+		],
+		"rare": [
+			"🧺",
+			"🍪",
+			"🧁"
+		],
+		"bottom": [
+			"🧺"
+		],
+		"player": "🤗",
+		"target": "🧸",
+		"description": "Ein Ort zum Ankommen. Finde den Teddybär, der alles wieder gut macht.",
+		"title": "Geborgenheit"
+	},
+	"gemuesebeet": {
+		"symbols": [
+			"🥕",
+			"🥬",
+			"🥦",
+			"🥒",
+			"🍅",
+			"🌱",
+			"🪴",
+			"🧑‍🌾",
+			"🧄"
+		],
+		"rare": [
+			"🫛",
+			"🫘",
+			"🌽"
+		],
+		"bottom": [
+			"🌱"
+		],
+		"player": "👨‍🌾",
+		"target": "🥕",
+		"description": "Hier wächst alles frisch! Ernte dein Lieblingsgemüse, bevor die Schnecken kommen.",
+		"title": "Gemüsebeet"
+	},
+	"germany": {
+		"symbols": [
+			"🍺",
+			"🥨",
+			"🎶",
+			"🏰",
+			"🌲",
+			"🚗",
+			"🎡",
+			"📚",
+			"🧺",
+			"🌧️"
+		],
+		"rare": [
+			"👨‍🔧",
+			"🎓",
+			"🛠️"
+		],
+		"bottom": [
+			"🎠"
+		],
+		"player": "🚶",
+		"target": "🍺",
+		"description": "Eine Welt der Wälder, Fachwerkhäuser und Biergärten – entdecke, was typisch deutsch ist.",
+		"title": "Deutschland"
+	},
+	"gesundheit": {
+		"title": "Gesundheit",
+		"description": "eine medizinische Welt aus Viren, Impfungen und Fürsorge",
+		"symbols": [
+			"🦠",
+			"💉",
+			"🩺",
+			"😷",
+			"🏥",
+			"🧼",
+			"🩹"
+		],
+		"rare": [
+			"🧪",
+			"🧑‍⚕️",
+			"💊",
+			"🧠"
+		],
+		"bottom": [
+			"🚿",
+			"🪥"
+		],
+		"player": "🧑‍⚕️",
+		"target": "💊"
+	},
+	"ghost": {
+		"symbols": [
+			"👻",
+			"💀",
+			"🕯️",
+			"🎃",
+			"🧟‍♂️",
+			"🕸️",
+			"🌑",
+			"👽",
+			"💭",
+			"🧛‍♂️"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "👻",
+		"target": "🎃",
+		"description": "Eine geisterhafte Welt, in der Spukgestalten und mysteriöse Erscheinungen dominieren.",
+		"title": "Geisterwelt"
+	},
+	"ghosting": {
+		"title": "Ghosting",
+		"description": "eine stille Welt der Funkstille, verlorenen Chats und verpassten Chancen",
+		"symbols": [
+			"👻",
+			"📱",
+			"💬",
+			"💤",
+			"❌",
+			"🔕"
+		],
+		"rare": [
+			"😶",
+			"📭",
+			"📉",
+			"🪦"
+		],
+		"bottom": [
+			"📵",
+			"📴"
+		],
+		"player": "😶",
+		"target": "👻"
+	},
+	"greenFuture": {
+		"symbols": [
+			"🌱",
+			"♻️",
+			"🧑‍🌾",
+			"🌿",
+			"🍀",
+			"☀️",
+			"💧",
+			"🪴",
+			"🚲"
+		],
+		"rare": [
+			"🌈",
+			"🕊️",
+			"🪷"
+		],
+		"bottom": [
+			"🌻"
+		],
+		"player": "🌱",
+		"target": "♻️",
+		"description": "Eine friedliche, nachhaltige Welt – finde den Kreislauf, der alles erhält.",
+		"title": "Grüne Zukunft"
+	},
+	"heatwave": {
+		"symbols": [
+			"🏠",
+			"🌡️",
+			"🔥",
+			"😓",
+			"💦",
+			"🧊"
+		],
+		"rare": [
+			"🔥",
+			"🧯",
+			"🧊",
+			"🪭"
+		],
+		"bottom": [
+			"🔌",
+			"🌬️"
+		],
+		"player": "😓",
+		"target": "🧯",
+		"description": "Diese überhitzte Welt zeigt die sommerliche Innenraum-Hölle: Schweiß, Hitzequellen und der verzweifelte Wunsch nach Abkühlung",
+		"title": "Hitze im Haus"
+	},
+	"heliport": {
+		"symbols": [
+			"🚁",
+			"🛬",
+			"🛫",
+			"🗼",
+			"🏥",
+			"🅿️",
+			"🛩️",
+			"🪂",
+			"🌆",
+			"🚦"
+		],
+		"rare": [
+			"🛤️",
+			"🛑",
+			"🔦"
+		],
+		"bottom": [
+			"🅷",
+			"🛬"
+		],
+		"player": "🚁",
+		"target": "🏥",
+		"description": "Eine städtische Welt voller Helikopterlandeplätze und Flugverkehr.",
+		"title": "Hubschrauber"
+	},
+	"herzhaft": {
+		"symbols": [
+			"🍕",
+			"🍔",
+			"🌭",
+			"🍟",
+			"🌮",
+			"🥓",
+			"🍗",
+			"🥪"
+		],
+		"rare": [
+			"🍝",
+			"🥩",
+			"🥘"
+		],
+		"bottom": [
+			"🥫"
+		],
+		"player": "🍔",
+		"target": "🌮",
+		"description": "Ein Land voller herzhafter Leckereien – finde deinen Snack des Tages!",
+		"title": "Herzhaftland"
+	},
+	"huehnerchaos": {
+		"title": "Hühnerchaos",
+		"description": "eine flatternde Welt voller Eier, Federn und übermotivierter Hühner",
+		"symbols": [
+			"🐓",
+			"🥚",
+			"🐣",
+			"🐥",
+			"🌾",
+			"🪶",
+			"🥄"
+		],
+		"rare": [
+			"👩‍🌾",
+			"🪺",
+			"🪵",
+			"🍳"
+		],
+		"bottom": [
+			"🪤",
+			"🧺"
+		],
+		"player": "🐣",
+		"target": "🥚"
+	},
+	"human": {
+		"symbols": [
+			"👶",
+			"🧒",
+			"👧",
+			"🧑",
+			"👨",
+			"👩",
+			"👵",
+			"👴",
+			"🧓",
+			"👩‍🦰",
+			"👨‍🦱"
+		],
+		"rare": [
+			"🤱",
+			"🤰",
+			"🧑‍🤝‍🧑"
+		],
+		"bottom": [
+			"🏠",
+			"🏡"
+		],
+		"player": "🧒",
+		"target": "🤱",
+		"description": "Eine menschliche Welt voller Familien, Lachen und liebevoller Augenblicke.",
+		"title": "Menschenwelt"
+	},
+	"indien": {
+		"symbols": [
+			"🕌",
+			"🪔",
+			"🥘",
+			"🛕",
+			"🎉",
+			"🪭",
+			"🧘‍♀️",
+			"🪷"
+		],
+		"rare": [
+			"🐘",
+			"🎨",
+			"💫"
+		],
+		"bottom": [
+			"🎆"
+		],
+		"player": "🕌",
+		"target": "🪷",
+		"description": "Zwischen Tempeln und Märkten findest du das Heilige im Trubel.",
+		"title": "Indien"
+	},
+	"insects": {
+		"symbols": [
+			"🐜",
+			"🦋",
+			"🐞",
+			"🐝",
+			"🦗",
+			"🦟",
+			"🪲",
+			"🦂",
+			"🕷️",
+			"🕸️",
+			"🪰",
+			"🐌"
+		],
+		"rare": [
+			"🪳",
+			"🪱",
+			"🦠"
+		],
+		"bottom": [
+			"🍂",
+			"🍃"
+		],
+		"player": "🕷️",
+		"target": "🕸️",
+		"description": "Eine insektenreiche Welt voller Krabbeltiere und feiner Netze.",
+		"title": "Insektenwelt"
+	},
+	"japan": {
+		"symbols": [
+			"🏯",
+			"🎴",
+			"🍜",
+			"🗾",
+			"🍵",
+			"🎌",
+			"🥢",
+			"🌸"
+		],
+		"rare": [
+			"🥷",
+			"👘",
+			"⛩️"
+		],
+		"bottom": [
+			"🍱"
+		],
+		"player": "🎌",
+		"target": "🍣",
+		"description": "Tempel, Kirschblüten, Sushi – eine stille, elegante Welt mit klaren Linien.",
+		"title": "Japan"
+	},
+	"jungle": {
+		"symbols": [
+			"🌴",
+			"🐒",
+			"🦜",
+			"🍌",
+			"🐍",
+			"🐅",
+			"🐆",
+			"🦁",
+			"🐘",
+			"🍃"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🐒",
+		"target": "🍌",
+		"description": "Eine dschungelartige Welt voller exotischer Tiere und üppiger Vegetation.",
+		"title": "Dschungel"
+	},
+	"kairo": {
+		"symbols": [
+			"🐫",
+			"🏜️",
+			"🌞",
+			"🏺",
+			"🏛️",
+			"⛲",
+			"⌛",
+			"🪔"
+		],
+		"rare": [
+			"🏰",
+			"🐍",
+			"🔱"
+		],
+		"bottom": [
+			"⛏️"
+		],
+		"player": "🐫",
+		"target": "🏺",
+		"description": "Staubige Gassen, Pyramidengeflüster und ein Schatz tief im Sand.",
+		"title": "Kairo"
+	},
+	"kart": {
+		"symbols": [
+			"🏎️",
+			"🚦",
+			"🏁",
+			"🚧",
+			"🍌",
+			"🛞",
+			"🚗",
+			"🎮",
+			"💨",
+			"🏆"
+		],
+		"rare": [
+			"🌈",
+			"⭐️",
+			"🍄"
+		],
+		"bottom": [
+			"🛣️",
+			"🚧"
+		],
+		"player": "🏎️",
+		"target": "🏁",
+		"description": "Eine bunte Kartwelt mit wilden Rennen und verrückten Hindernissen.",
+		"title": "Kartbahn"
+	},
+	"katastrophe": {
+		"title": "Katastrophe",
+		"description": "Eine dramatische, chaotische Umgebung mit Naturgewalten und Rettungselementen.",
+		"symbols": [
+			"🌪️",
+			"🌊",
+			"🔥",
+			"🌋",
+			"⚡",
+			"💣",
+			"☢️"
+		],
+		"rare": [
+			"🚒",
+			"🆘",
+			"🧯",
+			"📢",
+			"👷"
+		],
+		"bottom": [
+			"🧰",
+			"🚨"
+		],
+		"player": "👷",
+		"target": "🆘"
+	},
+	"kindergarten": {
+		"symbols": [
+			"🧸",
+			"🖍️",
+			"🪁",
+			"🛝",
+			"🎨",
+			"🎒",
+			"🧃",
+			"🏀",
+			"📚",
+			"🪀"
+		],
+		"rare": [
+			"🧑‍🏫",
+			"🎂",
+			"🧩"
+		],
+		"bottom": [
+			"🧸",
+			"🛝"
+		],
+		"player": "🧸",
+		"target": "🧃",
+		"description": "Eine bunte, fröhliche Welt voller Spiel, Kreativität und Kinderlachen.",
+		"title": "Kindergarten"
+	},
+	"kirmes": {
+		"title": "Kirmes",
+		"description": "eine bunte Jahrmarktwelt voller Karussells, Zuckerwatte und blinkender Lichter",
+		"symbols": [
+			"🎠",
+			"🎡",
+			"🎢",
+			"🎟️",
+			"🍭",
+			"🍿",
+			"🤹‍♂️",
+			"🎯"
+		],
+		"rare": [
+			"🎪",
+			"🎇",
+			"🧃",
+			"🧁"
+		],
+		"bottom": [
+			"🪩",
+			"🪅"
+		],
+		"player": "🤹‍♂️",
+		"target": "🎠"
+	},
+	"kitchen": {
+		"symbols": [
+			"🍳",
+			"🍽️",
+			"🔪",
+			"🥄",
+			"🥣",
+			"🍞",
+			"🍔",
+			"🍟",
+			"🍕",
+			"🥗",
+			"🍰",
+			"🍲"
+		],
+		"rare": [
+			"🥘",
+			"🧂",
+			"🍱",
+			"🥓",
+			"🍇"
+		],
+		"bottom": [],
+		"player": "🧑‍🍳",
+		"target": "🍲",
+		"description": "Eine geschäftige Küche voller Utensilien, Lebensmitteln und leckerer Gerichte.",
+		"title": "Küche"
+	},
+	"klimawandel": {
+		"title": "Klimawandel",
+		"description": "eine bedrohte Welt zwischen Wetterextremen, Hoffnung und globalem Handeln",
+		"symbols": [
+			"🔥",
+			"🌪️",
+			"💧",
+			"🌊",
+			"🌡️",
+			"🧊",
+			"☀️"
+		],
+		"rare": [
+			"♻️",
+			"🌱",
+			"📉",
+			"🚴",
+			"🧑‍🔬"
+		],
+		"bottom": [
+			"📢",
+			"📈"
+		],
+		"player": "🌱",
+		"target": "♻️"
+	},
+	"krieg": {
+		"title": "Krieg",
+		"description": "eine kriegerische Welt voller Bedrohung, Waffen und Chaos",
+		"symbols": [
+			"💣",
+			"🪖",
+			"🪙",
+			"🛡️",
+			"🔫",
+			"🧨"
+		],
+		"rare": [
+			"🛩️",
+			"🚁",
+			"⚔️",
+			"🧯"
+		],
+		"bottom": [
+			"🪖",
+			"🏴"
+		],
+		"player": "🪖",
+		"target": "🛡️"
+	},
+	"labor": {
+		"symbols": [
+			"🧪",
+			"⚗️",
+			"🔬",
+			"🧫",
+			"🧬",
+			"🔎",
+			"💉",
+			"💊",
+			"🧯",
+			"📖",
+			"📊",
+			"⚠️"
+		],
+		"rare": [
+			"☣️",
+			"🧠",
+			"🚨",
+			"💥",
+			"⛑️"
+		],
+		"bottom": [
+			"🔬",
+			"⚗️",
+			"⛑️"
+		],
+		"player": "🧪",
+		"target": "🧬",
+		"description": "Eine wissenschaftliche Welt voller Reaktionen, Entdeckungen und Risiken.",
+		"title": "Labor"
+	},
+	"laenderreise": {
+		"title": "Länderreise",
+		"description": "eine globale Weltreise mit Flaggen, Sehenswürdigkeiten und Fernweh",
+		"symbols": [
+			"🇩🇪",
+			"🇯🇵",
+			"🇧🇷",
+			"🇫🇷",
+			"🇪🇸",
+			"🇨🇳",
+			"🇺🇸",
+			"🇮🇳",
+			"🗺️",
+			"🧳",
+			"✈️"
+		],
+		"rare": [
+			"🗽",
+			"🗿",
+			"🕌",
+			"🏯",
+			"🛕",
+			"🎎"
+		],
+		"bottom": [
+			"🧭",
+			"🎒"
+		],
+		"player": "✈️",
+		"target": "🗺️"
+	},
+	"lava": {
+		"symbols": [
+			"🔥",
+			"🌋",
+			"🪨",
+			"💀",
+			"👹",
+			"⚔️",
+			"♨️",
+			"🌡️",
+			"🥵",
+			"💥"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "😎",
+		"target": "🔥",
+		"description": "Eine feurige Welt, in der Vulkane lodern und Magma den Boden bedeckt.",
+		"title": "Lavawelt"
+	},
+	"library": {
+		"symbols": [
+			"📚",
+			"📖",
+			"🕯️",
+			"🍷",
+			"🛋️",
+			"📘",
+			"📗",
+			"📕",
+			"📙",
+			"🪑"
+		],
+		"rare": [
+			"📜",
+			"🔖",
+			"👓",
+			"🥂"
+		],
+		"bottom": [],
+		"player": "📚",
+		"target": "🍷",
+		"description": "Eine gemütliche Leseecke mit Büchern, Kerzen und einem Glas Rotwein.",
+		"title": "Bibliothek"
+	},
+	"liebeswelt": {
+		"symbols": [
+			"❤️",
+			"💋",
+			"💌",
+			"🌹",
+			"🛏️",
+			"🎶",
+			"🍷",
+			"🔥",
+			"🕯️",
+			"💃"
+		],
+		"rare": [
+			"👩‍❤️‍👨",
+			"💑",
+			"💞"
+		],
+		"bottom": [
+			"🛏️",
+			"🕯️"
+		],
+		"player": "💋",
+		"target": "❤️",
+		"description": "Eine Welt voller Romantik, Zärtlichkeit und stilvoller Sinnlichkeit.",
+		"title": "Liebeswelt"
+	},
+	"logistics": {
+		"symbols": [
+			"📦",
+			"📫",
+			"📮",
+			"🚚",
+			"🛒",
+			"🧯",
+			"📋",
+			"🗂️"
+		],
+		"rare": [
+			"📦",
+			"🛳️",
+			"📡"
+		],
+		"bottom": [
+			"🧭"
+		],
+		"player": "🛒",
+		"target": "📦",
+		"description": "Ein Meer aus Paketen – finde die richtige Lieferung im Labyrinth der Logistik.",
+		"title": "Logistikzentrum"
+	},
+	"magicHome": {
+		"symbols": [
+			"🧺",
+			"🧹",
+			"🪣",
+			"🪄",
+			"🧽",
+			"🕯️",
+			"🪞",
+			"🧴",
+			"🧻",
+			"🛋️"
+		],
+		"rare": [
+			"🧙‍♀️",
+			"✨",
+			"🪄"
+		],
+		"bottom": [
+			"🧼"
+		],
+		"player": "🧹",
+		"target": "🪄",
+		"description": "In diesem Haushalt ist nichts normal – hier tanzen Besen und Magie liegt in der Luft.",
+		"title": "Magischer Haushalt"
+	},
+	"magnetfeld": {
+		"symbols": [
+			"🧲",
+			"⚡",
+			"🔩",
+			"🪛",
+			"⚙️",
+			"📎",
+			"💾",
+			"🖲️",
+			"💡",
+			"🧠",
+			"🔌",
+			"🔋"
+		],
+		"rare": [
+			"🧬",
+			"🛠️",
+			"🛰️",
+			"⚠️"
+		],
+		"bottom": [
+			"⚙️",
+			"🔋"
+		],
+		"player": "🧲",
+		"target": "⚡",
+		"description": "Physikspielplatz – ziehe Objekte an oder stoße sie ab, um zum Ziel zu kommen.",
+		"title": "Magnetfeld"
+	},
+	"market": {
+		"symbols": [
+			"🍎",
+			"🥖",
+			"🧄",
+			"🛒",
+			"🧺",
+			"🪙",
+			"🥬",
+			"📦",
+			"🪵",
+			"🎒"
+		],
+		"rare": [
+			"🎁",
+			"🪙",
+			"🧑‍🌾"
+		],
+		"bottom": [
+			"📦"
+		],
+		"player": "🧺",
+		"target": "🪙",
+		"description": "Ein quirliger Marktplatz voller Waren – finde das wertvolle Goldstück im Durcheinander.",
+		"title": "Marktplatz"
+	},
+	"medieval": {
+		"symbols": [
+			"⚔️",
+			"🛡️",
+			"🏰",
+			"🐉",
+			"🧙‍♂️",
+			"👑",
+			"🏹",
+			"🗡️",
+			"📜",
+			"⚜️"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🧙‍♂️",
+		"target": "👑",
+		"description": "Eine mittelalterliche Welt, in der Ritter, Burgen und Drachen zuhause sind.",
+		"title": "Mittelalter"
+	},
+	"mexico": {
+		"symbols": [
+			"🌮",
+			"🎺",
+			"🪅",
+			"🪇",
+			"🪗",
+			"🧂",
+			"🌵",
+			"💀",
+			"🎉",
+			"🫔"
+		],
+		"rare": [
+			"🧣",
+			"🧿",
+			"🧤"
+		],
+		"bottom": [
+			"🪅"
+		],
+		"player": "🎺",
+		"target": "🌮",
+		"description": "Eine farbenfrohe Welt aus Mariachi, Straßenfesten und scharfem Essen.",
+		"title": "Mexiko"
+	},
+	"mindscape": {
+		"symbols": [
+			"🧠",
+			"💭",
+			"📚",
+			"📘",
+			"📎",
+			"🌀",
+			"🕳️",
+			"❓",
+			"🧩",
+			"📖"
+		],
+		"rare": [
+			"💡",
+			"🔮",
+			"🤯"
+		],
+		"bottom": [
+			"📚"
+		],
+		"player": "🧠",
+		"target": "💡",
+		"description": "Eine surreale Gedankenreise voller Fragen, Ideen und plötzlicher Eingebungen.",
+		"title": "Gedankenwelt"
+	},
+	"muellhalde": {
+		"title": "Müllhalde",
+		"description": "eine chaotische Welt aus Abfall, Schrott und fliegenden Fliegen",
+		"symbols": [
+			"🗑️",
+			"♻️",
+			"🧃",
+			"🍌",
+			"🦟",
+			"🪰",
+			"🪱",
+			"🪵"
+		],
+		"rare": [
+			"🤢",
+			"☣️",
+			"🧤",
+			"🛠️"
+		],
+		"bottom": [
+			"🧼",
+			"🚮"
+		],
+		"player": "🤢",
+		"target": "♻️"
+	},
+	"neanderthal": {
+		"symbols": [
+			"🪨",
+			"🔥",
+			"🦴",
+			"🐗",
+			"🦣",
+			"🛖",
+			"🌄",
+			"👣"
+		],
+		"rare": [
+			"🏺",
+			"🦕",
+			"🧬"
+		],
+		"bottom": [
+			"🦕"
+		],
+		"player": "🧑‍🌾",
+		"target": "🦣",
+		"title": "Neandertaler",
+		"description": "Eine urzeitliche Welt, inspiriert von der Zeit der Neandertaler"
+	},
+	"newyork": {
+		"symbols": [
+			"🗽",
+			"🏙️",
+			"🚖",
+			"🏢",
+			"🍎",
+			"🎷",
+			"🎭",
+			"💼"
+		],
+		"rare": [
+			"📰",
+			"💵",
+			"🌆"
+		],
+		"bottom": [
+			"🚇"
+		],
+		"player": "🗽",
+		"target": "🗞️",
+		"description": "In der Stadt, die nie schläft, kämpfst du dich durch Lärm und Licht zum Ziel.",
+		"title": "New York"
+	},
+	"northpole": {
+		"symbols": [
+			"❄️",
+			"⛄",
+			"🎅",
+			"🦌",
+			"🏔️",
+			"🌨️",
+			"🎁",
+			"🛷",
+			"🌲",
+			"☃️"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "⛄",
+		"target": "❄️",
+		"description": "Eine frostige Welt am Nordpol, voll von Schnee, Eis und festlicher Stimmung.",
+		"title": "Nordpol"
+	},
+	"office": {
+		"symbols": [
+			"⌨️",
+			"☕",
+			"🖥️",
+			"📎",
+			"📁",
+			"🖨️",
+			"📊",
+			"📅",
+			"🖋️",
+			"📞",
+			"💻",
+			"📠"
+		],
+		"rare": [
+			"🖇️",
+			"🗃️",
+			"🏢",
+			"🗂️",
+			"🧑‍💼",
+			"👩‍💼"
+		],
+		"bottom": [],
+		"player": "👩‍💼",
+		"target": "📎",
+		"description": "Eine bürokratische Welt, in der Computer, Akten und Kaffee das Geschäft bestimmen.",
+		"title": "Büro"
+	},
+	"officemanagement": {
+		"symbols": [
+			"📈",
+			"🗂️",
+			"📅",
+			"💼",
+			"💬",
+			"🧑‍💼",
+			"📇",
+			"🖇️",
+			"🖥️",
+			"📎",
+			"🧠",
+			"📉",
+			"⏰"
+		],
+		"rare": [
+			"🧑‍🏫",
+			"🤯",
+			"🧾",
+			"🧑‍💻",
+			"🤖"
+		],
+		"bottom": [
+			"🪟",
+			"🧑‍💼",
+			"⌨️",
+			"🗃️"
+		],
+		"player": "💼",
+		"target": "📈",
+		"description": "Eine dynamische Management-Welt voller Aufgaben, Termine und Charts.",
+		"title": "Büromanagement"
+	},
+	"paris": {
+		"symbols": [
+			"🥐",
+			"🍷",
+			"🎨",
+			"🖼️",
+			"🎭",
+			"🗼",
+			"☕",
+			"👗",
+			"💋"
+		],
+		"rare": [
+			"💄",
+			"🎻",
+			"🎶"
+		],
+		"bottom": [
+			"🪑"
+		],
+		"player": "🧑‍🎨",
+		"target": "🗼",
+		"description": "Ein Spaziergang durch Boulevards, Croissants und Kunstwerke – finde den Eiffelturm!",
+		"title": "Paris"
+	},
+	"party": {
+		"symbols": [
+			"🥳",
+			"🎉",
+			"🍾",
+			"🎊",
+			"💥",
+			"🎈",
+			"🎁",
+			"🎶",
+			"🥂",
+			"🍹"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🥳",
+		"target": "🎉",
+		"description": "Eine partyorientierte Welt, in der Feierlaune und Spaß an erster Stelle stehen.",
+		"title": "Party"
+	},
+	"picknick": {
+		"title": "Picknick",
+		"description": "eine fröhliche Welt aus Decken, Ameisen, Getränken und Sonnenschein",
+		"symbols": [
+			"🧃",
+			"🍉",
+			"🥪",
+			"🍇",
+			"🧺",
+			"🐜",
+			"☀️"
+		],
+		"rare": [
+			"🧻",
+			"🧴",
+			"🎒",
+			"🍯"
+		],
+		"bottom": [
+			"🌳",
+			"🍂"
+		],
+		"player": "🧃",
+		"target": "🧺"
+	},
+	"pilzwald": {
+		"symbols": [
+			"🍄",
+			"🌲",
+			"🌳",
+			"🌫️",
+			"🍂",
+			"🪵",
+			"🦉",
+			"🐌",
+			"🐞",
+			"🕷️"
+		],
+		"rare": [
+			"🧙",
+			"🪺",
+			"🦊"
+		],
+		"bottom": [
+			"🍄"
+		],
+		"player": "🦔",
+		"target": "🍄",
+		"description": "Ein feuchter Wald voller Pilze, Moose und kleiner Wesen – finde den magischen Pilz.",
+		"title": "Pilzwald"
+	},
+	"pipeline": {
+		"title": "Pipeline",
+		"description": "eine industrielle Welt aus Rohren, Druck, Öl und Technik",
+		"symbols": [
+			"🛢️",
+			"⚙️",
+			"🧰",
+			"🔩",
+			"🔧",
+			"🚧",
+			"🧱",
+			"🕳️",
+			"➖",
+			"➰",
+			"➿",
+			"🪠"
+		],
+		"rare": [
+			"💥",
+			"🛠️",
+			"🧪",
+			"⛽",
+			"🧯"
+		],
+		"bottom": [
+			"🪛",
+			"🛠️"
+		],
+		"player": "👷",
+		"target": "🛢️"
+	},
+	"pirate": {
+		"symbols": [
+			"🏴‍☠️",
+			"⚓",
+			"🏝️",
+			"🗺️",
+			"☠️",
+			"🚢",
+			"🦜",
+			"🎣",
+			"⚔️",
+			"🏴"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🏴‍☠️",
+		"target": "☠️",
+		"description": "Eine piratenhafte Welt, in der Abenteuer auf hoher See und Schatzsuchen zum Alltag gehören.",
+		"title": "Pirat"
+	},
+	"racing": {
+		"symbols": [
+			"🏎️",
+			"🚦",
+			"🛣️",
+			"🏁",
+			"🚗",
+			"💨",
+			"🚘",
+			"⛽",
+			"🛞",
+			"🚙"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🏎️",
+		"target": "🚦",
+		"description": "Eine Welt für Adrenalinjunkies mit schnellen Autos und spannenden Rennen.",
+		"title": "Rennstrecke"
+	},
+	"radtour": {
+		"symbols": [
+			"🚴",
+			"🚵",
+			"🌳",
+			"🛤️",
+			"🧺",
+			"🧢",
+			"🍎",
+			"🗺️",
+			"🚦",
+			"🌻",
+			"🚧",
+			"⛺",
+			"🧃",
+			"🌲"
+		],
+		"rare": [
+			"🦅",
+			"🐿️",
+			"🧗‍♂️",
+			"🚴‍♀️",
+			"🦊"
+		],
+		"bottom": [
+			"🛤️",
+			"🚴",
+			"🌿"
+		],
+		"player": "🚴",
+		"target": "🧺",
+		"description": "Eine entspannte Tour durch Natur, Felder und kleine Ortschaften.",
+		"title": "Radtour"
+	},
+	"regentag": {
+		"title": "Regentag",
+		"description": "Vermittelt eine ruhige, trübe Atmosphäre voller Tropfen, Fensterblicke und Gummistiefel",
+		"symbols": [
+			"🌧️",
+			"☁️",
+			"💧",
+			"🌂",
+			"🌦️",
+			"☔",
+			"🪟"
+		],
+		"rare": [
+			"⛈️",
+			"🌈",
+			"🌀",
+			"🧥",
+			"🚿"
+		],
+		"bottom": [
+			"🩴",
+			"🧼",
+			"🫧"
+		],
+		"player": "☔",
+		"target": "🌈"
+	},
+	"rio": {
+		"symbols": [
+			"🎭",
+			"🌞",
+			"🥁",
+			"🏖️",
+			"🕺",
+			"🦜",
+			"🍹"
+		],
+		"rare": [
+			"🎇",
+			"🎊",
+			"🎶"
+		],
+		"bottom": [
+			"🪘"
+		],
+		"player": "🥁",
+		"target": "🎉",
+		"description": "Karneval, Küste, Klang – tanze durch eine Welt voller Farben und Rhythmus.",
+		"title": "Rio de Janeiro"
+	},
+	"rom": {
+		"symbols": [
+			"🏛️",
+			"🏺",
+			"⛲",
+			"🍝",
+			"🎭",
+			"⛪",
+			"🐴",
+			"🍕"
+		],
+		"rare": [
+			"🧔‍♂️",
+			"🍷",
+			"🎬"
+		],
+		"bottom": [
+			"🪑"
+		],
+		"player": "🏛️",
+		"target": "🍕",
+		"description": "In der Ewigen Stadt suchst du Pizza zwischen Säulen, Vespa und Vino.",
+		"title": "Rom"
+	},
+	"ruhe": {
+		"symbols": [
+			"🌿",
+			"✨",
+			"🧘",
+			"☁️",
+			"🧘‍♀️",
+			"☯️",
+			"🔔",
+			"📿"
+		],
+		"rare": [
+			"🕉️",
+			"🧿",
+			"🪔"
+		],
+		"bottom": [
+			"🪷"
+		],
+		"player": "🧘",
+		"target": "🪷",
+		"description": "Atme. Spüre. Finde das Zentrum. Hier ist nichts eilig – außer deine Gedanken.",
+		"title": "Innere Ruhe"
+	},
+	"ruins": {
+		"symbols": [
+			"🏺",
+			"🗿",
+			"⛏️",
+			"🏛️",
+			"🔦",
+			"🏚️",
+			"🗺️",
+			"🪨",
+			"⚱️",
+			"📜"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🏺",
+		"target": "🗿",
+		"description": "Eine ruinöse Welt, in der alte Tempel und verfallene Bauwerke eine geheimnisvolle Atmosphäre schaffen.",
+		"title": "Ruinen"
+	},
+	"savanne": {
+		"symbols": [
+			"🐘",
+			"🦒",
+			"🦓",
+			"🌾",
+			"🦁",
+			"🌞",
+			"🪵",
+			"🐆",
+			"🐃",
+			"🐜"
+		],
+		"rare": [
+			"🧍‍♂️",
+			"🐊"
+		],
+		"bottom": [
+			"🌾"
+		],
+		"player": "🦒",
+		"target": "🦁",
+		"description": "Eine heiße, weite Landschaft mit majestätischen Tieren und goldener Sonne.",
+		"title": "Savanne"
+	},
+	"schlaf": {
+		"symbols": [
+			"💤",
+			"🌙",
+			"🛏️",
+			"😪",
+			"☁️",
+			"🧸",
+			"🕯️",
+			"🛌"
+		],
+		"rare": [
+			"🧚",
+			"🦄",
+			"🪐"
+		],
+		"bottom": [
+			"🕯️"
+		],
+		"player": "😴",
+		"target": "🛏️",
+		"description": "Eine schläfrige Welt voller Träume, flauschiger Decken und dunkler Ecken.",
+		"title": "Traumwelt"
+	},
+	"sockenwelt": {
+		"title": "Sockenwelt",
+		"description": "eine kuschelig-verlorene Welt aus Einzelstücken, Fusseln und Waschmaschinen",
+		"symbols": [
+			"🧦",
+			"🧺",
+			"🧼",
+			"🌀",
+			"🧽",
+			"👣"
+		],
+		"rare": [
+			"🪣",
+			"🧤",
+			"🫧",
+			"🐾"
+		],
+		"bottom": [
+			"🧦",
+			"🪫"
+		],
+		"player": "🧦",
+		"target": "🧺"
+	},
+	"sonnentag": {
+		"title": "Sonnentag",
+		"description": "Bringt Leichtigkeit und Sommerstimmung mit Sonnenbrillen, Sonnencreme und Wassereis",
+		"symbols": [
+			"☀️",
+			"🌞",
+			"😎",
+			"🕶️",
+			"🧴",
+			"🌻",
+			"🌼"
+		],
+		"rare": [
+			"🍦",
+			"🩳",
+			"🏖️",
+			"🍉",
+			"🏄"
+		],
+		"bottom": [
+			"🪁",
+			"🩱",
+			"⛱️"
+		],
+		"player": "😎",
+		"target": "🍉"
+	},
+	"spaceOdyssey2001": {
+		"symbols": [
+			"🧑‍🚀",
+			"🚀",
+			"🪐",
+			"🖥️",
+			"🧿",
+			"👶",
+			"🖲️",
+			"🌌",
+			"☄️",
+			"✨"
+		],
+		"rare": [
+			"🤖",
+			"👽"
+		],
+		"bottom": [
+			"🧿",
+			"🪐",
+			"🖥️"
+		],
+		"player": "🧑‍🚀",
+		"target": "🖲️",
+		"description": "Eine futuristische Welt voller Monolithen, Raumschiffe, Jupiter, HAL und Menschheitsrätsel.",
+		"title": "2001 Space Odyssey"
+	},
+	"spaceTaxi": {
+		"symbols": [
+			"🚕",
+			"🚀",
+			"🛸",
+			"🌌",
+			"🪐",
+			"⭐️",
+			"🌜",
+			"✨",
+			"🛰️",
+			"🚏"
+		],
+		"rare": [
+			"👽",
+			"🛸",
+			"🌠"
+		],
+		"bottom": [
+			"🌌",
+			"🛰️"
+		],
+		"player": "🚕",
+		"target": "🪐",
+		"description": "Eine schräge Zukunftswelt, in der Taxis zwischen den Sternen pendeln.",
+		"title": "Space Taxi"
+	},
+	"steampunk": {
+		"symbols": [
+			"⚙️",
+			"🔩",
+			"🛠️",
+			"⏳",
+			"🚂",
+			"🎩",
+			"🕰️",
+			"🔧",
+			"🧰",
+			"📻"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🤖",
+		"target": "⚙️",
+		"description": "Eine Steampunk-Welt, die mechanische Wunder und nostalgische Technik verbindet.",
+		"title": "Steampunk"
+	},
+	"suessmaus": {
+		"symbols": [
+			"🧁",
+			"🍓",
+			"🍫",
+			"🍡",
+			"🍯",
+			"🍩",
+			"🥞",
+			"🍪"
+		],
+		"rare": [
+			"🍰",
+			"🍮",
+			"🍒"
+		],
+		"bottom": [
+			"🍯"
+		],
+		"player": "🐭",
+		"target": "🧁",
+		"description": "Als süße Maus suchst du deinen Lieblingskuchen – aber Vorsicht: Naschfallen!",
+		"title": "Süßmaus"
+	},
+	"superhero": {
+		"symbols": [
+			"🦸‍♂️",
+			"🦸‍♀️",
+			"🏙️",
+			"💥",
+			"🦹‍♂️",
+			"🌆",
+			"🪝",
+			"🚁",
+			"🚓",
+			"⚡"
+		],
+		"rare": [
+			"🦹‍♀️",
+			"🛡️",
+			"🚨"
+		],
+		"bottom": [
+			"🏢",
+			"🏙️"
+		],
+		"player": "🦸‍♂️",
+		"target": "🦹‍♂️",
+		"description": "Hier kämpfen Superhelden in schwindelerregenden Höhen gegen das Böse.",
+		"title": "Superhelden"
+	},
+	"traumwelt": {
+		"symbols": [
+			"🌙",
+			"✨",
+			"🛏️",
+			"🐑",
+			"🧸",
+			"🪐",
+			"🎠",
+			"☁️",
+			"💭",
+			"🧚"
+		],
+		"rare": [
+			"🦄",
+			"🧞",
+			"🌈"
+		],
+		"bottom": [
+			"☁️"
+		],
+		"player": "🐑",
+		"target": "🌙",
+		"description": "Eine traumhafte Fantasiewelt für Kinder mit Magie, Licht und Fantasiegestalten.",
+		"title": "Traumwelt"
+	},
+	"traurigkeit": {
+		"symbols": [
+			"😔",
+			"☔",
+			"💧",
+			"🌧️",
+			"😥",
+			"📓",
+			"🕯️",
+			"🛏️"
+		],
+		"rare": [
+			"🪦",
+			"👻",
+			"💔"
+		],
+		"bottom": [
+			"🧻"
+		],
+		"player": "😢",
+		"target": "🧻",
+		"description": "Langsame Tropfen auf Fensterglas – finde Trost in einer grauen Welt.",
+		"title": "Traurigkeit"
+	},
+	"tvshow": {
+		"title": "TV-Show",
+		"description": "eine grelle Welt aus Gameshows, Kameras und peinlichen Auftritten",
+		"symbols": [
+			"📺",
+			"🎥",
+			"🎤",
+			"🎬",
+			"📸",
+			"🎭",
+			"🎙️"
+		],
+		"rare": [
+			"💡",
+			"🏆",
+			"🎮",
+			"🤡"
+		],
+		"bottom": [
+			"🎞️",
+			"🔴"
+		],
+		"player": "🎤",
+		"target": "🏆"
+	},
+	"ueberforderung": {
+		"symbols": [
+			"🧠",
+			"📅",
+			"📈",
+			"💬",
+			"⚠️",
+			"📋",
+			"🧾",
+			"😵‍💫"
+		],
+		"rare": [
+			"💣",
+			"📢",
+			"📉"
+		],
+		"bottom": [
+			"🪫"
+		],
+		"player": "🤯",
+		"target": "💡",
+		"description": "To-do-Listen explodieren. Du brauchst einen Geistesblitz, bevor alles kollabiert.",
+		"title": "Überforderung"
+	},
+	"uno": {
+		"title": "UNO",
+		"description": "eine diplomatische Welt voller Frieden, Reden und globaler Zusammenarbeit",
+		"symbols": [
+			"🇺🇳",
+			"🕊️",
+			"🤝",
+			"🗣️",
+			"📜",
+			"🏛️"
+		],
+		"rare": [
+			"🧑‍⚖️",
+			"⚖️",
+			"✉️",
+			"🛡️"
+		],
+		"bottom": [
+			"🎙️",
+			"📢"
+		],
+		"player": "🤝",
+		"target": "🕊️"
+	},
+	"veganland": {
+		"title": "Veganland",
+		"description": "eine pflanzliche Welt mit Brokkoli, Sojamilch und ganz viel Überzeugung",
+		"symbols": [
+			"🥦",
+			"🥕",
+			"🥒",
+			"🥬",
+			"🫘",
+			"🌱",
+			"🥗"
+		],
+		"rare": [
+			"🧘‍♂️",
+			"🥤",
+			"💚",
+			"🧄"
+		],
+		"bottom": [
+			"🍽️",
+			"🌽"
+		],
+		"player": "🌱",
+		"target": "🥦"
+	},
+	"vegetables": {
+		"title": "Gemüsewelt",
+		"description": "Eine vitaminreiche Welt voller knackigem Gemüse, von Karotten bis Brokkoli. Perfekt für alle Gartenfreunde und Ernährungsbewussten",
+		"symbols": [
+			"🥕",
+			"🌽",
+			"🍅",
+			"🥒",
+			"🧄",
+			"🧅",
+			"🥬",
+			"🥦",
+			"🍆"
+		],
+		"rare": [
+			"🥗",
+			"🫛",
+			"🫑",
+			"🫘"
+		],
+		"bottom": [],
+		"player": "👨‍🌾",
+		"target": "🥕"
+	},
+	"verfuehrung": {
+		"symbols": [
+			"👠",
+			"👙",
+			"🥂",
+			"🎭",
+			"🕯️",
+			"🎶",
+			"💄",
+			"🖤",
+			"🛏️",
+			"🍓"
+		],
+		"rare": [
+			"🔐",
+			"💌",
+			"👩‍❤️‍💋‍👨"
+		],
+		"bottom": [
+			"🛏️"
+		],
+		"player": "👠",
+		"target": "💄",
+		"description": "Eine ästhetisch angehauchte Welt für Erwachsene mit Andeutungen und Spiel mit Sinnlichkeit.",
+		"title": "Verführung"
+	},
+	"verliebt": {
+		"symbols": [
+			"💌",
+			"🌹",
+			"🥰",
+			"🫶",
+			"💑",
+			"💋",
+			"💓",
+			"💗",
+			"🎶"
+		],
+		"rare": [
+			"👩‍❤️‍👨",
+			"💞",
+			"💍"
+		],
+		"bottom": [
+			"🕯️"
+		],
+		"player": "💘",
+		"target": "❤️",
+		"description": "Eine Welt voller Herzklopfen, Blickkontakte und zarter Gesten.",
+		"title": "Verliebt"
+	},
+	"verschwoerung": {
+		"title": "Verschwörung",
+		"description": "eine paranoide Welt voller Aluhüte, geheimen Plänen und unerklärlicher Verbindungen",
+		"symbols": [
+			"🧠",
+			"📜",
+			"🕵️‍♂️",
+			"📡",
+			"🔎",
+			"📌"
+		],
+		"rare": [
+			"👽",
+			"🛸",
+			"🧬",
+			"👁️"
+		],
+		"bottom": [
+			"📎",
+			"✏️"
+		],
+		"player": "🕵️‍♂️",
+		"target": "👁️"
+	},
+	"vogelflug": {
+		"symbols": [
+			"🐦",
+			"🐦‍⬛",
+			"🌥️",
+			"☁️",
+			"🪶",
+			"🌬️",
+			"🪁",
+			"🌄",
+			"🌈",
+			"✨",
+			"⛰️",
+			"🕊️",
+			"🦜",
+			"🦉",
+			"🦚"
+		],
+		"rare": [
+			"🦅",
+			"🕊️",
+			"🌪️",
+			"🪽",
+			"🦚"
+		],
+		"bottom": [
+			"⛰️",
+			"🌲"
+		],
+		"player": "🐦",
+		"target": "🪶",
+		"description": "Du fliegst durch die Lüfte, sammelst Federn und weichst Windwirbeln aus.",
+		"title": "Vogelflug"
+	},
+	"volcano": {
+		"symbols": [
+			"🌋",
+			"🔥",
+			"🪨",
+			"💀",
+			"⛏️",
+			"🌪️",
+			"♨️",
+			"🚒",
+			"🥵",
+			"💥"
+		],
+		"rare": [],
+		"bottom": [],
+		"player": "🚒",
+		"target": "🌋",
+		"description": "Eine vulkanische Welt, in der die Natur mit explosiver Kraft spielt.",
+		"title": "Vulkan"
+	},
+	"waldfruehling": {
+		"symbols": [
+			"🌷",
+			"🌼",
+			"🌱",
+			"🌸",
+			"🦋",
+			"🐞",
+			"🐇",
+			"🌤️",
+			"🍃",
+			"🌻"
+		],
+		"rare": [
+			"🪺",
+			"🕊️",
+			"🌈"
+		],
+		"bottom": [
+			"🌸"
+		],
+		"player": "🐇",
+		"target": "🌷",
+		"description": "Der Wald erwacht – hüpfe durch Blüten und Falter zur ersten Frühlingsblume.",
+		"title": "Waldfrühling"
+	},
+	"water": {
+		"symbols": [
+			"🐠",
+			"🐟",
+			"🐬",
+			"🐳",
+			"🐋",
+			"🦈",
+			"🦑",
+			"🐙",
+			"🌊",
+			"🚤",
+			"⛵",
+			"🚢",
+			"🛥️"
+		],
+		"rare": [
+			"🧜‍♂️",
+			"🧜‍♀️",
+			"🐋",
+			"🤿",
+			"🥽",
+			"🔱",
+			"⚓",
+			"🦈",
+			"🛟",
+			"🩳",
+			"🏊‍♀️",
+			"🏊‍♂️",
+			"🏊",
+			"🏄",
+			"🤽‍♂️"
+		],
+		"bottom": [],
+		"player": "🏊",
+		"target": "🐋",
+		"description": "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen.",
+		"title": "Wasserwelt"
+	},
+	"wohnkrise": {
+		"title": "Wohnkrise",
+		"description": "eine herausfordernde Welt aus Beton, Baustellen und Wohnungssuche",
+		"symbols": [
+			"🏚️",
+			"🏠",
+			"🏘️",
+			"🔨",
+			"📦",
+			"🛏️",
+			"🚪"
+		],
+		"rare": [
+			"💸",
+			"📄",
+			"🧳",
+			"🔑"
+		],
+		"bottom": [
+			"🪜",
+			"🪟"
+		],
+		"player": "🚶",
+		"target": "🏠"
+	},
+	"wut": {
+		"symbols": [
+			"💢",
+			"🔥",
+			"💣",
+			"💥",
+			"😤",
+			"⚡",
+			"😠",
+			"🤬"
+		],
+		"rare": [
+			"🧨",
+			"😾",
+			"🧯"
+		],
+		"bottom": [
+			"🔨"
+		],
+		"player": "😡",
+		"target": "💥",
+		"description": "Hier kocht alles über. Zerstörung ist leicht – der Ausweg ist schwer.",
+		"title": "Wutwelt"
+	},
+	"zahnarzt": {
+		"title": "Zahnarzt",
+		"description": "eine bohrende Welt voller Zähne, Geräusche und Nervenkitzel",
+		"symbols": [
+			"🦷",
+			"🪥",
+			"🧼",
+			"🧴",
+			"😬",
+			"💺",
+			"📋"
+		],
+		"rare": [
+			"🧑‍⚕️",
+			"💊",
+			"😖",
+			"📞"
+		],
+		"bottom": [
+			"🧻",
+			"🚿"
+		],
+		"player": "😬",
+		"target": "🦷"
+	},
+	"zeitreise": {
+		"title": "Zeitreise",
+		"description": "eine Welt aus Vergangenheit, Zukunft und allem dazwischen",
+		"symbols": [
+			"🕰️",
+			"⏳",
+			"🛸",
+			"🦕",
+			"🤖",
+			"📜",
+			"🔮"
+		],
+		"rare": [
+			"🧑‍🚀",
+			"👴",
+			"👶",
+			"📅"
+		],
+		"bottom": [
+			"⚙️",
+			"🔁"
+		],
+		"player": "⏳",
+		"target": "🔮"
+	},
+	"zivilschutz": {
+		"title": "Zivilschutz",
+		"description": "eine vorsorgende Welt mit Alarmplänen, Notausgängen und Helferinnen",
+		"symbols": [
+			"🧯",
+			"🚨",
+			"🚪",
+			"🧰",
+			"📢",
+			"📦"
+		],
+		"rare": [
+			"🧑‍🚒",
+			"🧑‍⚕️",
+			"🚒",
+			"🏥"
+		],
+		"bottom": [
+			"🪫",
+			"🚿"
+		],
+		"player": "🧑‍🚒",
+		"target": "📦"
+	},
+	"zombieTown": {
+		"symbols": [
+			"🧟",
+			"🩸",
+			"🪦",
+			"🧠",
+			"🪓",
+			"🔪",
+			"💀",
+			"🧌",
+			"🧛",
+			"🪙"
+		],
+		"rare": [
+			"🚨",
+			"🧯",
+			"😈"
+		],
+		"bottom": [
+			"🛑"
+		],
+		"player": "😱",
+		"target": "🚪",
+		"description": "In dieser postapokalyptischen Stadt streifen Untote umher – finde den rettenden Ausgang.",
+		"title": "Zombie-Stadt"
+	},
+	"zoo": {
+		"title": "Zoo",
+		"description": "eine tierische Zoowelt mit Gehegen, Aquarien und exotischen Kreaturen",
+		"symbols": [
+			"🦁",
+			"🐘",
+			"🦓",
+			"🐅",
+			"🐒",
+			"🦒",
+			"🦜",
+			"🐠",
+			"🐡",
+			"🦋",
+			"🐛",
+			"🐢"
+		],
+		"rare": [
+			"🦍",
+			"🦧",
+			"🐆",
+			"🦛",
+			"🦂",
+			"🪲"
+		],
+		"bottom": [
+			"🎟️",
+			"🪴",
+			"🐾"
+		],
+		"player": "👦",
+		"target": "🦁"
+	},
+	"sushibar": {
+		"title": "Sushi-Bar",
+		"description": "Genieße frischen Fisch, Maki, Nigiri und gute Gesellschaft an der Theke.",
+		"symbols": [
+			"🍣",
+			"🍤",
+			"🍙",
+			"🍚",
+			"🥢",
+			"🍱",
+			"🍵",
+			"🥒",
+			"🦀",
+			"🧂",
+			"🍶"
+		],
+		"rare": [
+			"🐟",
+			"🦑",
+			"🦐",
+			"🥑"
+		],
+		"bottom": [
+			"🍱",
+			"🥢"
+		],
+		"player": "🍣",
+		"target": "🍵"
+	},
+	"olympia": {
+		"title": "Olympia",
+		"description": "Die besten Athleten der Welt messen sich in klassischen und modernen Disziplinen.",
+		"symbols": [
+			"🥇",
+			"🥈",
+			"🥉",
+			"🏅",
+			"🏆",
+			"🏟️",
+			"🏊‍♂️",
+			"🏃‍♀️",
+			"🤸‍♂️",
+			"🚴‍♂️",
+			"🤾‍♂️",
+			"🏋️‍♂️",
+			"🤼‍♂️",
+			"🤺",
+			"🏀",
+			"🏐",
+			"🏸"
+		],
+		"rare": [
+			"🎖️",
+			"⛷️",
+			"🏂",
+			"🏓",
+			"🛷"
+		],
+		"bottom": [
+			"🔥",
+			"🏟️"
+		],
+		"player": "🏃‍♀️",
+		"target": "🥇"
+	},
+	"starfleet": {
+		"title": "Sternenflotte",
+		"description": "Beame dich durch Raumschiffe, Aliens und Galaxien in der Zukunft.",
+		"symbols": [
+			"🚀",
+			"🛸",
+			"👾",
+			"🤖",
+			"🛰️",
+			"🪐",
+			"✨",
+			"🌌",
+			"🔭",
+			"🖖",
+			"🛳️"
+		],
+		"rare": [
+			"👽",
+			"👩‍🚀",
+			"🌠"
+		],
+		"bottom": [
+			"🌌",
+			"🛰️"
+		],
+		"player": "🖖",
+		"target": "🛸"
+	},
+	"sportarena": {
+		"title": "Sportarena",
+		"description": "Actionreiche Wettkämpfe auf Rasen, im Wasser und in der Luft.",
+		"symbols": [
+			"⚽",
+			"🏀",
+			"🏈",
+			"⚾",
+			"🎾",
+			"🏐",
+			"🥎",
+			"🏓",
+			"🏸",
+			"🥅",
+			"🥇",
+			"🎽",
+			"🏃‍♂️",
+			"🏊‍♀️"
+		],
+		"rare": [
+			"🥊",
+			"🥋",
+			"🏆",
+			"🚴‍♂️"
+		],
+		"bottom": [
+			"⛹️‍♂️",
+			"🏟️"
+		],
+		"player": "🏃‍♂️",
+		"target": "🏆"
+	}
 }
