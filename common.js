@@ -120,6 +120,8 @@ function t(key, vars={}) {
 function switchLang() {
     lang = (lang === 'de') ? 'en' : 'de';
     updateUIText();
+    populateWorldGallery();
+    populateWorldButtonsEditor();
     localStorage.setItem('appLang', lang);
     document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
 }
