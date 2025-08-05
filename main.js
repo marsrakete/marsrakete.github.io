@@ -240,12 +240,14 @@ function populateWorldGallery() {
   const container = document.getElementById('worldGallery');
   container.innerHTML = '';
 
-  // Welten sortieren nach Titel (fällt zurück auf name, falls kein Titel)
+  const isEnglish = lang === 'en';
+
+  // Welten sortieren nach Titel (abhängig von Sprache, fallback: name)
   const sortedWorlds = Object.entries(worldData)
     .sort((a, b) => {
-      const titleA = (a[1].title || a[0]).toLocaleLowerCase();
-      const titleB = (b[1].title || b[0]).toLocaleLowerCase();
-      return titleA.localeCompare(titleB, 'de');
+      const titleA = (isEnglish ? a[1].title_en : a[1].title) || a[0];
+      const titleB = (isEnglish ? b[1].title_en : b[1].title) || b[0];
+      return titleA.toLocaleLowerCase().localeCompare(titleB.toLocaleLowerCase(), 'de');
     });
 
   for (let [name, world] of sortedWorlds) {
@@ -255,7 +257,9 @@ function populateWorldGallery() {
 
     const title = document.createElement('div');
     title.className = 'world-title';
-    title.textContent = world.title || name;
+    title.textContent = isEnglish
+      ? (world.title_en || world.title || name)
+      : (world.title || name);
 
     const symbols = document.createElement('div');
     symbols.className = 'world-symbols';
@@ -263,7 +267,9 @@ function populateWorldGallery() {
 
     const desc = document.createElement('div');
     desc.className = 'world-description';
-    desc.textContent = world.description || '';
+    desc.textContent = isEnglish
+      ? (world.description_en || world.description || '')
+      : (world.description || '');
 
     card.appendChild(title);
     card.appendChild(symbols);
@@ -284,6 +290,7 @@ function populateWorldGallery() {
 
     container.appendChild(card);
   }
+}
 
   // --- Anzahl der Welten mit Icon anzeigen ---
   const countDiv = document.getElementById('worldCount');
@@ -634,37 +641,38 @@ function populateWorldButtonsEditor() {
   const container = document.getElementById('worldButtonsEditor');
   container.innerHTML = '';
 
-  // Welten sortieren nach Titel (fällt zurück auf name, falls kein Titel)
+  const isEnglish = lang === 'en';
+
+  // Welten sortieren nach sprachabhängigem Titel (fällt zurück auf name)
   const sortedWorlds = Object.entries(worldData)
     .sort((a, b) => {
-      const titleA = (a[1].title || a[0]).toLocaleLowerCase();
-      const titleB = (b[1].title || b[0]).toLocaleLowerCase();
-      return titleA.localeCompare(titleB, 'de');
+      const titleA = (isEnglish ? a[1].title_en : a[1].title) || a[0];
+      const titleB = (isEnglish ? b[1].title_en : b[1].title) || b[0];
+      return titleA.toLocaleLowerCase().localeCompare(titleB.toLocaleLowerCase(), 'de');
     });
-    
-  for (let name in sortedWorlds) {
+
+  for (const [worldKey, worldValue] of sortedWorlds) {
     const label = document.createElement('label');
     label.style.display = 'inline-block';
 
     const input = document.createElement('input');
     input.type = 'radio';
     input.name = 'worldSelect';
-    input.value = name;
+    input.value = worldKey;
     input.style.display = 'none';
-    if (name === currentWorld) input.checked = true;
+    if (worldKey === currentWorld) input.checked = true;
 
     const span = document.createElement('span');
     span.className = 'world-chip';
-    span.innerText = worldData[name]?.title || name;
-    span.title = worldData[name]?.description || '';
+    span.innerText = isEnglish ? (worldValue.title_en || worldKey) : (worldValue.title || worldKey);
+    span.title = isEnglish ? (worldValue.description_en || '') : (worldValue.description || '');
 
     input.addEventListener('change', () => {
-      currentWorld = name;
+      currentWorld = worldKey;
       updateGameInfo();
       updatePlayerTargetInfo();
       populateSymbolPalette();
       generateRandomWorld();
-      // Optional: visuelles Highlight aktualisieren (siehe CSS)
     });
 
     label.appendChild(input);
@@ -672,6 +680,7 @@ function populateWorldButtonsEditor() {
     container.appendChild(label);
   }
 }
+
 
 
 function updatePlayerTargetInfo() {
