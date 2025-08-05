@@ -393,3 +393,11 @@ input[type="radio"]:checked + .world-chip {
   border-radius: 4px;
   cursor: pointer;
 }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  backdrop-filter: blur(2px);
+}
