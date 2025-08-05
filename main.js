@@ -551,16 +551,29 @@ document.getElementById('generateGameAltText').addEventListener('click', () => {
 
 document.getElementById('copyGameGraphic').addEventListener('click', async () => {
   try {
-    const canvas = await html2canvas(document.getElementById('gameOutput'));
+    const canvasTarget = document.getElementById('gameOutput');
+    const canvas = await html2canvas(canvasTarget);
+
     canvas.toBlob(async (blob) => {
-      if (!blob) throw new Error(t('blobCreationFailed'));
-      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-      alert(t('alertGraphicCopied'));
+      if (!blob) {
+        throw new Error(t('blobCreationFailed'));
+      }
+
+      await navigator.clipboard.write([
+        new ClipboardItem({ 'image/png': blob })
+      ]);
+
+      // 1. Zeige Toast-Nachricht
+      showToast(t('alertGraphicCopied'), 'success');
+
+      // 2. Zeige visuelles Overlay auf dem Canvas-Bereich
+      showCopyOverlay(canvasTarget, t('alertGraphicCopied'));
     });
   } catch (err) {
-    alert(t('alertErrorOnCopy') + err);
+    showToast(t('alertErrorOnCopy') + err, 'error');
   }
 });
+
 
 document.getElementById('copyGameText').addEventListener('click', ()=>{
   const text = gameGrid.map(row=>row.join('').replace(/\s+$/,'')).join('\r\n');
