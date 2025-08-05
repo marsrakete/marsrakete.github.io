@@ -79,4 +79,14 @@
     "alertTextCopied": "Text copied",
     "alertGraphicCopied": "The world is copied as graphics and can be inserted into an app of your choice!",
     "alertPermalinkCopied": "Permalink copied. You can now paste the URL into chats, mail, or other browsers.",
-    "alertPopupBlocked": "The popup was blocked
+    "alertPopupBlocked": "The popup was blocked. Please allow popups for this page.",
+    "altTextGame": "ALT text: This image shows a {description} world created with the World Generator by Millux. The field contains {rows} rows and {cols} columns.",
+    "altTextEditor": "ALT text: This {description} world in the editor ({rows}x{cols}).",
+    "editorApplyFailed": "Not all targets are reachable from the player! Please adjust the world. Maybe player or target symbols are missing.",
+    "copyUrlFailed": "Copy failed: {error}",
+    "gameFinished": "Game finished!\nFound targets: {count}\nTime: {seconds} s",
+    "timerDisplay": "Time:",
+    "blobCreationFailed": "Blob creation failed",
+    "alertBskyLen": "The number of characters in the world is too long for a BlueSky post. Please delete a few characters in the editor."
+  }
+}
