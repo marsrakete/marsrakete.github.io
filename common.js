@@ -132,13 +132,13 @@ function updateUIText() {
     // Headline
     if (document.getElementById('gameInfo')) document.getElementById('gameInfo').innerText = t('game_title');
     // Buttons
-    if (document.getElementById('toggleModeGame')) document.getElementById('toggleModeGame').innerText = t('btn_switch_mode');
-    if (document.getElementById('newRandomGame')) document.getElementById('newRandomGame').innerText = t('btn_new_game');
-    if (document.getElementById('generateGameAltText')) document.getElementById('generateGameAltText').innerText = t('btn_alt_text');
-    if (document.getElementById('copyGameGraphic')) document.getElementById('copyGameGraphic').innerText = t('btn_copy_graphic');
-    if (document.getElementById('copyGameText')) document.getElementById('copyGameText').innerText = t('btn_copy_text');
-    if (document.getElementById('generateGamePermalink')) document.getElementById('generateGamePermalink').innerText = t('btn_permalink');
-    if (document.getElementById('postToBsky')) document.getElementById('postToBsky').innerText = t('btn_post_bsky');
+    if (document.getElementById('toggleModeGame')) document.getElementById('toggleModeGame').innerText = t('btnSwitchMode');
+    if (document.getElementById('newRandomGame')) document.getElementById('newRandomGame').innerText = t('btnNewGame');
+    if (document.getElementById('generateGameAltText')) document.getElementById('generateGameAltText').innerText = t('btnAltText');
+    if (document.getElementById('copyGameGraphic')) document.getElementById('copyGameGraphic').innerText = t('btnCopyGraphic');
+    if (document.getElementById('copyGameText')) document.getElementById('copyGameText').innerText = t('btnCopyText');
+    if (document.getElementById('generateGamePermalink')) document.getElementById('generateGamePermalink').innerText = t('btnPermalink');
+    if (document.getElementById('postToBsky')) document.getElementById('postToBsky').innerText = t('btnPostBsky');
 
     // Zeit & Ziele in Statusleiste (werden dynamisch ergänzt, aber für Initialanzeige sinnvoll)
     if (document.getElementById('timerDisplay')) document.getElementById('timerDisplay').innerText = t('time', {seconds: 0});
@@ -148,23 +148,23 @@ function updateUIText() {
     if (document.getElementById('swipeHint')) {
         document.getElementById('swipeHint').innerText =
             ('ontouchstart' in window || navigator.maxTouchPoints > 0)
-            ? t('hint_swipe')
-            : t('hint_mouse');
+            ? t('hintSwipe')
+            : t('hintMouse');
     }
 
     // --- EDITORMODUS ---
-    if (document.getElementById('toggleModeEditor')) document.getElementById('toggleModeEditor').innerText = t('btn_switch_mode_game');
-    if (document.getElementById('clearGrid')) document.getElementById('clearGrid').innerText = t('btn_clear_grid');
-    if (document.getElementById('newEditorRandom')) document.getElementById('newEditorRandom').innerText = t('btn_new_editor_random');
-    if (document.getElementById('generateEditorAltText')) document.getElementById('generateEditorAltText').innerText = t('btn_alt_text');
-    if (document.getElementById('copyEditorGraphic')) document.getElementById('copyEditorGraphic').innerText = t('btn_copy_editor_graphic');
-    if (document.getElementById('copyEditorText')) document.getElementById('copyEditorText').innerText = t('btn_copy_editor_text');
+    if (document.getElementById('toggleModeEditor')) document.getElementById('toggleModeEditor').innerText = t('btnSwitchModeGame');
+    if (document.getElementById('clearGrid')) document.getElementById('clearGrid').innerText = t('btnClearGrid');
+    if (document.getElementById('newEditorRandom')) document.getElementById('newEditorRandom').innerText = t('btnNewEditorRandom');
+    if (document.getElementById('generateEditorAltText')) document.getElementById('generateEditorAltText').innerText = t('btnAltText');
+    if (document.getElementById('copyEditorGraphic')) document.getElementById('copyEditorGraphic').innerText = t('btnCopyEditorGraphic');
+    if (document.getElementById('copyEditorText')) document.getElementById('copyEditorText').innerText = t('btnCopyEditorText');
     // Falls aktiviert:
-    if (document.getElementById('applyToGame')) document.getElementById('applyToGame').innerText = t('btn_apply_to_game');
+    if (document.getElementById('applyToGame')) document.getElementById('applyToGame').innerText = t('btnApplyToGame');
 
     // Überschriften/Labels im Editormodus
-    if (document.querySelector('#editorContainer h1')) document.querySelector('#editorContainer h1').innerText = t('editor_mode');
-    if (document.querySelector('#editorContainer h2')) document.querySelector('#editorContainer h2').innerText = t('output_field');
+    if (document.querySelector('#editorContainer h1')) document.querySelector('#editorContainer h1').innerText = t('editorMode');
+    if (document.querySelector('#editorContainer h2')) document.querySelector('#editorContainer h2').innerText = t('outputField');
 
     // --- SLIDER & LABELS ---
     // Zoom
@@ -178,7 +178,7 @@ function updateUIText() {
     const countDiv = document.getElementById('worldCount');
     if (countDiv) {
         const n = Object.keys(worldData).length;
-        countDiv.innerHTML = `<span class="icon">✨</span> <span>${t('worlds_available', {count: n})}</span>`;
+        countDiv.innerHTML = `<span class="icon">✨</span> <span>${t('worldsAvailable', {count: n})}</span>`;
     }
 
     // --- Sprache-Umschaltbutton (Label aktualisieren) ---
