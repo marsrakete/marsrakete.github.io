@@ -92,6 +92,38 @@ async function transferToPage(worldKey, gridData) {
   return window.location.pathname + "?" + params.toString();
 }
 
+
+// Sprachlogik
+// Lade Sprachdatei (lang.json)
+async function loadLangData() {
+    const res = await fetch('lang.json');
+    langData = await res.json();
+}
+
+// Erkenne die Sprache des Browsers
+function detectLang() {
+    const browserLang = navigator.language?.slice(0,2).toLowerCase();
+    if (supportedLangs.includes(browserLang)) return browserLang;
+    return 'de';
+}
+
+// Text holen, mit Platzhalter-Ersatz
+function t(key, vars={}) {
+    let str = langData[lang]?.[key] || langData['de']?.[key] || key;
+    Object.keys(vars).forEach(k => {
+        str = str.replaceAll(`{${k}}`, vars[k]);
+    });
+    return str;
+}
+
+// Sprache wechseln
+function switchLang() {
+    lang = (lang === 'de') ? 'en' : 'de';
+    updateUIText();
+    localStorage.setItem('appLang', lang);
+    document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
+}
+
 function updateUIText() {
     // Dokument-Titel
     document.title = t('game_title');
@@ -154,3 +186,4 @@ function updateUIText() {
         document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
     }
 }
+
