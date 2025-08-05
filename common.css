@@ -258,23 +258,27 @@ input[type="radio"]:checked + .world-chip {
 /* Grid für Galerie */
 
 /* === Gallery / World Selection === */
+/* Updated worldGallery for multi-column layout */
 #worldGallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 60vh;
+  overflow-y: auto;
+  justify-content: center;
+  padding: 8px;
+  scrollbar-width: thin;
+}
   display: grid;
   gap: 12px;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   margin-top: 20px;
 }
 
+/* Responsive card sizing */
 .world-card {
-  background: #1e1e1e;
-  border: 2px solid #333;
-  border-radius: 10px;
-  cursor: pointer;
-  padding: 10px;
-  position: relative;
-  text-align: center;
-  transition: 0.2s;
-  user-select: none;
+  flex: 1 1 160px;
+  max-width: 240px;
 }
 
 .world-card:hover {
@@ -321,7 +325,17 @@ input[type="radio"]:checked + .world-chip {
   transform: translateY(0);
 }
 
+/* Updated worldGallery for multi-column layout */
 #worldGallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 60vh;
+  overflow-y: auto;
+  justify-content: center;
+  padding: 8px;
+  scrollbar-width: thin;
+}
   /* oder z. B. 40vh */
   overflow-y: auto;
   display: flex;
@@ -349,7 +363,17 @@ input[type="radio"]:checked + .world-chip {
 }
 
 /* Baseline: Mobile zuerst */
+/* Updated worldGallery for multi-column layout */
 #worldGallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 60vh;
+  overflow-y: auto;
+  justify-content: center;
+  padding: 8px;
+  scrollbar-width: thin;
+}
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -520,6 +544,16 @@ input[type="radio"]:checked + .world-chip {
 
 /* === 💻 Desktop Overrides (min-width: 768px) === */
 @media (min-width: 768px) {
-  #worldGallery {
+/* Updated worldGallery for multi-column layout */
+#worldGallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 60vh;
+  overflow-y: auto;
+  justify-content: center;
+  padding: 8px;
+  scrollbar-width: thin;
+}
     max-height: 300px;
 }
