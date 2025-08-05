@@ -213,7 +213,7 @@ function switchMode() {
 
   // Wechsel ZUM Spiel: Vorher Editor-Welt prüfen
   if (!canPlayerReachAllTargets(editorGrid, w.player, w.target)) {
-    alert("Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt im Editor an. Vielleicht fehlen Spieler- oder Ziel-Symbole.");
+    alert(t('editor_apply_failed'));
     return;
   }
   // Editor-Welt übernehmen
