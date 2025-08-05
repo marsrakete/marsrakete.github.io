@@ -608,7 +608,7 @@ document.getElementById('postToBsky').addEventListener('click', () => {
 
   // 2. Längenprüfung (max. ~300 Zeichen bei BlueSky)
   if (text.length > 350) {
-    alert(t('alertBskyLen');
+    alert(t('alertBskyLen'));
     return;
   }
 
