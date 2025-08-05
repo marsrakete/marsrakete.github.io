@@ -1,8 +1,4 @@
-/* === 📱 Mobile First Styles === */
-
 /* common.css – Gemeinsame Basis-Stile für beide Modi */
-
-/* === Global === */
 body {
   background: #121212;
   color: white;
@@ -27,8 +23,6 @@ button:hover {
   background-color: #555;
 }
 
-
-/* === World Button Panel === */
 #worldButtons {
   margin-bottom: 15px;
 }
@@ -46,8 +40,6 @@ button:hover {
   background-color: #555;
 }
 
-
-/* === Player/Target Info === */
 #playerTargetInfo {
   font-size: 1.2em;
   margin-bottom: 15px;
@@ -82,8 +74,6 @@ button:hover {
   border-color: red;
 }
 
-
-/* === World Button Panel === */
 .world-chip {
   background: #222;
   border: 1px solid #444;
@@ -110,8 +100,6 @@ input[type="radio"]:checked + .world-chip {
 }
 
 /* Spielmodus: Raster als CSS-Grid */
-
-/* === Grid (Game) === */
     #gameOutput {
   background: black;
   border: 1px solid white;
@@ -135,8 +123,6 @@ input[type="radio"]:checked + .world-chip {
 }
 
     /* Editormodus: Ausgabefeld mit Zeilenumbrüchen */
-
-/* === Grid (Editor) === */
     #editorOutput {
   /* Höhe angepasst für 10 Zeilen à 2ch */
       margin: 10px auto;
@@ -148,8 +134,6 @@ input[type="radio"]:checked + .world-chip {
   width: 64ch;
 }
 
-
-/* === Grid (Game) === */
 .row {
   display: block;
   white-space: nowrap;
@@ -164,15 +148,11 @@ input[type="radio"]:checked + .world-chip {
 }
 
 /* Rahmen in Editorzellen */
-
-/* === Grid (Editor) === */
     #editorOutput .cell {
   border: 1px solid white;
 }
 
 /* Steuer-Buttons */
-
-/* === Grid (Game) === */
 #virtualButtons {
   /* Abstand zum Spielfeld */
   z-index: 1000;
@@ -197,8 +177,6 @@ input[type="radio"]:checked + .world-chip {
   width: 3em;
 }
 
-
-/* === Player/Target Info === */
 .symbol-empty {
   color: #aaa;
   font-style: italic;
@@ -210,8 +188,6 @@ input[type="radio"]:checked + .world-chip {
   opacity: 1;
 }
 
-
-/* === Symbol Palette === */
 #symbolPalette {
   display: flex;
   flex-wrap: wrap;
@@ -220,8 +196,6 @@ input[type="radio"]:checked + .world-chip {
   margin-top: 20px;
 }
 
-
-/* === Player/Target Info === */
 .symbol-chip {
   background: #222;
   border: 1px solid #444;
@@ -256,29 +230,23 @@ input[type="radio"]:checked + .world-chip {
 }
 
 /* Grid für Galerie */
-
-/* === Gallery / World Selection === */
-/* Updated worldGallery for multi-column layout */
 #worldGallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-height: 60vh;
-  overflow-y: auto;
-  justify-content: center;
-  padding: 8px;
-  scrollbar-width: thin;
-}
   display: grid;
   gap: 12px;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   margin-top: 20px;
 }
 
-/* Responsive card sizing */
 .world-card {
-  flex: 1 1 160px;
-  max-width: 240px;
+  background: #1e1e1e;
+  border: 2px solid #333;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  transition: 0.2s;
+  user-select: none;
 }
 
 .world-card:hover {
@@ -325,17 +293,7 @@ input[type="radio"]:checked + .world-chip {
   transform: translateY(0);
 }
 
-/* Updated worldGallery for multi-column layout */
 #worldGallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-height: 60vh;
-  overflow-y: auto;
-  justify-content: center;
-  padding: 8px;
-  scrollbar-width: thin;
-}
   /* oder z. B. 40vh */
   overflow-y: auto;
   display: flex;
@@ -363,17 +321,7 @@ input[type="radio"]:checked + .world-chip {
 }
 
 /* Baseline: Mobile zuerst */
-/* Updated worldGallery for multi-column layout */
 #worldGallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-height: 60vh;
-  overflow-y: auto;
-  justify-content: center;
-  padding: 8px;
-  scrollbar-width: thin;
-}
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -389,13 +337,15 @@ input[type="radio"]:checked + .world-chip {
 }
 
 /* ⬆️ Desktop / größere Displays: Galerie kompakter anzeigen */
+@media (min-width: 768px) {
+  #worldGallery {
+    max-height: 300px;
+}
 
 }
 
 
 /* Maussteuerung */
-
-/* === Grid (Game) === */
 .cell.hover-target {
   cursor: pointer;
   outline: 2px dashed #0f0;
@@ -414,8 +364,6 @@ input[type="radio"]:checked + .world-chip {
   z-index: 2;
 }
 
-
-/* === Animationen === */
 @keyframes playerPulse {
   0% { box-shadow: 0 0 12px 2px #0ffb, 0 0 3px 1px #fff3;
 }
@@ -427,8 +375,6 @@ input[type="radio"]:checked + .world-chip {
 
 }
 
-
-/* === Statusanzeigen === */
 #worldCount {
   align-items: center;
   color: #ffd700;
@@ -448,8 +394,6 @@ input[type="radio"]:checked + .world-chip {
   font-size: 1.35em;
 }
 
-
-/* === Animationen === */
 @keyframes worldSpin {
   0% { transform: rotate(0deg);
 }
@@ -457,8 +401,6 @@ input[type="radio"]:checked + .world-chip {
 }
 
 /* Statusmeldungen */
-
-/* === Toast / Statusmeldung === */
 .toast-container {
   bottom: 20px;
   display: flex;
@@ -537,23 +479,4 @@ input[type="radio"]:checked + .world-chip {
   inset: 0;
   position: fixed;
   z-index: 999;
-}
-
-
-
-
-/* === 💻 Desktop Overrides (min-width: 768px) === */
-@media (min-width: 768px) {
-/* Updated worldGallery for multi-column layout */
-#worldGallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  max-height: 60vh;
-  overflow-y: auto;
-  justify-content: center;
-  padding: 8px;
-  scrollbar-width: thin;
-}
-    max-height: 300px;
 }
