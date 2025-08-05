@@ -803,40 +803,36 @@ function supportsClipboardImage() {
 async function applyUrlParameters() {
   const params = new URLSearchParams(window.location.search);
 
-  // Welt aus Parameter setzen
   const world = params.get("world");
   const gridParam = params.get("grid");
   const hashParam = params.get("hash");
 
-  // Buffer-/Exploit-Schutz: Limits setzen
+  // Exploit-Schutz: Länge prüfen
   if (world && world.length > 32) {
-    alert("Ungültiger Weltname.");
+    showToast(t('alertInvalidWorld'), 'error');
     return;
   }
   if (gridParam && gridParam.length > 2000) {
-    alert("Das Grid ist zu lang.");
+    showToast(t('alertGridTooLong'), 'error');
     return;
   }
   if (hashParam && hashParam.length > 128) {
-    alert("Ungültiger Hash.");
+    showToast(t('alertInvalidHash'), 'error');
     return;
   }
 
-  // Existiert Hash und Grid?
+  // Existenzprüfung
   if (!world || !gridParam || !hashParam) {
-    // Kein Grid-Link oder manipuliert
     return;
   }
 
-  // Hash berechnen und prüfen
   const gridDecoded = decodeURIComponent(gridParam.replace(/\+/g, " "));
   const calc = await calcHash(world + ':' + gridDecoded);
   if (calc !== hashParam) {
-    alert("Fehler: Ungültige Prüfsumme – der Link wurde verändert oder ist defekt.");
+    showToast(t('alertInvalidChecksum'), 'error');
     return;
   }
 
-  // Welt prüfen und setzen
   if (world && worldData[world]) {
     currentWorld = world;
   }
@@ -844,7 +840,6 @@ async function applyUrlParameters() {
   const gridText = gridDecoded;
   const lines = gridText.split(/\r?\n/);
 
-  // Unicode-sichere Segmentierung für Emojis
   const segmenter = new Intl.Segmenter("de", { granularity: "grapheme" });
 
   const isValidGrid = lines.length === rows &&
@@ -858,7 +853,6 @@ async function applyUrlParameters() {
     gameGrid = parsedGrid;
     originalGrid = parsedGrid.map(row => [...row]);
 
-    // Spielerposition finden
     const w = worldData[currentWorld];
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
@@ -869,7 +863,6 @@ async function applyUrlParameters() {
       }
     }
 
-    // Zielanzahl berechnen
     initialTargets = gameGrid.flat().filter(c => c === w.target).length;
     foundCount = 0;
 
@@ -879,10 +872,12 @@ async function applyUrlParameters() {
     populateWorldGallery();
     document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
     document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
+
   } else {
-    alert(t('InvalidGridFormat'));
+    showToast(t('alertInvalidGrid'), 'error');
   }
 }
+
 
 // Sprachumschaltung
 document.getElementById('langSwitchBtn').addEventListener('click', () => {
