@@ -289,6 +289,12 @@ function populateWorldGallery() {
 
     container.appendChild(card);
   }
+  setTimeout(() => {
+      document.querySelector('.world-card.selected')?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+      });
+  }, 100);
 } 
 
 // --- Anzahl der Welten mit Icon anzeigen ---
