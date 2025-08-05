@@ -534,21 +534,20 @@ document.getElementById('generateGameAltText').addEventListener('click', () => {
   const rows = gameGrid.length;
   const cols = gameGrid[0]?.length || 0;
 
-  // Sprachabhängige Beschreibung
   const description = lang === 'en'
     ? (w.description_en || w.description || '')
     : (w.description || '');
 
-  // Übersetzungstext mit Platzhaltern aus JSON verwenden
   const txt = t('altTextGame')
     .replace('{description}', description)
     .replace('{rows}', rows)
     .replace('{cols}', cols);
 
   navigator.clipboard.writeText(txt)
-    .then(() => alert(t('alertAltTextCopied')))
-    .catch(err => alert(t('copyUrlFailed').replace('{error}', err)));
+    .then(() => showToast(t('alertAltTextCopied'), 'success'))
+    .catch(err => showToast(t('copyUrlFailed').replace('{error}', err), 'error'));
 });
+
 
 document.getElementById('copyGameGraphic').addEventListener('click', async () => {
   try {
