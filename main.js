@@ -675,8 +675,13 @@ function populateWorldButtonsEditor() {
 
 
 function updatePlayerTargetInfo() {
-  const w=worldData[currentWorld]; document.getElementById('playerTargetInfo').innerHTML=
-    `Spielersymbol: <span style="color:limegreen;">${w.player}</span> | Zielsymbol: <span style="color:red;">${w.target}</span>`;
+  if (lang == 'de') {
+      const w=worldData[currentWorld]; document.getElementById('playerTargetInfo').innerHTML= 
+          `Spielersymbol: <span style="color:limegreen;">${w.player}</span> | Zielsymbol: <span style="color:red;">${w.target}</span>`;
+  } else {
+      const w=worldData[currentWorld]; document.getElementById('playerTargetInfo').innerHTML= 
+          `Player symbol: <span style="color:limegreen;">${w.player}</span> | Target symbol: <span style="color:red;">${w.target}</span>`;
+  }
 }
 
 function populateSymbolPalette() {
