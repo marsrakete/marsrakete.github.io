@@ -240,7 +240,7 @@ function showCopyOverlay(targetElement, message = '✓ Kopiert') {
     zIndex: '100',
     pointerEvents: 'none',
     opacity: '0',
-    transition: 'opacity 0.3s ease',
+    transition: 'opacity 1s ease',
   });
 
   // Eltern-Element muss relativ positioniert sein
