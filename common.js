@@ -188,4 +188,33 @@ function updateUIText() {
         document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
     }
 }
+// Statusmeldungen
+function showToast(message, type = 'info', duration = 4000) {
+  const container = document.getElementById('toast-container');
+  if (!container) return;
 
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `
+    <span>${message}</span>
+    <span class="close-btn" aria-label="Close">&times;</span>
+  `;
+
+  container.appendChild(toast);
+
+  // Trigger show animation
+  requestAnimationFrame(() => toast.classList.add('show'));
+
+  // Remove after duration
+  const timeout = setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => container.removeChild(toast), 300);
+  }, duration);
+
+  // Manuelles Schließen
+  toast.querySelector('.close-btn').addEventListener('click', () => {
+    clearTimeout(timeout);
+    toast.classList.remove('show');
+    setTimeout(() => container.removeChild(toast), 300);
+  });
+}
