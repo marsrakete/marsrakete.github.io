@@ -343,8 +343,13 @@ function highlightButton(containerId, selected) {
 
 function updateGameInfo() {
   const w = worldData[currentWorld];
-  document.getElementById('gameInfo').innerText =
+  if (lang == 'en') {
+    document.getElementById('gameInfo').innerText =
+    `You control ${w.player} and must find ${w.target}. ${w.description_en}`;
+  } else {
+    document.getElementById('gameInfo').innerText =
     `Du steuerst ${w.player} und musst ${w.target} finden. ${w.description}`;
+  }
 }
 
 function initGameGridEmpty() {
@@ -379,13 +384,13 @@ function renderGame() {
 function generateRandomWorld() {
   // Timer zurücksetzen
   if (timerInterval) clearInterval(timerInterval);
-  timerInterval = null;
-  timerStart = null;
-  foundCount = 0;
-  playerJustSpawned = true;
-
-  const w = worldData[currentWorld];
-  initGameGridEmpty();
+    timerInterval = null;
+    timerStart = null;
+    foundCount = 0;
+    playerJustSpawned = true;
+    
+    const w = worldData[currentWorld];
+    initGameGridEmpty();
 
   // Pool aus normalen und seltenen Symbolen
   const symbolPool = [...w.symbols, ...w.rare];
