@@ -480,7 +480,7 @@ function generateRandomWorld() {
     }
     // Optional: Zeige Hinweis, falls nach 10 Versuchen kein Pfad da ist
     if (!canPlayerReachAllTargets()) {
-      alert("Kein Pfad zwischen Spieler und Ziel möglich! Weniger Symbole wählen oder Welt nochmal erzeugen. Vielleicht fehlen Spieler- oder Ziel-Symbole.");
+      showToast(t('editorApplyFailed'), 'error');
     }
   }
 }
@@ -607,11 +607,22 @@ function generateRandomEditor() {
 }
 
 document.getElementById('newEditorRandom').addEventListener('click', generateRandomEditor);
-document.getElementById('generateEditorAltText').addEventListener('click', ()=>{
-    const w=worldData[currentWorld];
-    const txt=`Alternativtext: Diese ${w.description} Welt im Editor (${rows}x${cols}).`;
-    navigator.clipboard.writeText(txt).then(()=>alert('ALT Text kopiert!')); 
+document.getElementById('generateEditorAltText').addEventListener('click', () => {
+  const w = worldData[currentWorld];
+  const description = lang === 'en'
+    ? (w.description_en || w.description || '')
+    : (w.description || '');
+
+  const txt = t('altTextEditor')
+    .replace('{description}', description)
+    .replace('{rows}', rows)
+    .replace('{cols}', cols);
+
+  navigator.clipboard.writeText(txt)
+    .then(() => showToast(t('alertAltTextCopied'), 'success'))
+    .catch(err => showToast(t('copyUrlFailed').replace('{error}', err), 'error'));
 });
+
 
 document.getElementById('applyToGame')?.addEventListener('click', () => {
   const w = worldData[currentWorld];
