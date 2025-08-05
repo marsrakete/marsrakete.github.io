@@ -302,14 +302,14 @@ input[type="radio"]:checked + .world-chip {
 }
 
 @keyframes playerPulse {
-  0% { box-shadow: 0 0 12px 2px #0ffb, 0 0 3px 1px #fff3;
+  0% {
+    box-shadow: 0 0 12px 2px #0ffb, 0 0 3px 1px #fff3;
+  }
+  100% {
+    box-shadow: 0 0 30px 10px #0ffb, 0 0 9px 3px #fff9;
+    transform: rotate(360deg);
+  }
 }
-
-100% {
-  box-shadow: 0 0 30px 10px #0ffb, 0 0 9px 3px #fff9;
-  transform: rotate(360deg);
-}
-
 
 #worldCount {
   margin-top: 10px;
