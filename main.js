@@ -626,7 +626,7 @@ document.getElementById('postToBsky').addEventListener('click', () => {
   // 5. Öffnen
   const newTab = window.open(fullURL, '_blank');
   if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
-    alert(t('alertPopupBlocked');
+    alert(t('alertPopupBlocked'));
   }
 });
 
