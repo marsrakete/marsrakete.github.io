@@ -43,7 +43,15 @@
     "playerSymbol": "Spielersymbol: ",
     "targetSymbol": "Zielsymbol: ",
     "timerDisplay": "Zeit:",
-    "foundCount": "Gefundene Ziele"
+    "foundCount": "Gefundene Ziele",
+    "InvalidGridFormat": "Ungültiges Gridformat – erwartete 30x10 Zeichen mit voller Unicode-Kompatibilität.",
+    "alertPopupBlocked": "Der Popup wurde blockiert. Bitte erlaube Popups für diese Seite",
+    "alertBskyLen": "Die Anzahl Zeichen der Welt ist zu lang für einen BlueSky-Post. Bitte lösche im Editor bitte ein paar Zeichen.",
+    "alertGrafikKopiert": "Grafik kopiert",
+    "alertErrorOnCopy": "Fehler beim Kopieren: ",
+    "alertNoSolution": "Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt an. Vielleicht fehlen Spieler- oder Ziel-Symbole.",
+    "alertPermalinkCopied": "Permalink kopiert. Die URL kann nun in Chats, Mail oder in anderen Browsern eingefügt werden.",
+    "alertTextCopied": "Text kopiert"
   },
   "en": {
     "game_title": "World Generator",
@@ -89,6 +97,14 @@
     "playerSymbol": "Playersymbol: ",
     "targetSymbol": "Targetsymbol: ",
     "timerDisplay": "Time:",
-    "foundCount": "Found targets"
+    "foundCount": "Found targets",
+    "InvalidGridFormat": "Invalid grid format – expected 30x10 characters with full Unicode compatibility.",
+    "alertPopupBlocked": "The pop-up has been blocked. Please allow pop-ups for this site.",
+    "alertBskyLen": "The number of characters in the world is too long for a BlueSky post. Please delete a few characters in the editor.",
+    "alertGrafikKopiert": "Graphics is copied",
+    "alertErrorOnCopy": "Error while copying: ",
+    "alertNoSolution": "Not all targets are accessible to the player! Please adjust the world. Perhaps player or target symbols are missing.",
+    "alertPermalinkCopied": "Permalink copied. The URL can now be pasted into chats, emails or other browsers.",
+    "alertTextCopied": "Text copied"
   }
 }
