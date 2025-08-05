@@ -529,7 +529,7 @@ document.getElementById('copyGameGraphic').addEventListener('click', () => {
     canvas.toBlob(blob => {
       navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
         .then(() => alert(t('alertGrafikKopiert')))
-        .catch(err => alert(t('alertErrorOnCopy') + err));
+        .catch(err => alert(t('alertErrorOnCopy') + err);
     });
   });
 });
@@ -542,7 +542,7 @@ document.getElementById('copyGameText').addEventListener('click', ()=>{
 document.getElementById('generateGamePermalink').addEventListener('click', async () => {
   const url = await transferToPage(currentWorld, gameGrid);
   navigator.clipboard.writeText(window.location.origin + url)
-    .then(() => alert(t('alertPermalinkCopied'))
+    .then(() => alert(t('alertPermalinkCopied')))
     .catch(err => alert(t('alertErrorOnCopy') + err));
 });
 
