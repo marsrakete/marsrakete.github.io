@@ -10,6 +10,7 @@ let playerJustSpawned = true;
 let lang = 'de';
 let langData = {};
 const supportedLangs = ['de', 'en'];
+const isEnglish = lang === 'en';
 
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
@@ -292,9 +293,14 @@ function populateWorldGallery() {
 
 // --- Anzahl der Welten mit Icon anzeigen ---
 const countDiv = document.getElementById('worldCount');
+const n = (worldData && typeof worldData === 'object') ? Object.keys(worldData).length : 0;
+
 if (countDiv) {
-  const n = Object.keys(worldData).length;
-  countDiv.innerHTML = `<span class="icon">✨</span> <span>${n} Welt${n === 1 ? '' : 'en'} verfügbar</span>`;
+  const label = isEnglish
+    ? `${n} world${n === 1 ? '' : 's'} available`
+    : `${n} Welt${n === 1 ? '' : 'en'} verfügbar`;
+
+  countDiv.innerHTML = `<span class="icon">✨</span> <span>${label}</span>`;
 }
 
 // --- Tap außerhalb -> Tooltip ausblenden ---
