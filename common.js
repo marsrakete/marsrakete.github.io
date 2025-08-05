@@ -264,21 +264,30 @@ function showCopyOverlay(targetElement, message = '✓ Kopiert') {
 
 function showDialogToast(message, onConfirm) {
   const container = document.getElementById('toast-container');
-  if (!container) return;
+  const overlay = document.getElementById('modal-overlay');
+  if (!container || !overlay) return;
+
+  // Aktiviere Overlay
+  overlay.hidden = false;
 
   const toast = document.createElement('div');
   toast.className = 'toast dialog';
+  toast.setAttribute('role', 'dialog');
+  toast.setAttribute('aria-modal', 'true');
   toast.innerHTML = `
     <div class="toast-message">${message.replace(/\n/g, '<br>')}</div>
     <button class="toast-ok-btn">${lang === 'en' ? 'OK' : 'OK'}</button>
   `;
 
-  // Button-Klick
   toast.querySelector('.toast-ok-btn').addEventListener('click', () => {
+    overlay.hidden = true;
     container.removeChild(toast);
     if (typeof onConfirm === 'function') onConfirm();
   });
 
   container.appendChild(toast);
   requestAnimationFrame(() => toast.classList.add('show'));
+
+  // Fokus setzen, Tastennavigation blockieren (optional)
+  toast.querySelector('.toast-ok-btn').focus();
 }
