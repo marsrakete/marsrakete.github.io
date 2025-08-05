@@ -282,62 +282,6 @@ input[type="radio"]:checked + .world-chip {
   pointer-events: auto;
 }
 
-#worldGallery {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: 300px; /* oder z. B. 40vh */
-  overflow-y: auto;
-  padding-right: 6px;
-  scrollbar-width: thin; /* für Firefox */
-}
-
-/* Optional: schönere Scrollbar für WebKit-Browser (Chrome, Edge) */
-#worldGallery::-webkit-scrollbar {
-  width: 6px;
-}
-#worldGallery::-webkit-scrollbar-thumb {
-  background-color: #555;
-  border-radius: 4px;
-}
-
-#worldGallery::-webkit-scrollbar {
-  height: 6px;
-  width: 6px;
-}
-#worldGallery::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-/* Baseline: Mobile zuerst */
-#worldGallery {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: 60vh;
-  overflow-y: auto;
-  padding-right: 6px;
-  scrollbar-width: thin;
-}
-
-/* Schönere Scrollbar für WebKit */
-#worldGallery::-webkit-scrollbar {
-  width: 6px;
-}
-#worldGallery::-webkit-scrollbar-thumb {
-  background-color: #555;
-  border-radius: 4px;
-}
-
-/* ⬆️ Desktop / größere Displays: Galerie kompakter anzeigen */
-@media (min-width: 768px) {
-  #worldGallery {
-    max-height: 300px;
-  }
-}
-
-
 /* Maussteuerung */
 .cell.hover-target {
   outline: 2px dashed #0f0;
@@ -356,7 +300,6 @@ input[type="radio"]:checked + .world-chip {
   animation: playerPulse 1.2s infinite alternate;
   position: relative;
 }
-
 @keyframes playerPulse {
   0% { box-shadow: 0 0 12px 2px #0ffb, 0 0 3px 1px #fff3; }
   100% { box-shadow: 0 0 30px 10px #0ffb, 0 0 9px 3px #fff9; }
@@ -458,4 +401,3 @@ input[type="radio"]:checked + .world-chip {
   z-index: 999;
   backdrop-filter: blur(2px);
 }
-
