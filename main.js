@@ -524,14 +524,17 @@ document.getElementById('generateGameAltText').addEventListener('click', ()=>{
   navigator.clipboard.writeText(txt).then(()=>alert('ALT Text kopiert!'));
 });
 
-document.getElementById('copyGameGraphic').addEventListener('click', () => {
-  html2canvas(document.getElementById('gameOutput')).then(canvas => {
-    canvas.toBlob(blob => {
-      navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
-        .then(() => alert(t('alertGrafikKopiert')))
-        .catch(err => alert(t('alertErrorOnCopy') + err);
+document.getElementById('copyGameGraphic').addEventListener('click', async () => {
+  try {
+    const canvas = await html2canvas(document.getElementById('gameOutput'));
+    canvas.toBlob(async (blob) => {
+      if (!blob) throw new Error(t('blobCreationFailed'));
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+      alert(t('alertGrafikKopiert'));
     });
-  });
+  } catch (err) {
+    alert(t('alertErrorOnCopy') + err);
+  }
 });
 
 document.getElementById('copyGameText').addEventListener('click', ()=>{
