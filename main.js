@@ -627,9 +627,10 @@ document.getElementById('generateEditorAltText').addEventListener('click', () =>
 document.getElementById('applyToGame')?.addEventListener('click', () => {
   const w = worldData[currentWorld];
   if (!canPlayerReachAllTargets(editorGrid, w.player, w.target)) {
-    alert(t('alertNoSolution'));
-    return;
+      showToast(t('alertNoSolution'), 'error');
+      return;
   }
+
   gameGrid = editorGrid.map(r => r.slice());
   initialTargets = gameGrid.flat().filter(c => c === w.target).length;
   foundCount = 0;
@@ -672,8 +673,8 @@ document.getElementById('postToBsky').addEventListener('click', () => {
 
   // 2. Längenprüfung (max. ~300 Zeichen bei BlueSky)
   if (text.length > 350) {
-    alert(t('alertBskyLen'));
-    return;
+      showToast(t('alertBskyLen'), 'error');
+      return;
   }
 
   // 3. Encoding
@@ -690,8 +691,9 @@ document.getElementById('postToBsky').addEventListener('click', () => {
   // 5. Öffnen
   const newTab = window.open(fullURL, '_blank');
   if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
-    alert(t('alertPopupBlocked'));
+    showToast(t('alertPopupBlocked'), 'error');
   }
+
 });
 
 function populateWorldButtonsEditor() {
