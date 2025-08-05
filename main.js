@@ -490,25 +490,44 @@ function movePlayer(dx,dy) {
     playerJustSpawned = false;
     renderGame();
   }    
-  if (!timerStart) { timerStart = Date.now(); timerInterval = setInterval(() => {
-    document.getElementById('timerDisplay').innerText = t('timerDisplay') + ` ${Math.floor((Date.now()-timerStart)/1000)} s`;
-  }, 1000); }
+  if (!timerStart) { 
+      timerStart = Date.now(); 
+      timerInterval = setInterval(() => {
+          document.getElementById('timerDisplay').innerText = t('timerDisplay') + ` ${Math.floor((Date.now()-timerStart)/1000)} s`;
+      }, 1000); 
+  }
   const w = worldData[currentWorld], target=w.target;
   const nx = playerX+dx, ny = playerY+dy;
-  if (nx<0||ny<0||nx>=cols||ny>=rows) { playPowSound(); return; }
+  if (nx<0||ny<0||nx>=cols||ny>=rows) {
+      playPowSound(); 
+      return; 
+  }
   const cell = gameGrid[ny][nx];
   if (cell===' '||cell===target) {
-    if (cell===target) { playPewSound(); foundCount++; document.getElementById('foundCount').innerText=`Gefundene Ziele: ${foundCount}`; }
-    gameGrid[playerY][playerX] = ' '; gameGrid[ny][nx] = w.player; playerX=nx; playerY=ny; renderGame();
-    if (foundCount>=initialTargets) {
-      clearInterval(timerInterval);
-      const msg = `Spiel beendet!\nGefundene Ziele: ${foundCount}\nZeit: ${Math.floor((Date.now()-timerStart)/1000)} s`;
-      setTimeout(() => {
-        alert(msg);
-        resetToOriginalGrid();
-      }, 50);
+    if (cell===target) { 
+        playPewSound(); 
+        foundCount++; 
+        document.getElementById('foundCount').innerText=`Gefundene Ziele: ${foundCount}`; 
     }
-  } else { playPowSound(); }
+    gameGrid[playerY][playerX] = ' '; 
+    gameGrid[ny][nx] = w.player; 
+    playerX=nx; 
+    playerY=ny;
+    renderGame();
+    if (foundCount >= initialTargets) {
+        clearInterval(timerInterval);
+        const msg = t('gameFinished')
+            .replace('{count}', foundCount)
+            .replace('{seconds}', Math.floor((Date.now() - timerStart) / 1000));
+        setTimeout(() => {
+            showDialogToast(msg, () => {
+                resetToOriginalGrid();
+            });
+        }, 50);
+    }
+  } else {
+      playPowSound(); 
+  }
 }
 
 function resetToOriginalGrid() {
