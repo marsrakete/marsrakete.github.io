@@ -218,3 +218,47 @@ function showToast(message, type = 'info', duration = 4000) {
     setTimeout(() => container.removeChild(toast), 300);
   });
 }
+
+function showCopyOverlay(targetElement, message = '✓ Kopiert') {
+  const overlay = document.createElement('div');
+  overlay.textContent = message;
+
+  Object.assign(overlay.style, {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    background: 'rgba(0,0,0,0.4)',
+    color: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    borderRadius: getComputedStyle(targetElement).borderRadius || '0',
+    zIndex: '100',
+    pointerEvents: 'none',
+    opacity: '0',
+    transition: 'opacity 0.3s ease',
+  });
+
+  // Eltern-Element muss relativ positioniert sein
+  const container = targetElement.closest('.overlay-wrapper') || targetElement.parentElement;
+  if (getComputedStyle(container).position === 'static') {
+    container.style.position = 'relative';
+  }
+
+  // Einfügen und anzeigen
+  container.appendChild(overlay);
+  requestAnimationFrame(() => {
+    overlay.style.opacity = '1';
+  });
+
+  // Automatisch ausblenden und entfernen
+  setTimeout(() => {
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.remove(), 400);
+  }, 1200);
+}
+
