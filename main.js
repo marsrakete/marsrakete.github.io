@@ -546,7 +546,7 @@ document.getElementById('generateGameAltText').addEventListener('click', () => {
     .replace('{cols}', cols);
 
   navigator.clipboard.writeText(txt)
-    .then(() => alert(t('alertTextCopied')))
+    .then(() => alert(t('alertAltTextCopied')))
     .catch(err => alert(t('copyUrlFailed').replace('{error}', err)));
 });
 
