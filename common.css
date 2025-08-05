@@ -226,6 +226,8 @@ input[type="radio"]:checked + .world-chip {
   margin-top: 20px;
 }
 
+
+
 .world-card {
   background: #1e1e1e;
   border: 2px solid #333;
@@ -281,6 +283,26 @@ input[type="radio"]:checked + .world-chip {
   color: #ffd700;
   pointer-events: auto;
 }
+
+#worldGallery {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px; /* oder z. B. 40vh */
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin; /* für Firefox */
+}
+
+/* Optional: schönere Scrollbar für WebKit-Browser (Chrome, Edge) */
+#worldGallery::-webkit-scrollbar {
+  width: 6px;
+}
+#worldGallery::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+}
+
 
 /* Maussteuerung */
 .cell.hover-target {
