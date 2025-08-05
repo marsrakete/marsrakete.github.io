@@ -242,7 +242,6 @@ function populateWorldGallery() {
 
   const isEnglish = lang === 'en';
 
-  // Welten sortieren nach Titel (abhängig von Sprache, fallback: name)
   const sortedWorlds = Object.entries(worldData)
     .sort((a, b) => {
       const titleA = (isEnglish ? a[1].title_en : a[1].title) || a[0];
@@ -282,7 +281,6 @@ function populateWorldGallery() {
       updateGameInfo?.();
       generateRandomWorld?.();
 
-      // Tooltip für Touch-Geräte ein-/ausblenden
       if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
         card.classList.toggle('show-description');
       }
@@ -290,24 +288,24 @@ function populateWorldGallery() {
 
     container.appendChild(card);
   }
+} 
+
+// --- Anzahl der Welten mit Icon anzeigen ---
+const countDiv = document.getElementById('worldCount');
+if (countDiv) {
+  const n = Object.keys(worldData).length;
+  countDiv.innerHTML = `<span class="icon">✨</span> <span>${n} Welt${n === 1 ? '' : 'en'} verfügbar</span>`;
 }
 
-  // --- Anzahl der Welten mit Icon anzeigen ---
-  const countDiv = document.getElementById('worldCount');
-  if (countDiv) {
-      const n = Object.keys(worldData).length;
-      countDiv.innerHTML = `<span class="icon">✨</span> <span>${n} Welt${n === 1 ? '' : 'en'} verfügbar</span>`;
-  }
-
-  // Tap außerhalb -> Tooltip ausblenden
-  document.addEventListener('click', (e) => {
-    document.querySelectorAll('.world-card.show-description').forEach(card => {
-      if (!card.contains(e.target)) {
-        card.classList.remove('show-description');
-      }
-    });
+// --- Tap außerhalb -> Tooltip ausblenden ---
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.world-card.show-description').forEach(card => {
+    if (!card.contains(e.target)) {
+      card.classList.remove('show-description');
+    }
   });
-}
+});
+
 
 function populateWorldButtonsGame() {
   const container = document.getElementById('worldButtonsGame');
