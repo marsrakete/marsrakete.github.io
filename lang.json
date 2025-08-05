@@ -43,7 +43,8 @@
     "gameFinished": "Spiel beendet!\nGefundene Ziele: {count}\nZeit: {seconds} s",
     "timerDisplay": "Zeit:",
     "blobCreationFailed": "Blob-Erzeugung fehlgeschlagen",
-    "alertBskyLen": "Die Anzahl Zeichen der Welt ist zu lang für einen BlueSky-Post. Bitte lösche im Editor ein paar Zeichen."
+    "alertBskyLen": "Die Anzahl Zeichen der Welt ist zu lang für einen BlueSky-Post. Bitte lösche im Editor ein paar Zeichen.",
+    "alertErrorOnCopy": "Die Grafik konnte nicht erzeugt werden: "
   },
   "en": {
     "gameTitle": "World Generator",
@@ -89,6 +90,7 @@
     "gameFinished": "Game finished!\nFound targets: {count}\nTime: {seconds} s",
     "timerDisplay": "Time:",
     "blobCreationFailed": "Blob creation failed",
-    "alertBskyLen": "The number of characters in the world is too long for a BlueSky post. Please delete a few characters in the editor."
+    "alertBskyLen": "The number of characters in the world is too long for a BlueSky post. Please delete a few characters in the editor.",
+    "alertErrorOnCopy": "The graphic could not be generated: "
   }
 }
