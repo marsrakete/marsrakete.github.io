@@ -575,16 +575,21 @@ document.getElementById('copyGameGraphic').addEventListener('click', async () =>
 });
 
 
-document.getElementById('copyGameText').addEventListener('click', ()=>{
-  const text = gameGrid.map(row=>row.join('').replace(/\s+$/,'')).join('\r\n');
-  navigator.clipboard.writeText(text).then(()=>alert(t('alertTextCopied')));
+document.getElementById('copyGameText').addEventListener('click', () => {
+  const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join('\r\n');
+  navigator.clipboard.writeText(text)
+    .then(() => showToast(t('alertTextCopied'), 'success'))
+    .catch(err => showToast(t('copyUrlFailed').replace('{error}', err), 'error'));
 });
 
 document.getElementById('generateGamePermalink').addEventListener('click', async () => {
-  const url = await transferToPage(currentWorld, gameGrid);
-  navigator.clipboard.writeText(window.location.origin + url)
-    .then(() => alert(t('alertPermalinkCopied')))
-    .catch(err => alert(t('alertErrorOnCopy') + err));
+  try {
+    const url = await transferToPage(currentWorld, gameGrid);
+    await navigator.clipboard.writeText(window.location.origin + url);
+    showToast(t('alertPermalinkCopied'), 'success');
+  } catch (err) {
+    showToast(t('alertErrorOnCopy') + err, 'error');
+  }
 });
 
 
