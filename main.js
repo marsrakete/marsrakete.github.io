@@ -556,7 +556,7 @@ document.getElementById('copyGameGraphic').addEventListener('click', async () =>
     canvas.toBlob(async (blob) => {
       if (!blob) throw new Error(t('blobCreationFailed'));
       await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-      alert(t('alertGrafikKopiert'));
+      alert(t('alertGraphicCopied'));
     });
   } catch (err) {
     alert(t('alertErrorOnCopy') + err);
