@@ -39,7 +39,9 @@
     "alt_text_editor": "Alternativtext: Diese {description} Welt im Editor ({rows}x{cols}).",
     "editor_apply_failed": "Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt an. Vielleicht fehlen Spieler- oder Ziel-Symbole.",
     "copy_url_failed": "Fehler beim Kopieren: {error}",
-    "game_finished": "Spiel beendet!\nGefundene Ziele: {count}\nZeit: {seconds} s"
+    "game_finished": "Spiel beendet!\nGefundene Ziele: {count}\nZeit: {seconds} s",
+    "playerSymbol": "Spielersymbol: ",
+    "targetSymbol": "Zielsymbol: "
   },
   "en": {
     "game_title": "World Generator",
@@ -81,6 +83,8 @@
     "alt_text_editor": "ALT text: This {description} world in the editor ({rows}x{cols}).",
     "editor_apply_failed": "Not all targets are reachable from the player! Please adjust the world. Maybe player or target symbols are missing.",
     "copy_url_failed": "Copy failed: {error}",
-    "game_finished": "Game finished!\nFound targets: {count}\nTime: {seconds} s"
+    "game_finished": "Game finished!\nFound targets: {count}\nTime: {seconds} s",
+    "playerSymbol": "Playersymbol: ",
+    "targetSymbol": "Targetsymbol: "
   }
 }
