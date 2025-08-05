@@ -213,7 +213,7 @@ function switchMode() {
 
   // Wechsel ZUM Spiel: Vorher Editor-Welt prüfen
   if (!canPlayerReachAllTargets(editorGrid, w.player, w.target)) {
-    alert(t('editorApplyFailed'));
+    showToast(t('editorApplyFailed'), 'error');
     return;
   }
   // Editor-Welt übernehmen
