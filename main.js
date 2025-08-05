@@ -213,7 +213,7 @@ function switchMode() {
 
   // Wechsel ZUM Spiel: Vorher Editor-Welt prüfen
   if (!canPlayerReachAllTargets(editorGrid, w.player, w.target)) {
-    alert(t('editor_apply_failed'));
+    alert(t('editorApplyFailed'));
     return;
   }
   // Editor-Welt übernehmen
@@ -529,10 +529,25 @@ function resetToOriginalGrid() {
 
 // Spiel-Buttons
 document.getElementById('newRandomGame').addEventListener('click', generateRandomWorld);
-document.getElementById('generateGameAltText').addEventListener('click', ()=>{
+document.getElementById('generateGameAltText').addEventListener('click', () => {
   const w = worldData[currentWorld];
-  const txt = `Alternativtext: Dieses Bild zeigt eine ${w.description} Welt erstellt mit dem Weltengenerator von Millux. Das Feld umfasst ${rows} Zeilen und ${cols} Spalten.`;
-  navigator.clipboard.writeText(txt).then(()=>alert('ALT Text kopiert!'));
+  const rows = gameGrid.length;
+  const cols = gameGrid[0]?.length || 0;
+
+  // Sprachabhängige Beschreibung
+  const description = lang === 'en'
+    ? (w.description_en || w.description || '')
+    : (w.description || '');
+
+  // Übersetzungstext mit Platzhaltern aus JSON verwenden
+  const txt = t('altTextGame')
+    .replace('{description}', description)
+    .replace('{rows}', rows)
+    .replace('{cols}', cols);
+
+  navigator.clipboard.writeText(txt)
+    .then(() => alert(t('alertTextCopied')))
+    .catch(err => alert(t('copyUrlFailed').replace('{error}', err)));
 });
 
 document.getElementById('copyGameGraphic').addEventListener('click', async () => {
