@@ -291,19 +291,25 @@ input[type="radio"]:checked + .world-chip {
 
 /* Highlight Player vor erstem Move */
 #gameOutput .cell.player-highlight {
+  animation: playerPulse 1.2s infinite alternate;
   background: radial-gradient(ellipse at center, #0ff6 50%, transparent 100%);
+  border-radius: 10px;
+  box-shadow: 0 0 12px 3px #0ffb, 0 0 2px 1px #fff5;
   outline: 3px solid #0ff;
   outline-offset: -3px;
-  box-shadow: 0 0 12px 3px #0ffb, 0 0 2px 1px #fff5;
-  border-radius: 10px;
-  z-index: 2;
-  animation: playerPulse 1.2s infinite alternate;
   position: relative;
+  z-index: 2;
 }
+
 @keyframes playerPulse {
-  0% { box-shadow: 0 0 12px 2px #0ffb, 0 0 3px 1px #fff3; }
-  100% { box-shadow: 0 0 30px 10px #0ffb, 0 0 9px 3px #fff9; }
+  0% { box-shadow: 0 0 12px 2px #0ffb, 0 0 3px 1px #fff3;
 }
+
+100% {
+  box-shadow: 0 0 30px 10px #0ffb, 0 0 9px 3px #fff9;
+  transform: rotate(360deg);
+}
+
 
 #worldCount {
   margin-top: 10px;
