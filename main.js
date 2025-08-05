@@ -588,7 +588,7 @@ document.getElementById('copyEditorGraphic').addEventListener('click', () => {
   html2canvas(document.getElementById('editorOutput')).then(canvas => {
     canvas.toBlob(blob => {
       navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
-        .then(() => alert(t('alertGrafikKopiert'))
+        .then(() => alert(t('alertGrafikKopiert')))
         .catch(err => alert(t('alertErrorOnCopy') + err));
     });
   });
