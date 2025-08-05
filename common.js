@@ -262,3 +262,23 @@ function showCopyOverlay(targetElement, message = '✓ Kopiert') {
   }, 1200);
 }
 
+function showDialogToast(message, onConfirm) {
+  const container = document.getElementById('toast-container');
+  if (!container) return;
+
+  const toast = document.createElement('div');
+  toast.className = 'toast dialog';
+  toast.innerHTML = `
+    <div class="toast-message">${message.replace(/\n/g, '<br>')}</div>
+    <button class="toast-ok-btn">${lang === 'en' ? 'OK' : 'OK'}</button>
+  `;
+
+  // Button-Klick
+  toast.querySelector('.toast-ok-btn').addEventListener('click', () => {
+    container.removeChild(toast);
+    if (typeof onConfirm === 'function') onConfirm();
+  });
+
+  container.appendChild(toast);
+  requestAnimationFrame(() => toast.classList.add('show'));
+}
