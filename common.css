@@ -226,8 +226,6 @@ input[type="radio"]:checked + .world-chip {
   margin-top: 20px;
 }
 
-
-
 .world-card {
   background: #1e1e1e;
   border: 2px solid #333;
@@ -303,6 +301,14 @@ input[type="radio"]:checked + .world-chip {
   border-radius: 4px;
 }
 
+#worldGallery::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+#worldGallery::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
 
 /* Maussteuerung */
 .cell.hover-target {
@@ -423,3 +429,4 @@ input[type="radio"]:checked + .world-chip {
   z-index: 999;
   backdrop-filter: blur(2px);
 }
+
