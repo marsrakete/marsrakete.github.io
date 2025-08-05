@@ -455,8 +455,8 @@ function generateRandomWorld() {
   // Anzeige aktualisieren
   renderGame();
   updateGameInfo();
-  document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
-  document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+  document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
+  document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
 
   // Ursprungszustand speichern
   originalGrid = gameGrid.map(row => row.slice());
@@ -480,7 +480,7 @@ function movePlayer(dx,dy) {
     renderGame();
   }    
   if (!timerStart) { timerStart = Date.now(); timerInterval = setInterval(() => {
-    document.getElementById('timerDisplay').innerText = `Zeit: ${Math.floor((Date.now()-timerStart)/1000)} s`;
+    document.getElementById('timerDisplay').innerText = t('timerDisplay') + ` ${Math.floor((Date.now()-timerStart)/1000)} s`;
   }, 1000); }
   const w = worldData[currentWorld], target=w.target;
   const nx = playerX+dx, ny = playerY+dy;
@@ -510,8 +510,8 @@ function resetToOriginalGrid() {
   gameGrid.forEach((row, ry) => row.forEach((c, cx) => {
     if (c === w.player) { playerX = cx; playerY = ry; }
   }));
-  document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
-  document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+  document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
+  document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
   playerJustSpawned = true;    
   renderGame();
 }
@@ -528,22 +528,22 @@ document.getElementById('copyGameGraphic').addEventListener('click', () => {
   html2canvas(document.getElementById('gameOutput')).then(canvas => {
     canvas.toBlob(blob => {
       navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
-        .then(() => alert('Grafik kopiert!'))
-        .catch(err => alert('Fehler beim Kopieren: ' + err));
+        .then(() => alert(t('alertGrafikKopiert')))
+        .catch(err => alert(t('alertErrorOnCopy') + err));
     });
   });
 });
 
 document.getElementById('copyGameText').addEventListener('click', ()=>{
   const text = gameGrid.map(row=>row.join('').replace(/\s+$/,'')).join('\r\n');
-  navigator.clipboard.writeText(text).then(()=>alert('Text kopiert!'));
+  navigator.clipboard.writeText(text).then(()=>alert(t('alertTextCopied')));
 });
 
 document.getElementById('generateGamePermalink').addEventListener('click', async () => {
   const url = await transferToPage(currentWorld, gameGrid);
   navigator.clipboard.writeText(window.location.origin + url)
-    .then(() => alert("Permalink kopiert. Die URL kann nun in Chats, Mail oder in anderen Browsern eingefügt werden."))
-    .catch(err => alert("Fehler beim Kopieren: " + err));
+    .then(() => alert(t('alertPermalinkCopied'))
+    .catch(err => alert(t('alertErrorOnCopy') + err));
 });
 
 
@@ -570,7 +570,7 @@ document.getElementById('generateEditorAltText').addEventListener('click', ()=>{
 document.getElementById('applyToGame')?.addEventListener('click', () => {
   const w = worldData[currentWorld];
   if (!canPlayerReachAllTargets(editorGrid, w.player, w.target)) {
-    alert("Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt an. Vielleicht fehlen Spieler- oder Ziel-Symbole.");
+    alert(t('alertNoSolution'));
     return;
   }
   gameGrid = editorGrid.map(r => r.slice());
@@ -578,8 +578,8 @@ document.getElementById('applyToGame')?.addEventListener('click', () => {
   foundCount = 0;
   timerStart = null;
   clearInterval(timerInterval);
-  if (document.getElementById('foundCount')) document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
-  if (document.getElementById('timerDisplay')) document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+  if (document.getElementById('foundCount')) document.getElementById('foundCount').innerText =  t('foundCount') + ' 0';
+  if (document.getElementById('timerDisplay')) document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
   renderGame();
   switchMode();
 });
@@ -588,8 +588,8 @@ document.getElementById('copyEditorGraphic').addEventListener('click', () => {
   html2canvas(document.getElementById('editorOutput')).then(canvas => {
     canvas.toBlob(blob => {
       navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })])
-        .then(() => alert('Grafik kopiert!'))
-        .catch(err => alert('Fehler beim Kopieren: ' + err));
+        .then(() => alert(t('alertGrafikKopiert'))
+        .catch(err => alert(t('alertErrorOnCopy') + err));
     });
   });
 });
@@ -605,7 +605,7 @@ document.getElementById('postToBsky').addEventListener('click', () => {
 
   // 2. Längenprüfung (max. ~300 Zeichen bei BlueSky)
   if (text.length > 350) {
-    alert("Die Anzahl Zeichen der Welt ist zu lang für einen BlueSky-Post. Bitte lösche im Editor bitte ein paar Zeichen.");
+    alert(t('alertBskyLen');
     return;
   }
 
@@ -623,7 +623,7 @@ document.getElementById('postToBsky').addEventListener('click', () => {
   // 5. Öffnen
   const newTab = window.open(fullURL, '_blank');
   if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
-    alert("Der Popup wurde blockiert. Bitte erlaube Popups für diese Seite.");
+    alert(t('alertPopupBlocked');
   }
 });
 
@@ -814,10 +814,10 @@ async function applyUrlParameters() {
     updateGameInfo();
     updatePlayerTargetInfo();
     populateWorldGallery();
-    document.getElementById('foundCount').innerText = 'Gefundene Ziele: 0';
-    document.getElementById('timerDisplay').innerText = 'Zeit: 0 s';
+    document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
+    document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
   } else {
-    alert("Ungültiges Gridformat – erwartete 30x10 Zeichen mit voller Unicode-Kompatibilität.");
+    alert(t('InvalidGridFormat'));
   }
 }
 
@@ -850,7 +850,7 @@ window.addEventListener('load', async ()=>{
     if (supportsClipboardImage()) {
         document.getElementById('copyEditorGraphic').style.display = 'inline-block';
         document.getElementById('copyGameGraphic').style.display = 'inline-block';
-        document.getElementById('swipeHint').innerText = '👉 Tipp: Klicke mit der Maus neben das Spielersymbol oder nutze die Pfeiltasten.';
+        document.getElementById('swipeHint').innerText = t('hint_mouse'); 
     }
     updateZoom(document.getElementById("zoomSlider").value);
     setupMaxSymbolsSlider();
