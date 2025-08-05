@@ -51,7 +51,8 @@
     "alertErrorOnCopy": "Fehler beim Kopieren: ",
     "alertNoSolution": "Nicht alle Ziele sind vom Spieler erreichbar! Bitte passe die Welt an. Vielleicht fehlen Spieler- oder Ziel-Symbole.",
     "alertPermalinkCopied": "Permalink kopiert. Die URL kann nun in Chats, Mail oder in anderen Browsern eingefügt werden.",
-    "alertTextCopied": "Text kopiert"
+    "alertTextCopied": "Text kopiert",
+    "blobCreationFailed": "Blob-Erzeugung fehlgeschlagen"
   },
   "en": {
     "game_title": "World Generator",
@@ -105,6 +106,7 @@
     "alertErrorOnCopy": "Error while copying: ",
     "alertNoSolution": "Not all targets are accessible to the player! Please adjust the world. Perhaps player or target symbols are missing.",
     "alertPermalinkCopied": "Permalink copied. The URL can now be pasted into chats, emails or other browsers.",
-    "alertTextCopied": "Text copied"
+    "alertTextCopied": "Text copied",
+    "blobCreationFailed": "Blob creation failed"
   }
 }
