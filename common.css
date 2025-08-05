@@ -3,19 +3,19 @@ body {
   background: #121212;
   color: white;
   font-family: monospace;
+  text-align: center;
   margin: 0;
   padding: 20px;
-  padding-bottom: 4em;
-  text-align: center;
+  padding-bottom: 4em; /* Platz für Buttons am unteren Rand */
 }
 
 button {
+  margin: 10px 5px;
+  padding: 5px 10px;
+  cursor: pointer;
   background-color: #333;
   border: none;
   color: white;
-  cursor: pointer;
-  margin: 10px 5px;
-  padding: 5px 10px;
   transition: background 0.2s;
 }
 
@@ -28,12 +28,12 @@ button:hover {
 }
 
 #worldButtons button {
+  margin: 3px;
+  padding: 5px 10px;
+  font-size: 1em;
   background-color: #333;
   border: none;
   color: white;
-  font-size: 1em;
-  margin: 3px;
-  padding: 5px 10px;
 }
 
 #worldButtons button:hover {
@@ -41,23 +41,23 @@ button:hover {
 }
 
 #playerTargetInfo {
-  font-size: 1.2em;
   margin-bottom: 15px;
+  font-size: 1.2em;
 }
 
 #playerTargetInfo span {
+  margin: 0 10px;
   font-size: 1.8em;
   font-weight: bold;
-  margin: 0 10px;
 }
 
 .symbol {
+  display: inline-block;
+  padding: 5px;
+  margin: 2px;
   border: 1px solid white;
   cursor: pointer;
-  display: inline-block;
   font-size: 1.5em;
-  margin: 2px;
-  padding: 5px;
   transition: background 0.2s, border-color 0.2s;
 }
 
@@ -75,16 +75,16 @@ button:hover {
 }
 
 .world-chip {
+  display: inline-block;
+  padding: 8px 16px;
   background: #222;
   border: 1px solid #444;
   border-radius: 20px;
-  cursor: pointer;
-  display: inline-block;
   font-size: 1em;
-  margin: 4px;
-  padding: 8px 16px;
+  cursor: pointer;
   transition: all 0.2s ease-in-out;
   user-select: none;
+  margin: 4px;
 }
 
 .world-chip:hover {
@@ -94,98 +94,86 @@ button:hover {
 
 input[type="radio"]:checked + .world-chip {
   background: #0d6efd;
+  color: white;
   border-color: #0d6efd;
   box-shadow: 0 0 5px #0d6efd88;
-  color: white;
 }
-
-/* Spielmodus: Raster als CSS-Grid */
+    /* Spielmodus: Raster als CSS-Grid */
     #gameOutput {
-  background: black;
-  border: 1px solid white;
-  display: grid;
-  font-size: 2em;
-  gap: 1px;
-  grid-template-columns: repeat(30, 2ch);
-  grid-template-rows: repeat(10, 2ch);
-  line-height: 1.2em;
-  margin: 10px auto;
-  padding: 10px;
-  width: fit-content;
-}
+      display: grid;
+      grid-template-columns: repeat(30, 2ch);
+      grid-template-rows: repeat(10, 2ch);
+      gap: 1px;
+      background: black;
+      padding: 10px;
+      border: 1px solid white;
+      margin: 10px auto;
+      font-size: 2em;
+      line-height: 1.2em;
+      width: fit-content;
+    }
 
-/* Scale grid font size to fit on narrow screens */
+    /* Scale grid font size to fit on narrow screens */
     @media (max-width: 1920px) {
-  #gameOutput {
+      #gameOutput {
         font-size: calc(100vw / 60);
-}
-
-}
+      }
+    }
 
     /* Editormodus: Ausgabefeld mit Zeilenumbrüchen */
     #editorOutput {
-  /* Höhe angepasst für 10 Zeilen à 2ch */
+      width: 64ch;
+      height: 22ch;     /* Höhe angepasst für 10 Zeilen à 2ch */
       margin: 10px auto;
-  font-size: 2em;
-  height: 22ch;
-  line-height: 2ch;
-  overflow: visible;
-  white-space: pre-wrap;
-  width: 64ch;
-}
+      overflow: visible;
+      font-size: 2em;
+      line-height: 2ch;
+      white-space: pre-wrap;
+      /* Kein Rahmen im Editormodus-Ausgabefeld */
+    }
 
-.row {
-  display: block;
-  white-space: nowrap;
-}
+    .row { display: block; white-space: nowrap; }
+    .cell {
+      display: inline-block;
+      width: 2ch;
+      height: 2ch;
+      text-align: center;
+      vertical-align: top;
+      /* Kein Rahmen im Spielmodus */
+    }
+    /* Rahmen in Editorzellen */
+    #editorOutput .cell { border: 1px solid white; }
 
-.cell {
-  display: inline-block;
-  height: 2ch;
-  text-align: center;
-  vertical-align: top;
-  width: 2ch;
-}
-
-/* Rahmen in Editorzellen */
-    #editorOutput .cell {
-  border: 1px solid white;
-}
-
-/* Steuer-Buttons */
+    /* Steuer-Buttons */
 #virtualButtons {
-  /* Abstand zum Spielfeld */
-  z-index: 1000;
-  /* volle Breite unter dem Spielfeld */
+  position: static;      /* vorher: fixed; jetzt im normalen Flow */
+  width: 100%;           /* volle Breite unter dem Spielfeld */
   background: rgba(0, 0, 0, 0.8);
-  /* vorher: fixed;
-  display: flex;
-  jetzt im normalen Flow */
-  width: 100%;
-  justify-content: center;
-  margin-top: 12px;
   padding: 5px 0;
-  position: static;
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;      /* Abstand zum Spielfeld */
+  z-index: 1000;         /* kann ggf. entfallen */
 }
 
 /* Die Button-Stile bleiben erhalten */
 #virtualButtons button {
-  font-size: 1.2em;
+  width: 3em;
   height: 3em;
+  font-size: 1.2em;
   margin: 5px;
   touch-action: manipulation;
-  width: 3em;
 }
 
 .symbol-empty {
-  color: #aaa;
-  font-style: italic;
   opacity: 0.5;
+  font-style: italic;
+  color: #aaa;
 }
 
 .symbol-empty:hover {
-  color: white;
   opacity: 1;
+  color: white;
 }
 
 #symbolPalette {
@@ -197,14 +185,14 @@ input[type="radio"]:checked + .world-chip {
 }
 
 .symbol-chip {
+  font-size: 1.8em;
+  padding: 8px 12px;
   background: #222;
   border: 1px solid #444;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 1.8em;
-  padding: 8px 12px;
-  transition: 0.2s;
   user-select: none;
+  transition: 0.2s;
 }
 
 .symbol-chip:hover {
@@ -214,9 +202,9 @@ input[type="radio"]:checked + .world-chip {
 
 .symbol-chip.selected {
   background: #0d6efd;
+  color: white;
   border-color: #0d6efd;
   box-shadow: 0 0 5px #0d6efd88;
-  color: white;
 }
 
 .symbol-player {
@@ -229,11 +217,12 @@ input[type="radio"]:checked + .world-chip {
   color: #ff66cc;
 }
 
+
 /* Grid für Galerie */
 #worldGallery {
   display: grid;
-  gap: 12px;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
   margin-top: 20px;
 }
 
@@ -241,12 +230,12 @@ input[type="radio"]:checked + .world-chip {
   background: #1e1e1e;
   border: 2px solid #333;
   border-radius: 10px;
-  cursor: pointer;
   padding: 10px;
-  position: relative;
+  cursor: pointer;
   text-align: center;
   transition: 0.2s;
-  user-select: none;
+  position: relative;
+  user-select: none; /* 👈 verhindert Textauswahl */
 }
 
 .world-card:hover {
@@ -271,46 +260,43 @@ input[type="radio"]:checked + .world-chip {
 
 /* Tooltip-Text */
 .world-description {
-  color: #aaa;
-  font-size: 0.9em;
-  margin-top: 8px;
-  max-height: 0;
   opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
+  max-height: 0;
   transform: translateY(8px);
   transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
+  font-size: 0.9em;
+  margin-top: 8px;
+  color: #aaa;
+  overflow: hidden;
+  pointer-events: none;
   user-select: none;
 }
 
 /* Sichtbar bei Hover (Desktop) */
 .world-card:hover .world-description,
 .world-card.show-description .world-description {
-  color: #ffd700;
-  max-height: 100px;
   opacity: 1;
-  pointer-events: auto;
+  max-height: 100px;
   transform: translateY(0);
+  color: #ffd700;
+  pointer-events: auto;
 }
 
 #worldGallery {
-  /* oder z. B. 40vh */
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 300px;
+  max-height: 300px; /* oder z. B. 40vh */
+  overflow-y: auto;
   padding-right: 6px;
-  scrollbar-width: thin;
+  scrollbar-width: thin; /* für Firefox */
 }
 
 /* Optional: schönere Scrollbar für WebKit-Browser (Chrome, Edge) */
 #worldGallery::-webkit-scrollbar {
   width: 6px;
 }
-
 #worldGallery::-webkit-scrollbar-thumb {
-  background: #888;
   background-color: #555;
   border-radius: 4px;
 }
@@ -318,6 +304,10 @@ input[type="radio"]:checked + .world-chip {
 #worldGallery::-webkit-scrollbar {
   height: 6px;
   width: 6px;
+}
+#worldGallery::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
 }
 
 /* Baseline: Mobile zuerst */
@@ -335,100 +325,96 @@ input[type="radio"]:checked + .world-chip {
 #worldGallery::-webkit-scrollbar {
   width: 6px;
 }
+#worldGallery::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 4px;
+}
 
 /* ⬆️ Desktop / größere Displays: Galerie kompakter anzeigen */
 @media (min-width: 768px) {
   #worldGallery {
     max-height: 300px;
-}
-
+  }
 }
 
 
 /* Maussteuerung */
 .cell.hover-target {
-  cursor: pointer;
   outline: 2px dashed #0f0;
   outline-offset: -2px;
+  cursor: pointer;
 }
 
 /* Highlight Player vor erstem Move */
 #gameOutput .cell.player-highlight {
-  animation: playerPulse 1.2s infinite alternate;
   background: radial-gradient(ellipse at center, #0ff6 50%, transparent 100%);
-  border-radius: 10px;
-  box-shadow: 0 0 12px 3px #0ffb, 0 0 2px 1px #fff5;
   outline: 3px solid #0ff;
   outline-offset: -3px;
-  position: relative;
+  box-shadow: 0 0 12px 3px #0ffb, 0 0 2px 1px #fff5;
+  border-radius: 10px;
   z-index: 2;
+  animation: playerPulse 1.2s infinite alternate;
+  position: relative;
 }
 
 @keyframes playerPulse {
-  0% { box-shadow: 0 0 12px 2px #0ffb, 0 0 3px 1px #fff3;
-}
-
-100% {
-  box-shadow: 0 0 30px 10px #0ffb, 0 0 9px 3px #fff9;
-  transform: rotate(360deg);
-}
-
+  0% { box-shadow: 0 0 12px 2px #0ffb, 0 0 3px 1px #fff3; }
+  100% { box-shadow: 0 0 30px 10px #0ffb, 0 0 9px 3px #fff9; }
 }
 
 #worldCount {
-  align-items: center;
-  color: #ffd700;
-  display: flex;
-  font-size: 1.15em;
-  font-weight: bold;
-  gap: 0.6em;
-  justify-content: center;
-  letter-spacing: 0.03em;
   margin-top: 10px;
+  font-size: 1.15em;
+  color: #ffd700;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6em;
+  letter-spacing: 0.03em;
   user-select: none;
 }
 
 #worldCount .icon {
-  animation: worldSpin 1.4s linear infinite;
-  filter: drop-shadow(0 0 2px #fff2);
   font-size: 1.35em;
+  filter: drop-shadow(0 0 2px #fff2);
+  animation: worldSpin 1.4s linear infinite;
 }
 
 @keyframes worldSpin {
-  0% { transform: rotate(0deg);
-}
-
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
 }
 
 /* Statusmeldungen */
 .toast-container {
+  position: fixed;
   bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  left: 50%;
   pointer-events: none;
-  position: fixed;
-  transform: translateX(-50%);
-  z-index: 1000;
 }
 
 .toast {
-  align-items: center;
-  background-color: #333;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  color: white;
-  display: flex;
-  font-size: 14px;
-  justify-content: space-between;
-  max-width: 90vw;
   min-width: 240px;
-  opacity: 0;
+  max-width: 90vw;
+  background-color: #333;
+  color: white;
   padding: 12px 20px;
-  pointer-events: auto;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  opacity: 0;
   transform: translateY(10px);
+  pointer-events: auto;
   transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .toast.show {
@@ -436,47 +422,40 @@ input[type="radio"]:checked + .world-chip {
   transform: translateY(0);
 }
 
-.toast.success {
-  background-color: #28a745;
-}
-
-.toast.error {
-  background-color: #dc3545;
-}
-
-.toast.info {
-  background-color: #007bff;
-}
+.toast.success { background-color: #28a745; }
+.toast.error   { background-color: #dc3545; }
+.toast.info    { background-color: #007bff; }
 
 .toast .close-btn {
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
   margin-left: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .toast.dialog {
   background-color: #444;
   flex-direction: column;
-  padding: 16px;
   text-align: center;
+  padding: 16px;
 }
 
 .toast-ok-btn {
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
   margin-top: 12px;
   padding: 6px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .modal-overlay {
-  backdrop-filter: blur(2px);
-  background: rgba(0, 0, 0, 0.6);
-  inset: 0;
   position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
   z-index: 999;
+  backdrop-filter: blur(2px);
 }
+
