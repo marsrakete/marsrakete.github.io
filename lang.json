@@ -41,7 +41,9 @@
     "copy_url_failed": "Fehler beim Kopieren: {error}",
     "game_finished": "Spiel beendet!\nGefundene Ziele: {count}\nZeit: {seconds} s",
     "playerSymbol": "Spielersymbol: ",
-    "targetSymbol": "Zielsymbol: "
+    "targetSymbol": "Zielsymbol: ",
+    "timerDisplay": "Zeit:",
+    "foundCount": "Gefundene Ziele"
   },
   "en": {
     "game_title": "World Generator",
@@ -85,6 +87,8 @@
     "copy_url_failed": "Copy failed: {error}",
     "game_finished": "Game finished!\nFound targets: {count}\nTime: {seconds} s",
     "playerSymbol": "Playersymbol: ",
-    "targetSymbol": "Targetsymbol: "
+    "targetSymbol": "Targetsymbol: ",
+    "timerDisplay": "Time:",
+    "foundCount": "Found targets"
   }
 }
