@@ -254,7 +254,7 @@ function showDialogToast(message, onConfirm) {
   dialog.innerHTML = `<div>${message.replace(/\n/g, '<br>')}</div><button class="toast-ok-btn">OK</button>`;
   dialog.querySelector('.toast-ok-btn').addEventListener('click', () => {
     overlay.hidden = true;
-    dialog.hidden = true;
+    dialog.style.display = 'none';
     if (typeof onConfirm === 'function') onConfirm();
   });
   dialog.querySelector('.toast-ok-btn').focus();
