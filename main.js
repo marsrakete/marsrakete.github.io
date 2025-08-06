@@ -693,8 +693,8 @@ document.getElementById('copyEditorText').addEventListener('click', () => {
 
 
 document.getElementById('postToBsky').addEventListener('click', () => {
-  // 1. Welt als Text
-  const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join(' ');
+  // 1. Welt als Text mit Zeilenumbrüchen
+  const text = gameGrid.map(row => row.join('').replace(/\s+$/, '')).join('\n');
 
   // 2. Längenprüfung (max. ~300 Zeichen bei BlueSky)
   if (text.length > 350) {
@@ -702,7 +702,7 @@ document.getElementById('postToBsky').addEventListener('click', () => {
       return;
   }
 
-  // 3. Encoding
+  // 3. Encoding (Zeilenumbrüche bleiben erhalten)
   const encodedText = encodeURIComponent(text);
 
   // 4. Plattform prüfen
@@ -718,7 +718,6 @@ document.getElementById('postToBsky').addEventListener('click', () => {
   if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
     showToast(t('alertPopupBlocked'), 'error');
   }
-
 });
 
 function populateWorldButtonsEditor() {
