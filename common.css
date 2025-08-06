@@ -99,29 +99,27 @@ input[type="radio"]:checked + .world-chip {
   box-shadow: 0 0 5px #0d6efd88;
 }
     /* Spielmodus: Raster als CSS-Grid */
-#gameOutput {
-  display: grid;
-  grid-template-columns: repeat(30, 2ch);
-  grid-template-rows: repeat(10, 2ch);
-  gap: 1px;
-  background: black;
-  padding: 10px;
-  border: 1px solid white;
-  margin: 10px auto;
-  font-size: 2em;
-  line-height: 1.2em;
-  width: fit-content;
-}
+    #gameOutput {
+      display: grid;
+      grid-template-columns: repeat(30, 2ch);
+      grid-template-rows: repeat(10, 2ch);
+      gap: 1px;
+      background: black;
+      padding: 10px;
+      border: 1px solid white;
+      margin: 10px auto;
+      font-size: 2em;
+      line-height: 1.2em;
+      width: fit-content;
+    }
 
-/* Mobile Geräte (mit max. 800px Breite) */
-@media (max-width: 800px) {
-  #gameOutput {
-    font-size: calc((100vw - 24px) / 30); /* 24px Puffer für padding + border */
-    width: 100%;
-    max-width: 100vw;
-    box-sizing: border-box;
-  }
-}
+    /* Scale grid font size to fit on narrow screens */
+    @media (max-width: 1920px) {
+      #gameOutput {
+        font-size: calc(100vw / 60);
+      }
+    }
+
     /* Editormodus: Ausgabefeld mit Zeilenumbrüchen */
     #editorOutput {
       width: 64ch;
