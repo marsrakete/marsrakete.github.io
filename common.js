@@ -189,34 +189,17 @@ function updateUIText() {
     }
 }
 // Statusmeldungen
-function showToast(message, type = 'info', duration = 4000) {
+function showToast(message, type = 'info', duration = 3000) {
   const container = document.getElementById('toast-container');
-  if (!container) return;
-
   const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  toast.innerHTML = `
-    <span>${message}</span>
-    <span class="close-btn" aria-label="Close">&times;</span>
-  `;
-
+  toast.className = 'toast ' + type;
+  toast.textContent = message;
   container.appendChild(toast);
-
-  // Trigger show animation
   requestAnimationFrame(() => toast.classList.add('show'));
-
-  // Remove after duration
-  const timeout = setTimeout(() => {
+  setTimeout(() => {
     toast.classList.remove('show');
-    setTimeout(() => container.removeChild(toast), 300);
+    setTimeout(() => toast.remove(), 3000);
   }, duration);
-
-  // Manuelles Schließen
-  toast.querySelector('.close-btn').addEventListener('click', () => {
-    clearTimeout(timeout);
-    toast.classList.remove('show');
-    setTimeout(() => container.removeChild(toast), 300);
-  });
 }
 
 function showCopyOverlay(targetElement, message = '✓ Kopiert') {
@@ -265,21 +248,14 @@ function showCopyOverlay(targetElement, message = '✓ Kopiert') {
 function showDialogToast(message, onConfirm) {
   const overlay = document.getElementById('modal-overlay');
   const dialog = document.getElementById('dialog-toast');
-  if (!overlay || !dialog) return;
-
   overlay.hidden = false;
-  dialog.hidden = false;
-
-  dialog.innerHTML = `
-    <div>${message.replace(/\n/g, '<br>')}</div>
-    <button class="toast-ok-btn">${lang === 'en' ? 'OK' : 'OK'}</button>
-  `;
-
+  //dialog.hidden = false;
+  dialog.style.display = 'flex';
+  dialog.innerHTML = `<div>${message.replace(/\n/g, '<br>')}</div><button class="toast-ok-btn">OK</button>`;
   dialog.querySelector('.toast-ok-btn').addEventListener('click', () => {
     overlay.hidden = true;
     dialog.hidden = true;
     if (typeof onConfirm === 'function') onConfirm();
   });
-
   dialog.querySelector('.toast-ok-btn').focus();
 }
