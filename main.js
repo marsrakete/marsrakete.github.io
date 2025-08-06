@@ -916,21 +916,6 @@ async function applyUrlParameters() {
   }
 }
 
-function updateWorldGalleryHeight() {
-  const gallery = document.getElementById('worldGallery');
-  if (!gallery) return;
-
-  if (window.innerWidth < 768) {
-    gallery.style.maxHeight = Math.floor(window.innerHeight * 0.6) + 'px';
-  } else {
-    gallery.style.maxHeight = '300px';
-  }
-}
-
-window.addEventListener('resize', updateWorldGalleryHeight);
-window.addEventListener('load', updateWorldGalleryHeight);
-
-
 // Sprachumschaltung
 document.getElementById('langSwitchBtn').addEventListener('click', () => {
     switchLang();
