@@ -11,6 +11,7 @@ let lang = 'de';
 let langData = {};
 const supportedLangs = ['de', 'en'];
 const isEnglish = lang === 'en';
+let gameOver = false;
 
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
@@ -399,6 +400,7 @@ function renderGame() {
 }
 
 function generateRandomWorld() {
+  gameOver = false;
   // Timer zurücksetzen
   if (timerInterval) clearInterval(timerInterval);
     timerInterval = null;
@@ -492,6 +494,7 @@ function generateRandomWorld() {
 }
 
 function movePlayer(dx,dy) {
+  if (gameOver) return; // ✅ Blockiert alle Bewegungen nach Spielende
   if (playerJustSpawned) {
     playerJustSpawned = false;
     renderGame();
@@ -522,6 +525,7 @@ function movePlayer(dx,dy) {
     renderGame();
     if (foundCount >= initialTargets) {
         clearInterval(timerInterval);
+        gameOver = true; // ✅ Blockieren weiterer Züge
         const msg = t('gameFinished')
             .replace('{count}', foundCount)
             .replace('{seconds}', Math.floor((Date.now() - timerStart) / 1000));
@@ -537,6 +541,7 @@ function movePlayer(dx,dy) {
 }
 
 function resetToOriginalGrid() {
+  gameOver = false;
   gameGrid = originalGrid.map(r=>r.slice());
   const w = worldData[currentWorld];
   initialTargets = gameGrid.flat().filter(c => c === w.target).length;
