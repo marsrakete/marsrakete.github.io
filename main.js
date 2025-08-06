@@ -927,6 +927,17 @@ document.getElementById('langSwitchBtn').addEventListener('click', () => {
     document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
 });
 
+// Responsive
+window.addEventListener('orientationchange', () => {
+  // Bei Wechsel von Portrait ↔ Landscape Schriftgröße ggf. neu setzen
+  if (window.innerWidth < 800) {
+    const zoomSlider = document.getElementById("zoomSlider");
+    updateZoom(zoomSlider.value); // Schriftgröße neu anwenden
+  }
+});
+
+
+
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
     await loadWorldData();
