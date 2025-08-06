@@ -120,6 +120,7 @@ function t(key, vars={}) {
 function switchLang() {
     lang = (lang === 'de') ? 'en' : 'de';
     updateUIText();
+    updateGameInfo();
     populateWorldGallery();
     populateWorldButtonsEditor();
     localStorage.setItem('appLang', lang);
