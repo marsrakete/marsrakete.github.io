@@ -23,6 +23,25 @@ button:hover {
   background-color: #555;
 }
 
+/* Stil für Spiel-Schaltflächen im Stil der Welt-Chips */
+.button-chip {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+  margin: 4px;
+}
+
+.button-chip:hover {
+  background: #333;
+  border-color: #666;
+}
+
 #worldButtons {
   margin-bottom: 15px;
 }
