@@ -44,7 +44,8 @@
     "timerDisplay": "Zeit:",
     "blobCreationFailed": "Blob-Erzeugung fehlgeschlagen",
     "alertBskyLen": "Die Anzahl Zeichen der Welt ist zu lang für einen BlueSky-Post. Bitte lösche im Editor ein paar Zeichen.",
-    "alertErrorOnCopy": "Die Grafik konnte nicht erzeugt werden: "
+    "alertErrorOnCopy": "Die Grafik konnte nicht erzeugt werden: ",
+    "tooltipToggleAnimations": "Animationen ein- oder ausschalten"
   },
   "en": {
     "gameTitle": "World Generator",
@@ -91,6 +92,7 @@
     "timerDisplay": "Time:",
     "blobCreationFailed": "Blob creation failed",
     "alertBskyLen": "The number of characters in the world is too long for a BlueSky post. Please delete a few characters in the editor.",
-    "alertErrorOnCopy": "The graphic could not be generated: "
+    "alertErrorOnCopy": "The graphic could not be generated: ",
+    "tooltipToggleAnimations": "Toggle animations on or off" 
   }
 }
