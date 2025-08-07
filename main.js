@@ -388,15 +388,23 @@ function updateZoom(value) {
 }
 
 function renderGame() {
-    const cells = document.querySelectorAll('#gameOutput .cell');
-    gameGrid.forEach((row,y) => row.forEach((sym,x) => {
-        const cell = cells[y*cols+x];
-        cell.textContent = sym;
-        cell.classList.remove('player-highlight');
-        if (x === playerX && y === playerY && playerJustSpawned) {
-            cell.classList.add('player-highlight');
-        }
-    }));    
+  const cells = document.querySelectorAll('#gameOutput .cell');
+  gameGrid.forEach((row, y) => row.forEach((sym, x) => {
+    const cell = cells[y * cols + x];
+    cell.textContent = sym;
+    cell.classList.remove('player-highlight', 'animate-spin', 'animate-wiggle', 'animate-pulse');
+
+    if (x === playerX && y === playerY && playerJustSpawned) {
+      cell.classList.add('player-highlight');
+    }
+
+    // Zufallsanimation nur für sichtbare Spielsymbole
+    if (sym !== ' ' && Math.random() < 0.05) {
+      const animations = ['animate-spin', 'animate-wiggle', 'animate-pulse'];
+      const anim = animations[Math.floor(Math.random() * animations.length)];
+      cell.classList.add(anim);
+    }
+  }));
 }
 
 function generateRandomWorld() {
