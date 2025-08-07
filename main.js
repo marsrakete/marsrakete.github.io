@@ -12,6 +12,7 @@ let langData = {};
 const supportedLangs = ['de', 'en'];
 const isEnglish = lang === 'en';
 let gameOver = false;
+let animationsEnabled = true;
 
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
@@ -405,10 +406,12 @@ function renderGame() {
     }
 
     // Falls Animationen definiert sind: prüfen, ob Symbol betroffen ist
-    for (const [animClass, symbolList] of Object.entries(animRules)) {
-      if (symbolList.includes(sym)) {
-        cell.classList.add(animClass);
-        break; // Optional: nur eine Animation pro Symbol
+    if (animationsEnabled && sym !== ' ' && animRules) {
+      for (const [animClass, symbolList] of Object.entries(animRules)) {
+        if (symbolList.includes(sym)) {
+          cell.classList.add(animClass);
+          break;
+        }
       }
     }
   }));
@@ -951,7 +954,17 @@ window.addEventListener('orientationchange', () => {
   }
 });
 
+document.getElementById('toggleAnimationsBtn').addEventListener('click', () => {
+  animationsEnabled = !animationsEnabled;
+  localStorage.setItem('animationsEnabled', animationsEnabled);
+  updateAnimationToggleLabel();
+  renderGame(); // sofortige Wirkung
+});
 
+function updateAnimationToggleLabel() {
+  const btn = document.getElementById('toggleAnimationsBtn');
+  btn.innerText = animationsEnabled ? '✨ Animation: AN' : '🛑 Animation: AUS';
+}
 
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
@@ -982,5 +995,7 @@ window.addEventListener('load', async ()=>{
     updateMaxSymbolsSlider();
 
     await applyUrlParameters(); 
+    animationsEnabled = localStorage.getItem('animationsEnabled') !== 'false'; // Standard: true
+    updateAnimationToggleLabel();
 });
 
