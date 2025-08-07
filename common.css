@@ -119,7 +119,7 @@ input[type="radio"]:checked + .world-chip {
         font-size: calc(100vw / 60);
       }
     }
-
+/* Animationen */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -136,6 +136,33 @@ input[type="radio"]:checked + .world-chip {
   50% { transform: scale(1.3); }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8%); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-1px); }
+  75% { transform: translateX(1px); }
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 3px #fff5, 0 0 6px #0ff5; }
+  50% { text-shadow: 0 0 6px #fff, 0 0 12px #0ff; }
+  100% { text-shadow: 0 0 3px #fff5, 0 0 6px #0ff5; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10%); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
 .cell.animate-spin {
   animation: spin 2s linear infinite;
 }
@@ -148,7 +175,25 @@ input[type="radio"]:checked + .world-chip {
   animation: pulse 1.2s ease-in-out infinite;
 }
 
+.cell.animate-float {
+  animation: float 2.4s ease-in-out infinite;
+}
 
+.cell.animate-shake {
+  animation: shake 0.3s linear infinite;
+}
+
+.cell.animate-glow {
+  animation: glow 1.6s ease-in-out infinite;
+}
+
+.cell.animate-bounce {
+  animation: bounce 1.1s ease-in-out infinite;
+}
+
+.cell.animate-blink {
+  animation: blink 1s ease-in-out infinite;
+}
 
     /* Editormodus: Ausgabefeld mit Zeilenumbrüchen */
     #editorOutput {
