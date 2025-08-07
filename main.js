@@ -400,7 +400,7 @@ function renderGame() {
 
     // Zufallsanimation nur für sichtbare Spielsymbole
     if (sym !== ' ' && Math.random() < 0.05) {
-      const animations = ['animate-spin', 'animate-wiggle', 'animate-pulse'];
+      const animations = ['animate-spin', 'animate-wiggle', 'animate-pulse', 'animate-float', 'animate-glow', 'animate-bounce', 'animate-shake', 'animate-blink'];
       const anim = animations[Math.floor(Math.random() * animations.length)];
       cell.classList.add(anim);
     }
