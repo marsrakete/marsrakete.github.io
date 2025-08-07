@@ -98,27 +98,47 @@ input[type="radio"]:checked + .world-chip {
   border-color: #0d6efd;
   box-shadow: 0 0 5px #0d6efd88;
 }
-    /* Spielmodus: Raster als CSS-Grid */
-    #gameOutput {
-      display: grid;
-      grid-template-columns: repeat(30, 2ch);
-      grid-template-rows: repeat(10, 2ch);
-      gap: 1px;
-      background: black;
-      padding: 10px;
-      border: 1px solid white;
-      margin: 10px auto;
-      font-size: 2em;
-      line-height: 1.2em;
-      width: fit-content;
-    }
 
-    /* Scale grid font size to fit on narrow screens */
-    @media (max-width: 1920px) {
-      #gameOutput {
-        font-size: calc(100vw / 60);
-      }
-    }
+/* die beiden Schalter für Animation und Sprache */
+#topControls {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+@media (max-width: 600px) {
+  #topControls {
+    right: 12px;
+    top: 12px;
+  }
+}
+
+/* Spielmodus: Raster als CSS-Grid */
+#gameOutput {
+  display: grid;
+  grid-template-columns: repeat(30, 2ch);
+  grid-template-rows: repeat(10, 2ch);
+  gap: 1px;
+  background: black;
+  padding: 10px;
+  border: 1px solid white;
+  margin: 10px auto;
+  font-size: 2em;
+  line-height: 1.2em;
+  width: fit-content;
+}
+
+/* Scale grid font size to fit on narrow screens */
+@media (max-width: 1920px) {
+  #gameOutput {
+    font-size: calc(100vw / 60);
+  }
+}
 /* Animationen */
 @keyframes spin {
   0% { transform: rotate(0deg); }
