@@ -389,20 +389,27 @@ function updateZoom(value) {
 
 function renderGame() {
   const cells = document.querySelectorAll('#gameOutput .cell');
+  const w = worldData[currentWorld];
+  const animRules = w.animation || {};
+
   gameGrid.forEach((row, y) => row.forEach((sym, x) => {
     const cell = cells[y * cols + x];
     cell.textContent = sym;
-    cell.classList.remove('player-highlight', 'animate-spin', 'animate-wiggle', 'animate-pulse');
 
+    // Vorherige Animationen entfernen
+    cell.className = 'cell';
+
+    // Player-Highlight bei Spawn
     if (x === playerX && y === playerY && playerJustSpawned) {
       cell.classList.add('player-highlight');
     }
 
-    // Zufallsanimation nur für sichtbare Spielsymbole
-    if (sym !== ' ' && Math.random() < 0.05) {
-      const animations = ['animate-spin', 'animate-wiggle', 'animate-pulse', 'animate-float', 'animate-glow', 'animate-bounce', 'animate-shake', 'animate-blink'];
-      const anim = animations[Math.floor(Math.random() * animations.length)];
-      cell.classList.add(anim);
+    // Falls Animationen definiert sind: prüfen, ob Symbol betroffen ist
+    for (const [animClass, symbolList] of Object.entries(animRules)) {
+      if (symbolList.includes(sym)) {
+        cell.classList.add(animClass);
+        break; // Optional: nur eine Animation pro Symbol
+      }
     }
   }));
 }
