@@ -189,7 +189,9 @@ function updateUIText() {
         document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
     }
     // -- Animations-Schalter
-    document.getElementById('toggleAnimationsBtn').title = t('tooltipToggleAnimations');
+    if (document.getElementById('toggleAnimationsBtn')) {
+      updateAnimationToggleLabel();
+    }
   
 }
 // Statusmeldungen
