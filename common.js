@@ -129,7 +129,7 @@ function switchLang() {
 
 function updateUIText() {
     // Dokument-Titel
-    document.title = t('game_title');
+    document.title = t('gameTitle');
 
     // --- SPIELMODUS ---
     // Headline
