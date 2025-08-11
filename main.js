@@ -975,6 +975,7 @@ window.addEventListener('load', async ()=>{
     // Sprache wählen
     lang = localStorage.getItem('appLang') || detectLang();
     // Button-Label passend setzen
+    updateAnimationToggleLabel();
     document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
     updateUIText();
     
