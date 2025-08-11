@@ -963,7 +963,8 @@ document.getElementById('toggleAnimationsBtn').addEventListener('click', () => {
 
 function updateAnimationToggleLabel() {
   const btn = document.getElementById('toggleAnimationsBtn');
-  btn.innerText = animationsEnabled ? '✨ Animation: AN' : '🛑 Animation: AUS';
+  btn.title = t('tooltipToggleAnimations');
+  btn.textContent = animationsEnabled ? '✨' : '🛑';
 }
 
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
