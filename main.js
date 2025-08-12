@@ -967,6 +967,18 @@ function updateAnimationToggleLabel() {
   btn.textContent = animationsEnabled ? '✨' : '🛑';
 }
 
+document.getElementById('settingsToggleBtn').addEventListener('click', () => {
+  document.getElementById('settingsDropdown').classList.toggle('hidden');
+});
+
+// Dropdown automatisch schließen bei Klick außerhalb
+document.addEventListener('click', function(event) {
+  const settings = document.getElementById('settingsMenu');
+  if (!settings.contains(event.target)) {
+    document.getElementById('settingsDropdown').classList.add('hidden');
+  }
+});
+
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
     await loadWorldData();
@@ -975,7 +987,6 @@ window.addEventListener('load', async ()=>{
     // Sprache wählen
     lang = localStorage.getItem('appLang') || detectLang();
     // Button-Label passend setzen
-    updateAnimationToggleLabel();
     document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
     updateUIText();
     
@@ -998,6 +1009,5 @@ window.addEventListener('load', async ()=>{
 
     await applyUrlParameters(); 
     animationsEnabled = localStorage.getItem('animationsEnabled') !== 'false'; // Standard: true
-    updateAnimationToggleLabel();
 });
 
