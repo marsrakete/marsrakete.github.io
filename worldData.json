@@ -84,7 +84,15 @@
     "description": "Eine blühende Welt, erfüllt von zarten Blumen und feinen Düften",
     "title": "Blumenwiese",
     "title_en": "Flower Meadow",
-    "description_en": "A blooming world, filled with delicate flowers and fine scents"
+    "description_en": "A blooming world, filled with delicate flowers and fine scents",
+    "animation": {
+      "animate-spin": [
+        "🐞"
+      ],
+      "animate-breathe": [
+        "🍄"
+      ]
+    }
   },
   "forest": {
     "symbols": [
@@ -112,7 +120,15 @@
     "description": "Ein waldartiges Paradies voller Bäume, Tiere und geheimnisvoller Lichtungen",
     "title": "Wald",
     "title_en": "Forest",
-    "description_en": "A forest-like paradise full of trees, animals, and mysterious clearings"
+    "description_en": "A forest-like paradise full of trees, animals, and mysterious clearings",
+    "animation": {
+      "animate-spin": [
+        "🍃"
+      ],
+      "animate-swing": [
+        "🍂"
+      ]
+    }
   },
   "airport": {
     "symbols": [
@@ -134,7 +150,15 @@
     "description": "Eine flughafenbezogene Welt, in der Flugzeuge und die Faszination des Fliegens im Mittelpunkt stehen",
     "title": "Flughafen",
     "title_en": "Airport",
-    "description_en": "An airport-related world, where airplanes and the fascination of flying are the focus"
+    "description_en": "An airport-related world, where airplanes and the fascination of flying are the focus",
+    "animation": {
+      "animate-wiggle": [
+        "🚁"
+      ],
+      "animate-shake": [
+        "🛂"
+      ]
+    }
   },
   "alptraum": {
     "title": "Alptraum",
@@ -274,6 +298,9 @@
     "animation": {
       "animate-spin": [
         "🪙"
+      ],
+      "animate-swing": [
+        "⚓"
       ]
     }
   },
@@ -301,6 +328,9 @@
     "animation": {
       "animate-spin": [
         "🎮"
+      ],
+      "animate-pulse": [
+        "🎰"
       ]
     }
   },
@@ -334,6 +364,9 @@
       "animate-float": [
         "🌬️",
         "🌌"
+      ],
+      "animate-shake": [
+        "🧊"
       ]
     }
   },
@@ -412,7 +445,15 @@
     "description": "Eine kreative Welt voller Stoffe, Nadeln und inspirierender Designs",
     "title": "Nähatelier",
     "title_en": "Sewing Studio",
-    "description_en": "A creative world full of fabrics, needles, and inspiring designs"
+    "description_en": "A creative world full of fabrics, needles, and inspiring designs",
+    "animation": {
+      "animate-swing": [
+        "👗"
+      ],
+      "animate-blink": [
+        "👚"
+      ]
+    }
   },
   "badewelt": {
     "symbols": [
@@ -449,6 +490,9 @@
         "🧽",
         "🧼",
         "🧼"
+      ],
+      "animate-flicker": [
+        "🫧"
       ]
     }
   },
@@ -485,6 +529,9 @@
     "animation": {
       "animate-wiggle": [
         "🧺"
+      ],
+      "animate-swing": [
+        "🍞"
       ]
     }
   },
@@ -514,7 +561,15 @@
     "description": "Eine kindgerechte Bauwelt, in der alles wie bei den Großen wirkt – aber sicher und bunt",
     "title": "Kinderbaustelle",
     "title_en": "Children's Construction Site",
-    "description_en": "A child-friendly construction world where everything looks like the big ones - but safe and colorful"
+    "description_en": "A child-friendly construction world where everything looks like the big ones - but safe and colorful",
+    "animation": {
+      "animate-wiggle": [
+        "🧤"
+      ],
+      "animate-swing": [
+        "🧱"
+      ]
+    }
   },
   "beachclub": {
     "symbols": [
@@ -550,7 +605,15 @@
     "description": "Eine sommerliche Strandwelt mit Musik, Sonne und Cocktails",
     "title": "Beachclub",
     "title_en": "Beach Club",
-    "description_en": "A summer beach world with music, sun, and cocktails"
+    "description_en": "A summer beach world with music, sun, and cocktails",
+    "animation": {
+      "animate-shake": [
+        "🧜‍♀️"
+      ],
+      "animate-blink": [
+        "🧴"
+      ]
+    }
   },
   "beerenwelt": {
     "symbols": [
@@ -582,6 +645,9 @@
     "animation": {
       "animate-wiggle": [
         "🧺",
+        "🧺"
+      ],
+      "animate-breathe": [
         "🧺"
       ]
     }
@@ -624,6 +690,9 @@
     "animation": {
       "animate-blink": [
         "🔦"
+      ],
+      "animate-pulse": [
+        "🪨"
       ]
     }
   },
@@ -692,7 +761,15 @@
     "description": "Eine farbenfrohe Welt für summende Sammler – bestäube die schönste Blüte",
     "title": "Blütengarten",
     "title_en": "Flower Garden",
-    "description_en": "A colorful world for buzzing collectors - pollinate the most beautiful flower"
+    "description_en": "A colorful world for buzzing collectors - pollinate the most beautiful flower",
+    "animation": {
+      "animate-bounce": [
+        "🌼"
+      ],
+      "animate-flicker": [
+        "🧚"
+      ]
+    }
   },
   "bodyworld": {
     "symbols": [
@@ -760,6 +837,9 @@
     "animation": {
       "animate-pulse": [
         "💥"
+      ],
+      "animate-spin": [
+        "🖨️"
       ]
     }
   },
@@ -792,6 +872,9 @@
     "animation": {
       "animate-wiggle": [
         "🍭"
+      ],
+      "animate-pulse": [
+        "🍦"
       ]
     }
   },
@@ -827,7 +910,15 @@
     "description": "Eine autozentrierte Welt mit Straßen, Schildern und hupenden Fahrzeugen",
     "title": "Autowelt",
     "title_en": "Car World",
-    "description_en": "A car-centered world with roads, signs, and honking vehicles"
+    "description_en": "A car-centered world with roads, signs, and honking vehicles",
+    "animation": {
+      "animate-spin": [
+        "🚌"
+      ],
+      "animate-bounce": [
+        "🚜"
+      ]
+    }
   },
   "cave": {
     "symbols": [
@@ -927,6 +1018,9 @@
     "animation": {
       "animate-glow": [
         "🧪"
+      ],
+      "animate-float": [
+        "🎐"
       ]
     }
   },
@@ -954,6 +1048,9 @@
     "animation": {
       "animate-wiggle": [
         "🤹‍♂️"
+      ],
+      "animate-wobble": [
+        "🎪"
       ]
     }
   },
@@ -1022,7 +1119,15 @@
       "📰"
     ],
     "player": "👨‍🍳",
-    "target": "☕"
+    "target": "☕",
+    "animation": {
+      "animate-spin": [
+        "🥛"
+      ],
+      "animate-flicker": [
+        "🍪"
+      ]
+    }
   },
   "cologne": {
     "symbols": [
@@ -1054,6 +1159,9 @@
       "animate-pulse": [
         "🎉",
         "🧼"
+      ],
+      "animate-blink": [
+        "🕍"
       ]
     }
   },
@@ -1077,7 +1185,15 @@
     "description": "Eine konzertbezogene Welt, in der Musik und Live-Auftritte das Herzstück bilden",
     "title": "Konzert",
     "title_en": "Concert",
-    "description_en": "A concert-related world where music and live performances are the centerpiece"
+    "description_en": "A concert-related world where music and live performances are the centerpiece",
+    "animation": {
+      "animate-pulse": [
+        "🎼"
+      ],
+      "animate-breathe": [
+        "🥁"
+      ]
+    }
   },
   "craftsmen": {
     "symbols": [
@@ -1112,6 +1228,9 @@
       "animate-spin": [
         "🔩",
         "⚙️"
+      ],
+      "animate-swing": [
+        "🛠️"
       ]
     }
   },
@@ -1207,7 +1326,15 @@
     "description": "Eine wüstenartige Welt mit sengender Sonne und kargen Landschaften",
     "title": "Wüste",
     "title_en": "Desert",
-    "description_en": "A desert-like world with scorching sun and barren landscapes"
+    "description_en": "A desert-like world with scorching sun and barren landscapes",
+    "animation": {
+      "animate-float": [
+        "🌵"
+      ],
+      "animate-shake": [
+        "🦂"
+      ]
+    }
   },
   "disco": {
     "symbols": [
@@ -1317,7 +1444,15 @@
     "description": "In dieser frostig-leckeren Welt wartet deine Lieblingseissorte irgendwo im Schneesturm",
     "title": "Eiszeit",
     "title_en": "Ice Age",
-    "description_en": "In this frosty-delicious world, your favorite ice cream flavor is waiting somewhere in the snowstorm"
+    "description_en": "In this frosty-delicious world, your favorite ice cream flavor is waiting somewhere in the snowstorm",
+    "animation": {
+      "animate-spin": [
+        "🍧"
+      ],
+      "animate-breathe": [
+        "🍒"
+      ]
+    }
   },
   "essenschlacht": {
     "title": "Essenschlacht",
@@ -1349,6 +1484,9 @@
     "animation": {
       "animate-pulse": [
         "🧽"
+      ],
+      "animate-swing": [
+        "🎂"
       ]
     }
   },
@@ -1464,7 +1602,15 @@
     "description": "Eine kreative Welt, in der Licht, Bildausschnitt und Motive alles sind",
     "title": "Fotografie",
     "title_en": "Photography",
-    "description_en": "A creative world where light, composition, and subjects are everything"
+    "description_en": "A creative world where light, composition, and subjects are everything",
+    "animation": {
+      "animate-wobble": [
+        "📸"
+      ],
+      "animate-blink": [
+        "🎥"
+      ]
+    }
   },
   "freezer": {
     "symbols": [
@@ -1490,7 +1636,15 @@
     "description": "Diese eisige Welt steckt voller Tiefkühlleckereien – bleib cool und finde das Eis!",
     "title": "Tiefkühltruhe",
     "title_en": "Freezer",
-    "description_en": "This icy world is full of frozen treats - stay cool and find the ice cream!"
+    "description_en": "This icy world is full of frozen treats - stay cool and find the ice cream!",
+    "animation": {
+      "animate-pulse": [
+        "🧁"
+      ],
+      "animate-float": [
+        "🥶"
+      ]
+    }
   },
   "frieden": {
     "title": "Frieden",
@@ -1556,7 +1710,15 @@
     "description": "Frösche überqueren hier Straßen und Flüsse, um sicher nach Hause zu gelangen",
     "title": "Frogger",
     "title_en": "Frogger",
-    "description_en": "Frogs cross roads and rivers here to get home safely"
+    "description_en": "Frogs cross roads and rivers here to get home safely",
+    "animation": {
+      "animate-breathe": [
+        "🚓"
+      ],
+      "animate-flicker": [
+        "🐍"
+      ]
+    }
   },
   "fruchtplanet": {
     "symbols": [
@@ -1588,7 +1750,15 @@
     "description": "Ein süßer Planet aus Früchten – alles ist essbar, aber voller Fallen",
     "title": "Fruchtplanet",
     "title_en": "Fruit Planet",
-    "description_en": "A sweet planet made of fruit - everything is edible, but full of traps"
+    "description_en": "A sweet planet made of fruit - everything is edible, but full of traps",
+    "animation": {
+      "animate-wobble": [
+        "🥝"
+      ],
+      "animate-pulse": [
+        "🍒"
+      ]
+    }
   },
   "fruehstueck": {
     "symbols": [
@@ -1615,7 +1785,15 @@
     "description": "Ein duftender Morgen wartet – finde den Saft, der alles aufweckt",
     "title": "Frühstückswelt",
     "title_en": "Breakfast World",
-    "description_en": "A fragrant morning awaits - find the juice that wakes everything up"
+    "description_en": "A fragrant morning awaits - find the juice that wakes everything up",
+    "animation": {
+      "animate-glow": [
+        "🥞"
+      ],
+      "animate-flicker": [
+        "🫐"
+      ]
+    }
   },
   "fruits": {
     "symbols": [
@@ -1644,7 +1822,15 @@
     "title": "Obstwelt",
     "description": "Eine fruchtige Welt voller süßer Leckereien – Äpfel, Erdbeeren, Bananen und vieles mehr. Saftig, bunt und voller Vitamine",
     "title_en": "Fruit world",
-    "description_en": "A fruity world full of sweet treats – apples, strawberries, bananas and much more. Juicy, colourful and full of vitamins"
+    "description_en": "A fruity world full of sweet treats – apples, strawberries, bananas and much more. Juicy, colourful and full of vitamins",
+    "animation": {
+      "animate-flicker": [
+        "🍐"
+      ],
+      "animate-wobble": [
+        "🍏"
+      ]
+    }
   },
   "galaxyMuseum": {
     "symbols": [
@@ -1710,7 +1896,15 @@
     "description": "Dieses Bild zeigt eine blühende Gartenwelt voller Blumen, Insekten und frischem Grün",
     "title": "Garten",
     "title_en": "Garden",
-    "description_en": "this image shows a blossoming garden world full of flowers, insects and fresh greenery"
+    "description_en": "this image shows a blossoming garden world full of flowers, insects and fresh greenery",
+    "animation": {
+      "animate-blink": [
+        "🌼"
+      ],
+      "animate-glow": [
+        "🪵"
+      ]
+    }
   },
   "gebirgsfluss": {
     "symbols": [
@@ -1743,6 +1937,9 @@
     "animation": {
       "animate-float": [
         "🌬️"
+      ],
+      "animate-shake": [
+        "🦅"
       ]
     }
   },
@@ -1809,7 +2006,15 @@
     "description": "Hier wächst alles frisch! Ernte dein Lieblingsgemüse, bevor die Schnecken kommen",
     "title": "Gemüsebeet",
     "title_en": "Vegetable patch",
-    "description_en": "Everything grows fresh here! Harvest your favourite vegetables before the snails come"
+    "description_en": "Everything grows fresh here! Harvest your favourite vegetables before the snails come",
+    "animation": {
+      "animate-breathe": [
+        "🫘"
+      ],
+      "animate-glow": [
+        "🥕"
+      ]
+    }
   },
   "germany": {
     "symbols": [
@@ -1841,6 +2046,9 @@
     "animation": {
       "animate-wiggle": [
         "🧺"
+      ],
+      "animate-pulse": [
+        "🏰"
       ]
     }
   },
@@ -1904,6 +2112,9 @@
     "animation": {
       "animate-shake": [
         "👻"
+      ],
+      "animate-bounce": [
+        "👻"
       ]
     }
   },
@@ -1934,6 +2145,9 @@
     "target": "👻",
     "animation": {
       "animate-shake": [
+        "👻"
+      ],
+      "animate-bounce": [
         "👻"
       ]
     }
@@ -2001,6 +2215,9 @@
     "animation": {
       "animate-float": [
         "🌬️"
+      ],
+      "animate-pulse": [
+        "🌡️"
       ]
     }
   },
@@ -2035,6 +2252,9 @@
     "animation": {
       "animate-blink": [
         "🔦"
+      ],
+      "animate-shake": [
+        "🗼"
       ]
     }
   },
@@ -2062,7 +2282,15 @@
     "description": "Ein Land voller herzhafter Leckereien – finde deinen Snack des Tages!",
     "title": "Herzhaftland",
     "title_en": "Heartland",
-    "description_en": "A land full of hearty treats – find your snack of the day!"
+    "description_en": "A land full of hearty treats – find your snack of the day!",
+    "animation": {
+      "animate-glow": [
+        "🌮"
+      ],
+      "animate-bounce": [
+        "🍔"
+      ]
+    }
   },
   "huehnerchaos": {
     "title": "Hühnerchaos",
@@ -2093,6 +2321,9 @@
     "animation": {
       "animate-wiggle": [
         "🧺"
+      ],
+      "animate-swing": [
+        "🍳"
       ]
     }
   },
@@ -2124,7 +2355,15 @@
     "description": "Eine menschliche Welt voller Familien, Lachen und liebevoller Augenblicke",
     "title": "Menschenwelt",
     "title_en": "Human world",
-    "description_en": "A human world full of families, laughter and loving moments"
+    "description_en": "A human world full of families, laughter and loving moments",
+    "animation": {
+      "animate-float": [
+        "🤰"
+      ],
+      "animate-pulse": [
+        "👵"
+      ]
+    }
   },
   "indien": {
     "symbols": [
@@ -2189,7 +2428,15 @@
     "description": "Eine insektenreiche Welt voller Krabbeltiere und feiner Netze",
     "title": "Insektenwelt",
     "title_en": "Insect world",
-    "description_en": "An insect-filled world full of crawling creatures and delicate webs"
+    "description_en": "An insect-filled world full of crawling creatures and delicate webs",
+    "animation": {
+      "animate-breathe": [
+        "🐌"
+      ],
+      "animate-wiggle": [
+        "🕷️"
+      ]
+    }
   },
   "japan": {
     "symbols": [
@@ -2215,7 +2462,15 @@
     "description": "Tempel, Kirschblüten, Sushi – eine stille, elegante Welt mit klaren Linien",
     "title": "Japan",
     "title_en": "Japan",
-    "description_en": "temples, cherry blossoms, sushi – a quiet, elegant world with clean lines"
+    "description_en": "temples, cherry blossoms, sushi – a quiet, elegant world with clean lines",
+    "animation": {
+      "animate-bounce": [
+        "👘"
+      ],
+      "animate-blink": [
+        "🍜"
+      ]
+    }
   },
   "jungle": {
     "symbols": [
@@ -2237,7 +2492,15 @@
     "description": "Eine dschungelartige Welt voller exotischer Tiere und üppiger Vegetation",
     "title": "Dschungel",
     "title_en": "Jungle",
-    "description_en": "A jungle-like world full of exotic animals and lush vegetation"
+    "description_en": "A jungle-like world full of exotic animals and lush vegetation",
+    "animation": {
+      "animate-blink": [
+        "🍌"
+      ],
+      "animate-pulse": [
+        "🦁"
+      ]
+    }
   },
   "kairo": {
     "symbols": [
@@ -2263,7 +2526,15 @@
     "description": "Staubige Gassen, Pyramidengeflüster und ein Schatz tief im Sand",
     "title": "Kairo",
     "title_en": "Cairo",
-    "description_en": "Dusty alleys, whispers of pyramids and a treasure deep in the sand"
+    "description_en": "Dusty alleys, whispers of pyramids and a treasure deep in the sand",
+    "animation": {
+      "animate-pulse": [
+        "🌞"
+      ],
+      "animate-flicker": [
+        "🔱"
+      ]
+    }
   },
   "kart": {
     "symbols": [
@@ -2334,6 +2605,9 @@
       "animate-shake": [
         "💣",
         "📢"
+      ],
+      "animate-flicker": [
+        "💣"
       ]
     }
   },
@@ -2364,7 +2638,15 @@
     "description": "Eine bunte, fröhliche Welt voller Spiel, Kreativität und Kinderlachen",
     "title": "Kindergarten",
     "title_en": "Kindergarten",
-    "description_en": "A colourful, cheerful world full of play, creativity and children's laughter"
+    "description_en": "A colourful, cheerful world full of play, creativity and children's laughter",
+    "animation": {
+      "animate-bounce": [
+        "📚"
+      ],
+      "animate-glow": [
+        "🧑‍🏫"
+      ]
+    }
   },
   "kirmes": {
     "title": "Kirmes",
@@ -2431,7 +2713,15 @@
     "description": "Eine geschäftige Küche voller Utensilien, Lebensmitteln und leckerer Gerichte",
     "title": "Küche",
     "title_en": "Kitchen",
-    "description_en": "A busy kitchen full of utensils, food and delicious dishes"
+    "description_en": "A busy kitchen full of utensils, food and delicious dishes",
+    "animation": {
+      "animate-swing": [
+        "🍇"
+      ],
+      "animate-flicker": [
+        "🍳"
+      ]
+    }
   },
   "klimawandel": {
     "title": "Klimawandel",
@@ -2463,6 +2753,9 @@
     "animation": {
       "animate-shake": [
         "📢"
+      ],
+      "animate-swing": [
+        "🌊"
       ]
     }
   },
@@ -2581,7 +2874,15 @@
       "🎒"
     ],
     "player": "✈️",
-    "target": "🗺️"
+    "target": "🗺️",
+    "animation": {
+      "animate-wobble": [
+        "🇧🇷"
+      ],
+      "animate-breathe": [
+        "✈️"
+      ]
+    }
   },
   "lava": {
     "symbols": [
@@ -2607,6 +2908,9 @@
     "animation": {
       "animate-pulse": [
         "💥"
+      ],
+      "animate-bounce": [
+        "💀"
       ]
     }
   },
@@ -2635,7 +2939,15 @@
     "description": "Eine gemütliche Leseecke mit Büchern, Kerzen und einem Glas Rotwein",
     "title": "Bibliothek",
     "title_en": "Library",
-    "description_en": "A cosy reading corner with books, candles and a glass of red wine"
+    "description_en": "A cosy reading corner with books, candles and a glass of red wine",
+    "animation": {
+      "animate-float": [
+        "🔖"
+      ],
+      "animate-wiggle": [
+        "📗"
+      ]
+    }
   },
   "liebeswelt": {
     "symbols": [
@@ -2664,7 +2976,15 @@
     "description": "Eine Welt voller Romantik, Zärtlichkeit und stilvoller Sinnlichkeit",
     "title": "Liebeswelt",
     "title_en": "World of love",
-    "description_en": "A world full of romance, tenderness and stylish sensuality"
+    "description_en": "A world full of romance, tenderness and stylish sensuality",
+    "animation": {
+      "animate-glow": [
+        "💃"
+      ],
+      "animate-breathe": [
+        "💑"
+      ]
+    }
   },
   "logistics": {
     "symbols": [
@@ -2695,6 +3015,9 @@
       "animate-wiggle": [
         "📦",
         "📦"
+      ],
+      "animate-flicker": [
+        "🚚"
       ]
     }
   },
@@ -2855,6 +3178,9 @@
     "animation": {
       "animate-pulse": [
         "🛡️"
+      ],
+      "animate-float": [
+        "🗡️"
       ]
     }
   },
@@ -2888,6 +3214,9 @@
     "animation": {
       "animate-pulse": [
         "🎉"
+      ],
+      "animate-float": [
+        "🧣"
       ]
     }
   },
@@ -2964,6 +3293,9 @@
     "animation": {
       "animate-pulse": [
         "🧼"
+      ],
+      "animate-float": [
+        "🪵"
       ]
     }
   },
@@ -2995,6 +3327,9 @@
     "animation": {
       "animate-pulse": [
         "🧬"
+      ],
+      "animate-shake": [
+        "🦕"
       ]
     }
   },
@@ -3022,7 +3357,15 @@
     "description": "In der Stadt, die nie schläft, kämpfst du dich durch Lärm und Licht zum Ziel",
     "title": "New York",
     "title_en": "New York",
-    "description_en": "In the city that never sleeps, you fight your way through noise and light to reach your goal"
+    "description_en": "In the city that never sleeps, you fight your way through noise and light to reach your goal",
+    "animation": {
+      "animate-wobble": [
+        "🌆"
+      ],
+      "animate-shake": [
+        "🏙️"
+      ]
+    }
   },
   "northpole": {
     "symbols": [
@@ -3044,7 +3387,15 @@
     "description": "Eine frostige Welt am Nordpol, voll von Schnee, Eis und festlicher Stimmung",
     "title": "Nordpol",
     "title_en": "North Pole",
-    "description_en": "A frosty world at the North Pole, full of snow, ice and festive cheer"
+    "description_en": "A frosty world at the North Pole, full of snow, ice and festive cheer",
+    "animation": {
+      "animate-flicker": [
+        "🎁"
+      ],
+      "animate-bounce": [
+        "☃️"
+      ]
+    }
   },
   "office": {
     "symbols": [
@@ -3075,7 +3426,15 @@
     "description": "Eine bürokratische Welt, in der Computer, Akten und Kaffee das Geschäft bestimmen",
     "title": "Büro",
     "title_en": "Office",
-    "description_en": "A bureaucratic world where computers, files and coffee rule the business"
+    "description_en": "A bureaucratic world where computers, files and coffee rule the business",
+    "animation": {
+      "animate-glow": [
+        "👩‍💼"
+      ],
+      "animate-bounce": [
+        "🖥️"
+      ]
+    }
   },
   "officemanagement": {
     "symbols": [
@@ -3115,6 +3474,9 @@
     "animation": {
       "animate-pulse": [
         "🧠"
+      ],
+      "animate-bounce": [
+        "🤯"
       ]
     }
   },
@@ -3143,7 +3505,15 @@
     "description": "Ein Spaziergang durch Boulevards, Croissants und Kunstwerke – finde den Eiffelturm!",
     "title": "Paris",
     "title_en": "Paris",
-    "description_en": "A stroll through boulevards, croissants and works of art – find the Eiffel Tower!"
+    "description_en": "A stroll through boulevards, croissants and works of art – find the Eiffel Tower!",
+    "animation": {
+      "animate-breathe": [
+        "💄"
+      ],
+      "animate-blink": [
+        "☕"
+      ]
+    }
   },
   "party": {
     "symbols": [
@@ -3205,6 +3575,9 @@
     "animation": {
       "animate-wiggle": [
         "🧺"
+      ],
+      "animate-bounce": [
+        "☀️"
       ]
     }
   },
@@ -3234,7 +3607,15 @@
     "description": "Ein feuchter Wald voller Pilze, Moose und kleiner Wesen – finde den magischen Pilz",
     "title": "Pilzwald",
     "title_en": "Mushroom forest",
-    "description_en": "A damp forest full of mushrooms, moss and little creatures – find the magic mushroom"
+    "description_en": "A damp forest full of mushrooms, moss and little creatures – find the magic mushroom",
+    "animation": {
+      "animate-blink": [
+        "🪺"
+      ],
+      "animate-spin": [
+        "🌳"
+      ]
+    }
   },
   "pipeline": {
     "title": "Pipeline",
@@ -3305,6 +3686,9 @@
     "animation": {
       "animate-shake": [
         "☠️"
+      ],
+      "animate-wobble": [
+        "🏝️"
       ]
     }
   },
@@ -3328,7 +3712,15 @@
     "description": "Eine Welt für Adrenalinjunkies mit schnellen Autos und spannenden Rennen",
     "title": "Rennstrecke",
     "title_en": "Racetrack",
-    "description_en": "A world for adrenaline junkies with fast cars and exciting races"
+    "description_en": "A world for adrenaline junkies with fast cars and exciting races",
+    "animation": {
+      "animate-blink": [
+        "🏁"
+      ],
+      "animate-float": [
+        "🚗"
+      ]
+    }
   },
   "radtour": {
     "symbols": [
@@ -3368,6 +3760,9 @@
     "animation": {
       "animate-wiggle": [
         "🧺"
+      ],
+      "animate-shake": [
+        "🍎"
       ]
     }
   },
@@ -3437,7 +3832,15 @@
     "description": "Karneval, Küste, Klang – tanze durch eine Welt voller Farben und Rhythmus",
     "title": "Rio de Janeiro",
     "title_en": "Rio de Janeiro",
-    "description_en": "Carnival, coast, sound – dance through a world full of colour and rhythm"
+    "description_en": "Carnival, coast, sound – dance through a world full of colour and rhythm",
+    "animation": {
+      "animate-pulse": [
+        "🎶"
+      ],
+      "animate-shake": [
+        "🏖️"
+      ]
+    }
   },
   "rom": {
     "symbols": [
@@ -3463,7 +3866,15 @@
     "description": "In der Ewigen Stadt suchst du Pizza zwischen Säulen, Vespa und Vino",
     "title": "Rom",
     "title_en": "Rome",
-    "description_en": "In the Eternal City, you search for pizza among columns, Vespas and vino"
+    "description_en": "In the Eternal City, you search for pizza among columns, Vespas and vino",
+    "animation": {
+      "animate-breathe": [
+        "🍕"
+      ],
+      "animate-flicker": [
+        "🏺"
+      ]
+    }
   },
   "ruhe": {
     "symbols": [
@@ -3523,6 +3934,9 @@
     "animation": {
       "animate-blink": [
         "🔦"
+      ],
+      "animate-wiggle": [
+        "🏺"
       ]
     }
   },
@@ -3551,7 +3965,15 @@
     "description": "Eine heiße, weite Landschaft mit majestätischen Tieren und goldener Sonne",
     "title": "Savanne",
     "title_en": "Savannah",
-    "description_en": "A hot, wide landscape with majestic animals and golden sun"
+    "description_en": "A hot, wide landscape with majestic animals and golden sun",
+    "animation": {
+      "animate-wobble": [
+        "🧍‍♂️"
+      ],
+      "animate-blink": [
+        "🐘"
+      ]
+    }
   },
   "schlaf": {
     "symbols": [
@@ -3583,6 +4005,9 @@
         "🌙",
         "☁️",
         "🪐"
+      ],
+      "animate-bounce": [
+        "🧚"
       ]
     }
   },
@@ -3652,7 +4077,15 @@
       "⛱️"
     ],
     "player": "😎",
-    "target": "🍉"
+    "target": "🍉",
+    "animation": {
+      "animate-blink": [
+        "😎"
+      ],
+      "animate-flicker": [
+        "🩱"
+      ]
+    }
   },
   "spaceOdyssey2001": {
     "symbols": [
@@ -3760,6 +4193,9 @@
       "animate-spin": [
         "⚙️",
         "🔩"
+      ],
+      "animate-glow": [
+        "🛠️"
       ]
     }
   },
@@ -3787,7 +4223,15 @@
     "description": "Als süße Maus suchst du deinen Lieblingskuchen – aber Vorsicht: Naschfallen!",
     "title": "Süßmaus",
     "title_en": "Sweet mouse",
-    "description_en": "As a cute mouse, you search for your favourite cake – but be careful: snack traps!"
+    "description_en": "As a cute mouse, you search for your favourite cake – but be careful: snack traps!",
+    "animation": {
+      "animate-pulse": [
+        "🍰"
+      ],
+      "animate-swing": [
+        "🍓"
+      ]
+    }
   },
   "superhero": {
     "symbols": [
@@ -3821,6 +4265,9 @@
       "animate-pulse": [
         "💥",
         "🛡️"
+      ],
+      "animate-swing": [
+        "🏢"
       ]
     }
   },
@@ -3892,6 +4339,9 @@
     "animation": {
       "animate-shake": [
         "👻"
+      ],
+      "animate-spin": [
+        "😔"
       ]
     }
   },
@@ -4031,7 +4481,15 @@
       "🌽"
     ],
     "player": "🌱",
-    "target": "🥦"
+    "target": "🥦",
+    "animation": {
+      "animate-pulse": [
+        "🥕"
+      ],
+      "animate-wobble": [
+        "🥬"
+      ]
+    }
   },
   "vegetables": {
     "title": "Gemüsewelt",
@@ -4057,7 +4515,15 @@
     ],
     "bottom": [],
     "player": "👨‍🌾",
-    "target": "🥕"
+    "target": "🥕",
+    "animation": {
+      "animate-breathe": [
+        "🧄"
+      ],
+      "animate-flicker": [
+        "🌽"
+      ]
+    }
   },
   "verfuehrung": {
     "symbols": [
@@ -4085,7 +4551,15 @@
     "description": "Eine ästhetisch angehauchte Welt für Erwachsene mit Andeutungen und Spiel mit Sinnlichkeit",
     "title": "Verführung",
     "title_en": "Seduction",
-    "description_en": "An aesthetically inspired world for adults with hints and playful sensuality"
+    "description_en": "An aesthetically inspired world for adults with hints and playful sensuality",
+    "animation": {
+      "animate-bounce": [
+        "💌"
+      ],
+      "animate-flicker": [
+        "🍓"
+      ]
+    }
   },
   "verliebt": {
     "symbols": [
@@ -4112,7 +4586,15 @@
     "description": "Eine Welt voller Herzklopfen, Blickkontakte und zarter Gesten",
     "title": "Verliebt",
     "title_en": "In love",
-    "description_en": "A world full of heartbeats, eye contact and tender gestures"
+    "description_en": "A world full of heartbeats, eye contact and tender gestures",
+    "animation": {
+      "animate-swing": [
+        "👩‍❤️‍👨"
+      ],
+      "animate-float": [
+        "💋"
+      ]
+    }
   },
   "verschwoerung": {
     "title": "Verschwörung",
@@ -4224,6 +4706,9 @@
     "animation": {
       "animate-pulse": [
         "💥"
+      ],
+      "animate-swing": [
+        "🥵"
       ]
     }
   },
@@ -4302,7 +4787,15 @@
     "description": "Eine wasserbasierte Welt mit Ozeanen, Meerestieren und sanften Wellen",
     "title": "Wasserwelt",
     "title_en": "Water world",
-    "description_en": "A water-based world with oceans, sea creatures and gentle waves"
+    "description_en": "A water-based world with oceans, sea creatures and gentle waves",
+    "animation": {
+      "animate-pulse": [
+        "🌊"
+      ],
+      "animate-glow": [
+        "🤽‍♂️"
+      ]
+    }
   },
   "wohnkrise": {
     "title": "Wohnkrise",
@@ -4333,6 +4826,9 @@
     "animation": {
       "animate-wiggle": [
         "📦"
+      ],
+      "animate-glow": [
+        "🏚️"
       ]
     }
   },
@@ -4399,6 +4895,9 @@
     "animation": {
       "animate-pulse": [
         "🧼"
+      ],
+      "animate-wobble": [
+        "📞"
       ]
     }
   },
@@ -4543,7 +5042,15 @@
       "🐾"
     ],
     "player": "👦",
-    "target": "🦁"
+    "target": "🦁",
+    "animation": {
+      "animate-glow": [
+        "🦛"
+      ],
+      "animate-shake": [
+        "🦜"
+      ]
+    }
   },
   "sushibar": {
     "title": "Sushi-Bar",
@@ -4574,7 +5081,15 @@
       "🥢"
     ],
     "player": "🍣",
-    "target": "🍵"
+    "target": "🍵",
+    "animation": {
+      "animate-blink": [
+        "🍶"
+      ],
+      "animate-swing": [
+        "🍚"
+      ]
+    }
   },
   "olympia": {
     "title": "Olympia",
@@ -4612,7 +5127,15 @@
       "🏟️"
     ],
     "player": "🏃‍♀️",
-    "target": "🥇"
+    "target": "🥇",
+    "animation": {
+      "animate-flicker": [
+        "🤼‍♂️"
+      ],
+      "animate-wobble": [
+        "🏅"
+      ]
+    }
   },
   "starfleet": {
     "title": "Sternenflotte",
@@ -4687,6 +5210,14 @@
       "🏟️"
     ],
     "player": "🏃‍♂️",
-    "target": "🏆"
+    "target": "🏆",
+    "animation": {
+      "animate-wiggle": [
+        "🏸"
+      ],
+      "animate-glow": [
+        "🎽"
+      ]
+    }
   }
 }
