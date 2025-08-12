@@ -119,9 +119,10 @@ input[type="radio"]:checked + .world-chip {
 }
 
 /* die beiden Schalter für Animation und Sprache */
+/* Neue Position: Oben rechts */
 .settings-container {
   position: fixed;
-  bottom: 16px;
+  top: 16px;
   right: 16px;
   z-index: 1000;
 }
@@ -139,7 +140,7 @@ input[type="radio"]:checked + .world-chip {
 
 .dropdown {
   position: absolute;
-  bottom: 60px;
+  top: 52px; /* unter dem Icon */
   right: 0;
   background: #1c1c1c;
   border: 1px solid #444;
