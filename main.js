@@ -51,6 +51,11 @@ function setupMaxSymbolsSlider() {
   // Falls cols/rows dynamisch geändert werden, muss updateMax erneut aufgerufen werden!
 }
 
+function updateLangButtonLabel() {
+  document.getElementById('langSwitchBtn').textContent = (lang === 'de') ? '🌐 Sprache: DE' : '🌐 Language: EN';
+}
+
+
 // Swipe-Steuerung für Mobilgeräte
 let touchStartX = null;
 let touchStartY = null;
@@ -942,7 +947,7 @@ async function applyUrlParameters() {
 document.getElementById('langSwitchBtn').addEventListener('click', () => {
     switchLang();
     // Aktualisiere das Label des Buttons:
-    document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
+    updateLangButtonLabel();
 });
 
 // Responsive
@@ -987,7 +992,7 @@ window.addEventListener('load', async ()=>{
     // Sprache wählen
     lang = localStorage.getItem('appLang') || detectLang();
     // Button-Label passend setzen
-    document.getElementById('langSwitchBtn').innerText = (lang === 'de') ? '🌐 EN' : '🌐 DE';
+    updateLangButtonLabel();
     updateUIText();
     
     //populateWorldButtonsGame();
