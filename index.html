@@ -39,9 +39,12 @@
     <input type="range" id="maxSymbolsSlider" min="10" max="100" value="50">
     <span id="maxSymbolsValue">50</span>    
   </div>
-  <div id="floatingControls">
-    <button id="toggleAnimationsBtn" title="Animationen umschalten">✨</button>
-    <button id="langSwitchBtn" title="Sprache wechseln">🌐</button>
+  <div id="settingsMenu" class="settings-container">
+    <button id="settingsToggleBtn" title="Einstellungen">⚙️</button>
+    <div id="settingsDropdown" class="dropdown hidden">
+      <button id="toggleAnimationsBtn">✨ Animationen</button>
+      <button id="langSwitchBtn">🌐 Sprache: DE</button>
+    </div>
   </div>
   <!-- Normale Status-Toasts (unten) -->
   <div id="toast-container" class="toast-container"></div>
