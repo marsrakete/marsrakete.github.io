@@ -14,6 +14,8 @@ const isEnglish = lang === 'en';
 let gameOver = false;
 let animationsEnabled = true;
 
+let monsterX = -1, monsterY = -1;
+
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
 
@@ -514,6 +516,17 @@ function generateRandomWorld() {
       showToast(t('editorApplyFailed'), 'error');
     }
   }
+  const monsterSymbol = w.monster;
+  if (monsterSymbol) {
+    let mx, my;
+    do {
+      mx = Math.floor(Math.random() * cols);
+      my = Math.floor(Math.random() * rows);
+    } while (gameGrid[my][mx] !== ' ');
+    monsterX = mx;
+    monsterY = my;
+    gameGrid[my][mx] = monsterSymbol;
+  }    
 }
 
 function movePlayer(dx,dy) {
@@ -560,6 +573,38 @@ function movePlayer(dx,dy) {
     }
   } else {
       playPowSound(); 
+  }
+  moveMonster();
+}
+
+function moveMonster() {
+  const w = worldData[currentWorld];
+  if (!w.monster) return;
+
+  const dx = Math.sign(playerX - monsterX);
+  const dy = Math.sign(playerY - monsterY);
+
+  const newX = monsterX + dx;
+  const newY = monsterY + dy;
+
+  if (
+    newX >= 0 && newX < cols &&
+    newY >= 0 && newY < rows &&
+    gameGrid[newY][newX] === ' '
+  ) {
+    gameGrid[monsterY][monsterX] = ' ';
+    monsterX = newX;
+    monsterY = newY;
+    gameGrid[monsterY][monsterX] = w.monster;
+  }
+
+  // Prüfen, ob der Spieler gefangen wurde
+  if (monsterX === playerX && monsterY === playerY) {
+    gameOver = true;
+    clearInterval(timerInterval);
+    showDialogToast("Du wurdest vom Monster gefangen! 😱", () => {
+      resetToOriginalGrid();
+    });
   }
 }
 
