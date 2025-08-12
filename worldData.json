@@ -52,8 +52,12 @@
       ],
       "animate-spin": [
         "🎮"
+      ],
+      "animate-blink": [
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "flowers": {
     "symbols": [
@@ -91,8 +95,12 @@
       ],
       "animate-breathe": [
         "🍄"
+      ],
+      "animate-shake": [
+        "😈"
       ]
-    }
+    },
+    "monster": "😈"
   },
   "forest": {
     "symbols": [
@@ -127,8 +135,12 @@
       ],
       "animate-swing": [
         "🍂"
+      ],
+      "animate-pulse": [
+        "☠️"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "airport": {
     "symbols": [
@@ -157,8 +169,12 @@
       ],
       "animate-shake": [
         "🛂"
+      ],
+      "animate-pulse": [
+        "👹"
       ]
-    }
+    },
+    "monster": "👹"
   },
   "alptraum": {
     "title": "Alptraum",
@@ -191,12 +207,14 @@
       "animate-shake": [
         "😱",
         "👻",
-        "☠️"
+        "☠️",
+        "🧛"
       ],
       "animate-blink": [
         "👁️"
       ]
-    }
+    },
+    "monster": "🧛"
   },
   "angst": {
     "symbols": [
@@ -226,12 +244,14 @@
     "animation": {
       "animate-shake": [
         "👻",
-        "☠️"
+        "☠️",
+        "😈"
       ],
       "animate-blink": [
         "👁️"
       ]
-    }
+    },
+    "monster": "😈"
   },
   "apocalypse": {
     "symbols": [
@@ -265,8 +285,12 @@
         "⚠️",
         "☠️",
         "💣"
+      ],
+      "animate-glow": [
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "aquarium": {
     "symbols": [
@@ -301,8 +325,12 @@
       ],
       "animate-swing": [
         "⚓"
+      ],
+      "animate-pulse": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "arcade": {
     "symbols": [
@@ -331,8 +359,12 @@
       ],
       "animate-pulse": [
         "🎰"
+      ],
+      "animate-shake": [
+        "🧛"
       ]
-    }
+    },
+    "monster": "🧛"
   },
   "arktis": {
     "symbols": [
@@ -367,8 +399,12 @@
       ],
       "animate-shake": [
         "🧊"
+      ],
+      "animate-glow": [
+        "🧟"
       ]
-    }
+    },
+    "monster": "🧟"
   },
   "arzt": {
     "symbols": [
@@ -415,8 +451,12 @@
         "🧼",
         "🧬",
         "🧠"
+      ],
+      "animate-shake": [
+        "👻"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "atelier": {
     "symbols": [
@@ -452,8 +492,12 @@
       ],
       "animate-blink": [
         "👚"
+      ],
+      "animate-glow": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "badewelt": {
     "symbols": [
@@ -493,8 +537,12 @@
       ],
       "animate-flicker": [
         "🫧"
+      ],
+      "animate-glow": [
+        "☠️"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "baecker": {
     "title": "Bäcker",
@@ -532,8 +580,12 @@
       ],
       "animate-swing": [
         "🍞"
+      ],
+      "animate-glow": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "baustelle_kinder": {
     "symbols": [
@@ -568,8 +620,12 @@
       ],
       "animate-swing": [
         "🧱"
+      ],
+      "animate-glow": [
+        "👾"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "beachclub": {
     "symbols": [
@@ -612,8 +668,12 @@
       ],
       "animate-blink": [
         "🧴"
+      ],
+      "animate-glow": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "beerenwelt": {
     "symbols": [
@@ -649,8 +709,12 @@
       ],
       "animate-breathe": [
         "🧺"
+      ],
+      "animate-shake": [
+        "👻"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "bergwanderung": {
     "symbols": [
@@ -689,12 +753,14 @@
     "description_en": "An alpine landscape with challenging paths and breathtaking views",
     "animation": {
       "animate-blink": [
-        "🔦"
+        "🔦",
+        "💀"
       ],
       "animate-pulse": [
         "🪨"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "berlin": {
     "symbols": [
@@ -725,7 +791,8 @@
     "description_en": "Between clubs and currywurst - explore the rebellious, creative capital",
     "animation": {
       "animate-glow": [
-        "🌈"
+        "🌈",
+        "👻"
       ],
       "animate-float": [
         "🕊️"
@@ -733,7 +800,8 @@
       "animate-shake": [
         "📢"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "bluetenwelt": {
     "symbols": [
@@ -768,8 +836,12 @@
       ],
       "animate-flicker": [
         "🧚"
+      ],
+      "animate-shake": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "bodyworld": {
     "symbols": [
@@ -807,7 +879,8 @@
       "animate-blink": [
         "👁️"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "callcenter": {
     "title": "Callcenter",
@@ -840,8 +913,12 @@
       ],
       "animate-spin": [
         "🖨️"
+      ],
+      "animate-shake": [
+        "☠️"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "candyland": {
     "symbols": [
@@ -875,8 +952,12 @@
       ],
       "animate-pulse": [
         "🍦"
+      ],
+      "animate-shake": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "cars": {
     "symbols": [
@@ -917,8 +998,12 @@
       ],
       "animate-bounce": [
         "🚜"
+      ],
+      "animate-glow": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "cave": {
     "symbols": [
@@ -950,8 +1035,12 @@
       ],
       "animate-blink": [
         "🔦"
+      ],
+      "animate-glow": [
+        "👾"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "chaoskeller": {
     "title": "Chaoskeller",
@@ -987,8 +1076,12 @@
       ],
       "animate-blink": [
         "🔦"
+      ],
+      "animate-pulse": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "china": {
     "symbols": [
@@ -1021,8 +1114,12 @@
       ],
       "animate-float": [
         "🎐"
+      ],
+      "animate-shake": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "circus": {
     "symbols": [
@@ -1051,8 +1148,12 @@
       ],
       "animate-wobble": [
         "🎪"
+      ],
+      "animate-blink": [
+        "👹"
       ]
-    }
+    },
+    "monster": "👹"
   },
   "cloud": {
     "symbols": [
@@ -1089,8 +1190,12 @@
       ],
       "animate-spin": [
         "🌀"
+      ],
+      "animate-blink": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "coffee": {
     "title": "Kaffeewelt",
@@ -1126,8 +1231,12 @@
       ],
       "animate-flicker": [
         "🍪"
+      ],
+      "animate-shake": [
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "cologne": {
     "symbols": [
@@ -1162,8 +1271,12 @@
       ],
       "animate-blink": [
         "🕍"
+      ],
+      "animate-glow": [
+        "👻"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "concert": {
     "symbols": [
@@ -1188,12 +1301,14 @@
     "description_en": "A concert-related world where music and live performances are the centerpiece",
     "animation": {
       "animate-pulse": [
-        "🎼"
+        "🎼",
+        "☠️"
       ],
       "animate-breathe": [
         "🥁"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "craftsmen": {
     "symbols": [
@@ -1231,8 +1346,12 @@
       ],
       "animate-swing": [
         "🛠️"
+      ],
+      "animate-glow": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "crossword": {
     "symbols": [
@@ -1268,9 +1387,11 @@
         "🧠"
       ],
       "animate-blink": [
-        "💡"
+        "💡",
+        "👾"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "cyberpunk": {
     "symbols": [
@@ -1296,7 +1417,8 @@
     "animation": {
       "animate-glow": [
         "🔮",
-        "💡"
+        "💡",
+        "☠️"
       ],
       "animate-float": [
         "🛸"
@@ -1304,7 +1426,8 @@
       "animate-blink": [
         "💡"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "desert": {
     "symbols": [
@@ -1332,9 +1455,11 @@
         "🌵"
       ],
       "animate-shake": [
-        "🦂"
+        "🦂",
+        "😈"
       ]
-    }
+    },
+    "monster": "😈"
   },
   "disco": {
     "symbols": [
@@ -1365,9 +1490,11 @@
         "💥"
       ],
       "animate-blink": [
-        "🪩"
+        "🪩",
+        "💀"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "dyson_sphaere": {
     "symbols": [
@@ -1418,7 +1545,8 @@
       "animate-spin": [
         "⚙️"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "eiszeit": {
     "symbols": [
@@ -1451,8 +1579,12 @@
       ],
       "animate-breathe": [
         "🍒"
+      ],
+      "animate-blink": [
+        "🧛"
       ]
-    }
+    },
+    "monster": "🧛"
   },
   "essenschlacht": {
     "title": "Essenschlacht",
@@ -1487,8 +1619,12 @@
       ],
       "animate-swing": [
         "🎂"
+      ],
+      "animate-shake": [
+        "👾"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "fabrik": {
     "title": "Fabrik",
@@ -1522,13 +1658,15 @@
         "📦"
       ],
       "animate-shake": [
-        "💣"
+        "💣",
+        "☠️"
       ],
       "animate-spin": [
         "⚙️",
         "🔩"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "fairytale": {
     "symbols": [
@@ -1565,8 +1703,12 @@
       ],
       "animate-float": [
         "🌙"
+      ],
+      "animate-blink": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "fotografie": {
     "symbols": [
@@ -1609,8 +1751,12 @@
       ],
       "animate-blink": [
         "🎥"
+      ],
+      "animate-pulse": [
+        "👾"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "freezer": {
     "symbols": [
@@ -1643,8 +1789,12 @@
       ],
       "animate-float": [
         "🥶"
+      ],
+      "animate-blink": [
+        "💀"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "frieden": {
     "title": "Frieden",
@@ -1680,8 +1830,12 @@
       ],
       "animate-float": [
         "🕊️"
+      ],
+      "animate-shake": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "frogger": {
     "symbols": [
@@ -1717,8 +1871,12 @@
       ],
       "animate-flicker": [
         "🐍"
+      ],
+      "animate-shake": [
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "fruchtplanet": {
     "symbols": [
@@ -1757,8 +1915,12 @@
       ],
       "animate-pulse": [
         "🍒"
+      ],
+      "animate-blink": [
+        "👹"
       ]
-    }
+    },
+    "monster": "👹"
   },
   "fruehstueck": {
     "symbols": [
@@ -1792,8 +1954,12 @@
       ],
       "animate-flicker": [
         "🫐"
+      ],
+      "animate-shake": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "fruits": {
     "symbols": [
@@ -1829,8 +1995,12 @@
       ],
       "animate-wobble": [
         "🍏"
+      ],
+      "animate-blink": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "galaxyMuseum": {
     "symbols": [
@@ -1868,8 +2038,12 @@
         "🌌",
         "🪐",
         "🪐"
+      ],
+      "animate-shake": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "garden": {
     "symbols": [
@@ -1903,8 +2077,12 @@
       ],
       "animate-glow": [
         "🪵"
+      ],
+      "animate-shake": [
+        "🧛"
       ]
-    }
+    },
+    "monster": "🧛"
   },
   "gebirgsfluss": {
     "symbols": [
@@ -1940,8 +2118,12 @@
       ],
       "animate-shake": [
         "🦅"
+      ],
+      "animate-glow": [
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "geborgenheit": {
     "symbols": [
@@ -1978,8 +2160,12 @@
       ],
       "animate-float": [
         "☁️"
+      ],
+      "animate-pulse": [
+        "👻"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "gemuesebeet": {
     "symbols": [
@@ -2012,9 +2198,11 @@
         "🫘"
       ],
       "animate-glow": [
-        "🥕"
+        "🥕",
+        "💀"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "germany": {
     "symbols": [
@@ -2049,8 +2237,12 @@
       ],
       "animate-pulse": [
         "🏰"
+      ],
+      "animate-shake": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "gesundheit": {
     "title": "Gesundheit",
@@ -2080,13 +2272,15 @@
     "target": "💊",
     "animation": {
       "animate-glow": [
-        "🧪"
+        "🧪",
+        "🕷️"
       ],
       "animate-pulse": [
         "🧼",
         "🧠"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "ghost": {
     "symbols": [
@@ -2115,8 +2309,12 @@
       ],
       "animate-bounce": [
         "👻"
+      ],
+      "animate-blink": [
+        "👻"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "ghosting": {
     "title": "Ghosting",
@@ -2149,8 +2347,12 @@
       ],
       "animate-bounce": [
         "👻"
+      ],
+      "animate-blink": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "greenFuture": {
     "symbols": [
@@ -2184,8 +2386,12 @@
       ],
       "animate-float": [
         "🕊️"
+      ],
+      "animate-shake": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "heatwave": {
     "symbols": [
@@ -2217,9 +2423,11 @@
         "🌬️"
       ],
       "animate-pulse": [
-        "🌡️"
+        "🌡️",
+        "🧟"
       ]
-    }
+    },
+    "monster": "🧟"
   },
   "heliport": {
     "symbols": [
@@ -2254,9 +2462,11 @@
         "🔦"
       ],
       "animate-shake": [
-        "🗼"
+        "🗼",
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "herzhaft": {
     "symbols": [
@@ -2285,12 +2495,14 @@
     "description_en": "A land full of hearty treats – find your snack of the day!",
     "animation": {
       "animate-glow": [
-        "🌮"
+        "🌮",
+        "🕷️"
       ],
       "animate-bounce": [
         "🍔"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "huehnerchaos": {
     "title": "Hühnerchaos",
@@ -2324,8 +2536,12 @@
       ],
       "animate-swing": [
         "🍳"
+      ],
+      "animate-glow": [
+        "👾"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "human": {
     "symbols": [
@@ -2362,8 +2578,12 @@
       ],
       "animate-pulse": [
         "👵"
+      ],
+      "animate-blink": [
+        "☠️"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "indien": {
     "symbols": [
@@ -2396,8 +2616,12 @@
       ],
       "animate-pulse": [
         "🎉"
+      ],
+      "animate-shake": [
+        "👻"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "insects": {
     "symbols": [
@@ -2435,8 +2659,12 @@
       ],
       "animate-wiggle": [
         "🕷️"
+      ],
+      "animate-blink": [
+        "💀"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "japan": {
     "symbols": [
@@ -2469,8 +2697,12 @@
       ],
       "animate-blink": [
         "🍜"
+      ],
+      "animate-pulse": [
+        "👾"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "jungle": {
     "symbols": [
@@ -2495,12 +2727,14 @@
     "description_en": "A jungle-like world full of exotic animals and lush vegetation",
     "animation": {
       "animate-blink": [
-        "🍌"
+        "🍌",
+        "🦈"
       ],
       "animate-pulse": [
         "🦁"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "kairo": {
     "symbols": [
@@ -2529,12 +2763,14 @@
     "description_en": "Dusty alleys, whispers of pyramids and a treasure deep in the sand",
     "animation": {
       "animate-pulse": [
-        "🌞"
+        "🌞",
+        "👹"
       ],
       "animate-flicker": [
         "🔱"
       ]
-    }
+    },
+    "monster": "👹"
   },
   "kart": {
     "symbols": [
@@ -2571,8 +2807,12 @@
       ],
       "animate-spin": [
         "🎮"
+      ],
+      "animate-pulse": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "katastrophe": {
     "title": "Katastrophe",
@@ -2604,12 +2844,14 @@
     "animation": {
       "animate-shake": [
         "💣",
-        "📢"
+        "📢",
+        "💀"
       ],
       "animate-flicker": [
         "💣"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "kindergarten": {
     "symbols": [
@@ -2644,9 +2886,11 @@
         "📚"
       ],
       "animate-glow": [
-        "🧑‍🏫"
+        "🧑‍🏫",
+        "☠️"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "kirmes": {
     "title": "Kirmes",
@@ -2681,9 +2925,11 @@
         "🤹‍♂️"
       ],
       "animate-blink": [
-        "🪩"
+        "🪩",
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "kitchen": {
     "symbols": [
@@ -2720,8 +2966,12 @@
       ],
       "animate-flicker": [
         "🍳"
+      ],
+      "animate-shake": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "klimawandel": {
     "title": "Klimawandel",
@@ -2756,8 +3006,12 @@
       ],
       "animate-swing": [
         "🌊"
+      ],
+      "animate-pulse": [
+        "👹"
       ]
-    }
+    },
+    "monster": "👹"
   },
   "krieg": {
     "title": "Krieg",
@@ -2786,7 +3040,8 @@
     "target": "🛡️",
     "animation": {
       "animate-pulse": [
-        "🛡️"
+        "🛡️",
+        "🧌"
       ],
       "animate-shake": [
         "💣"
@@ -2794,7 +3049,8 @@
       "animate-spin": [
         "🪙"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "labor": {
     "symbols": [
@@ -2839,9 +3095,11 @@
         "💥"
       ],
       "animate-shake": [
-        "⚠️"
+        "⚠️",
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "laenderreise": {
     "title": "Länderreise",
@@ -2881,8 +3139,12 @@
       ],
       "animate-breathe": [
         "✈️"
+      ],
+      "animate-glow": [
+        "🧛"
       ]
-    }
+    },
+    "monster": "🧛"
   },
   "lava": {
     "symbols": [
@@ -2911,8 +3173,12 @@
       ],
       "animate-bounce": [
         "💀"
+      ],
+      "animate-shake": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "library": {
     "symbols": [
@@ -2946,8 +3212,12 @@
       ],
       "animate-wiggle": [
         "📗"
+      ],
+      "animate-glow": [
+        "👹"
       ]
-    }
+    },
+    "monster": "👹"
   },
   "liebeswelt": {
     "symbols": [
@@ -2983,8 +3253,12 @@
       ],
       "animate-breathe": [
         "💑"
+      ],
+      "animate-pulse": [
+        "💀"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "logistics": {
     "symbols": [
@@ -3018,8 +3292,12 @@
       ],
       "animate-flicker": [
         "🚚"
+      ],
+      "animate-glow": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "magicHome": {
     "symbols": [
@@ -3059,9 +3337,11 @@
       ],
       "animate-pulse": [
         "🧽",
-        "🧼"
+        "🧼",
+        "☠️"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "magnetfeld": {
     "symbols": [
@@ -3106,14 +3386,16 @@
         "⚠️"
       ],
       "animate-blink": [
-        "💡"
+        "💡",
+        "🦈"
       ],
       "animate-spin": [
         "🔩",
         "⚙️",
         "⚙️"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "market": {
     "symbols": [
@@ -3151,8 +3433,12 @@
       "animate-spin": [
         "🪙",
         "🪙"
+      ],
+      "animate-shake": [
+        "😈"
       ]
-    }
+    },
+    "monster": "😈"
   },
   "medieval": {
     "symbols": [
@@ -3181,8 +3467,12 @@
       ],
       "animate-float": [
         "🗡️"
+      ],
+      "animate-glow": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "mexico": {
     "symbols": [
@@ -3213,12 +3503,14 @@
     "description_en": "A colourful world of mariachis, street festivals and spicy food",
     "animation": {
       "animate-pulse": [
-        "🎉"
+        "🎉",
+        "👻"
       ],
       "animate-float": [
         "🧣"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "mindscape": {
     "symbols": [
@@ -3256,12 +3548,14 @@
         "🧠"
       ],
       "animate-blink": [
-        "💡"
+        "💡",
+        "💀"
       ],
       "animate-spin": [
         "🌀"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "muellhalde": {
     "title": "Müllhalde",
@@ -3292,12 +3586,14 @@
     "target": "♻️",
     "animation": {
       "animate-pulse": [
-        "🧼"
+        "🧼",
+        "🕷️"
       ],
       "animate-float": [
         "🪵"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "neanderthal": {
     "symbols": [
@@ -3326,12 +3622,14 @@
     "description_en": "A primeval world inspired by the Neanderthal era",
     "animation": {
       "animate-pulse": [
-        "🧬"
+        "🧬",
+        "👾"
       ],
       "animate-shake": [
         "🦕"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "newyork": {
     "symbols": [
@@ -3364,8 +3662,12 @@
       ],
       "animate-shake": [
         "🏙️"
+      ],
+      "animate-pulse": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "northpole": {
     "symbols": [
@@ -3394,8 +3696,12 @@
       ],
       "animate-bounce": [
         "☃️"
+      ],
+      "animate-shake": [
+        "🧛"
       ]
-    }
+    },
+    "monster": "🧛"
   },
   "office": {
     "symbols": [
@@ -3433,8 +3739,12 @@
       ],
       "animate-bounce": [
         "🖥️"
+      ],
+      "animate-shake": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "officemanagement": {
     "symbols": [
@@ -3477,8 +3787,12 @@
       ],
       "animate-bounce": [
         "🤯"
+      ],
+      "animate-glow": [
+        "🧛"
       ]
-    }
+    },
+    "monster": "🧛"
   },
   "paris": {
     "symbols": [
@@ -3511,9 +3825,11 @@
         "💄"
       ],
       "animate-blink": [
-        "☕"
+        "☕",
+        "☠️"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "party": {
     "symbols": [
@@ -3543,8 +3859,12 @@
       ],
       "animate-float": [
         "🎈"
+      ],
+      "animate-glow": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "picknick": {
     "title": "Picknick",
@@ -3578,8 +3898,12 @@
       ],
       "animate-bounce": [
         "☀️"
+      ],
+      "animate-glow": [
+        "🧟"
       ]
-    }
+    },
+    "monster": "🧟"
   },
   "pilzwald": {
     "symbols": [
@@ -3614,8 +3938,12 @@
       ],
       "animate-spin": [
         "🌳"
+      ],
+      "animate-glow": [
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "pipeline": {
     "title": "Pipeline",
@@ -3654,13 +3982,15 @@
         "🧪"
       ],
       "animate-pulse": [
-        "💥"
+        "💥",
+        "👻"
       ],
       "animate-spin": [
         "⚙️",
         "🔩"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "pirate": {
     "symbols": [
@@ -3685,12 +4015,14 @@
     "description_en": "A pirate-like world where adventures on the high seas and treasure hunts are part of everyday life",
     "animation": {
       "animate-shake": [
-        "☠️"
+        "☠️",
+        "🧌"
       ],
       "animate-wobble": [
         "🏝️"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "racing": {
     "symbols": [
@@ -3715,12 +4047,14 @@
     "description_en": "A world for adrenaline junkies with fast cars and exciting races",
     "animation": {
       "animate-blink": [
-        "🏁"
+        "🏁",
+        "🕷️"
       ],
       "animate-float": [
         "🚗"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "radtour": {
     "symbols": [
@@ -3763,8 +4097,12 @@
       ],
       "animate-shake": [
         "🍎"
+      ],
+      "animate-pulse": [
+        "💀"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "regentag": {
     "title": "Regentag",
@@ -3806,8 +4144,12 @@
       ],
       "animate-spin": [
         "🌀"
+      ],
+      "animate-blink": [
+        "☠️"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "rio": {
     "symbols": [
@@ -3839,8 +4181,12 @@
       ],
       "animate-shake": [
         "🏖️"
+      ],
+      "animate-glow": [
+        "😈"
       ]
-    }
+    },
+    "monster": "😈"
   },
   "rom": {
     "symbols": [
@@ -3873,8 +4219,12 @@
       ],
       "animate-flicker": [
         "🏺"
+      ],
+      "animate-shake": [
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "ruhe": {
     "symbols": [
@@ -3907,8 +4257,12 @@
       ],
       "animate-float": [
         "☁️"
+      ],
+      "animate-blink": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "ruins": {
     "symbols": [
@@ -3933,12 +4287,14 @@
     "description_en": "A ruined world where ancient temples and dilapidated buildings create a mysterious atmosphere",
     "animation": {
       "animate-blink": [
-        "🔦"
+        "🔦",
+        "🧟"
       ],
       "animate-wiggle": [
         "🏺"
       ]
-    }
+    },
+    "monster": "🧟"
   },
   "savanne": {
     "symbols": [
@@ -3971,9 +4327,11 @@
         "🧍‍♂️"
       ],
       "animate-blink": [
-        "🐘"
+        "🐘",
+        "🧟"
       ]
-    }
+    },
+    "monster": "🧟"
   },
   "schlaf": {
     "symbols": [
@@ -4008,8 +4366,12 @@
       ],
       "animate-bounce": [
         "🧚"
+      ],
+      "animate-pulse": [
+        "👻"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "sockenwelt": {
     "title": "Sockenwelt",
@@ -4043,12 +4405,14 @@
       ],
       "animate-pulse": [
         "🧼",
-        "🧽"
+        "🧽",
+        "👹"
       ],
       "animate-spin": [
         "🌀"
       ]
-    }
+    },
+    "monster": "👹"
   },
   "sonnentag": {
     "title": "Sonnentag",
@@ -4080,12 +4444,14 @@
     "target": "🍉",
     "animation": {
       "animate-blink": [
-        "😎"
+        "😎",
+        "🧛"
       ],
       "animate-flicker": [
         "🩱"
       ]
-    }
+    },
+    "monster": "🧛"
   },
   "spaceOdyssey2001": {
     "symbols": [
@@ -4123,8 +4489,12 @@
         "🪐",
         "🌌",
         "🪐"
+      ],
+      "animate-pulse": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "spaceTaxi": {
     "symbols": [
@@ -4165,8 +4535,12 @@
         "🪐",
         "🛸",
         "🌌"
+      ],
+      "animate-shake": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "steampunk": {
     "symbols": [
@@ -4195,9 +4569,11 @@
         "🔩"
       ],
       "animate-glow": [
-        "🛠️"
+        "🛠️",
+        "😈"
       ]
-    }
+    },
+    "monster": "😈"
   },
   "suessmaus": {
     "symbols": [
@@ -4230,8 +4606,12 @@
       ],
       "animate-swing": [
         "🍓"
+      ],
+      "animate-glow": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "superhero": {
     "symbols": [
@@ -4268,8 +4648,12 @@
       ],
       "animate-swing": [
         "🏢"
+      ],
+      "animate-glow": [
+        "👻"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "traumwelt": {
     "symbols": [
@@ -4301,7 +4685,8 @@
     "animation": {
       "animate-glow": [
         "✨",
-        "🌈"
+        "🌈",
+        "👾"
       ],
       "animate-float": [
         "🌙",
@@ -4309,7 +4694,8 @@
         "☁️",
         "☁️"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "traurigkeit": {
     "symbols": [
@@ -4342,8 +4728,12 @@
       ],
       "animate-spin": [
         "😔"
+      ],
+      "animate-glow": [
+        "👻"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "tvshow": {
     "title": "TV-Show",
@@ -4380,8 +4770,12 @@
       ],
       "animate-spin": [
         "🎮"
+      ],
+      "animate-pulse": [
+        "💀"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "ueberforderung": {
     "symbols": [
@@ -4416,8 +4810,12 @@
         "⚠️",
         "💣",
         "📢"
+      ],
+      "animate-glow": [
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "uno": {
     "title": "UNO",
@@ -4452,9 +4850,11 @@
         "🕊️"
       ],
       "animate-shake": [
-        "📢"
+        "📢",
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "veganland": {
     "title": "Veganland",
@@ -4488,8 +4888,12 @@
       ],
       "animate-wobble": [
         "🥬"
+      ],
+      "animate-shake": [
+        "😈"
       ]
-    }
+    },
+    "monster": "😈"
   },
   "vegetables": {
     "title": "Gemüsewelt",
@@ -4522,8 +4926,12 @@
       ],
       "animate-flicker": [
         "🌽"
+      ],
+      "animate-blink": [
+        "🧟"
       ]
-    }
+    },
+    "monster": "🧟"
   },
   "verfuehrung": {
     "symbols": [
@@ -4558,8 +4966,12 @@
       ],
       "animate-flicker": [
         "🍓"
+      ],
+      "animate-glow": [
+        "☠️"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "verliebt": {
     "symbols": [
@@ -4593,8 +5005,12 @@
       ],
       "animate-float": [
         "💋"
+      ],
+      "animate-glow": [
+        "🧠"
       ]
-    }
+    },
+    "monster": "🧠"
   },
   "verschwoerung": {
     "title": "Verschwörung",
@@ -4624,7 +5040,8 @@
     "animation": {
       "animate-pulse": [
         "🧠",
-        "🧬"
+        "🧬",
+        "🧌"
       ],
       "animate-float": [
         "🛸"
@@ -4632,7 +5049,8 @@
       "animate-blink": [
         "👁️"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "vogelflug": {
     "symbols": [
@@ -4679,8 +5097,12 @@
         "🌬️",
         "🕊️",
         "🕊️"
+      ],
+      "animate-shake": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "volcano": {
     "symbols": [
@@ -4709,8 +5131,12 @@
       ],
       "animate-swing": [
         "🥵"
+      ],
+      "animate-glow": [
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "waldfruehling": {
     "symbols": [
@@ -4741,12 +5167,14 @@
     "description_en": "the forest awakens – hop through flowers and butterflies to the first spring flower",
     "animation": {
       "animate-glow": [
-        "🌈"
+        "🌈",
+        "👻"
       ],
       "animate-float": [
         "🕊️"
       ]
-    }
+    },
+    "monster": "👻"
   },
   "water": {
     "symbols": [
@@ -4793,9 +5221,11 @@
         "🌊"
       ],
       "animate-glow": [
-        "🤽‍♂️"
+        "🤽‍♂️",
+        "🕷️"
       ]
-    }
+    },
+    "monster": "🕷️"
   },
   "wohnkrise": {
     "title": "Wohnkrise",
@@ -4829,8 +5259,12 @@
       ],
       "animate-glow": [
         "🏚️"
+      ],
+      "animate-pulse": [
+        "💀"
       ]
-    }
+    },
+    "monster": "💀"
   },
   "wut": {
     "symbols": [
@@ -4862,9 +5296,11 @@
         "💥"
       ],
       "animate-shake": [
-        "💣"
+        "💣",
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "zahnarzt": {
     "title": "Zahnarzt",
@@ -4898,8 +5334,12 @@
       ],
       "animate-wobble": [
         "📞"
+      ],
+      "animate-shake": [
+        "🦈"
       ]
-    }
+    },
+    "monster": "🦈"
   },
   "zeitreise": {
     "title": "Zeitreise",
@@ -4936,8 +5376,12 @@
       ],
       "animate-spin": [
         "⚙️"
+      ],
+      "animate-shake": [
+        "👹"
       ]
-    }
+    },
+    "monster": "👹"
   },
   "zivilschutz": {
     "title": "Zivilschutz",
@@ -4970,8 +5414,12 @@
       ],
       "animate-shake": [
         "📢"
+      ],
+      "animate-blink": [
+        "👾"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "zombieTown": {
     "symbols": [
@@ -5006,8 +5454,12 @@
       ],
       "animate-spin": [
         "🪙"
+      ],
+      "animate-blink": [
+        "☠️"
       ]
-    }
+    },
+    "monster": "☠️"
   },
   "zoo": {
     "title": "Zoo",
@@ -5045,12 +5497,14 @@
     "target": "🦁",
     "animation": {
       "animate-glow": [
-        "🦛"
+        "🦛",
+        "🧟"
       ],
       "animate-shake": [
         "🦜"
       ]
-    }
+    },
+    "monster": "🧟"
   },
   "sushibar": {
     "title": "Sushi-Bar",
@@ -5088,8 +5542,12 @@
       ],
       "animate-swing": [
         "🍚"
+      ],
+      "animate-glow": [
+        "🧌"
       ]
-    }
+    },
+    "monster": "🧌"
   },
   "olympia": {
     "title": "Olympia",
@@ -5134,8 +5592,12 @@
       ],
       "animate-wobble": [
         "🏅"
+      ],
+      "animate-blink": [
+        "👾"
       ]
-    }
+    },
+    "monster": "👾"
   },
   "starfleet": {
     "title": "Sternenflotte",
@@ -5175,8 +5637,12 @@
         "🪐",
         "🌌",
         "🌌"
+      ],
+      "animate-blink": [
+        "🧟"
       ]
-    }
+    },
+    "monster": "🧟"
   },
   "sportarena": {
     "title": "Sportarena",
@@ -5216,8 +5682,10 @@
         "🏸"
       ],
       "animate-glow": [
-        "🎽"
+        "🎽",
+        "🧟"
       ]
-    }
+    },
+    "monster": "🧟"
   }
 }
