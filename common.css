@@ -119,17 +119,14 @@ input[type="radio"]:checked + .world-chip {
 }
 
 /* die beiden Schalter für Animation und Sprache */
-#floatingControls {
+.settings-container {
   position: fixed;
   bottom: 16px;
   right: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   z-index: 1000;
 }
 
-#floatingControls button {
+#settingsToggleBtn {
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -138,11 +135,38 @@ input[type="radio"]:checked + .world-chip {
   border: 1px solid #444;
   color: white;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
-#floatingControls button:hover {
-  background: #444;
+.dropdown {
+  position: absolute;
+  bottom: 60px;
+  right: 0;
+  background: #1c1c1c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 0 8px #000a;
+}
+
+.dropdown button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 0.9em;
+  cursor: pointer;
+  text-align: left;
+  padding: 6px 10px;
+}
+
+.dropdown button:hover {
+  background: #333;
+}
+
+.hidden {
+  display: none;
 }
 
 
