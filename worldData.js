@@ -30,9 +30,6 @@ async function loadWorldData() {
       throw new Error("Kein JSON oder fetch fehlgeschlagen");
     }
     worldData = await response.json();
-    // Emoji-Fallback nach erfolgreichem Laden anwenden
-    Object.values(worldData).forEach(w => applyEmojiFallback(w));
-
     console.log("Daten per fetch geladen.");
   } catch (err) {
     console.warn("Fetch fehlgeschlagen, nutze Fallback-Daten:", err);
@@ -43,7 +40,48 @@ async function loadWorldData() {
 }
 
 function validateWorldData(data) {
+  const incompatibleEmojis = {
+    "🧌": "Unicode 14.0",
+    "🫛": "Unicode 14.0",
+    "🫧": "Unicode 13.0",
+    "🪸": "Unicode 14.0",
+    "🪷": "Unicode 14.0",
+    "🫠": "Unicode 14.0",
+    "🫨": "Unicode 15.0",
+    "🪻": "Unicode 15.0",
+    "🪼": "Unicode 15.0",
+    "🪮": "Unicode 13.0",
+    "🪵": "Unicode 13.0",
+    "🛗": "Unicode 13.0",
+    "🪦": "Unicode 13.0",
+    "🪤": "Unicode 13.0",
+    "🪜": "Unicode 13.0",
+    "🪛": "Unicode 13.0",
+    "🪠": "Unicode 13.0",
+    "🩴": "Unicode 13.0",
+    "🩲": "Unicode 12.0",
+    "🪺": "Unicode 15.0"
+  };
+
   const issues = [];
+
+  for (const [key, world] of Object.entries(data)) {
+    const all = new Set();
+    const duplicates = new Set();
+    const sections = ["symbols", "rare", "bottom"];
+
+    for (const sec of sections) {
+      if (!Array.isArray(world[sec])) continue;
+      for (const sym of world[sec]) {
+        if (all.has(sym)) duplicates.add(sym);
+        all.add(sym);
+
+        if (incompatibleEmojis[sym]) {
+          issues.push(`🚫 ${key}: Symbol '${sym}' in ${sec} ist evtl. inkompatibel (${incompatibleEmojis[sym]})`);
+        }
+      }
+    }
+  }
 
   for (const [key, world] of Object.entries(data)) {
     const all = new Set();
@@ -85,50 +123,5 @@ function validateWorldData(data) {
     console.warn("⚠️ Symbolprüfung abgeschlossen. Probleme gefunden:\n" + issues.join('\n'));
   } else {
     console.log("✅ Symbolprüfung: keine Konflikte gefunden.");
-  }
-}
-
-// Emoji-Kompatibilität prüfen und ersetzen (Canvas-Methode mit Cache)
-const emojiSupportCache = {};
-
-function isEmojiSupportedCached(emoji) {
-  if (emoji in emojiSupportCache) return emojiSupportCache[emoji];
-
-  const canvas = document.createElement('canvas');
-  canvas.width = canvas.height = 32;
-  const ctx = canvas.getContext('2d');
-
-  ctx.textBaseline = 'top';
-  ctx.font = '32px Segoe UI Emoji, Apple Color Emoji, Noto Color Emoji, sans-serif';
-  ctx.clearRect(0, 0, 32, 32);
-  ctx.fillText(emoji, 0, 0);
-
-  const pixels = ctx.getImageData(0, 0, 32, 32).data;
-
-  let visiblePixels = 0;
-  for (let i = 0; i < pixels.length; i += 4) {
-    if (pixels[i + 3] > 0) visiblePixels++;
-  }
-
-  const supported = visiblePixels > 0;
-  emojiSupportCache[emoji] = supported;
-  return supported;
-}
-
-function applyEmojiFallback(world, fallback = "□") {
-  for (const field of ["symbols", "rare", "bottom"]) {
-    if (Array.isArray(world[field])) {
-      world[field] = world[field].map(sym =>
-        isEmojiSupportedCached(sym) ? sym : fallback
-      );
-    }
-  }
-
-  for (const key of ["player", "target", "monster"]) {
-    if (typeof world[key] === "string") {
-      if (!isEmojiSupportedCached(world[key])) {
-        world[key] = fallback;
-      }
-    }
   }
 }
