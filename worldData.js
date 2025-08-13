@@ -81,6 +81,7 @@ function validateWorldData(data) {
         }
       }
     }
+  }
 
   for (const [key, world] of Object.entries(data)) {
     const all = new Set();
