@@ -39,7 +39,6 @@ async function loadWorldData() {
   return worldData;
 }
 
-
 function validateWorldData(data) {
   const incompatibleEmojis = {
     "🧌": "Unicode 14.0",
@@ -83,26 +82,33 @@ function validateWorldData(data) {
       }
     }
 
-    // Spieler- und Ziel-Symbol prüfen
-    const coreSymbols = ["player", "target", "monster"];
-    for (const symField of coreSymbols) {
-      const sym = world[symField];
-      if (sym) {
-        if (all.has(sym)) {
-          issues.push(`⚠️  ${key}: ${symField}-Symbol '${sym}' ist mehrfach vergeben`);
-        }
-        if (incompatibleEmojis[sym]) {
-          issues.push(`🚫 ${key}: Symbol '${sym}' in ${symField} ist evtl. inkompatibel (${incompatibleEmojis[sym]})`);
-        }
-      } else {
-        issues.push(`❌ ${key}: Symbol '${symField}' fehlt`);
+  for (const [key, world] of Object.entries(data)) {
+    const all = new Set();
+    const duplicates = new Set();
+    //const sections = ['symbols', 'rare', 'bottom'];
+    const sections = ['symbols'];
+
+    // Sammle alle Symbole
+    for (const sec of sections) {
+      if (!Array.isArray(world[sec])) continue;
+      for (const sym of world[sec]) {
+        if (all.has(sym)) duplicates.add(sym);
+        all.add(sym);
       }
     }
 
+    // Prüfe auf Player/Target-Kollision
+    if (duplicates.has(world.player)) {
+      issues.push(`⚠️  ${key}: Player-Symbol "${world.player}" ist mehrfach vergeben`);
+    }
+    if (duplicates.has(world.target)) {
+      issues.push(`⚠️  ${key}: Target-Symbol "${world.target}" ist mehrfach vergeben`);
+    }
     if (world.player === world.target) {
-      issues.push(`❌ ${key}: Player und Target haben dasselbe Symbol '${world.player}'`);
+      issues.push(`❌ ${key}: Player und Target haben dasselbe Symbol "${world.player}"`);
     }
 
+    // Warnung bei fehlender Beschreibung
     if (!world.description || !world.title) {
       issues.push(`ℹ️  ${key}: Beschreibung oder Titel fehlt`);
     }
@@ -118,4 +124,3 @@ function validateWorldData(data) {
     console.log("✅ Symbolprüfung: keine Konflikte gefunden.");
   }
 }
-
