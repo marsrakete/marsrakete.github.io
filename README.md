@@ -1,4 +1,3 @@
-
 # 🌌 World Generator
 
 A browser-based world generator for exploring, playing, and editing random emoji worlds. Whether galaxies, flower fields, or nightmares – a single click creates a unique scenery. Ideal for creative exploration, accessibility (ALT text), and playful experiments.
@@ -42,22 +41,6 @@ npx serve .
 
 ---
 
-
-```bash
-# Clone the repo
-git clone https://github.com/your-user/worldgenerator.git
-cd worldgenerator
-
-# Open in browser
-open index.html   # macOS
-# or:
-start index.html  # Windows
-```
-
-> Works fully **offline** – no internet required.
-
----
-
 ## 📦 Project Structure
 
 | File              | Purpose                                                             |
@@ -87,23 +70,16 @@ Extend the file `worldData.json` like this:
     "description": "A simple test world.",
     "title": "Test World",
     "title_en": "Test World",
-    "description_en": "A simple test world."
+    "description_en": "A simple test world.",
+    "animation": {
+      "animate-glow": ["⭐️"],
+      "animate-float": ["🪐"]
+    }
   }
 }
 ```
 
-
-💡 You can optionally add animations like this:
-
-```json
-"animation": {
-  "animate-glow": ["⭐️"],
-  "animate-float": ["🪐"]
-}
-```
-
-Available animations: `animate-glow`, `animate-float`, `animate-pulse`, `animate-spin`, `animate-wiggle`, `animate-shake`, `animate-blink`
-
+Available animations: `animate-glow`, `animate-float`, `animate-pulse`, `animate-spin`, `animate-wiggle`, `animate-shake`, `animate-blink`, `animate-bounce`, `animate-wobble`, `animate-flicker`, `animate-swing`, `animate-breathe`
 
 Check the browser console for validation:  
 `✅ Symbol check: no conflicts found.`
@@ -118,10 +94,34 @@ Contributions are welcome:
 2. Add your changes.
 3. Submit a pull request.
 
-Make sure your JSON is valid and worlds have unique names.
+Please ensure your JSON is valid and worlds have unique names.
 
 ---
 
 ## 🔒 License
 
 Licensed under the [Apache License 2.0](LICENSE).
+
+---
+
+## 🧪 Validation with `validateWorldData()`
+
+To check your emoji world definitions for issues or compatibility, use the built-in JavaScript function `validateWorldData(worldData)`.
+
+### 🔍 What does it check?
+
+- duplicate symbols in a world (`symbols`, `rare`, `bottom`)
+- conflicts between `player`, `target`, `monster`
+- missing or invalid entries (e.g. empty titles or invalid symbols)
+- emoji compatibility: warns about Unicode symbols that may not appear correctly under **Windows 10**
+
+### 🖥️ How to use it in the browser console
+
+1. Open the game in a browser
+2. Press **F12** to open Developer Tools → Console tab
+3. Type:
+```js
+validateWorldData(worldData);
+```
+
+The console will display warnings and notes about any problems found – including symbols that might not be displayed on some systems.
