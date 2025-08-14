@@ -1029,6 +1029,34 @@ document.addEventListener('click', function(event) {
   }
 });
 
+// Animationen 
+function createOffGridComet(symbol = "☄️", rowPercent = 40, duration = 14000) {
+  const overlay = document.getElementById("cometOverlay");
+  if (!overlay) return;
+
+  const comet = document.createElement("div");
+  comet.className = "comet-fx";
+  comet.textContent = symbol;
+  comet.style.top = `${rowPercent}%`;
+  comet.style.animationDuration = `${duration}ms`;
+
+  overlay.appendChild(comet);
+  setTimeout(() => comet.remove(), duration);
+}
+
+function launchOffGridComets(world) {
+  const symbols = world?.animation?.["animate-offgrid"];
+  if (!Array.isArray(symbols)) return;
+
+  for (const symbol of symbols) {
+    const delay = 10000 + Math.random() * 10000;
+    setInterval(() => {
+      const row = Math.floor(Math.random() * 60) + 10; // Zwischen 10–70%
+      createOffGridComet(symbol, row, 12000);
+    }, delay);
+  }
+}
+
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 window.addEventListener('load', async ()=>{
     await loadWorldData();
@@ -1059,5 +1087,6 @@ window.addEventListener('load', async ()=>{
 
     await applyUrlParameters(); 
     animationsEnabled = localStorage.getItem('animationsEnabled') !== 'false'; // Standard: true
+    launchOffGridComets(worldData);
 });
 
