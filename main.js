@@ -1014,6 +1014,9 @@ document.getElementById('toggleAnimationsBtn').addEventListener('click', () => {
   localStorage.setItem('animationsEnabled', animationsEnabled);
   updateAnimationToggleLabel();
   renderGame(); // sofortige Wirkung
+  clearCometIntervals();
+  clearOffGridComets();
+  if (animationsEnabled) launchOffGridComets();
 });
 
 function updateAnimationToggleLabel() {
@@ -1060,6 +1063,8 @@ function clearOffGridComets() {
 }
 
 function launchOffGridComets() {
+  if (!animationsEnabled) return;
+
   const w = worldData[currentWorld];
   const symbols = w?.rare;
   if (!Array.isArray(symbols) || symbols.length === 0) return;
@@ -1067,6 +1072,7 @@ function launchOffGridComets() {
   for (const symbol of symbols) {
     const delay = 10000 + Math.random() * 10000;
     const id = setInterval(() => {
+      if (!animationsEnabled) return; // Laufzeitprüfung
       const row = Math.floor(Math.random() * 60) + 10;
       createOffGridComet(symbol, row, 12000);
     }, delay);
@@ -1108,6 +1114,6 @@ window.addEventListener('load', async ()=>{
     animationsEnabled = localStorage.getItem('animationsEnabled') !== 'false'; // Standard: true
     clearOffGridComets(); 
     clearCometIntervals();
-    launchOffGridComets();
+    if (animationsEnabled) launchOffGridComets();
 });
 
