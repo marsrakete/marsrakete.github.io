@@ -420,7 +420,6 @@ function renderGame() {
           break;
         }
       }
-      launchOffGridComets(w);
     }
   }));
 }
@@ -528,6 +527,8 @@ function generateRandomWorld() {
     monsterY = my;
     gameGrid[my][mx] = monsterSymbol;
   }    
+  clearOffGridComets();
+  launchOffGridComets(currentWorld); 
 }
 
 function movePlayer(dx,dy) {
@@ -830,6 +831,7 @@ function populateWorldButtonsEditor() {
       updatePlayerTargetInfo();
       populateSymbolPalette();
       generateRandomWorld();
+      launchOffGridComets(currentWorld);
     });
 
     label.appendChild(input);
@@ -1045,6 +1047,11 @@ function createOffGridComet(symbol = "☄️", rowPercent = 40, duration = 14000
   setTimeout(() => comet.remove(), duration);
 }
 
+function clearOffGridComets() {
+  const overlay = document.getElementById("cometOverlay");
+  if (overlay) overlay.innerHTML = "";
+}
+
 function launchOffGridComets(world) {
   const symbols = world?.animation?.["animate-offgrid"];
   if (!Array.isArray(symbols)) return;
@@ -1089,6 +1096,7 @@ window.addEventListener('load', async ()=>{
 
     await applyUrlParameters(); 
     animationsEnabled = localStorage.getItem('animationsEnabled') !== 'false'; // Standard: true
+    clearOffGridComets();
     launchOffGridComets(worldData);
 });
 
