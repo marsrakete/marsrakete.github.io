@@ -300,7 +300,7 @@ input[type="radio"]:checked + .world-chip {
 
 @keyframes comet-fly {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-4ch);
     opacity: 0;
   }
   5% {
@@ -310,7 +310,7 @@ input[type="radio"]:checked + .world-chip {
     opacity: 1;
   }
   100% {
-    transform: translateX(100vw);
+    transform: translateX(60ch); /* maximal 30 Zellen x 2ch */
     opacity: 0;
   }
 }
