@@ -13,6 +13,7 @@ const supportedLangs = ['de', 'en'];
 const isEnglish = lang === 'en';
 let gameOver = false;
 let animationsEnabled = true;
+let cometIntervals = [];
 
 let monsterX = -1, monsterY = -1;
 
@@ -526,9 +527,10 @@ function generateRandomWorld() {
     monsterX = mx;
     monsterY = my;
     gameGrid[my][mx] = monsterSymbol;
-  }    
-  clearOffGridComets();
-  launchOffGridComets(); 
+  } 
+  clearOffGridComets(); 
+  clearCometIntervals();
+  launchOffGridComets();
 }
 
 function movePlayer(dx,dy) {
@@ -1032,7 +1034,12 @@ document.addEventListener('click', function(event) {
   }
 });
 
-// Animationen 
+// Animationen der Cometen
+function clearCometIntervals() {
+  cometIntervals.forEach(id => clearInterval(id));
+  cometIntervals = [];
+}
+
 function createOffGridComet(symbol = "☄️", rowPercent = 40, duration = 14000) {
   const overlay = document.getElementById("cometOverlay");
   if (!overlay) return;
@@ -1059,11 +1066,12 @@ function launchOffGridComets() {
 
   for (const symbol of symbols) {
     const delay = 10000 + Math.random() * 10000;
-
-    setInterval(() => {
-      const row = Math.floor(Math.random() * 60) + 10; // 10–70 %
+    const id = setInterval(() => {
+      const row = Math.floor(Math.random() * 60) + 10;
       createOffGridComet(symbol, row, 12000);
     }, delay);
+
+    cometIntervals.push(id);
   }
 }
 
@@ -1098,7 +1106,8 @@ window.addEventListener('load', async ()=>{
 
     await applyUrlParameters(); 
     animationsEnabled = localStorage.getItem('animationsEnabled') !== 'false'; // Standard: true
-    clearOffGridComets();
+    clearOffGridComets(); 
+    clearCometIntervals();
     launchOffGridComets();
 });
 
