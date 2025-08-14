@@ -1054,13 +1054,14 @@ function clearOffGridComets() {
 
 function launchOffGridComets() {
   const w = worldData[currentWorld];
-  const symbols = w?.animation?.["animate-offgrid"];
-  if (!Array.isArray(symbols)) return;
+  const symbols = w?.rare;
+  if (!Array.isArray(symbols) || symbols.length === 0) return;
 
   for (const symbol of symbols) {
     const delay = 10000 + Math.random() * 10000;
+
     setInterval(() => {
-      const row = Math.floor(Math.random() * 60) + 10; // Zwischen 10–70%
+      const row = Math.floor(Math.random() * 60) + 10; // 10–70 %
       createOffGridComet(symbol, row, 12000);
     }, delay);
   }
