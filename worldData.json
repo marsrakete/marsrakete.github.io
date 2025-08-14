@@ -55,7 +55,8 @@
       ],
       "animate-blink": [
         "🧌"
-      ]
+      ],
+      "animate-comet": ["☄️"]
     },
     "monster": "🧌"
   },
@@ -4492,7 +4493,8 @@
       ],
       "animate-pulse": [
         "🕷️"
-      ]
+      ],
+      "animate-comet": ["☄️"]
     },
     "monster": "🕷️"
   },
