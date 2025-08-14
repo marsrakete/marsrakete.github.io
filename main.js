@@ -528,7 +528,7 @@ function generateRandomWorld() {
     gameGrid[my][mx] = monsterSymbol;
   }    
   clearOffGridComets();
-  launchOffGridComets(currentWorld); 
+  launchOffGridComets(); 
 }
 
 function movePlayer(dx,dy) {
@@ -831,7 +831,7 @@ function populateWorldButtonsEditor() {
       updatePlayerTargetInfo();
       populateSymbolPalette();
       generateRandomWorld();
-      launchOffGridComets(currentWorld);
+      launchOffGridComets();
     });
 
     label.appendChild(input);
@@ -1052,8 +1052,9 @@ function clearOffGridComets() {
   if (overlay) overlay.innerHTML = "";
 }
 
-function launchOffGridComets(world) {
-  const symbols = world?.animation?.["animate-offgrid"];
+function launchOffGridComets() {
+  const w = worldData[currentWorld];
+  const symbols = w?.animation?.["animate-offgrid"];
   if (!Array.isArray(symbols)) return;
 
   for (const symbol of symbols) {
@@ -1097,6 +1098,6 @@ window.addEventListener('load', async ()=>{
     await applyUrlParameters(); 
     animationsEnabled = localStorage.getItem('animationsEnabled') !== 'false'; // Standard: true
     clearOffGridComets();
-    launchOffGridComets(worldData);
+    launchOffGridComets();
 });
 
