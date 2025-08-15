@@ -195,7 +195,7 @@ function updateUIText() {
   
 }
 // Statusmeldungen
-function showToast(message, type = 'info', duration = 3000) {
+function showToast(message, type = 'info', duration = 6000) {
   const container = document.getElementById('toast-container');
   const toast = document.createElement('div');
   toast.className = 'toast ' + type;
