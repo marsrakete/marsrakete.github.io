@@ -5725,7 +5725,16 @@
 		"description": "Eine Welt voller Tacos, Burritos und scharfer Aromen.",
 		"title": "Taco",
 		"description_en": "A world of tacos, burritos, and spicy flavors.",
-		"title_en": "Taco"
+		"title_en": "Taco",
+		"animation": {
+			"animate-wiggle": [
+				"🪅"
+			],
+			"animate-glow": [
+				"🥑",
+				"🫘"
+			]
+		}
 	},
 	"sushi": {
 		"symbols": [
@@ -5755,7 +5764,17 @@
 		"description": "Eine elegante Sushi-Welt mit Reis, Fisch und Sojasauce.",
 		"title": "Sushi",
 		"description_en": "A delicate sushi world full of rice, fish and soy sauce.",
-		"title_en": "Sushi"
+		"title_en": "Sushi",
+		"animation": {
+			"animate-wiggle": [
+				"🐟",
+				"🦐"
+			],
+			"animate-glow": [
+				"🍣",
+				"🥢"
+			]
+		}
 	},
 	"pizza": {
 		"symbols": [
@@ -5782,6 +5801,17 @@
 		"description": "Eine Welt voller heißer Pizza und knuspriger Beläge.",
 		"title": "Pizza",
 		"description_en": "A world of hot pizza and crispy toppings.",
-		"title_en": "Pizza"
+		"title_en": "Pizza",
+		"animation": {
+			"animate-flicker": [
+				"🧅"
+			],
+			"animate-wobble": [
+				"🍕"
+			],
+			"animate-blink": [
+				"🍽️"
+			]
+		}
 	}
 }
