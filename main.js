@@ -915,82 +915,35 @@ function supportsClipboardImage() {
 }
 
 // Übergabe als Parameter
-async function applyUrlParameters() {
-  const params = new URLSearchParams(window.location.search);
-
-  const world = params.get("world");
-  const gridParam = params.get("grid");
-  const hashParam = params.get("hash");
-
-  // Exploit-Schutz: Länge prüfen
-  if (world && world.length > 32) {
-    showToast(t('alertInvalidWorld'), 'error');
-    return;
-  }
-  if (gridParam && gridParam.length > 2000) {
-    showToast(t('alertGridTooLong'), 'error');
-    return;
-  }
-  if (hashParam && hashParam.length > 128) {
-    showToast(t('alertInvalidHash'), 'error');
-    return;
+function applyGridFromPermalink(res) {
+  // optional: Weltname aus dem Link übernehmen
+  if (res.worldName && worldData[res.worldName]) {
+    currentWorld = res.worldName;
   }
 
-  // Existenzprüfung
-  if (!world || !gridParam || !hashParam) {
-    return;
-  }
+  // Grid anwenden
+  const w = worldData[currentWorld];
+  gameGrid = res.grid.map(row => row.slice());
+  originalGrid = gameGrid.map(row => row.slice());
 
-  const gridDecoded = decodeURIComponent(gridParam.replace(/\+/g, " "));
-  const calc = await calcHash(world + ':' + gridDecoded);
-  if (calc !== hashParam) {
-    showToast(t('alertInvalidChecksum'), 'error');
-    return;
-  }
-
-  if (world && worldData[world]) {
-    currentWorld = world;
-  }
-
-  const gridText = gridDecoded;
-  const lines = gridText.split(/\r?\n/);
-
-  const segmenter = new Intl.Segmenter("de", { granularity: "grapheme" });
-
-  const isValidGrid = lines.length === rows &&
-    lines.every(line => Array.from(segmenter.segment(line)).length === cols);
-
-  if (isValidGrid) {
-    const parsedGrid = lines.map(line =>
-      Array.from(segmenter.segment(line), s => s.segment)
-    );
-
-    gameGrid = parsedGrid;
-    originalGrid = parsedGrid.map(row => [...row]);
-
-    const w = worldData[currentWorld];
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < cols; x++) {
-        if (gameGrid[y][x] === w.player) {
-          playerX = x;
-          playerY = y;
-        }
-      }
+  // Player-Position suchen
+  playerX = 0; playerY = 0;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (gameGrid[y][x] === w.player) { playerX = x; playerY = y; }
     }
-
-    initialTargets = gameGrid.flat().filter(c => c === w.target).length;
-    foundCount = 0;
-
-    renderGame();
-    updateGameInfo();
-    updatePlayerTargetInfo();
-    populateWorldGallery();
-    document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
-    document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
-
-  } else {
-    showToast(t('alertInvalidGrid'), 'error');
   }
+
+  initialTargets = gameGrid.flat().filter(c => c === w.target).length;
+  foundCount = 0;
+  timerStart = null;
+
+  renderGame();
+  updateGameInfo();
+  updatePlayerTargetInfo();
+  populateWorldGallery();
+  document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
+  document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
 }
 
 // Sprachumschaltung
@@ -1110,7 +1063,16 @@ window.addEventListener('load', async ()=>{
     setupMaxSymbolsSlider();
     updateMaxSymbolsSlider();
 
-    await applyUrlParameters(); 
+    const loaded = loadGridFromPermalink();
+    if (loaded && !loaded.error) {
+      applyGridFromPermalink(loaded);
+      showToast("✅ Permalink geladen & geprüft", "success", 4000);
+    } else if (loaded && loaded.error) {
+      showToast("❌ " + loaded.error, "error", 5000);
+      console.warn(loaded.error);
+    } else {
+      console.log("ℹ️ Kein Permalink vorhanden");
+    }
     animationsEnabled = localStorage.getItem('animationsEnabled') !== 'false'; // Standard: true
     clearOffGridComets(); 
     clearCometIntervals();
