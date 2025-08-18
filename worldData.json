@@ -5551,6 +5551,10 @@
 			],
 			"animate-glow": [
 				"🧌"
+			],
+			"animate-wiggle": [
+				"🐟",
+				"🦐"
 			]
 		},
 		"monster": "🧌"
@@ -5734,47 +5738,8 @@
 				"🥑",
 				"🫘"
 			]
-		}
-	},
-	"sushi": {
-		"symbols": [
-			"🍣",
-			"🍱",
-			"🍙",
-			"🍚",
-			"🍘",
-			"🥢",
-			"🫚",
-			"🧂"
-		],
-		"rare": [
-			"🦐",
-			"🐟",
-			"🧋",
-			"🍵",
-			"🥬"
-		],
-		"bottom": [
-			"🥢",
-			"🪷",
-			"🌊"
-		],
-		"player": "🍥",
-		"target": "🍣",
-		"description": "Eine elegante Sushi-Welt mit Reis, Fisch und Sojasauce.",
-		"title": "Sushi",
-		"description_en": "A delicate sushi world full of rice, fish and soy sauce.",
-		"title_en": "Sushi",
-		"animation": {
-			"animate-wiggle": [
-				"🐟",
-				"🦐"
-			],
-			"animate-glow": [
-				"🍣",
-				"🥢"
-			]
-		}
+		},
+		"monster": "🧌"
 	},
 	"pizza": {
 		"symbols": [
@@ -5812,6 +5777,7 @@
 			"animate-blink": [
 				"🍽️"
 			]
-		}
+		},
+		"monster": "🧌"
 	}
 }
