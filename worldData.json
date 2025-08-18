@@ -5694,100 +5694,94 @@
 		},
 		"monster": "🧟"
 	},
-	"taco_world": {
-		"taco": {
-			"symbols": [
-				"🌮",
-				"🌯",
-				"🫔",
-				"🥑",
-				"🌶️",
-				"🧅",
-				"🫘",
-				"🫒",
-				"🧄",
-				"🍅",
-				"🫙"
-			],
-			"rare": [
-				"🧀",
-				"🥙",
-				"🥩",
-				"🍗",
-				"🫓"
-			],
-			"bottom": [
-				"🥤",
-				"🍺",
-				"🪅"
-			],
-			"player": "🧑‍🍳",
-			"target": "🌮",
-			"description": "Eine Welt voller Tacos, Burritos und scharfer Aromen.",
-			"title": "Taco",
-			"description_en": "A world of tacos, burritos, and spicy flavors.",
-			"title_en": "Taco"
-		}
+	"taco": {
+		"symbols": [
+			"🌮",
+			"🌯",
+			"🫔",
+			"🥑",
+			"🌶️",
+			"🧅",
+			"🫘",
+			"🫒",
+			"🧄",
+			"🍅",
+			"🫙"
+		],
+		"rare": [
+			"🧀",
+			"🥙",
+			"🥩",
+			"🍗",
+			"🫓"
+		],
+		"bottom": [
+			"🥤",
+			"🍺",
+			"🪅"
+		],
+		"player": "🧑‍🍳",
+		"target": "🌮",
+		"description": "Eine Welt voller Tacos, Burritos und scharfer Aromen.",
+		"title": "Taco",
+		"description_en": "A world of tacos, burritos, and spicy flavors.",
+		"title_en": "Taco"
 	},
-	"sushi_world": {
-		"sushi": {
-			"symbols": [
-				"🍣",
-				"🍱",
-				"🍙",
-				"🍚",
-				"🍘",
-				"🥢",
-				"🫚",
-				"🧂"
-			],
-			"rare": [
-				"🦐",
-				"🐟",
-				"🧋",
-				"🍵",
-				"🥬"
-			],
-			"bottom": [
-				"🥢",
-				"🪷",
-				"🌊"
-			],
-			"player": "🍥",
-			"target": "🍣",
-			"description": "Eine elegante Sushi-Welt mit Reis, Fisch und Sojasauce.",
-			"title": "Sushi",
-			"description_en": "A delicate sushi world full of rice, fish and soy sauce.",
-			"title_en": "Sushi"
-		}
+	"sushi": {
+		"symbols": [
+			"🍣",
+			"🍱",
+			"🍙",
+			"🍚",
+			"🍘",
+			"🥢",
+			"🫚",
+			"🧂"
+		],
+		"rare": [
+			"🦐",
+			"🐟",
+			"🧋",
+			"🍵",
+			"🥬"
+		],
+		"bottom": [
+			"🥢",
+			"🪷",
+			"🌊"
+		],
+		"player": "🍥",
+		"target": "🍣",
+		"description": "Eine elegante Sushi-Welt mit Reis, Fisch und Sojasauce.",
+		"title": "Sushi",
+		"description_en": "A delicate sushi world full of rice, fish and soy sauce.",
+		"title_en": "Sushi"
 	},
-	"pizza_world": {
-		"pizza": {
-			"symbols": [
-				"🍕",
-				"🧅",
-				"🍄",
-				"🫑",
-				"🍅",
-				"🧄"
-			],
-			"rare": [
-				"🥓",
-				"🍍",
-				"🌶️",
-				"🧀"
-			],
-			"bottom": [
-				"🥤",
-				"🍻",
-				"🍽️"
-			],
-			"player": "🛵",
-			"target": "🍕",
-			"description": "Eine Welt voller heißer Pizza und knuspriger Beläge.",
-			"title": "Pizza",
-			"description_en": "A world of hot pizza and crispy toppings.",
-			"title_en": "Pizza"
-		}
+	"pizza": {
+		"symbols": [
+			"🍕",
+			"🧅",
+			"🍄",
+			"🫑",
+			"🍅",
+			"🧄"
+		],
+		"rare": [
+			"🥓",
+			"🍍",
+			"🌶️",
+			"🧀"
+		],
+		"bottom": [
+			"🥤",
+			"🍻",
+			"🍽️"
+		],
+		"player": "🛵",
+		"target": "🍕",
+		"description": "Eine Welt voller heißer Pizza und knuspriger Beläge.",
+		"title": "Pizza",
+		"description_en": "A world of hot pizza and crispy toppings.",
+		"title_en": "Pizza"
 	}
 }
