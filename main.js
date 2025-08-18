@@ -1076,12 +1076,12 @@ window.addEventListener('load', async ()=>{
     const loaded = loadGridFromPermalink();
     if (loaded && !loaded.error) {
       applyGridFromPermalink(loaded);
-      showToast("✅ Permalink geladen & geprüft", "success", 4000);
+      showToast(t('alertPermalinkLoadedOk'), 'success', 4000);
     } else if (loaded && loaded.error) {
-      showToast("❌ " + loaded.error, "error", 5000);
+      showToast("❌ " + t('alertPermalinkError') + " " + loaded.error, 'error', 5000);
       console.warn(loaded.error);
     } else {
-      console.log("ℹ️ Kein Permalink vorhanden");
+      console.log("ℹ️ " + t('alertNoPermalink'));
     }
     animationsEnabled = localStorage.getItem('animationsEnabled') !== 'false'; // Standard: true
     clearOffGridComets(); 
