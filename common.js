@@ -342,24 +342,39 @@ function makePermalinkFromGrid(grid, meta = {}) {
  */
 function loadGridFromPermalink() {
   const q = new URLSearchParams(location.search);
-  const v = q.get("v"); if (!v) return null;
+  const v = q.get("v");
+  if (!v) return null;
 
   const rows = parseInt(q.get("r"), 10);
   const cols = parseInt(q.get("c"), 10);
-  const pJson = __ub64(q.get("p") || "");
+  const pRaw = q.get("p");
   const data = q.get("d") || "";
   const h = q.get("h") || "";
 
-  const payload = canonicalPayload(v, rows, cols, pJson, data);
-  const expected = fnv1aHex(payload);
-
-  if (expected !== h) {
-    console.warn("❌ Permalink hash mismatch", { expected, got: h });
-    if (typeof showToast === "function") showToast("Permalink ungültig (Hash)", "error", 5000);
-    return null; // or return object with a flag if you prefer soft-fail
+  if (!pRaw || !data || !h) {
+    return { error: "Permalink unvollständig oder beschädigt" };
   }
 
-  const palette = JSON.parse(pJson);
+  let pJson;
+  try {
+    pJson = __ub64(pRaw);
+  } catch (e) {
+    return { error: "Permalink-Palette ungültig" };
+  }
+
+  const payload = canonicalPayload(v, rows, cols, pJson, data);
+  const expected = fnv1aHex(payload);
+  if (expected !== h) {
+    return { error: "Permalink ungültig (Hash mismatch)" };
+  }
+
+  let palette;
+  try {
+    palette = JSON.parse(pJson);
+  } catch (e) {
+    return { error: "Permalink-Palette nicht lesbar" };
+  }
+
   const grid = indicesDecode(data, palette, rows, cols);
   const worldName = q.get("w") || null;
 
