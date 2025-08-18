@@ -684,13 +684,23 @@ document.getElementById('copyGameText').addEventListener('click', () => {
     .catch(err => showToast(t('copyUrlFailed').replace('{error}', err), 'error'));
 });
 
-document.getElementById('generateGamePermalink').addEventListener('click', async () => {
+document.getElementById('generateGamePermalink').addEventListener('click', () => {
   try {
-    const url = await transferToPage(currentWorld, gameGrid);
-    await navigator.clipboard.writeText(window.location.origin + url);
-    showToast(t('alertPermalinkCopied'), 'success');
+    // Permalink mit Hash erzeugen
+    const url = makePermalinkFromGrid(gameGrid, { world: currentWorld });
+
+    // In die Zwischenablage kopieren
+    navigator.clipboard.writeText(url).then(() => {
+      showToast(t('alertPermalinkCopied'), 'success', 4000);
+    }).catch(err => {
+      showToast(t('alertErrorOnPermalinkCopy') + " " + err, 'error', 6000);
+      console.error("Permalink copy error:", err);
+    });
+
   } catch (err) {
-    showToast(t('alertErrorOnCopy') + err, 'error');
+    // Fehler schon beim Erzeugen (z. B. Palette zu groß)
+    showToast(t('alertErrorOnPermalinkCreate') + " " + err, 'error', 6000);
+    console.error("Permalink creation error:", err);
   }
 });
 
