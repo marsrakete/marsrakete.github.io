@@ -48,7 +48,11 @@
     "tooltipToggleAnimations": "Animationen ein- oder ausschalten",
     "tooltipToggleAnimations": "Animationen ein- oder ausschalten",
     "tooltipEnableAnimations": "Animationen aktivieren",
-    "tooltipDisableAnimations": "Animationen deaktivieren"
+    "tooltipDisableAnimations": "Animationen deaktivieren",
+    "alertPermalinkCopied": "Permalink wurde kopiert!",
+    "alertErrorOnPermalinkCopy": "Fehler beim Kopieren des Permalinks:",
+    "alertErrorOnPermalinkCreate": "Fehler beim Erzeugen des Permalinks:"
+
   },
   "en": {
     "gameTitle": "World Generator",
@@ -99,6 +103,10 @@
     "tooltipToggleAnimations": "Toggle animations on or off",
     "tooltipToggleAnimations": "Toggle animations on or off",
     "tooltipEnableAnimations": "Enable animations",
-    "tooltipDisableAnimations": "Disable animations"
+    "tooltipDisableAnimations": "Disable animations",
+    "alertPermalinkCopied": "Permalink copied!",
+    "alertErrorOnPermalinkCopy": "Error copying permalink:",
+    "alertErrorOnPermalinkCreate": "Error creating permalink:"
+
   }
 }
