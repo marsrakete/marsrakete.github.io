@@ -64,33 +64,7 @@ function renderGameGrid(gridData, gridCols, gridRows) {
   }
 }
 
-// String zu Uint8Array umwandeln
-function str2ab(str) {
-  const buf = new Uint8Array(str.length);
-  for (let i = 0; i < str.length; ++i) buf[i] = str.charCodeAt(i);
-  return buf;
-}
 
-// SHA-256-Hash als Hex-String berechnen (async!)
-async function calcHash(str) {
-  const hashBuffer = await crypto.subtle.digest('SHA-256', str2ab(str));
-  return Array.from(new Uint8Array(hashBuffer))
-    .map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-// Funktion zur Parameterübergabe mit URLSearchParams
-async function transferToPage(worldKey, gridData) {
-  const params = new URLSearchParams();
-  params.set("world", worldKey);
-  const gridText = gridData.map(row => row.join("")).join("\n");
-  params.set("grid", gridText);
-
-  // Hash berechnen (Welt + Grid)
-  const hash = await calcHash(worldKey + ':' + gridText);
-  params.set("hash", hash);
-
-  return window.location.pathname + "?" + params.toString();
-}
 
 
 // Sprachlogik
@@ -264,4 +238,147 @@ function showDialogToast(message, onConfirm) {
     if (typeof onConfirm === 'function') onConfirm();
   });
   dialog.querySelector('.toast-ok-btn').focus();
+}
+
+
+// Permalink-Funktionen
+
+/**
+ * Permalink encoding with embedded palette + indices and FNV-1a integrity hash.
+ * Drop this file after your existing code (e.g., include in index.html after main.js/common.js),
+ * or paste functions into your permalink module.
+ */
+
+// URL-safe alphabet for indices (0..63)
+const __PLINK_ALPH = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+// Base64 (URL-safe) helpers for palette JSON
+const __b64u = s => btoa(unescape(encodeURIComponent(s)));
+const __ub64 = s => decodeURIComponent(escape(atob(s)));
+
+// -------- FNV-1a (32-bit) --------
+function fnv1aHex(str) {
+  let h = 0x811c9dc5 >>> 0;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return ("00000000" + (h >>> 0).toString(16)).slice(-8);
+}
+
+// Canonical payload to hash (keep this EXACTLY stable across versions)
+function canonicalPayload(v, rows, cols, paletteJson, dataStr) {
+  return `${v}|${rows}|${cols}|${paletteJson}|${dataStr}`;
+}
+
+// Build palette from a 2D grid in first-seen order
+function gridPalette(grid) {
+  const seen = new Set(), pal = [];
+  for (const row of grid) for (const cell of row) {
+    if (!seen.has(cell)) { seen.add(cell); pal.push(cell); }
+  }
+  return pal;
+}
+
+// Encode grid into 1 char per cell using palette indices (palette must have <= 64 symbols)
+function indicesEncode(grid, palette) {
+  const map = new Map(palette.map((sym, i) => [sym, i]));
+  let out = "";
+  for (const row of grid) for (const cell of row) {
+    const idx = map.get(cell);
+    if (idx == null) throw new Error("Symbol not in palette");
+    if (idx > 63) throw new Error("Palette > 64 symbols (unsupported in 1-char mode)");
+    out += __PLINK_ALPH[idx];
+  }
+  return out;
+}
+
+// Decode 1-char-per-cell payload back to grid
+function indicesDecode(str, palette, rows, cols) {
+  const inv = new Map(__PLINK_ALPH.split("").map((c, i) => [c, i]));
+  const grid = [];
+  let k = 0;
+  for (let r = 0; r < rows; r++) {
+    const row = [];
+    for (let c = 0; c < cols; c++) {
+      const ch = str[k++];
+      const idx = inv.get(ch);
+      row.push(palette[idx]);
+    }
+    grid.push(row);
+  }
+  return grid;
+}
+
+/**
+ * Create permalink for the given grid (2D array of symbols).
+ * meta.world is optional and added as &w=...
+ */
+function makePermalinkFromGrid(grid, meta = {}) {
+  const rows = grid.length, cols = grid[0]?.length ?? 0;
+  const palette = gridPalette(grid);
+  const data = indicesEncode(grid, palette);
+
+  const pJson = JSON.stringify(palette);                  // raw JSON for hashing
+  const payload = canonicalPayload("1", rows, cols, pJson, data);
+  const h = fnv1aHex(payload);                            // 8 hex chars
+
+  const p = __b64u(pJson);                                // Base64URL for link
+
+  const params = new URLSearchParams({
+    v: "1",
+    r: String(rows),
+    c: String(cols),
+    p,
+    d: data,
+    h,
+    ...(meta.world ? { w: meta.world } : {})
+  });
+  return `${location.origin}${location.pathname}?${params.toString()}`;
+}
+
+/**
+ * Load grid from current location (permalink). Returns null if no permalink
+ * or if hash check fails. Call early on page load.
+ */
+function loadGridFromPermalink() {
+  const q = new URLSearchParams(location.search);
+  const v = q.get("v"); if (!v) return null;
+
+  const rows = parseInt(q.get("r"), 10);
+  const cols = parseInt(q.get("c"), 10);
+  const pJson = __ub64(q.get("p") || "");
+  const data = q.get("d") || "";
+  const h = q.get("h") || "";
+
+  const payload = canonicalPayload(v, rows, cols, pJson, data);
+  const expected = fnv1aHex(payload);
+
+  if (expected !== h) {
+    console.warn("❌ Permalink hash mismatch", { expected, got: h });
+    if (typeof showToast === "function") showToast("Permalink ungültig (Hash)", "error", 5000);
+    return null; // or return object with a flag if you prefer soft-fail
+  }
+
+  const palette = JSON.parse(pJson);
+  const grid = indicesDecode(data, palette, rows, cols);
+  const worldName = q.get("w") || null;
+
+  return { grid, rows, cols, palette, worldName, v };
+}
+
+/* ---------- Optional glue helpers (adapt to your code) ---------- */
+
+// Example: integrate with your existing grid and currentWorld variables
+// Call this where you previously built your permalink.
+function generateGamePermalink_FNV(grid, currentWorld) {
+  return makePermalinkFromGrid(grid, { world: currentWorld });
+}
+
+// Example: on load
+function tryLoadPermalink_FNV(applyGridCallback) {
+  const res = loadGridFromPermalink();
+  if (!res) return false;
+  // applyGridCallback should draw the grid into your game state
+  applyGridCallback(res.grid, { rows: res.rows, cols: res.cols, worldName: res.worldName });
+  return true;
 }
