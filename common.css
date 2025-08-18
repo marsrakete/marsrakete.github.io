@@ -313,7 +313,7 @@ input[type="radio"]:checked + .world-chip {
   font-size: 2.2em;
   top: 40%; /* vertikale Position – wird per JS dynamisch gesetzt */
   left: -4ch;
-  animation: comet-fly 14s linear;
+  animation: comet-fly-full 14s linear;
   filter: drop-shadow(0 0 6px #fff) brightness(1.5);
   white-space: nowrap;
 }
@@ -331,6 +331,23 @@ input[type="radio"]:checked + .world-chip {
   }
   100% {
     transform: translateX(60ch); /* Begrenzung auf Grid-Breite (30 Zellen à 2ch) */
+    opacity: 0;
+  }
+}
+
+@keyframes comet-fly-full {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw); /* gesamte Bildschirmbreite */
     opacity: 0;
   }
 }
