@@ -1104,7 +1104,7 @@ window.addEventListener('load', async ()=>{
     if (supportsClipboardImage()) {
         document.getElementById('copyEditorGraphic').style.display = 'inline-block';
         document.getElementById('copyGameGraphic').style.display = 'inline-block';
-        document.getElementById('swipeHint').innerText = t('hint_mouse'); 
+        document.getElementById('swipeHint').innerText = t('hintMouse'); 
     }
     updateZoom(document.getElementById("zoomSlider").value);
     setupMaxSymbolsSlider();
