@@ -50,8 +50,10 @@
     "tooltipEnableAnimations": "Animationen aktivieren",
     "tooltipDisableAnimations": "Animationen deaktivieren",
     "alertErrorOnPermalinkCopy": "Fehler beim Kopieren des Permalinks:",
-    "alertErrorOnPermalinkCreate": "Fehler beim Erzeugen des Permalinks:"
-
+    "alertErrorOnPermalinkCreate": "Fehler beim Erzeugen des Permalinks:",
+    "alertPermalinkLoadedOk": "Permalink geladen & geprüft",
+    "alertPermalinkError": "Fehler beim Laden des Permalinks:",
+    "alertNoPermalink": "Kein Permalink vorhanden"
   },
   "en": {
     "gameTitle": "World Generator",
@@ -104,7 +106,9 @@
     "tooltipEnableAnimations": "Enable animations",
     "tooltipDisableAnimations": "Disable animations",
     "alertErrorOnPermalinkCopy": "Error copying permalink:",
-    "alertErrorOnPermalinkCreate": "Error creating permalink:"
-
+    "alertErrorOnPermalinkCreate": "Error creating permalink:",
+    "alertPermalinkLoadedOk": "Permalink loaded & verified",
+    "alertPermalinkError": "Error loading permalink:",
+    "alertNoPermalink": "No permalink present"
   }
 }
