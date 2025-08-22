@@ -166,7 +166,9 @@ function updateUIText() {
     if (document.getElementById('toggleAnimationsBtn')) {
       updateAnimationToggleLabel();
     }
-  
+    // Suche 
+    const searchEl = document.getElementById('worldSearchInput');
+    if (searchEl) searchEl.placeholder = t('searchPlaceholder');
 }
 // Statusmeldungen
 function showToast(message, type = 'info', duration = 6000) {
