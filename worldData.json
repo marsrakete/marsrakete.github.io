@@ -5779,5 +5779,376 @@
 			]
 		},
 		"monster": "🧌"
+	},
+	"birthday": {
+		"symbols": [
+			"🎂",
+			"🧁",
+			"🍰",
+			"🎈",
+			"🎉",
+			"🎊",
+			"🎁",
+			"🍬",
+			"🍭"
+		],
+		"rare": [
+			"🥳",
+			"🎤",
+			"🎶",
+			"🍾"
+		],
+		"bottom": [
+			"🎁",
+			"🥂"
+		],
+		"player": "🧑‍🎤",
+		"target": "🎂",
+		"monster": "🤡",
+		"description": "Eine bunte Geburtstagswelt voller Kuchen, Geschenke und Party!",
+		"title": "Geburtstag",
+		"description_en": "A colorful birthday world full of cakes, gifts and party!",
+		"title_en": "Birthday",
+		"animation": {
+			"animate-bounce": [
+				"🎂",
+				"🧁",
+				"🍰",
+				"🍬",
+				"🍭"
+			],
+			"animate-glow": [
+				"🎉",
+				"🎊",
+				"🎁"
+			],
+			"animate-pulse": [
+				"🥳",
+				"🎤",
+				"🎶"
+			],
+			"animate-swing": [
+				"🎈"
+			],
+			"animate-shake": [
+				"🤡"
+			]
+		}
+	},
+	"newyear": {
+		"symbols": [
+			"🎆",
+			"🎇",
+			"🎉",
+			"🥂",
+			"🍾",
+			"🕛",
+			"🎊"
+		],
+		"rare": [
+			"🎺",
+			"🥳",
+			"🎶",
+			"🧨"
+		],
+		"bottom": [
+			"🍸",
+			"🍹"
+		],
+		"player": "🥂",
+		"target": "🎆",
+		"monster": "🧨",
+		"description": "Eine knallende Silvesterwelt mit Feuerwerk und Sekt.",
+		"title": "Silvester",
+		"description_en": "A sparkling New Year's world with fireworks and champagne.",
+		"title_en": "New Year",
+		"animation": {
+			"animate-glow": [
+				"🎆",
+				"🎇",
+				"🧨"
+			],
+			"animate-breathe": [
+				"🥂",
+				"🍾"
+			],
+			"animate-blink": [
+				"🕛"
+			],
+			"animate-bounce": [
+				"🎉",
+				"🎊",
+				"🥳"
+			],
+			"animate-shake": [
+				"🧨"
+			]
+		}
+	},
+	"christmas": {
+		"symbols": [
+			"🎄",
+			"🎁",
+			"⭐",
+			"❄️",
+			"⛄",
+			"🕯️",
+			"🍪",
+			"🥛"
+		],
+		"rare": [
+			"🎅",
+			"🤶",
+			"🦌",
+			"🧦"
+		],
+		"bottom": [
+			"🛷",
+			"🎶"
+		],
+		"player": "🎅",
+		"target": "🎄",
+		"monster": "👹",
+		"description": "Eine festliche Weihnachtswelt mit Geschenken und Lichtern.",
+		"title": "Weihnachten",
+		"description_en": "A festive Christmas world with gifts and lights.",
+		"title_en": "Christmas",
+		"animation": {
+			"animate-glow": [
+				"🎄",
+				"⭐",
+				"🕯️"
+			],
+			"animate-bounce": [
+				"🎁",
+				"🍪",
+				"🥛"
+			],
+			"animate-pulse": [
+				"🎅",
+				"🤶",
+				"🦌",
+				"🧦"
+			],
+			"animate-swing": [
+				"❄️",
+				"⛄"
+			],
+			"animate-shake": [
+				"👹"
+			]
+		}
+	},
+	"chanukkah": {
+		"symbols": [
+			"🕎",
+			"🕯️",
+			"✡️",
+			"⭐",
+			"🍩",
+			"🍪",
+			"🎶"
+		],
+		"rare": [
+			"🎁",
+			"🎵",
+			"✨"
+		],
+		"bottom": [
+			"🕯️",
+			"⭐"
+		],
+		"player": "🕯️",
+		"target": "🕎",
+		"monster": "👿",
+		"description": "Lichter, Gesang und Süßes – eine Chanukka-Welt zum Feiern.",
+		"title": "Chanukka",
+		"description_en": "Lights, songs, and sweets – a Hanukkah world to celebrate.",
+		"title_en": "Hanukkah",
+		"animation": {
+			"animate-glow": [
+				"🕎",
+				"🕯️",
+				"⭐",
+				"✨"
+			],
+			"animate-breathe": [
+				"✡️",
+				"🎶",
+				"🎵"
+			],
+			"animate-blink": [
+				"✨"
+			],
+			"animate-bounce": [
+				"🍩",
+				"🍪",
+				"🎁"
+			],
+			"animate-shake": [
+				"👿"
+			]
+		}
+	},
+	"ramadan": {
+		"symbols": [
+			"🌙",
+			"🕌",
+			"🕋",
+			"🧕",
+			"🧎",
+			"🍽️",
+			"🫓",
+			"🥛"
+		],
+		"rare": [
+			"🕯️",
+			"⭐",
+			"🕌",
+			"🧧"
+		],
+		"bottom": [
+			"🕯️",
+			"🍽️"
+		],
+		"player": "🌙",
+		"target": "🕌",
+		"monster": "😈",
+		"description": "Ruhige Nächte, Lichter und gemeinsames Fastenbrechen.",
+		"title": "Ramadan",
+		"description_en": "Calm nights, lights, and shared iftar meals.",
+		"title_en": "Ramadan",
+		"animation": {
+			"animate-breathe": [
+				"🌙",
+				"🕌",
+				"🕋"
+			],
+			"animate-glow": [
+				"🕯️",
+				"⭐"
+			],
+			"animate-swing": [
+				"🫓",
+				"🍽️"
+			],
+			"animate-pulse": [
+				"🥛"
+			],
+			"animate-shake": [
+				"😈"
+			]
+		}
+	},
+	"halloween": {
+		"symbols": [
+			"🎃",
+			"👻",
+			"🕷️",
+			"🕸️",
+			"🦇",
+			"🪦",
+			"🍬",
+			"🍭",
+			"🧪"
+		],
+		"rare": [
+			"🧙",
+			"🧛",
+			"🧟",
+			"🧹"
+		],
+		"bottom": [
+			"🕸️",
+			"🕯️"
+		],
+		"player": "👻",
+		"target": "🎃",
+		"monster": "💀",
+		"description": "Schaurig-schöne Nacht mit Kürbissen, Süßem und Spuk.",
+		"title": "Halloween",
+		"description_en": "Spooky fun with pumpkins, treats, and ghosts.",
+		"title_en": "Halloween",
+		"animation": {
+			"animate-wiggle": [
+				"👻",
+				"🕷️",
+				"🧙",
+				"🧛",
+				"🧟"
+			],
+			"animate-blink": [
+				"🕯️",
+				"🧪"
+			],
+			"animate-bounce": [
+				"🎃",
+				"🍬",
+				"🍭"
+			],
+			"animate-glow": [
+				"🎃",
+				"🕯️"
+			],
+			"animate-swing": [
+				"🕸️"
+			],
+			"animate-shake": [
+				"💀"
+			]
+		}
+	},
+	"easter": {
+		"symbols": [
+			"🐣",
+			"🐰",
+			"🥚",
+			"🌷",
+			"🌼",
+			"🐇",
+			"🍫",
+			"🧺"
+		],
+		"rare": [
+			"🌈",
+			"✨",
+			"🎀"
+		],
+		"bottom": [
+			"🌷",
+			"🌼",
+			"🌱"
+		],
+		"player": "🐰",
+		"target": "🐣",
+		"monster": "🐍",
+		"description": "Bunte Eier, Frühling und eine fröhliche Suche.",
+		"title": "Ostern",
+		"description_en": "Colorful eggs, spring vibes, and a joyful hunt.",
+		"title_en": "Easter",
+		"animation": {
+			"animate-bounce": [
+				"🐣",
+				"🥚",
+				"🍫"
+			],
+			"animate-breathe": [
+				"🌷",
+				"🌼",
+				"🌱",
+				"🐰"
+			],
+			"animate-glow": [
+				"✨",
+				"🌈"
+			],
+			"animate-wiggle": [
+				"🐇",
+				"🎀"
+			],
+			"animate-shake": [
+				"🐍"
+			]
+		}
 	}
 }
