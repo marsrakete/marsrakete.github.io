@@ -567,6 +567,29 @@ input[type="radio"]:checked + .world-chip {
   100% { transform: rotate(360deg);}
 }
 
+/* World search */
+#worldSearch {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+#worldSearchInput {
+  width: min(640px, 90vw);
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+#worldSearchInput:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 8px #0d6efd66;
+}
+
+
 /* Statusmeldungen */
 /* === Toast: Statusmeldungen unten === */
 /* Base toast style (non-dialog only) */
