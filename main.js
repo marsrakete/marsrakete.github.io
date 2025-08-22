@@ -240,6 +240,7 @@ document.getElementById('toggleModeEditor').addEventListener('click', switchMode
 
 window.addEventListener('keydown', e => {
   if (mode !== 'game') return;
+  if (e.target && e.target.id === 'worldSearchInput') return;
   if (['ArrowUp','w','W'].includes(e.key)) { movePlayer(0,-1); e.preventDefault(); }
   if (['ArrowDown','s','S'].includes(e.key)) { movePlayer(0,1); e.preventDefault(); }
   if (['ArrowLeft','a','A'].includes(e.key)) { movePlayer(-1,0); e.preventDefault(); }
