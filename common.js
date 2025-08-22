@@ -119,7 +119,7 @@ function updateUIText() {
 
     // Zeit & Ziele in Statusleiste (werden dynamisch ergänzt, aber für Initialanzeige sinnvoll)
     if (document.getElementById('timerDisplay')) document.getElementById('timerDisplay').innerText = t('time', {seconds: 0});
-    if (document.getElementById('foundCount')) document.getElementById('foundCount').innerText = t('found_targets', {count: 0});
+    if (document.getElementById('foundCount')) document.getElementById('foundCount').innerText = t('foundCount', {count: 0});
 
     // Hinweistext unter Steuerfeld
     if (document.getElementById('swipeHint')) {
