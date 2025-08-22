@@ -566,7 +566,7 @@ function movePlayer(dx,dy) {
     if (cell===target) { 
         playPewSound(); 
         foundCount++; 
-        document.getElementById('foundCount').innerText=`Gefundene Ziele: ${foundCount}`; 
+        document.getElementById('foundCount').innerText = t('foundCount') + ' ' +foundCount ;
     }
     gameGrid[playerY][playerX] = ' '; 
     gameGrid[ny][nx] = w.player; 
