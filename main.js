@@ -247,29 +247,33 @@ window.addEventListener('keydown', e => {
 });
 
 // --- Spielfunktionen ---
-function populateWorldGallery() {
+function populateWorldGallery(filterText = '') {
   const container = document.getElementById('worldGallery');
   container.innerHTML = '';
 
-  const isEnglish = lang === 'en';
+  const needle = filterText.trim().toLocaleLowerCase('de'); // einheitlich sortieren/filtern
+  const entries = Object.entries(worldData);
 
-  const sortedWorlds = Object.entries(worldData)
-    .sort((a, b) => {
-      const titleA = (isEnglish ? a[1].title_en : a[1].title) || a[0];
-      const titleB = (isEnglish ? b[1].title_en : b[1].title) || b[0];
-      return titleA.toLocaleLowerCase().localeCompare(titleB.toLocaleLowerCase(), 'de');
-    });
+  // Sortierung wie bisher, aber via Helper:
+  const sorted = entries.sort((a, b) => {
+    const ta = getWorldLocalizedTitle(a).toLocaleLowerCase('de');
+    const tb = getWorldLocalizedTitle(b).toLocaleLowerCase('de');
+    return ta.localeCompare(tb, 'de');
+  });
 
-  for (let [name, world] of sortedWorlds) {
+  // Filtern nach lokalisiertem Titel
+  const filtered = needle
+    ? sorted.filter(ent => getWorldLocalizedTitle(ent).toLocaleLowerCase('de').includes(needle))
+    : sorted;
+
+  for (let [name, world] of filtered) {
     const card = document.createElement('div');
     card.className = 'world-card';
     if (name === currentWorld) card.classList.add('selected');
 
     const title = document.createElement('div');
     title.className = 'world-title';
-    title.textContent = isEnglish
-      ? (world.title_en || world.title || name)
-      : (world.title || name);
+    title.textContent = getWorldLocalizedTitle([name, world]);
 
     const symbols = document.createElement('div');
     symbols.className = 'world-symbols';
@@ -277,9 +281,7 @@ function populateWorldGallery() {
 
     const desc = document.createElement('div');
     desc.className = 'world-description';
-    desc.textContent = isEnglish
-      ? (world.description_en || world.description || '')
-      : (world.description || '');
+    desc.textContent = (lang === 'en') ? (world.description_en || world.description || '') : (world.description || '');
 
     card.appendChild(title);
     card.appendChild(symbols);
@@ -299,13 +301,20 @@ function populateWorldGallery() {
 
     container.appendChild(card);
   }
+
+  // „keine Treffer“-Hinweis
+  if (filtered.length === 0) {
+    const empty = document.createElement('div');
+    empty.style.color = '#aaa';
+    empty.style.marginTop = '8px';
+    empty.textContent = t('searchNoResults');
+    container.appendChild(empty);
+  }
+
   setTimeout(() => {
-      document.querySelector('.world-card.selected')?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest'
-      });
+    document.querySelector('.world-card.selected')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, 100);
-} 
+}
 
 // --- Anzahl der Welten mit Icon anzeigen ---
 const countDiv = document.getElementById('worldCount');
@@ -1046,6 +1055,12 @@ function launchOffGridComets() {
 
 document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.forEach(r=>r.fill(' ')); document.querySelectorAll('#editorOutput .cell').forEach(c=>c.textContent=' '); });
 
+function getWorldLocalizedTitle([name, world]) {
+  const isEn = (lang === 'en');
+  return (isEn ? world.title_en : world.title) || name;
+}
+
+
 window.addEventListener('load', async ()=>{
     await loadWorldData();
     validateWorldData(worldData);
@@ -1054,6 +1069,15 @@ window.addEventListener('load', async ()=>{
     lang = localStorage.getItem('appLang') || detectLang();
     // Button-Label passend setzen
     updateLangButtonLabel();
+
+    const searchEl = document.getElementById('worldSearchInput');
+    if (searchEl) {
+      searchEl.placeholder = t('searchPlaceholder');
+      searchEl.addEventListener('input', (e) => {
+        populateWorldGallery(e.target.value);
+      });
+    }
+    
     updateUIText();
     
     //populateWorldButtonsGame();
@@ -1073,6 +1097,8 @@ window.addEventListener('load', async ()=>{
     setupMaxSymbolsSlider();
     updateMaxSymbolsSlider();
 
+
+    
     const loaded = loadGridFromPermalink();
     if (loaded && !loaded.error) {
       applyGridFromPermalink(loaded);
