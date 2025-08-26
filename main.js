@@ -263,8 +263,13 @@ function populateWorldGallery(filterText = '') {
   });
 
   // Filtern nach lokalisiertem Titel
+  const needle = filterText.trim().toLocaleLowerCase('de');
   const filtered = needle
-    ? sorted.filter(ent => getWorldLocalizedTitle(ent).toLocaleLowerCase('de').includes(needle))
+    ? sorted.filter(ent => {
+        const t = getWorldLocalizedTitle(ent).toLocaleLowerCase('de');
+        const d = getWorldLocalizedDescription(ent).toLocaleLowerCase('de');
+        return t.includes(needle) || d.includes(needle);
+    })
     : sorted;
 
   for (let [name, world] of filtered) {
@@ -1058,8 +1063,15 @@ document.getElementById('clearGrid').addEventListener('click', ()=>{ editorGrid.
 
 function getWorldLocalizedTitle([name, world]) {
   const isEn = (lang === 'en');
-  return (isEn ? world.title_en : world.title) || name;
+  return (isEn ? world.title_en : world.title) || name || '';
 }
+
+function getWorldLocalizedDescription([, world]) {
+  const isEn = (lang === 'en');
+  return (isEn ? world.description_en : world.description) || '';
+}
+
+function debounce(fn, ms){ let id; return (...a)=>{ clearTimeout(id); id=setTimeout(()=>fn(...a), ms); }; }
 
 
 window.addEventListener('load', async ()=>{
@@ -1074,9 +1086,8 @@ window.addEventListener('load', async ()=>{
     const searchEl = document.getElementById('worldSearchInput');
     if (searchEl) {
       searchEl.placeholder = t('searchPlaceholder');
-      searchEl.addEventListener('input', (e) => {
-        populateWorldGallery(e.target.value);
-      });
+      const onInput = debounce(e => populateWorldGallery(e.target.value), 120);
+      searchEl.addEventListener('input', onInput);
     }
     
     updateUIText();
