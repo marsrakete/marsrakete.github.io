@@ -263,7 +263,6 @@ function populateWorldGallery(filterText = '') {
   });
 
   // Filtern nach lokalisiertem Titel
-  const needle = filterText.trim().toLocaleLowerCase('de');
   const filtered = needle
     ? sorted.filter(ent => {
         const t = getWorldLocalizedTitle(ent).toLocaleLowerCase('de');
