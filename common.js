@@ -114,7 +114,12 @@ function updateUIText() {
     if (document.getElementById('generateGameAltText')) document.getElementById('generateGameAltText').innerText = t('btnAltText');
     if (document.getElementById('copyGameGraphic')) document.getElementById('copyGameGraphic').innerText = t('btnCopyGraphic');
     if (document.getElementById('copyGameText')) document.getElementById('copyGameText').innerText = t('btnCopyText');
-    if (document.getElementById('generateGamePermalink')) document.getElementById('generateGamePermalink').innerText = t('btnPermalink');
+    if (document.getElementById('generateGamePermalink')) {
+      document.getElementById('generateGamePermalink').innerText = t('btnPermalinkCopy');
+    }
+    if (document.getElementById('shareGamePermalink')) { 
+      document.getElementById('shareGamePermalink').innerText = t('btnPermalinkShare');
+    }
     if (document.getElementById('postToBsky')) document.getElementById('postToBsky').innerText = t('btnPostBsky');
 
     // Zeit & Ziele in Statusleiste (werden dynamisch ergänzt, aber für Initialanzeige sinnvoll)
