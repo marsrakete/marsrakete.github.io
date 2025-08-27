@@ -718,6 +718,32 @@ document.getElementById('generateGamePermalink').addEventListener('click', () =>
   }
 });
 
+document.getElementById('shareGamePermalink').addEventListener('click', () => {
+  try {
+    const url = makePermalinkFromGrid(gameGrid, { world: currentWorld });
+
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        text: t('btnPermalinkShare'),
+        url: url
+      }).then(() => {
+        showToast(t('alertPermalinkCopied'), 'success', 4000);
+      }).catch(err => {
+        showToast(t('alertErrorOnPermalinkShare') + " " + err, 'error', 6000);
+      });
+    } else {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast(t('alertPermalinkCopied'), 'success', 4000);
+      }).catch(err => {
+        showToast(t('alertErrorOnPermalinkShare') + " " + err, 'error', 6000);
+      });
+    }
+
+  } catch (err) {
+    showToast(t('alertErrorOnPermalinkCreate') + " " + err, 'error', 6000);
+  }
+});
 
 // Editorfunktionen
 function renderEditor() {
