@@ -6295,5 +6295,235 @@
 				"🌀"
 			]
 		}
+	},
+	"vacation": {
+		"symbols": [
+			"🏖️",
+			"🌴",
+			"🌊",
+			"☀️",
+			"🩴",
+			"🏝️",
+			"🍹",
+			"🏄",
+			"✈️",
+			"🚤"
+		],
+		"rare": [
+			"🎒",
+			"📸",
+			"🧳",
+			"🏔️"
+		],
+		"bottom": [
+			"🏖️",
+			"🌴"
+		],
+		"player": "🧑‍✈️",
+		"target": "🏖️",
+		"monster": "🦈",
+		"description": "Eine sonnige Urlaubswelt mit Strand, Sonne und Reisen.",
+		"title": "Urlaub",
+		"description_en": "A sunny vacation world with beaches, sun and travel.",
+		"title_en": "Vacation",
+		"animation": {
+			"animate-bounce": [
+				"🏖️",
+				"🌊",
+				"🍹"
+			],
+			"animate-glow": [
+				"☀️",
+				"🌴"
+			],
+			"animate-float": [
+				"✈️",
+				"🚤"
+			],
+			"animate-shake": [
+				"🦈"
+			]
+		}
+	},
+	"guessjobs": {
+		"symbols": [
+			"👩‍⚕️",
+			"👨‍🏫",
+			"👩‍🍳",
+			"👩‍🚀",
+			"👨‍🔧",
+			"👮",
+			"👩‍🎨",
+			"👨‍🌾",
+			"👩‍💻",
+			"👨‍🔬"
+		],
+		"rare": [
+			"👑",
+			"🎩",
+			"🎭"
+		],
+		"bottom": [
+			"📚",
+			"⚒️"
+		],
+		"player": "❓",
+		"target": "👩‍⚕️",
+		"monster": "🤖",
+		"description": "Eine Welt voller Berufe – wer errät sie am schnellsten?",
+		"title": "Beruferaten",
+		"description_en": "A world full of jobs – can you guess them all?",
+		"title_en": "Guess the Job",
+		"animation": {
+			"animate-bounce": [
+				"👩‍🍳",
+				"👩‍🚀",
+				"👨‍🔧"
+			],
+			"animate-glow": [
+				"👩‍🎨",
+				"👨‍🔬"
+			],
+			"animate-wiggle": [
+				"👩‍💻",
+				"👨‍🏫"
+			],
+			"animate-shake": [
+				"🤖"
+			]
+		}
+	},
+	"hotel": {
+		"symbols": [
+			"🏨",
+			"🛎️",
+			"🛏️",
+			"🪟",
+			"🚪",
+			"🚿",
+			"🍽️",
+			"🥂",
+			"🧳",
+			"🗝️"
+		],
+		"rare": [
+			"🎲",
+			"🎰",
+			"🎤"
+		],
+		"bottom": [
+			"🛎️",
+			"🛏️"
+		],
+		"player": "🧳",
+		"target": "🏨",
+		"monster": "🐞",
+		"description": "Eine Hotelwelt mit Check-in, Zimmern und Service.",
+		"title": "Hotel",
+		"description_en": "A hotel world with check-in, rooms and service.",
+		"title_en": "Hotel",
+		"animation": {
+			"animate-glow": [
+				"🏨",
+				"🛎️",
+				"🗝️"
+			],
+			"animate-bounce": [
+				"🛏️",
+				"🚿",
+				"🍽️"
+			],
+			"animate-pulse": [
+				"🥂",
+				"🎲"
+			],
+			"animate-shake": [
+				"🐞"
+			]
+		}
+	},
+	"clockworld": {
+		"symbols": [
+			"🕐",
+			"🕑",
+			"🕒",
+			"🕓",
+			"🕔",
+			"🕕",
+			"🕖",
+			"🕗",
+			"🕘",
+			"🕙",
+			"🕚",
+			"🕛",
+			"🕧",
+			"🕜",
+			"🕝",
+			"🕞",
+			"🕟",
+			"🕠",
+			"🕡",
+			"🕢",
+			"🕣",
+			"🕤",
+			"🕥",
+			"🕦"
+		],
+		"rare": [
+			"⌚",
+			"⏰",
+			"⏱️",
+			"⏲️"
+		],
+		"bottom": [
+			"⌛",
+			"⏳"
+		],
+		"player": "⏰",
+		"target": "🕧",
+		"monster": "🌀",
+		"description": "Eine Welt voller Uhrzeiten und tickender Zeiger.",
+		"title": "Uhrzeit",
+		"description_en": "A world full of clock faces and ticking hands.",
+		"title_en": "Clockworld",
+		"animation": {
+			"animate-spin": [
+				"🕐",
+				"🕑",
+				"🕒",
+				"🕓",
+				"🕔",
+				"🕕",
+				"🕖",
+				"🕗",
+				"🕘",
+				"🕙",
+				"🕚",
+				"🕛",
+				"🕧",
+				"🕜",
+				"🕝",
+				"🕞",
+				"🕟",
+				"🕠",
+				"🕡",
+				"🕢",
+				"🕣",
+				"🕤",
+				"🕥",
+				"🕦"
+			],
+			"animate-glow": [
+				"⏰",
+				"⌚"
+			],
+			"animate-bounce": [
+				"⌛",
+				"⏳"
+			],
+			"animate-shake": [
+				"🌀"
+			]
+		}
 	}
 }
