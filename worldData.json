@@ -6150,5 +6150,150 @@
 				"🐍"
 			]
 		}
+	},
+	"household": {
+		"symbols": [
+			"🧺",
+			"🧼",
+			"🪣",
+			"🧽",
+			"🪞",
+			"🛏️",
+			"🪑",
+			"🧹",
+			"🪠",
+			"🧯"
+		],
+		"rare": [
+			"🧴",
+			"🧻",
+			"🧯",
+			"🪒"
+		],
+		"bottom": [
+			"🧺",
+			"🧼"
+		],
+		"player": "🧑‍🔧",
+		"target": "🧺",
+		"monster": "🪳",
+		"description": "Eine Haushaltswelt voller Bügeln, Waschen und Putzen.",
+		"title": "Haushalt",
+		"description_en": "A household world of ironing, washing and cleaning.",
+		"title_en": "Household",
+		"animation": {
+			"animate-bounce": [
+				"🧺",
+				"🧼",
+				"🧽"
+			],
+			"animate-glow": [
+				"🪞",
+				"🛏️"
+			],
+			"animate-wiggle": [
+				"🧹",
+				"🪠"
+			],
+			"animate-shake": [
+				"🪳"
+			]
+		}
+	},
+	"trainjourney": {
+		"symbols": [
+			"🚂",
+			"🚃",
+			"🚆",
+			"🛤️",
+			"🎫",
+			"🧳",
+			"☕",
+			"🍱",
+			"🌄",
+			"🏞️"
+		],
+		"rare": [
+			"🚉",
+			"🛎️",
+			"🪟",
+			"📖"
+		],
+		"bottom": [
+			"🛤️",
+			"🚉"
+		],
+		"player": "🧑‍💼",
+		"target": "🚆",
+		"monster": "🐀",
+		"description": "Eine Welt der Zugreisen mit Schienen, Tickets und Gepäck.",
+		"title": "Zugreise",
+		"description_en": "A world of train journeys with tracks, tickets and luggage.",
+		"title_en": "Train Journey",
+		"animation": {
+			"animate-glow": [
+				"🚂",
+				"🚆",
+				"🛤️"
+			],
+			"animate-bounce": [
+				"🎫",
+				"🧳"
+			],
+			"animate-pulse": [
+				"☕",
+				"🍱"
+			],
+			"animate-shake": [
+				"🐀"
+			]
+		}
+	},
+	"direction": {
+		"symbols": [
+			"⬆️",
+			"⬇️",
+			"⬅️",
+			"➡️",
+			"↔️",
+			"↕️",
+			"↖️",
+			"↗️",
+			"↘️",
+			"↙️"
+		],
+		"rare": [
+			"🔄",
+			"🔁",
+			"🔀"
+		],
+		"bottom": [],
+		"player": "🧭",
+		"target": "➡️",
+		"monster": "🌀",
+		"description": "Eine Welt aus Richtungen – nur Pfeile weisen den Weg.",
+		"title": "Richtung",
+		"description_en": "A world of directions – only arrows point the way.",
+		"title_en": "Direction",
+		"animation": {
+			"animate-wiggle": [
+				"⬆️",
+				"⬇️",
+				"⬅️",
+				"➡️"
+			],
+			"animate-glow": [
+				"🔄",
+				"🔁",
+				"🔀"
+			],
+			"animate-spin": [
+				"↔️",
+				"↕️"
+			],
+			"animate-shake": [
+				"🌀"
+			]
+		}
 	}
 }
