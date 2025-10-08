@@ -705,3 +705,14 @@ input[type="radio"]:checked + .world-chip {
   pointer-events: none; /* Verhindert ungewollte Klicks */
 }
 
+/* dezentes Flimmern für Minesweeper */
+#gameOutput.minesweeper .cell {
+  animation: msweeperPulse 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes msweeperPulse {
+  from { text-shadow: 0 0 0.05em rgba(255,255,255,0.15); }
+  to   { text-shadow: 0 0 0.35em rgba(255,255,255,0.35); }
+}
+
+
