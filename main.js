@@ -64,6 +64,30 @@ function updateLangButtonLabel() {
 }
 
 /* Animationen */
+function getCaughtMessage(worldName = (typeof currentWorld !== 'undefined' ? currentWorld : '')) {
+  const base = (typeof t === 'function') ? t('caught.base') : 'Du wurdest erwischt!';
+  const tip  = (typeof t === 'function')
+    ? t(worldName === 'minesweeper' ? 'caught.tip.minesweeper' : 'caught.tip.generic')
+    : (worldName === 'minesweeper'
+        ? 'Tipp: Flaggen finden/setzen und beweglichen Gegnern ausweichen.'
+        : 'Tipp: Beweglichen Gegnern ausweichen.');
+  return base + '\\n' + tip;
+}
+
+function handlePlayerCaught() {
+  try { if (typeof mobInterval  !== 'undefined' && mobInterval)  clearInterval(mobInterval); } catch(e){}
+  try { if (typeof animInterval !== 'undefined' && animInterval) clearInterval(animInterval); } catch(e){}
+  try { if (typeof timerInterval!== 'undefined' && timerInterval) clearInterval(timerInterval); timerInterval=null; } catch(e){}
+  try { if (typeof gameOver !== 'undefined') gameOver = true; } catch(e){}
+  const msg = getCaughtMessage();
+  if (typeof showDialogToast === 'function') {
+    showDialogToast(msg, () => { if (typeof resetToOriginalGrid === 'function') resetToOriginalGrid(); });
+  } else {
+    alert(msg);
+    if (typeof resetToOriginalGrid === 'function') resetToOriginalGrid();
+  }
+}
+
 function startSymbolAnimation() {
   clearInterval(animInterval);
   const w = worldData[currentWorld];
@@ -121,7 +145,7 @@ function startMobMovement() {
         playPowSound();
         clearInterval(mobInterval);
         clearInterval(animInterval);
-        alert("💥 Du wurdest erwischt!\nTipp: Flaggen finden, Monstern ausweichen.");
+        handlePlayerCaught();
         resetToOriginalGrid();
         return;
       }
@@ -534,8 +558,9 @@ function generateRandomWorld() {
   const w = worldData[currentWorld];
   initGameGridEmpty();
   hasPlayerMoved = false;
-  clearInterval(animInterval);
-  clearInterval(mobInterval);    
+  // Timer stoppen, aber NICHTS starten
+  try { clearInterval(animInterval); } catch(e){}
+  try { clearInterval(mobInterval); } catch(e){}
     
   // Pool aus normalen und seltenen Symbolen
   const symbolPool = [...w.symbols, ...w.rare];
@@ -606,12 +631,7 @@ function generateRandomWorld() {
   // laufende Timer abbrechen (Falls vorherige Welt animiert/Monster hatte)
   clearInterval(animInterval);
   clearInterval(mobInterval);
-
-  // Animation + Monsterbewegung für aktuelle Welt starten
-  startSymbolAnimation();
-  collectMobPositions();
-  startMobMovement();
-    
+   
   // Ursprungszustand speichern
   originalGrid = gameGrid.map(row => row.slice());
 
@@ -721,15 +741,15 @@ function moveMonster() {
   if (monsterX === playerX && monsterY === playerY) {
     gameOver = true;
     clearInterval(timerInterval);
-    showDialogToast("Du wurdest vom Monster gefangen! 😱", () => {
-      resetToOriginalGrid();
-    });
+    handlePlayerCaught();
+    showDialogToast(`${t('caught.monster')} 😱`, () => { resetToOriginalGrid(); });
   }
 }
 
 function resetToOriginalGrid() {
-  clearInterval(animInterval);
-  clearInterval(mobInterval);
+  hasPlayerMoved = false;
+  try { clearInterval(animInterval); } catch(e){}
+  try { clearInterval(mobInterval); } catch(e){}
   gameOver = false;
   gameGrid = originalGrid.map(r=>r.slice());
   const w = worldData[currentWorld];
