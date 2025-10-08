@@ -23,6 +23,8 @@ let mobPositions = []; // {x,y,sym}
 let hasPlayerMoved = false;
 let hasPreMoveWiggled = false; 
 let preWiggleToken = 0;  
+let preWiggleInterval = null;      // NEU: Pre-Start-Loop
+let preWigglePairs = [];           // NEU: [{from:{x,y}, to:{x,y}, sym, atTo:false}]
 
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
@@ -66,6 +68,78 @@ function updateLangButtonLabel() {
 }
 
 /* Animationen */
+function buildPreWigglePairs() {
+  preWigglePairs = [];
+  const w = worldData[currentWorld];
+  if (!w) return;
+  const mobSyms = Array.isArray(w.mobs) ? w.mobs : (w.monster ? [w.monster] : []);
+  if (!mobSyms.length) return;
+  const mobSet = new Set(mobSyms);
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const sym = gameGrid[y][x];
+      if (!mobSet.has(sym)) continue;
+
+      // suche eine freie Nachbarzelle als "to"
+      const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+      for (let i = dirs.length - 1; i > 0; i--) { // shuffle
+        const j = Math.floor(Math.random() * (i + 1));
+        [dirs[i], dirs[j]] = [dirs[j], dirs[i]];
+      }
+      let pair = null;
+      for (const [dx, dy] of dirs) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) continue;
+        if (gameGrid[ny][nx] === ' ') {
+          pair = { from: {x, y}, to: {x: nx, y: ny}, sym, atTo: false };
+          break;
+        }
+      }
+      if (pair) preWigglePairs.push(pair);
+    }
+  }
+}
+
+function startPreWiggle() {
+  stopPreWiggle();
+  if (!preWigglePairs.length) return;
+
+  // initiale Position auf "from" sicherstellen (kein harter Reset nötig)
+  preWiggleInterval = setInterval(() => {
+    if (hasPlayerMoved) { stopPreWiggle(); return; }
+
+    // alle Paare umschalten
+    for (const p of preWigglePairs) {
+      const fromCell = gameGrid[p.from.y][p.from.x];
+      const toCell   = gameGrid[p.to.y][p.to.x];
+
+      if (!p.atTo) {
+        // von FROM -> TO (nur wenn TO frei ist und FROM noch das Mob-Symbol hat)
+        if (toCell === ' ' && fromCell === p.sym) {
+          gameGrid[p.from.y][p.from.x] = ' ';
+          gameGrid[p.to.y][p.to.x] = p.sym;
+          p.atTo = true;
+        }
+      } else {
+        // von TO -> FROM (nur wenn FROM frei ist und TO noch das Mob-Symbol hat)
+        if (fromCell === ' ' && toCell === p.sym) {
+          gameGrid[p.to.y][p.to.x] = ' ';
+          gameGrid[p.from.y][p.from.x] = p.sym;
+          p.atTo = false;
+        }
+      }
+    }
+    renderGame();
+  }, 600); // langsam pendeln: 0,6s pro Umschaltung
+}
+
+function stopPreWiggle() {
+  if (preWiggleInterval) {
+    clearInterval(preWiggleInterval);
+    preWiggleInterval = null;
+  }
+}
 function preStartMobWiggle() {
   if (hasPreMoveWiggled) return;
   hasPreMoveWiggled = true;
@@ -625,9 +699,10 @@ function generateRandomWorld() {
     
   const w = worldData[currentWorld];
   initGameGridEmpty();
-  hasPlayerMoved = false;
-  hasPreMoveWiggled = false;
-  preWiggleToken++; // alte Wiggle-Rückläufer entwerten
+  stopPreWiggle();          // alte Reste stoppen  
+  buildPreWigglePairs();    // Paare für diese Welt bilden
+  renderGame();
+  startPreWiggle();         // kontinuierlich vor dem Start pendeln
   // Timer stoppen, aber NICHTS starten
   try { clearInterval(animInterval); } catch(e){}
   try { clearInterval(mobInterval); } catch(e){}
@@ -695,7 +770,7 @@ function generateRandomWorld() {
   // Anzeige aktualisieren
   renderGame();
   // Einmaliger „Wiggle“ vor dem ersten Spielzug:
-  preStartMobWiggle();
+  // preStartMobWiggle();
   updateGameInfo();
   document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
@@ -736,11 +811,12 @@ function generateRandomWorld() {
 
 function movePlayer(dx,dy) {
   if (!hasPlayerMoved) {
-    hasPlayerMoved = true;
-    startSymbolAnimation();
-    collectMobPositions();
-    startMobMovement();
-  }    
+      hasPlayerMoved = true;
+      stopPreWiggle();          // Pre-Wiggle beenden
+      startSymbolAnimation();   // falls du Blink-Animationen nutzt
+      collectMobPositions();
+      startMobMovement();
+  }  
   if (gameOver) return; // ✅ Blockiert alle Bewegungen nach Spielende
   if (playerJustSpawned) {
     playerJustSpawned = false;
@@ -819,6 +895,7 @@ function moveMonster() {
 }
 
 function resetToOriginalGrid() {
+  stopPreWiggle();
   hasPlayerMoved = false;
   hasPreMoveWiggled = false;
   preWiggleToken++; // laufende Wiggles sauber abbrechen
