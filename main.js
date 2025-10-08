@@ -17,6 +17,10 @@ let cometIntervals = [];
 
 let monsterX = -1, monsterY = -1;
 
+let animInterval = null;
+let mobInterval = null;
+let mobPositions = []; // {x,y,sym}
+
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
 
@@ -56,6 +60,82 @@ function setupMaxSymbolsSlider() {
 
 function updateLangButtonLabel() {
   document.getElementById('langSwitchBtn').textContent = (lang === 'de') ? '🌐 Sprache: DE' : '🌐 Language: EN';
+}
+
+/* Animationen */
+function startSymbolAnimation() {
+  clearInterval(animInterval);
+  const w = worldData[currentWorld];
+  if (!w.animate) return;
+
+  animInterval = setInterval(() => {
+    // jedes Feld prüfen und ggf. toggeln
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        const cur = gameGrid[y][x];
+        const alt = w.animate[cur];
+        // vorwärts: cur -> alt
+        if (alt) { gameGrid[y][x] = alt; continue; }
+        // rückwärts: finde Schlüssel, dessen alt == cur
+        for (const [k, v] of Object.entries(w.animate)) {
+          if (v === cur) { gameGrid[y][x] = k; break; }
+        }
+      }
+    }
+    renderGame();
+  }, 400);
+}
+
+function collectMobPositions() {
+  mobPositions = [];
+  const w = worldData[currentWorld];
+  const mobSet = new Set(w.mobs || []);
+  if (mobSet.size === 0) return;
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (mobSet.has(gameGrid[y][x])) {
+        mobPositions.push({ x, y, sym: gameGrid[y][x] });
+      }
+    }
+  }
+}
+
+function startMobMovement() {
+  clearInterval(mobInterval);
+  const w = worldData[currentWorld];
+  if (!w.mobs || w.mobs.length === 0) return;
+
+  mobInterval = setInterval(() => {
+    const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+    // einfache, zufällige Schrittlogik
+    for (const mob of mobPositions) {
+      const [dx, dy] = dirs[Math.floor(Math.random() * dirs.length)];
+      const nx = mob.x + dx, ny = mob.y + dy;
+      if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) continue;
+
+      // Wenn Spieler dort ist -> Game Over
+      const wSym = worldData[currentWorld].player;
+      if (gameGrid[ny][nx] === wSym) {
+        playPowSound();
+        clearInterval(mobInterval);
+        clearInterval(animInterval);
+        alert("💥 Du wurdest erwischt!\nTipp: Flaggen finden, Monstern ausweichen.");
+        resetToOriginalGrid();
+        return;
+      }
+
+      // Nur in leere Felder bewegen (Hindernisse bleiben Hindernisse)
+      if (gameGrid[ny][nx] === ' ') {
+        // altes Feld leeren
+        gameGrid[mob.y][mob.x] = ' ';
+        // neues Feld setzen
+        gameGrid[ny][nx] = mob.sym;
+        mob.x = nx; mob.y = ny;
+      }
+    }
+    renderGame();
+  }, 550);
 }
 
 
@@ -211,6 +291,8 @@ function switchMode() {
 
   if (!isEditorVisible) {
     // Wechsel ZUM Editor: aktuelles Spiel ins Editor-Grid übernehmen
+    clearInterval(animInterval);
+    clearInterval(mobInterval);
     editorGrid = gameGrid.map(row => row.slice());
     renderEditor();
     updatePlayerTargetInfo();
@@ -517,6 +599,15 @@ function generateRandomWorld() {
   document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
 
+  // laufende Timer abbrechen (Falls vorherige Welt animiert/Monster hatte)
+  clearInterval(animInterval);
+  clearInterval(mobInterval);
+
+  // Animation + Monsterbewegung für aktuelle Welt starten
+  startSymbolAnimation();
+  collectMobPositions();
+  startMobMovement();
+    
   // Ursprungszustand speichern
   originalGrid = gameGrid.map(row => row.slice());
 
@@ -627,6 +718,8 @@ function moveMonster() {
 }
 
 function resetToOriginalGrid() {
+  clearInterval(animInterval);
+  clearInterval(mobInterval);
   gameOver = false;
   gameGrid = originalGrid.map(r=>r.slice());
   const w = worldData[currentWorld];
