@@ -22,6 +22,7 @@ let mobInterval = null;
 let mobPositions = []; // {x,y,sym}
 let hasPlayerMoved = false;
 let hasPreMoveWiggled = false; 
+let preWiggleToken = 0;  
 
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
@@ -66,70 +67,71 @@ function updateLangButtonLabel() {
 
 /* Animationen */
 function preStartMobWiggle() {
-  // nur einmal pro Weltstart
   if (hasPreMoveWiggled) return;
   hasPreMoveWiggled = true;
+  const myToken = ++preWiggleToken;
 
   const w = worldData[currentWorld];
-  if (!w || !w.mobs || !w.mobs.length) return;
+  if (!w) return;
 
-  const mobSet = new Set(w.mobs);
-  const playerSym = w.player;
-  const targetSym = w.target;
-  const moves = []; // gemachte Schritte, um sie zurückzunehmen
+  // akzeptiere beides: mobs-Array oder einzelnes monster
+  const baseMobs = Array.isArray(w.mobs) ? w.mobs.slice(0) : (w.monster ? [w.monster] : []);
+  if (!baseMobs.length) return;
+  const mobSet = new Set(baseMobs);
 
-  // alle aktuellen Mobs im Grid finden
-  const found = [];
+  // alle Mobs einsammeln
+  const mobs = [];
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-      if (mobSet.has(gameGrid[y][x])) found.push({x, y, sym: gameGrid[y][x]});
+      if (mobSet.has(gameGrid[y][x])) mobs.push({x, y, sym: gameGrid[y][x]});
     }
   }
-  if (!found.length) return;
+  if (!mobs.length) return;
 
-  // für jeden Mob genau 1 möglichen Nachbar-Schritt suchen
-  for (const mob of found) {
-    const dirs = [[1,0],[-1,0],[0,1],[0,-1]].sort(() => Math.random() - 0.5);
+  const moves = []; // [{from:{x,y}, to:{x,y}, sym}]
+  // 1 Schritt vor
+  for (const m of mobs) {
+    const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+    for (let i=dirs.length-1; i>0; i--) { // Fisher-Yates shuffle
+      const j = Math.floor(Math.random()*(i+1));
+      [dirs[i], dirs[j]] = [dirs[j], dirs[i]];
+    }
     let moved = false;
     for (const [dx, dy] of dirs) {
-      const nx = mob.x + dx, ny = mob.y + dy;
+      const nx = m.x + dx, ny = m.y + dy;
       if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) continue;
-      const cell = gameGrid[ny][nx];
-
-      // nur in freie Zellen, NICHT auf Spieler/Target/Objekte
-      if (cell === ' ' /* frei */) {
-        // Schritt ausführen
-        gameGrid[mob.y][mob.x] = ' ';
-        gameGrid[ny][nx] = mob.sym;
-        moves.push({from:{x:mob.x,y:mob.y}, to:{x:nx,y:ny}, sym:mob.sym});
+      if (gameGrid[ny][nx] === ' ') { // nur freies Feld
+        gameGrid[m.y][m.x] = ' ';
+        gameGrid[ny][nx] = m.sym;
+        moves.push({from:{x:m.x,y:m.y}, to:{x:nx,y:ny}, sym:m.sym});
         moved = true;
         break;
       }
-      // Optional: nicht auf Spieler/Target – falls du „frei“ anders definierst
-      if (cell === playerSym || cell === targetSym) continue;
     }
   }
+  if (moves.length) renderGame();
 
-  if (moves.length) {
-    renderGame();
+  // 1 Schritt zurück (nur wenn Spieler NOCH NICHT gestartet hat & Token gültig)
+  setTimeout(() => {
+    if (hasPlayerMoved) return;
+    if (myToken !== preWiggleToken) return;
 
-    // kurze Verzögerung, dann zurück
-    setTimeout(() => {
-      // Wenn Spieler inzwischen losgelaufen ist, NICHT mehr zurückschnappen,
-      // um Ruckler zu vermeiden.
-      if (hasPlayerMoved) return;
-
-      for (const m of moves) {
-        // nur zurücksetzen, wenn die Zelle noch das Mob-Symbol trägt
-        if (gameGrid[m.to.y][m.to.x] === m.sym && gameGrid[m.from.y][m.from.x] === ' ') {
-          gameGrid[m.to.y][m.to.x] = ' ';
-          gameGrid[m.from.y][m.from.x] = m.sym;
-        }
+    for (const mv of moves) {
+      // tolerant zurücksetzen – kein strenger Symbolvergleich nötig
+      // Zielzelle leeren, wenn dort noch das Mob-Symbol steht
+      if (gameGrid[mv.to.y][mv.to.x] === mv.sym) {
+        gameGrid[mv.to.y][mv.to.x] = ' ';
       }
-      renderGame();
-    }, 250);
-  }
+      // Ursprungszelle nur überschreiben, wenn sie frei ist
+      if (gameGrid[mv.from.y][mv.from.x] === ' ') {
+        gameGrid[mv.from.y][mv.from.x] = mv.sym;
+      }
+    }
+    renderGame();
+  }, 220);
 }
+
+
 function getCaughtMessage(worldName = (typeof currentWorld !== 'undefined' ? currentWorld : '')) {
   const base = (typeof t === 'function') ? t('caught.base') : 'Du wurdest erwischt!';
   const tip  = (typeof t === 'function')
@@ -625,6 +627,7 @@ function generateRandomWorld() {
   initGameGridEmpty();
   hasPlayerMoved = false;
   hasPreMoveWiggled = false;
+  preWiggleToken++; // alte Wiggle-Rückläufer entwerten
   // Timer stoppen, aber NICHTS starten
   try { clearInterval(animInterval); } catch(e){}
   try { clearInterval(mobInterval); } catch(e){}
@@ -818,6 +821,7 @@ function moveMonster() {
 function resetToOriginalGrid() {
   hasPlayerMoved = false;
   hasPreMoveWiggled = false;
+  preWiggleToken++; // laufende Wiggles sauber abbrechen
   try { clearInterval(animInterval); } catch(e){}
   try { clearInterval(mobInterval); } catch(e){}
   gameOver = false;
