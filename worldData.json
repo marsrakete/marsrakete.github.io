@@ -6525,5 +6525,42 @@
 				"🌀"
 			]
 		}
+	},
+	"minesweeper": {
+		"title": "Minesweeper",
+		"description": "Setz die Flaggen und meide die Minen! Blinke-Detonatoren, schlurfende Monster und nervöse Anzeigen.",
+		"symbols": [
+			"🟦",
+			"🟩",
+			"🟥",
+			"⬛",
+			"💣",
+			"🧨",
+			"🧮",
+			"⛔",
+			"❓"
+		],
+		"rare": [
+			"👾",
+			"🧟",
+			"🕷️",
+			"💥",
+			"🧯"
+		],
+		"bottom": [
+			"🧮",
+			"⏳"
+		],
+		"player": "⛏️",
+		"target": "🚩",
+		"animate": {
+			"🧨": "💥",
+			"🚩": "🎯"
+		},
+		"mobs": [
+			"👾",
+			"🧟",
+			"🕷️"
+		]
 	}
 }
