@@ -56,7 +56,10 @@
 		"alertPermalinkError": "Fehler beim Laden des Permalinks:",
 		"alertNoPermalink": "Kein Permalink vorhanden",
 		"searchPlaceholder": "Welten suchen …",
-		"searchNoResults": "Keine passenden Welten gefunden."
+		"searchNoResults": "Keine passenden Welten gefunden.",
+	    "caught.base": "Du wurdest erwischt!",
+	    "caught.tip.generic": "Tipp: Beweglichen Gegnern ausweichen.",
+	    "caught.tip.minesweeper": "Tipp: Flaggen finden/setzen und beweglichen Gegnern ausweichen."		
 	},
 	"en": {
 		"gameTitle": "World Generator",
@@ -115,6 +118,9 @@
 		"alertPermalinkError": "Error loading permalink:",
 		"alertNoPermalink": "No permalink present",
 		"searchPlaceholder": "Search worlds …",
-		"searchNoResults": "No matching worlds found."
+		"searchNoResults": "No matching worlds found.",
+		"caught.base": "You got caught!",
+		"caught.tip.generic": "Tip: avoid moving enemies.",
+		"caught.tip.minesweeper": "Tip: place/find flags and avoid moving enemies."
 	}
 }
