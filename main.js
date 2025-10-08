@@ -20,6 +20,7 @@ let monsterX = -1, monsterY = -1;
 let animInterval = null;
 let mobInterval = null;
 let mobPositions = []; // {x,y,sym}
+let hasPlayerMoved = false;
 
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
@@ -525,14 +526,17 @@ function generateRandomWorld() {
   gameOver = false;
   // Timer zurücksetzen
   if (timerInterval) clearInterval(timerInterval);
-    timerInterval = null;
-    timerStart = null;
-    foundCount = 0;
-    playerJustSpawned = true;
+  timerInterval = null;
+  timerStart = null;
+  foundCount = 0;
+  playerJustSpawned = true;
     
-    const w = worldData[currentWorld];
-    initGameGridEmpty();
-
+  const w = worldData[currentWorld];
+  initGameGridEmpty();
+  hasPlayerMoved = false;
+  clearInterval(animInterval);
+  clearInterval(mobInterval);    
+    
   // Pool aus normalen und seltenen Symbolen
   const symbolPool = [...w.symbols, ...w.rare];
 
@@ -639,6 +643,12 @@ function generateRandomWorld() {
 }
 
 function movePlayer(dx,dy) {
+  if (!hasPlayerMoved) {
+    hasPlayerMoved = true;
+    startSymbolAnimation();
+    collectMobPositions();
+    startMobMovement();
+  }    
   if (gameOver) return; // ✅ Blockiert alle Bewegungen nach Spielende
   if (playerJustSpawned) {
     playerJustSpawned = false;
@@ -732,7 +742,10 @@ function resetToOriginalGrid() {
   }));
   document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
-  playerJustSpawned = true;    
+  playerJustSpawned = true;
+  hasPlayerMoved = false;
+  clearInterval(animInterval);
+  clearInterval(mobInterval);    
   renderGame();
 }
 
