@@ -21,6 +21,7 @@ let animInterval = null;
 let mobInterval = null;
 let mobPositions = []; // {x,y,sym}
 let hasPlayerMoved = false;
+let hasPreMoveWiggled = false; 
 
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
@@ -64,6 +65,71 @@ function updateLangButtonLabel() {
 }
 
 /* Animationen */
+function preStartMobWiggle() {
+  // nur einmal pro Weltstart
+  if (hasPreMoveWiggled) return;
+  hasPreMoveWiggled = true;
+
+  const w = worldData[currentWorld];
+  if (!w || !w.mobs || !w.mobs.length) return;
+
+  const mobSet = new Set(w.mobs);
+  const playerSym = w.player;
+  const targetSym = w.target;
+  const moves = []; // gemachte Schritte, um sie zurückzunehmen
+
+  // alle aktuellen Mobs im Grid finden
+  const found = [];
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      if (mobSet.has(gameGrid[y][x])) found.push({x, y, sym: gameGrid[y][x]});
+    }
+  }
+  if (!found.length) return;
+
+  // für jeden Mob genau 1 möglichen Nachbar-Schritt suchen
+  for (const mob of found) {
+    const dirs = [[1,0],[-1,0],[0,1],[0,-1]].sort(() => Math.random() - 0.5);
+    let moved = false;
+    for (const [dx, dy] of dirs) {
+      const nx = mob.x + dx, ny = mob.y + dy;
+      if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) continue;
+      const cell = gameGrid[ny][nx];
+
+      // nur in freie Zellen, NICHT auf Spieler/Target/Objekte
+      if (cell === ' ' /* frei */) {
+        // Schritt ausführen
+        gameGrid[mob.y][mob.x] = ' ';
+        gameGrid[ny][nx] = mob.sym;
+        moves.push({from:{x:mob.x,y:mob.y}, to:{x:nx,y:ny}, sym:mob.sym});
+        moved = true;
+        break;
+      }
+      // Optional: nicht auf Spieler/Target – falls du „frei“ anders definierst
+      if (cell === playerSym || cell === targetSym) continue;
+    }
+  }
+
+  if (moves.length) {
+    renderGame();
+
+    // kurze Verzögerung, dann zurück
+    setTimeout(() => {
+      // Wenn Spieler inzwischen losgelaufen ist, NICHT mehr zurückschnappen,
+      // um Ruckler zu vermeiden.
+      if (hasPlayerMoved) return;
+
+      for (const m of moves) {
+        // nur zurücksetzen, wenn die Zelle noch das Mob-Symbol trägt
+        if (gameGrid[m.to.y][m.to.x] === m.sym && gameGrid[m.from.y][m.from.x] === ' ') {
+          gameGrid[m.to.y][m.to.x] = ' ';
+          gameGrid[m.from.y][m.from.x] = m.sym;
+        }
+      }
+      renderGame();
+    }, 250);
+  }
+}
 function getCaughtMessage(worldName = (typeof currentWorld !== 'undefined' ? currentWorld : '')) {
   const base = (typeof t === 'function') ? t('caught.base') : 'Du wurdest erwischt!';
   const tip  = (typeof t === 'function')
@@ -558,6 +624,7 @@ function generateRandomWorld() {
   const w = worldData[currentWorld];
   initGameGridEmpty();
   hasPlayerMoved = false;
+  hasPreMoveWiggled = false;
   // Timer stoppen, aber NICHTS starten
   try { clearInterval(animInterval); } catch(e){}
   try { clearInterval(mobInterval); } catch(e){}
@@ -624,6 +691,8 @@ function generateRandomWorld() {
 
   // Anzeige aktualisieren
   renderGame();
+  // Einmaliger „Wiggle“ vor dem ersten Spielzug:
+  preStartMobWiggle();
   updateGameInfo();
   document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
@@ -748,6 +817,7 @@ function moveMonster() {
 
 function resetToOriginalGrid() {
   hasPlayerMoved = false;
+  hasPreMoveWiggled = false;
   try { clearInterval(animInterval); } catch(e){}
   try { clearInterval(mobInterval); } catch(e){}
   gameOver = false;
