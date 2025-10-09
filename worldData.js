@@ -117,7 +117,6 @@ function validateWorldData(data) {
     if (duplicates.size > 0) {
       issues.push(`🔁 ${key}: doppelte Symbole gefunden: ${[...duplicates].join(', ')}`);
     }
-  }
 
       // --- Check: mobs dürfen nicht identisch zu anderen Welt-Symbolen sein ---
     (function(){
@@ -146,6 +145,7 @@ function validateWorldData(data) {
         }
       }
     })();
+  }
 
   if (issues.length > 0) {
     console.warn("⚠️ Symbolprüfung abgeschlossen. Probleme gefunden:\n" + issues.join('\n'));
