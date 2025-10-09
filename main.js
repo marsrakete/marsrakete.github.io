@@ -696,16 +696,23 @@ function generateRandomWorld() {
   timerStart = null;
   foundCount = 0;
   playerJustSpawned = true;
+  hasPlayerMoved = false;
     
   const w = worldData[currentWorld];
-  initGameGridEmpty();
-  stopPreWiggle();          // alte Reste stoppen  
-  buildPreWigglePairs();    // Paare für diese Welt bilden
-  renderGame();
-  startPreWiggle();         // kontinuierlich vor dem Start pendeln
   // Timer stoppen, aber NICHTS starten
   try { clearInterval(animInterval); } catch(e){}
   try { clearInterval(mobInterval); } catch(e){}
+
+  initGameGridEmpty();
+  stopPreWiggle();          // alte Reste stoppen  
+  renderGame();
+  
+  // Nur im Spielmodus pre-wiggeln
+  const inGame = (typeof currentMode !== 'undefined') ? (currentMode === 'game') : true;
+  if (inGame) {
+    buildPreWigglePairs();
+    startPreWiggle();  // <-- DAS ist der fehlende Aufruf in vielen Setups
+  }
     
   // Pool aus normalen und seltenen Symbolen
   const symbolPool = [...w.symbols, ...w.rare];
@@ -775,10 +782,6 @@ function generateRandomWorld() {
   document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
 
-  // laufende Timer abbrechen (Falls vorherige Welt animiert/Monster hatte)
-  clearInterval(animInterval);
-  clearInterval(mobInterval);
-   
   // Ursprungszustand speichern
   originalGrid = gameGrid.map(row => row.slice());
 
@@ -914,9 +917,7 @@ function resetToOriginalGrid() {
   document.getElementById('foundCount').innerText = t('foundCount') + ' 0';
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
   playerJustSpawned = true;
-  hasPlayerMoved = false;
-  clearInterval(animInterval);
-  clearInterval(mobInterval);    
+
   renderGame();
 }
 
