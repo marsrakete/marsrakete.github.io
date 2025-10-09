@@ -704,16 +704,8 @@ function generateRandomWorld() {
   try { clearInterval(mobInterval); } catch(e){}
 
   initGameGridEmpty();
-  stopPreWiggle();          // alte Reste stoppen  
   renderGame();
   
-  // Nur im Spielmodus pre-wiggeln
-  const inGame = (typeof currentMode !== 'undefined') ? (currentMode === 'game') : true;
-  if (inGame) {
-    buildPreWigglePairs();
-    startPreWiggle();  // <-- DAS ist der fehlende Aufruf in vielen Setups
-  }
-    
   // Pool aus normalen und seltenen Symbolen
   const symbolPool = [...w.symbols, ...w.rare];
 
@@ -810,6 +802,14 @@ function generateRandomWorld() {
   clearOffGridComets(); 
   clearCometIntervals();
   launchOffGridComets();
+
+  // Pre-Start-Wiggle jetzt starten – Grid ist vollständig inkl. Mobs/Monster.
+  if (typeof stopPreWiggle === 'function') stopPreWiggle();
+  if (typeof buildPreWigglePairs === 'function') buildPreWigglePairs();
+  if (typeof mode !== 'undefined' ? (mode === 'game') : true) {
+    if (typeof startPreWiggle === 'function') startPreWiggle();
+  }
+
 }
 
 function movePlayer(dx,dy) {
@@ -1429,4 +1429,3 @@ window.addEventListener('load', async ()=>{
     clearCometIntervals();
     if (animationsEnabled) launchOffGridComets();
 });
-
