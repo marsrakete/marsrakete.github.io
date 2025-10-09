@@ -119,6 +119,34 @@ function validateWorldData(data) {
     }
   }
 
+      // --- Check: mobs dürfen nicht identisch zu anderen Welt-Symbolen sein ---
+    (function(){
+      const toArr = v => Array.isArray(v) ? v : (v ? [v] : []);
+      const worldSet = new Set();
+      for (const s of (world.symbols || [])) worldSet.add(s);
+      for (const s of (world.rare || []))    worldSet.add(s);
+      for (const s of (world.bottom || []))  worldSet.add(s);
+      if (world.player) worldSet.add(world.player);
+      if (world.target) worldSet.add(world.target);
+      // 'monster' ist ebenfalls ein reserviertes Symbol
+      for (const s of toArr(world.monster)) worldSet.add(s);
+
+      const mobs = toArr(world.mobs);
+      if (mobs.length) {
+        const conflicts = [];
+        const seen = new Set();
+        for (const m of mobs) {
+          if (typeof m !== 'string') continue;
+          if (seen.has(m)) continue;
+          seen.add(m);
+          if (worldSet.has(m)) conflicts.push(m);
+        }
+        if (conflicts.length) {
+          (typeof issue!=='undefined'?issue:issues).push(`🚫 ${key}: mobs kollidieren mit Welt-Symbolen: ${conflicts.join(', ')}`);
+        }
+      }
+    })();
+
   if (issues.length > 0) {
     console.warn("⚠️ Symbolprüfung abgeschlossen. Probleme gefunden:\n" + issues.join('\n'));
   } else {
