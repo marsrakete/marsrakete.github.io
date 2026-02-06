@@ -3170,47 +3170,72 @@
   },
   "kitchen": {
     "symbols": [
+      "🧑‍🍳",
       "🍳",
-      "🍽️",
       "🔪",
-      "🥄",
+      "🧅",
+      "🧄",
+      "🍅",
+      "🥕",
+      "🫑",
+      "🥔",
+      "🧂",
+      "🧈",
+      "🧀",
+      "🥩",
+      "🐟",
+      "🍝",
+      "🥗",
+      "🥘",
+      "🍲",
+      "🫕",
+      "🍳",
+      "🔥",
+      "📋",
+      "⏲️",
+      "🧽",
+      "🧼",
+      "🗑️",
+      "🫧",
       "🥣",
       "🍞",
-      "🍔",
-      "🍟",
-      "🍕",
-      "🥗",
-      "🍰",
-      "🍲"
+      "🍽️"
     ],
     "rare": [
-      "🥘",
-      "🧂",
-      "🍱",
-      "🥓",
-      "🍇"
+      "🍣",
+      "🍰",
+      "🥑",
+      "🍤",
+      "🍋"
     ],
-    "bottom": [],
+    "bottom": [
+      "🧽",
+      "🗑️"
+    ],
     "player": "🧑‍🍳",
-    "target": "🍲",
-    "description": "Eine geschäftige Küche voller Utensilien, Lebensmitteln und leckerer Gerichte",
+    "target": "🥘",
+    "description": "Kochen zwischen Chaos, Hitze und Hunger.",
     "title": "Küche",
     "title_en": "Kitchen",
-    "description_en": "A busy kitchen full of utensils, food and delicious dishes",
+    "description_en": "Cooking between chaos, heat and hunger.",
     "animation": {
-      "animate-swing": [
-        "🍇"
+      "animate-glow": [
+        "🔥"
       ],
-      "animate-flicker": [
-        "🍳"
+      "animate-float": [
+        "🫧"
       ],
-      "animate-shake": [
-        "🦈"
+      "animate-spin": [
+        "🍳",
+        "⏲️"
+      ],
+      "animate-blink": [
+        "📋"
       ]
     },
-    "monster": "🦈",
+    "monster": "🔥",
     "mobs": [
-      "🦈"
+      "🧼"
     ]
   },
   "klimawandel": {
@@ -7451,72 +7476,6 @@
     "monster": "⏰",
     "mobs": [
       "📱"
-    ]
-  },
-  "kueche": {
-    "symbols": [
-      "🧑‍🍳",
-      "🍳",
-      "🔪",
-      "🧅",
-      "🧄",
-      "🍅",
-      "🥕",
-      "🫑",
-      "🥔",
-      "🧂",
-      "🧈",
-      "🧀",
-      "🥩",
-      "🐟",
-      "🍝",
-      "🥗",
-      "🥘",
-      "🍲",
-      "🫕",
-      "🔥",
-      "📋",
-      "🧽",
-      "🧼",
-      "🗑️",
-      "🫧",
-      "⏲️"
-    ],
-    "rare": [
-      "🍣",
-      "🍰",
-      "🥑",
-      "🍤",
-      "🍋"
-    ],
-    "bottom": [
-      "🧽",
-      "🗑️"
-    ],
-    "player": "🧑‍🍳",
-    "target": "🥘",
-    "description": "Kochen zwischen Chaos, Hitze und Hunger.",
-    "title": "Küche",
-    "title_en": "Kitchen",
-    "description_en": "Cooking between chaos, heat and hunger.",
-    "animation": {
-      "animate-glow": [
-        "🔥"
-      ],
-      "animate-float": [
-        "🫧"
-      ],
-      "animate-spin": [
-        "🍳",
-        "⏲️"
-      ],
-      "animate-blink": [
-        "📋"
-      ]
-    },
-    "monster": "🔥",
-    "mobs": [
-      "🧼"
     ]
   },
   "dating": {
