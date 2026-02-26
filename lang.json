@@ -4,7 +4,7 @@
 		"foundTargets": "Gefundene Ziele: {count}",
 		"foundCount": "Gefundene Ziele: {count}",
 		"game_title": "Weltengenerator",
-		"caught.monster": "Du wurdest vom Monster erwischt!"		
+		"caught.monster": "Du wurdest vom Monster erwischt!",		
 		"time": "Zeit: {seconds} s",
 		"btnNewGame": "Spiel zufällig neu generieren",
 		"btnCopyText": "Als Text kopieren",
@@ -69,7 +69,7 @@
 		"foundTargets": "Found targets: {count}",
 		"foundCount": "Found targets: {count}",
 		"game_title": "World Generator",
-		"caught.monster": "You got caught by the monster!"
+		"caught.monster": "You got caught by the monster!",
 		"time": "Time: {seconds} s",
 		"btnNewGame": "Generate random game",
 		"btnCopyText": "Copy as text",
