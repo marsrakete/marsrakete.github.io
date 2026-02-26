@@ -107,7 +107,7 @@ function updateUIText() {
 
     // --- SPIELMODUS ---
     // Headline
-    if (document.getElementById('gameInfo')) document.getElementById('gameInfo').innerText = t('game_title');
+    if (document.getElementById('gameInfo')) document.getElementById('gameInfo').innerText = t('gameTitle');
     // Buttons
     if (document.getElementById('toggleModeGame')) document.getElementById('toggleModeGame').innerText = t('btnSwitchMode');
     if (document.getElementById('newRandomGame')) document.getElementById('newRandomGame').innerText = t('btnNewGame');
@@ -124,7 +124,7 @@ function updateUIText() {
 
     // Zeit & Ziele in Statusleiste (werden dynamisch ergänzt, aber für Initialanzeige sinnvoll)
     if (document.getElementById('timerDisplay')) document.getElementById('timerDisplay').innerText = t('time', {seconds: 0});
-    if (document.getElementById('foundCount')) document.getElementById('foundCount').innerText = t('foundCount', {count: 0});
+    if (document.getElementById('foundCount')) document.getElementById('foundCount').innerText = t('foundTargets', {count: 0});
 
     // Hinweistext unter Steuerfeld
     if (document.getElementById('swipeHint')) {
