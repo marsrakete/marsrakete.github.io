@@ -7688,59 +7688,30 @@
       "🟣",
       "⚪",
       "⚫",
-      "🔴",
-      "🟥",
-      "🟧",
-      "🟨",
-      "🟩",
-      "🟦",
-      "🟪",
-      "🟫",
-      "🔘",
-      "⭕",
-      "🔶"
+      "🔴"
     ],
     "rare": [
-      "✨",
-      "💫",
-      "💠",
-      "🔮",
-      "🌈"
     ],
     "bottom": [
-      "⚙️",
-      "🎛️"
     ],
     "player": "🟣",
-    "target": "🎯",
+    "target": "⭕",
     "description": "Ein pulsierendes Farbenfeld aus Kreisen und Glanzpunkten – alles blinkt, leuchtet und rotiert.",
     "title": "Motivonen",
     "title_en": "Motivons",
     "description_en": "A pulsing field of colors made of circles and shiny dots — everything blinks, glows, and spins.",
     "animation": {
-      "animate-glow": [
-        "✨",
-        "💫",
-        "💠",
-        "🎯"
-      ],
       "animate-float": [
         "⭕",
-        "🔮",
         "🔵",
         "🟣"
-      ],
-      "animate-spin": [
-        "🔘",
-        "🌈"
       ],
       "animate-blink": [
         "👁️"
       ]
     },
-    "monster": "👁️",
+    "monster": "⭕",
     "mobs": [
-      "🫧",
       "🧿"
     ]
   }
