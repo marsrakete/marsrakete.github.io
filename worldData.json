@@ -7679,20 +7679,16 @@
     ]
   },
   "motivonen": {
-    "title_de": "Motivonen",
-    "title_en": "Motivons",
-    "description_de": "Ein vibrierendes Farblabor aus Kreisen, Punkten und Glanz – alles pulsiert, blinkt und rotiert im Takt.",
-    "description_en": "A vibrant color lab of circles, dots, and shine — everything pulses, blinks, and spins in rhythm.",
     "symbols": [
-      "🔴",
+      "🟤",
       "🟠",
       "🟡",
       "🟢",
       "🔵",
       "🟣",
-      "🟤",
-      "⚫",
       "⚪",
+      "⚫",
+      "🔴",
       "🟥",
       "🟧",
       "🟨",
@@ -7702,8 +7698,7 @@
       "🟫",
       "🔘",
       "⭕",
-      "🔶",
-      "🔷"
+      "🔶"
     ],
     "rare": [
       "✨",
@@ -7717,96 +7712,36 @@
       "🎛️"
     ],
     "player": "🟣",
-    "animations": {
-      "player": {
-        "idle": [
-          "🟣",
-          "🟪",
-          "🟣",
-          "🟪"
-        ],
-        "move": [
-          "🟣",
-          "🔵",
-          "🟣",
-          "🟦",
-          "🟣"
-        ],
-        "dash": [
-          "🟣",
-          "💫",
-          "🟣",
-          "✨",
-          "🟣"
-        ],
-        "hurt": [
-          "🟣",
-          "⚪",
-          "🟣",
-          "⚫",
-          "🟣"
-        ],
-        "win": [
-          "🟣",
-          "✨",
-          "💠",
-          "✨",
-          "🟣"
-        ]
-      },
-      "tiles": {
-        "pulse": [
-          "⚪",
-          "🟡",
-          "⚪",
-          "🟠",
-          "⚪",
-          "🟢",
-          "⚪",
-          "🔵",
-          "⚪",
-          "🟣"
-        ],
-        "blink": [
-          "🟤",
-          "⚪",
-          "🟤",
-          "⚫",
-          "🟤"
-        ],
-        "orbit": [
-          "🔴",
-          "🟠",
-          "🟡",
-          "🟢",
-          "🔵",
-          "🟣",
-          "🟤"
-        ]
-      },
-      "rare": {
-        "sparkle": [
-          "✨",
-          "💫",
-          "✨",
-          "💠",
-          "✨"
-        ],
-        "prism": [
-          "🌈",
-          "💠",
-          "🌈",
-          "✨",
-          "🌈"
-        ],
-        "warp": [
-          "🔮",
-          "🌀",
-          "🔮",
-          "💫",
-          "🔮"
-        ]
-      }
-    }
+    "target": "🎯",
+    "description": "Ein pulsierendes Farbenfeld aus Kreisen und Glanzpunkten – alles blinkt, leuchtet und rotiert.",
+    "title": "Motivonen",
+    "title_en": "Motivons",
+    "description_en": "A pulsing field of colors made of circles and shiny dots — everything blinks, glows, and spins.",
+    "animation": {
+      "animate-glow": [
+        "✨",
+        "💫",
+        "💠",
+        "🎯"
+      ],
+      "animate-float": [
+        "⭕",
+        "🔮",
+        "🔵",
+        "🟣"
+      ],
+      "animate-spin": [
+        "🔘",
+        "🌈"
+      ],
+      "animate-blink": [
+        "👁️"
+      ]
+    },
+    "monster": "👁️",
+    "mobs": [
+      "🫧",
+      "🧿"
+    ]
   }
 }
