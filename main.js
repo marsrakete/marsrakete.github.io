@@ -771,7 +771,7 @@ function generateRandomWorld() {
   // Einmaliger „Wiggle“ vor dem ersten Spielzug:
   // preStartMobWiggle();
   updateGameInfo();
-  document.getElementById('foundCount').innerText = t('foundTargets') + ' 0';
+  document.getElementById('foundCount').innerText = t('foundTargets', { count: 0 });
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
 
   // Ursprungszustand speichern
@@ -914,7 +914,7 @@ function resetToOriginalGrid() {
   gameGrid.forEach((row, ry) => row.forEach((c, cx) => {
     if (c === w.player) { playerX = cx; playerY = ry; }
   }));
-  document.getElementById('foundCount').innerText = t('foundTargets') + ' 0';
+  document.getElementById('foundCount').innerText = t('foundTargets', { count: 0 });
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
   playerJustSpawned = true;
 
@@ -1270,7 +1270,7 @@ function applyGridFromPermalink(res) {
   updateGameInfo();
   updatePlayerTargetInfo();
   populateWorldGallery();
-  document.getElementById('foundCount').innerText = t('foundTargets') + ' 0';
+  document.getElementById('foundCount').innerText = t('foundTargets', { count: 0 });
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
 }
 
