@@ -7690,10 +7690,8 @@
       "⚫",
       "🔴"
     ],
-    "rare": [
-    ],
-    "bottom": [
-    ],
+    "rare": [],
+    "bottom": [],
     "player": "🟣",
     "target": "⭕",
     "description": "Ein pulsierendes Farbenfeld aus Kreisen und Glanzpunkten – alles blinkt, leuchtet und rotiert.",
@@ -7713,6 +7711,195 @@
     "monster": "⭕",
     "mobs": [
       "🧿"
+    ]
+  },
+  "tee_trinken": {
+    "symbols": [
+      "🍵",
+      "🫖",
+      "🍯",
+      "🍋",
+      "🫚",
+      "🌿",
+      "🍃",
+      "🌱",
+      "💧",
+      "🔥",
+      "🕯️",
+      "🥄",
+      "🧊",
+      "🍪",
+      "🫗",
+      "🥛",
+      "🧁",
+      "🧺",
+      "🪵"
+    ],
+    "rare": [
+      "✨",
+      "💫",
+      "🪷",
+      "🌙",
+      "🌸"
+    ],
+    "bottom": [
+      "🧺",
+      "🪵"
+    ],
+    "player": "🍵",
+    "target": "🫖",
+    "description": "Ein ruhiges Tee-Ritual: Kräuter, Honig, Zitrone – und überall warmer Dampf.",
+    "title": "Tee-Trinken",
+    "title_en": "Tea Time",
+    "description_en": "A calm tea ritual: herbs, honey, lemon — and warm steam everywhere.",
+    "animation": {
+      "animate-glow": [
+        "🔥",
+        "🕯️",
+        "✨"
+      ],
+      "animate-float": [
+        "💧",
+        "🍃",
+        "🌿",
+        "💫"
+      ],
+      "animate-spin": [
+        "🥄",
+        "🧊"
+      ],
+      "animate-blink": [
+        "🫖"
+      ]
+    },
+    "monster": "🪰",
+    "mobs": [
+      "🐝"
+    ]
+  },
+  "schnupfen": {
+    "symbols": [
+      "🤧",
+      "👃",
+      "🧻",
+      "🗑️",
+      "🧼",
+      "🫧",
+      "💧",
+      "🛌",
+      "🧦",
+      "🧣",
+      "🍯",
+      "🍋",
+      "🫚",
+      "🍵",
+      "🫖",
+      "🍲",
+      "💤",
+      "🌬️",
+      "🪟"
+    ],
+    "rare": [
+      "✨",
+      "💫",
+      "🌿",
+      "🕯️",
+      "🌙"
+    ],
+    "bottom": [
+      "🗑️",
+      "🧺"
+    ],
+    "player": "🤧",
+    "target": "🧻",
+    "description": "Taschentücher, Tee und Ruhe: Der Schnupfen soll sich verziehen.",
+    "title": "Schnupfen",
+    "title_en": "Sniffles",
+    "description_en": "Tissues, tea, and rest: time for the sniffles to leave.",
+    "animation": {
+      "animate-float": [
+        "💧",
+        "🫧",
+        "💤",
+        "🌬️"
+      ],
+      "animate-wiggle": [
+        "👃",
+        "🤧"
+      ],
+      "animate-glow": [
+        "🕯️",
+        "✨"
+      ],
+      "animate-blink": [
+        "🧻"
+      ]
+    },
+    "monster": "🦠",
+    "mobs": [
+      "🪰"
+    ]
+  },
+  "krankenhaus": {
+    "symbols": [
+      "🏥",
+      "🚑",
+      "🛏️",
+      "🛗",
+      "🚪",
+      "🛎️",
+      "📋",
+      "🗂️",
+      "🧼",
+      "🫧",
+      "🧴",
+      "🧽",
+      "🧹",
+      "🧯",
+      "⚡️",
+      "🔦",
+      "🖥️",
+      "📡",
+      "🔋"
+    ],
+    "rare": [
+      "✨",
+      "💫",
+      "🔬",
+      "🧪",
+      "🚨"
+    ],
+    "bottom": [
+      "🚪",
+      "🧹"
+    ],
+    "player": "🚑",
+    "target": "🏥",
+    "description": "Ein hektischer Klinik-Korridor: Türen, Aufzüge, Lichtsignale – alles in Bewegung.",
+    "title": "Krankenhaus",
+    "title_en": "Hospital",
+    "description_en": "A hectic hospital corridor: doors, elevators, signal lights — everything in motion.",
+    "animation": {
+      "animate-glow": [
+        "⚡️",
+        "🔦",
+        "✨"
+      ],
+      "animate-pulse": [
+        "🏥",
+        "🔋"
+      ],
+      "animate-spin": [
+        "📡",
+        "🖥️"
+      ],
+      "animate-blink": [
+        "🚨"
+      ]
+    },
+    "monster": "🚨",
+    "mobs": [
+      "🦠"
     ]
   }
 }
