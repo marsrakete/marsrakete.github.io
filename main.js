@@ -16,6 +16,7 @@ let animationsEnabled = true;
 let cometIntervals = [];
 
 let monsterX = -1, monsterY = -1;
+let monsterDirection = { dx: 1, dy: 0 };
 
 let animInterval = null;
 let mobInterval = null;
@@ -28,6 +29,77 @@ let preWigglePairs = [];           // NEU: [{from:{x,y}, to:{x,y}, sym, atTo:fal
 
 let maxSymbolsSlider = document.getElementById('maxSymbolsSlider');
 let maxSymbolsValue = document.getElementById('maxSymbolsValue');
+const CARDINAL_DIRECTIONS = [
+  { dx: 1, dy: 0 },
+  { dx: 0, dy: 1 },
+  { dx: -1, dy: 0 },
+  { dx: 0, dy: -1 }
+];
+
+function getMonsterBehavior(world = worldData?.[currentWorld]) {
+  const behavior = world?.monsterBehavior;
+  return ['chase', 'patrol', 'wander'].includes(behavior) ? behavior : 'chase';
+}
+
+function getRandomDirection() {
+  return CARDINAL_DIRECTIONS[Math.floor(Math.random() * CARDINAL_DIRECTIONS.length)];
+}
+
+function getDirectionIndex(dir) {
+  return CARDINAL_DIRECTIONS.findIndex(d => d.dx === dir.dx && d.dy === dir.dy);
+}
+
+function getPatrolDirections() {
+  const startIndex = getDirectionIndex(monsterDirection);
+  const baseIndex = startIndex >= 0 ? startIndex : 0;
+  const order = [0, 1, 3, 2];
+  return order.map(offset => CARDINAL_DIRECTIONS[(baseIndex + offset) % CARDINAL_DIRECTIONS.length]);
+}
+
+function getWanderDirections() {
+  const dirs = CARDINAL_DIRECTIONS.slice();
+  for (let i = dirs.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [dirs[i], dirs[j]] = [dirs[j], dirs[i]];
+  }
+  return dirs;
+}
+
+function getChaseDirections() {
+  const deltaX = playerX - monsterX;
+  const deltaY = playerY - monsterY;
+  const preferred = [];
+
+  if (Math.abs(deltaX) >= Math.abs(deltaY)) {
+    if (deltaX !== 0) preferred.push({ dx: Math.sign(deltaX), dy: 0 });
+    if (deltaY !== 0) preferred.push({ dx: 0, dy: Math.sign(deltaY) });
+  } else {
+    if (deltaY !== 0) preferred.push({ dx: 0, dy: Math.sign(deltaY) });
+    if (deltaX !== 0) preferred.push({ dx: Math.sign(deltaX), dy: 0 });
+  }
+
+  for (const dir of CARDINAL_DIRECTIONS) {
+    if (!preferred.some(p => p.dx === dir.dx && p.dy === dir.dy)) {
+      preferred.push(dir);
+    }
+  }
+  return preferred;
+}
+
+function canMonsterEnter(nx, ny) {
+  if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) return false;
+  if (nx === playerX && ny === playerY) return true;
+  return gameGrid[ny][nx] === ' ';
+}
+
+function moveMonsterTo(nx, ny, monsterSymbol) {
+  if (!canMonsterEnter(nx, ny)) return false;
+  gameGrid[monsterY][monsterX] = ' ';
+  monsterX = nx;
+  monsterY = ny;
+  gameGrid[monsterY][monsterX] = monsterSymbol;
+  return true;
+}
 
 // Berechne die maximale Symbolzahl: (cols * rows) - 25%
 function updateMaxSymbolsSlider() {
@@ -288,7 +360,6 @@ function startMobMovement() {
         clearInterval(mobInterval);
         clearInterval(animInterval);
         handlePlayerCaught();
-        resetToOriginalGrid();
         return;
       }
 
@@ -655,8 +726,28 @@ function initGameGridEmpty() {
   }
 }
 function updateZoom(value) {
-  document.getElementById("gameOutput").style.fontSize = value + "em";
-  document.getElementById("zoomPercentage").innerText = Math.round(value * 100) + "%";
+  const zoomValue = parseFloat(value);
+  document.getElementById("zoomPercentage").innerText = Math.round(zoomValue * 100) + "%";
+  applyResponsiveGameScale(zoomValue);
+}
+
+function applyResponsiveGameScale(baseZoom = parseFloat(document.getElementById("zoomSlider")?.value || 2)) {
+  const gameOutput = document.getElementById("gameOutput");
+  if (!gameOutput) return;
+  const wrapper = gameOutput.parentElement;
+  if (!wrapper) return;
+
+  const wrapperWidth = Math.max(280, wrapper.clientWidth);
+  const styles = window.getComputedStyle(gameOutput);
+  const paddingX = parseFloat(styles.paddingLeft) + parseFloat(styles.paddingRight);
+  const borderX = parseFloat(styles.borderLeftWidth) + parseFloat(styles.borderRightWidth);
+  const gap = parseFloat(styles.columnGap || styles.gap || 1);
+  const usableWidth = Math.max(180, wrapperWidth - paddingX - borderX);
+  const maxCellSize = (usableWidth - (gap * (cols - 1))) / cols;
+  const zoomFactor = Math.min(baseZoom / 2, 1);
+  const cellSize = Math.max(8, maxCellSize * zoomFactor);
+
+  gameOutput.style.setProperty("--game-cell-size", `${cellSize}px`);
 }
 
 function renderGame() {
@@ -697,6 +788,9 @@ function generateRandomWorld() {
   foundCount = 0;
   playerJustSpawned = true;
   hasPlayerMoved = false;
+  monsterX = -1;
+  monsterY = -1;
+  monsterDirection = getRandomDirection();
     
   const w = worldData[currentWorld];
   // Timer stoppen, aber NICHTS starten
@@ -774,9 +868,6 @@ function generateRandomWorld() {
   document.getElementById('foundCount').innerText = t('foundTargets', { count: 0 });
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
 
-  // Ursprungszustand speichern
-  originalGrid = gameGrid.map(row => row.slice());
-
   if (!canPlayerReachAllTargets()) {
     // Optional: max. 30 Versuche, sonst lockere die Platzierung!
     for (let tries = 0; tries < 30; tries++) {
@@ -799,6 +890,10 @@ function generateRandomWorld() {
     monsterY = my;
     gameGrid[my][mx] = monsterSymbol;
   } 
+
+  // Ursprungszustand speichern, nachdem auch Monster platziert wurden.
+  originalGrid = gameGrid.map(row => row.slice());
+
   clearOffGridComets(); 
   clearCometIntervals();
   launchOffGridComets();
@@ -869,31 +964,31 @@ function movePlayer(dx,dy) {
 
 function moveMonster() {
   const w = worldData[currentWorld];
-  if (!w.monster) return;
+  if (!w.monster || monsterX < 0 || monsterY < 0) return;
 
-  const dx = Math.sign(playerX - monsterX);
-  const dy = Math.sign(playerY - monsterY);
+  const behavior = getMonsterBehavior(w);
+  let directions = getChaseDirections();
+  if (behavior === 'patrol') directions = getPatrolDirections();
+  if (behavior === 'wander') directions = getWanderDirections();
 
-  const newX = monsterX + dx;
-  const newY = monsterY + dy;
-
-  if (
-    newX >= 0 && newX < cols &&
-    newY >= 0 && newY < rows &&
-    gameGrid[newY][newX] === ' '
-  ) {
-    gameGrid[monsterY][monsterX] = ' ';
-    monsterX = newX;
-    monsterY = newY;
-    gameGrid[monsterY][monsterX] = w.monster;
+  let moved = false;
+  for (const dir of directions) {
+    const newX = monsterX + dir.dx;
+    const newY = monsterY + dir.dy;
+    if (!moveMonsterTo(newX, newY, w.monster)) continue;
+    monsterDirection = dir;
+    moved = true;
+    break;
   }
 
-  // Prüfen, ob der Spieler gefangen wurde
   if (monsterX === playerX && monsterY === playerY) {
-    gameOver = true;
-    clearInterval(timerInterval);
+    playPowSound();
     handlePlayerCaught();
-    showDialogToast(`${t('caught.monster')} 😱`, () => { resetToOriginalGrid(); });
+    return;
+  }
+
+  if (moved) {
+    renderGame();
   }
 }
 
@@ -911,8 +1006,14 @@ function resetToOriginalGrid() {
   foundCount = 0;
   timerStart = null;
   playerX = 0; playerY = 0;
+  monsterX = -1; monsterY = -1;
+  monsterDirection = getRandomDirection();
   gameGrid.forEach((row, ry) => row.forEach((c, cx) => {
     if (c === w.player) { playerX = cx; playerY = ry; }
+    if (w.monster && c === w.monster && monsterX === -1 && monsterY === -1) {
+      monsterX = cx;
+      monsterY = ry;
+    }
   }));
   document.getElementById('foundCount').innerText = t('foundTargets', { count: 0 });
   document.getElementById('timerDisplay').innerText = t('timerDisplay') + ' 0 s';
@@ -1283,11 +1384,13 @@ document.getElementById('langSwitchBtn').addEventListener('click', () => {
 
 // Responsive
 window.addEventListener('orientationchange', () => {
-  // Bei Wechsel von Portrait ↔ Landscape Schriftgröße ggf. neu setzen
-  if (window.innerWidth < 800) {
-    const zoomSlider = document.getElementById("zoomSlider");
-    updateZoom(zoomSlider.value); // Schriftgröße neu anwenden
-  }
+  const zoomSlider = document.getElementById("zoomSlider");
+  if (zoomSlider) updateZoom(zoomSlider.value);
+});
+
+window.addEventListener('resize', () => {
+  const zoomSlider = document.getElementById("zoomSlider");
+  if (zoomSlider) applyResponsiveGameScale(parseFloat(zoomSlider.value));
 });
 
 document.getElementById('toggleAnimationsBtn').addEventListener('click', () => {

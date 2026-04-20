@@ -9,6 +9,97 @@ body {
   padding-bottom: 4em; /* Platz für Buttons am unteren Rand */
 }
 
+#gameContainer {
+  width: min(1100px, 100%);
+  margin: 32px auto 0;
+}
+
+#playPanel {
+  position: sticky;
+  top: 16px;
+  background: transparent;
+  border: none;
+  border-radius: 24px;
+  padding: 0;
+  box-shadow: none;
+  z-index: 20;
+  text-align: left;
+}
+
+#gameStage {
+  position: relative;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 45%),
+    linear-gradient(180deg, rgba(28, 28, 28, 0.96), rgba(14, 14, 14, 0.98));
+  border: 1px solid #2b2b2b;
+  border-radius: 26px;
+  padding: 74px 12px 14px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.34);
+  overflow: hidden;
+}
+
+#gameHud {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: grid;
+  gap: 8px;
+  z-index: 5;
+}
+
+#worldPanel {
+  position: relative;
+  margin-top: -14px;
+  padding-top: 30px;
+  z-index: 1;
+}
+
+#worldPanelInner {
+  background: linear-gradient(180deg, rgba(24, 24, 24, 0.96), rgba(14, 14, 14, 0.98));
+  border: 1px solid #262626;
+  border-radius: 0 0 24px 24px;
+  padding: 28px 18px 22px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.26);
+}
+
+#gameInfo,
+#statusLine,
+#swipeHint,
+#gameActions,
+#worldCount,
+#worldSearch {
+  text-align: center;
+}
+
+#gameInfo,
+#statusLine {
+  background: rgba(8, 8, 8, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+#gameInfo {
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+#statusLine {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+}
+
+#gameActions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
 button {
   margin: 10px 5px;
   padding: 5px 10px;
@@ -173,23 +264,33 @@ input[type="radio"]:checked + .world-chip {
 
 /* Spielmodus: Raster als CSS-Grid */
 #gameOutput {
+  --game-cell-size: 18px;
+  --game-grid-gap: 1px;
+  --game-grid-padding: 8px;
   display: grid;
-  grid-template-columns: repeat(30, 2ch);
-  grid-template-rows: repeat(10, 2ch);
-  gap: 1px;
+  grid-template-columns: repeat(30, var(--game-cell-size));
+  grid-template-rows: repeat(10, var(--game-cell-size));
+  gap: var(--game-grid-gap);
   background: black;
-  padding: 10px;
-  border: 1px solid white;
-  margin: 10px auto;
-  font-size: 2em;
-  line-height: 1.2em;
-  width: fit-content;
+  padding: var(--game-grid-padding);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  margin: 0 auto;
+  font-size: calc(var(--game-cell-size) * 0.72);
+  line-height: 1;
+  width: calc(
+    (var(--game-cell-size) * 30) +
+    (var(--game-grid-gap) * 29) +
+    (var(--game-grid-padding) * 2)
+  );
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Scale grid font size to fit on narrow screens */
 @media (max-width: 1920px) {
   #gameOutput {
-    font-size: calc(100vw / 60);
+    max-width: 100%;
   }
 }
 /* Animationen */
@@ -373,29 +474,56 @@ input[type="radio"]:checked + .world-chip {
       vertical-align: top;
       /* Kein Rahmen im Spielmodus */
     }
+    #gameOutput .cell {
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1 / 1;
+      line-height: 1;
+    }
     /* Rahmen in Editorzellen */
     #editorOutput .cell { border: 1px solid white; }
 
     /* Steuer-Buttons */
 #virtualButtons {
-  position: static;      /* vorher: fixed; jetzt im normalen Flow */
-  width: 100%;           /* volle Breite unter dem Spielfeld */
-  background: rgba(0, 0, 0, 0.8);
-  padding: 5px 0;
-  display: flex;
+  position: static;
+  width: fit-content;
+  background: rgba(8, 8, 8, 0.76);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 6px 10px;
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  grid-template-areas:
+    ". up ."
+    "left . right"
+    ". down .";
   justify-content: center;
-  margin-top: 12px;      /* Abstand zum Spielfeld */
-  z-index: 1000;         /* kann ggf. entfallen */
+  align-items: center;
+  margin: 10px auto 0;
+  z-index: 1000;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(10px);
 }
 
 /* Die Button-Stile bleiben erhalten */
 #virtualButtons button {
-  width: 3em;
-  height: 3em;
-  font-size: 1.2em;
-  margin: 5px;
+  width: 2.8em;
+  height: 2.8em;
+  font-size: 1.05em;
+  margin: 3px;
   touch-action: manipulation;
+  border-radius: 12px;
+  background: #202020;
+  border: 1px solid #3a3a3a;
 }
+
+#virtualButtons .dir-up { grid-area: up; }
+#virtualButtons .dir-left { grid-area: left; }
+#virtualButtons .dir-right { grid-area: right; }
+#virtualButtons .dir-down { grid-area: down; }
 
 .symbol-empty {
   opacity: 0.5;
@@ -453,21 +581,22 @@ input[type="radio"]:checked + .world-chip {
 /* Grid für Galerie */
 #worldGallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .world-card {
   background: #1e1e1e;
   border: 2px solid #333;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 14px;
+  padding: 12px 10px;
   cursor: pointer;
   text-align: center;
-  transition: 0.2s;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   position: relative;
   user-select: none; /* 👈 verhindert Textauswahl */
+  min-height: 84px;
 }
 
 .world-card:hover {
@@ -569,12 +698,12 @@ input[type="radio"]:checked + .world-chip {
 
 /* World search */
 #worldSearch {
-  margin-top: 10px;
+  margin-top: 12px;
   display: flex;
   justify-content: center;
 }
 #worldSearchInput {
-  width: min(640px, 90vw);
+  width: min(100%, 420px);
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid #444;
@@ -587,6 +716,109 @@ input[type="radio"]:checked + .world-chip {
 #worldSearchInput:focus {
   border-color: #0d6efd;
   box-shadow: 0 0 8px #0d6efd66;
+}
+
+#swipeHint {
+  font-size: 0.82rem;
+  color: #b8b8b8;
+  margin-top: 8px;
+}
+
+@media (max-width: 980px) {
+  #playPanel {
+    position: static;
+  }
+
+  #worldPanelInner,
+  #gameStage {
+    border-radius: 18px;
+    padding: 16px 14px;
+  }
+
+  #gameStage {
+    padding-top: 92px;
+  }
+
+  #gameHud {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    gap: 6px;
+  }
+
+  #gameInfo {
+    font-size: 0.88rem;
+    padding: 8px 10px;
+  }
+
+  #statusLine {
+    font-size: 0.82rem;
+    padding: 7px 10px;
+  }
+
+  #worldPanel {
+    margin-top: 14px;
+    padding-top: 0;
+  }
+
+  #worldPanelInner {
+    border-radius: 18px;
+    padding-top: 16px;
+  }
+
+  #worldGallery {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 980px) and (orientation: landscape) {
+  body {
+    padding: 10px;
+    padding-bottom: 2em;
+  }
+
+  #gameContainer {
+    margin-top: 8px;
+  }
+
+  #gameStage {
+    padding: 70px 8px 8px;
+  }
+
+  #gameInfo {
+    font-size: 0.8rem;
+    padding: 6px 8px;
+  }
+
+  #statusLine {
+    font-size: 0.76rem;
+    padding: 6px 8px;
+  }
+
+  #gameOutput {
+    padding: 6px;
+  }
+
+  #virtualButtons {
+    margin-top: 6px;
+    padding: 4px 8px;
+  }
+
+  #virtualButtons button {
+    width: 2.2em;
+    height: 2.2em;
+    font-size: 0.92em;
+    margin: 2px;
+  }
+
+  #gameActions {
+    display: none;
+  }
+
+  #swipeHint {
+    font-size: 0.75rem;
+    margin-top: 6px;
+  }
 }
 
 
@@ -714,5 +946,3 @@ input[type="radio"]:checked + .world-chip {
   from { text-shadow: 0 0 0.05em rgba(255,255,255,0.15); }
   to   { text-shadow: 0 0 0.35em rgba(255,255,255,0.35); }
 }
-
-

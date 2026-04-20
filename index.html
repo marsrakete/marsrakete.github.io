@@ -53,44 +53,54 @@
   <div id="dialog-toast" class="toast dialog" style="display: none;"></div>
   <!-- Spielcontainer -->
   <div id="gameContainer">
-    <!-- h1>Spielmodus</h1 -->
-    <div id="cometOverlay"></div>
-    <div id="gameInfo"></div>
-    <div id="statusLine">
-      <span id="timerDisplay">Zeit: 0 s</span> |
-      <span id="foundCount">Gefundene Ziele: 0</span>
-    </div>
-    <div class="overlay-wrapper" style="position: relative;">
-      <div id="gameOutput"> ... </div>
-    </div>
-    <div id="virtualButtons">
-      <button onclick="movePlayer(0,-1)">↑</button><br>
-      <button onclick="movePlayer(-1,0)">←</button>
-      <button onclick="movePlayer(1,0)">→</button><br>
-      <button onclick="movePlayer(0,1)">↓</button>
-    </div>
-    <div id="swipeHint" style="font-size: 0.9em; color: #ccc; margin-top: 10px;">
-      👉 Tipp: Wische über das Spielfeld zum Bewegen!
-    </div>
-    <button id="toggleModeGame" class="button-chip">Zum Editor</button>
-    <button id="newRandomGame" class="button-chip">Spiel zufällig neu generieren</button>
-    <button id="generateGameAltText" class="button-chip">ALT Text generieren</button>
-    <button id="copyGameGraphic" class="button-chip" style="display:none">Als Grafik kopieren</button>
-    <button id="copyGameText" class="button-chip">Als Text kopieren</button>
-    <button id="generateGamePermalink" class="button-chip"></button>
-    <button id="shareGamePermalink" class="button-chip"></button>
-    <button id="postToBsky" class="button-chip">Auf BlueSky posten</button>
-    <hr>
-    <div id="worldCount"></div>
-    <div id="worldSearch">
-      <input id="worldSearchInput"
-       type="search"
-       autocomplete="off"
-       autocapitalize="off"
-       spellcheck="false"
-       placeholder="…">
-    </div>
-    <div id="worldGallery"></div>    
+    <section id="playPanel">
+      <div id="gameStage">
+        <div id="cometOverlay"></div>
+        <div id="gameHud">
+          <div id="gameInfo"></div>
+          <div id="statusLine">
+            <span id="timerDisplay">Zeit: 0 s</span> |
+            <span id="foundCount">Gefundene Ziele: 0</span>
+          </div>
+        </div>
+        <div class="overlay-wrapper" style="position: relative;">
+          <div id="gameOutput"> ... </div>
+        </div>
+        <div id="virtualButtons">
+          <button class="dir-up" onclick="movePlayer(0,-1)">↑</button>
+          <button class="dir-left" onclick="movePlayer(-1,0)">←</button>
+          <button class="dir-right" onclick="movePlayer(1,0)">→</button>
+          <button class="dir-down" onclick="movePlayer(0,1)">↓</button>
+        </div>
+      </div>
+      <div id="swipeHint">
+        👉 Tipp: Wische über das Spielfeld zum Bewegen!
+      </div>
+      <div id="gameActions">
+        <button id="toggleModeGame" class="button-chip">Zum Editor</button>
+        <button id="newRandomGame" class="button-chip">Spiel zufällig neu generieren</button>
+        <button id="generateGameAltText" class="button-chip">ALT Text generieren</button>
+        <button id="copyGameGraphic" class="button-chip" style="display:none">Als Grafik kopieren</button>
+        <button id="copyGameText" class="button-chip">Als Text kopieren</button>
+        <button id="generateGamePermalink" class="button-chip"></button>
+        <button id="shareGamePermalink" class="button-chip"></button>
+        <button id="postToBsky" class="button-chip">Auf BlueSky posten</button>
+      </div>
+    </section>
+    <section id="worldPanel">
+      <div id="worldPanelInner">
+        <div id="worldCount"></div>
+        <div id="worldSearch">
+          <input id="worldSearchInput"
+           type="search"
+           autocomplete="off"
+           autocapitalize="off"
+           spellcheck="false"
+           placeholder="…">
+        </div>
+        <div id="worldGallery"></div>
+      </div>
+    </section>
   </div>
 
   <!-- Editorcontainer -->
