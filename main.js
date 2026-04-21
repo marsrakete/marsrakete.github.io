@@ -704,13 +704,12 @@ function highlightButton(containerId, selected) {
 
 function updateGameInfo() {
   const w = worldData[currentWorld];
-  if (lang == 'en') {
-    document.getElementById('gameInfo').innerText =
-    `You control ${w.player} and must find ${w.target}. ${w.description_en}`;
-  } else {
-    document.getElementById('gameInfo').innerText =
-    `Du steuerst ${w.player} und musst ${w.target} finden. ${w.description}`;
-  }
+  const title = lang === 'en' ? (w.title_en || w.title || currentWorld) : (w.title || currentWorld);
+  const objective = lang === 'en'
+    ? `Find ${w.target} as ${w.player}`
+    : `Finde ${w.target} als ${w.player}`;
+  document.getElementById('gameInfo').innerHTML =
+    `<strong>${title}</strong><span class="hud-sep"> · </span><span>${objective}</span>`;
 }
 
 function initGameGridEmpty() {

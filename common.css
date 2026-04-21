@@ -83,8 +83,16 @@ body {
 
 #gameInfo {
   padding: 10px 14px;
-  font-size: 0.95rem;
-  line-height: 1.35;
+  font-size: 0.92rem;
+  line-height: 1.2;
+}
+
+#gameInfo strong {
+  font-size: 0.98em;
+}
+
+.hud-sep {
+  opacity: 0.55;
 }
 
 #statusLine {
@@ -98,6 +106,45 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
+  align-items: center;
+}
+
+#gameMore {
+  position: relative;
+}
+
+#gameMore summary {
+  list-style: none;
+}
+
+#gameMore summary::-webkit-details-marker {
+  display: none;
+}
+
+#gameMore[open] > summary {
+  background: #333;
+  border-color: #666;
+}
+
+.more-actions {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  background: rgba(12, 12, 12, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(12px);
+  z-index: 30;
+}
+
+.more-actions .button-chip {
+  width: 100%;
+  margin: 0;
 }
 
 button {
@@ -255,6 +302,42 @@ input[type="radio"]:checked + .world-chip {
 
 .dropdown button:hover {
   background: #333;
+}
+
+.utility-tray {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  gap: 8px;
+}
+
+.utility-tray label {
+  font-size: 0.76rem;
+  color: #bcbcbc;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  padding: 0 4px;
+}
+
+.utility-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.utility-row input[type="range"] {
+  width: 100%;
+  margin: 0;
+}
+
+.utility-row span {
+  min-width: 42px;
+  text-align: right;
+  font-size: 0.84rem;
+  color: #f2f2f2;
 }
 
 .hidden {
@@ -747,7 +830,7 @@ input[type="radio"]:checked + .world-chip {
   }
 
   #gameInfo {
-    font-size: 0.88rem;
+    font-size: 0.84rem;
     padding: 8px 10px;
   }
 
@@ -769,6 +852,12 @@ input[type="radio"]:checked + .world-chip {
   #worldGallery {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
+
+  .more-actions {
+    right: 50%;
+    transform: translateX(50%);
+    min-width: min(260px, calc(100vw - 48px));
+  }
 }
 
 @media (max-width: 980px) and (orientation: landscape) {
@@ -786,7 +875,7 @@ input[type="radio"]:checked + .world-chip {
   }
 
   #gameInfo {
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     padding: 6px 8px;
   }
 

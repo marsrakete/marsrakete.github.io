@@ -30,20 +30,23 @@
   
 </head>
 <body>
-  <!-- Zoom-Slider -->
-  <div class="slider-group">
-    <label for="zoomSlider">Zoom</label>
-    <input type="range" id="zoomSlider" min="1" max="3" step="0.1" value="2" oninput="updateZoom(this.value)">
-    <span id="zoomPercentage">200%</span>
-    <label for="maxSymbolsSlider"> | Symbols</label>
-    <input type="range" id="maxSymbolsSlider" min="10" max="100" value="50">
-    <span id="maxSymbolsValue">50</span>    
-  </div>
   <div id="settingsMenu" class="settings-container">
     <button id="settingsToggleBtn" title="Einstellungen">⚙️</button>
     <div id="settingsDropdown" class="dropdown hidden">
       <button id="toggleAnimationsBtn">✨ Animationen</button>
       <button id="langSwitchBtn">🌐 Sprache: DE</button>
+      <div class="utility-tray">
+        <label for="zoomSlider">Zoom</label>
+        <div class="utility-row">
+          <input type="range" id="zoomSlider" min="1" max="3" step="0.1" value="2" oninput="updateZoom(this.value)">
+          <span id="zoomPercentage">200%</span>
+        </div>
+        <label for="maxSymbolsSlider">Symbole</label>
+        <div class="utility-row">
+          <input type="range" id="maxSymbolsSlider" min="10" max="100" value="50">
+          <span id="maxSymbolsValue">50</span>
+        </div>
+      </div>
     </div>
   </div>
   <!-- Normale Status-Toasts (unten) -->
@@ -78,13 +81,18 @@
       </div>
       <div id="gameActions">
         <button id="toggleModeGame" class="button-chip">Zum Editor</button>
-        <button id="newRandomGame" class="button-chip">Spiel zufällig neu generieren</button>
-        <button id="generateGameAltText" class="button-chip">ALT Text generieren</button>
-        <button id="copyGameGraphic" class="button-chip" style="display:none">Als Grafik kopieren</button>
-        <button id="copyGameText" class="button-chip">Als Text kopieren</button>
-        <button id="generateGamePermalink" class="button-chip"></button>
-        <button id="shareGamePermalink" class="button-chip"></button>
-        <button id="postToBsky" class="button-chip">Auf BlueSky posten</button>
+        <button id="newRandomGame" class="button-chip">Neu</button>
+        <details id="gameMore">
+          <summary class="button-chip">Mehr</summary>
+          <div class="more-actions">
+            <button id="generateGameAltText" class="button-chip">ALT Text generieren</button>
+            <button id="copyGameGraphic" class="button-chip" style="display:none">Als Grafik kopieren</button>
+            <button id="copyGameText" class="button-chip">Als Text kopieren</button>
+            <button id="generateGamePermalink" class="button-chip"></button>
+            <button id="shareGamePermalink" class="button-chip"></button>
+            <button id="postToBsky" class="button-chip">Auf BlueSky posten</button>
+          </div>
+        </details>
       </div>
     </section>
     <section id="worldPanel">
