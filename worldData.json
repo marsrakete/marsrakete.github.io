@@ -8085,5 +8085,74 @@
     "mobs": [
       "🦠"
     ]
+  },
+  "uebebiene": {
+    "title": "Übe-Biene",
+    "title_en": "Practice Bee",
+    "description": "Eine musikalische Welt voller summender Töne, fliegender Noten und leuchtender Klaviere. Die kleine Übe-Biene muss ihren Weg durch das Musikchaos finden.",
+    "description_en": "A musical world full of buzzing sounds, floating notes and glowing pianos. The little practice bee must find its way through the musical chaos.",
+    "symbols": [
+      "🎵",
+      "🎶",
+      "🎼",
+      "🎹",
+      "🎧",
+      "🎤",
+      "🎷",
+      "🎺",
+      "🥁",
+      "📻",
+      "🔊",
+      "🎚️",
+      "🪈",
+      "📖"
+    ],
+    "rare": [
+      "🕷️",
+      "🦇",
+      "📢",
+      "🐞",
+      "🎛️",
+      "🎙️"
+    ],
+    "bottom": [
+      "🎹",
+      "🎼",
+      "🎵"
+    ],
+    "player": "🐝",
+    "target": "🎹",
+    "monster": "🕷️",
+    "animation": {
+      "animate-wiggle": [
+        "🐝"
+      ],
+      "animate-float": [
+        "🎵",
+        "🎶",
+        "🎼"
+      ],
+      "animate-pulse": [
+        "🎹"
+      ],
+      "animate-glow": [
+        "🔊",
+        "🎧",
+        "🎚️"
+      ],
+      "animate-shake": [
+        "🕷️",
+        "📢"
+      ],
+      "animate-swing": [
+        "🦇"
+      ],
+      "animate-bounce": [
+        "🥁"
+      ],
+      "animate-spin": [
+        "🎛️"
+      ]
+    }
   }
 }
