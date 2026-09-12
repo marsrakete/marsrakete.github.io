@@ -1,0 +1,13 @@
+{
+  "source": "icons/weltgenerator-og.svg",
+  "render": {
+    "width": 1200,
+    "height": 630,
+    "loadSystemFonts": true,
+    "background": "#101219"
+  },
+  "outputs": [
+    { "format": "png", "path": "icons/weltgenerator-og.png" },
+    { "format": "jpeg", "path": "og-image.jpg", "quality": 92 }
+  ]
+}

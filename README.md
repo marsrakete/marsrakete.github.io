@@ -43,6 +43,27 @@ npx serve .
 
 ## 📦 Project Structure
 
+### Open Graph image
+
+The editable source is `icons/weltgenerator-og.svg` (1200 × 630). Its reusable
+SVG templates use `defs` / `use` and contain vector artwork without external images.
+The build is copied from Threadline: Resvg renders the SVG to PNG, checks the
+dimensions with Sharp, and exports a JPEG at quality 92.
+
+```bash
+npm ci
+npm run build:og-image
+npm run check
+```
+
+`config/og-image.config.json` defines the source, dimensions and outputs:
+`icons/weltgenerator-og.png` and `og-image.jpg`. Commit both generated images
+after changing the SVG. `index.html` references the absolute JPEG URL in the
+Open Graph and Twitter Card metadata, with dimensions and alternative text.
+GitHub Pages serves the generated files; Node.js is only needed for rebuilding.
+Text uses locally installed Arial (with Helvetica / sans-serif fallbacks), so
+font rendering can differ between build machines. Review the PNG after rebuilding.
+
 | File              | Purpose                                                             |
 |------------------|---------------------------------------------------------------------|
 | `index.html`     | Main HTML entry point                                               |

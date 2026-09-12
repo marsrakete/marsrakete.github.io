@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Weltgenerator – Kleine Welten. Große Abenteuer.</title>
+  <desc id="description">Ein farbiges Weltenraster mit Rakete, Planeten, Sternen, Bäumen und Blumen auf dunklem Hintergrund. Emoji-Welten entdecken, spielen und selbst gestalten.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1">
+      <stop stop-color="#101219"/>
+      <stop offset="1" stop-color="#1e1d35"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop stop-color="#6753af" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#6753af" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="planet" x2="1" y2="1">
+      <stop stop-color="#ffe2a6"/>
+      <stop offset="1" stop-color="#e68a71"/>
+    </linearGradient>
+    <!-- Reusable SVG templates: symbols are instantiated with use. -->
+    <g id="tile">
+      <rect width="86" height="86" rx="21" fill="#26273d" stroke="#41415b"/>
+    </g>
+    <g id="star">
+      <path d="M43 17 50 34 69 36 54 49 58 68 43 58 27 68 31 49 17 36 36 34Z" fill="#ffe39a"/>
+      <path d="m43 24 4 13 14 2" fill="none" stroke="#fff4d4" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <g id="earth">
+      <circle cx="43" cy="43" r="27" fill="#7bbcef"/>
+      <path d="m24 25 16-8 8 9-7 9-13-1-5 12-7-3 2-10ZM54 34l13 5 2 11-10 14-12 5-4-14 6-8Z" fill="#7be0b4"/>
+      <path d="M24 48c5 12 19 19 32 13" fill="none" stroke="#4a86c5" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <g id="saturn">
+      <circle cx="43" cy="42" r="22" fill="url(#planet)"/>
+      <ellipse cx="43" cy="43" rx="35" ry="10" transform="rotate(-26 43 43)" fill="none" stroke="#e9c7ff" stroke-width="5"/>
+      <path d="M28 29a22 22 0 0 1 35 11" fill="none" stroke="#ffe0a9" stroke-width="5"/>
+    </g>
+    <g id="tree">
+      <path d="M43 49v23" stroke="#d9aa7c" stroke-width="7" stroke-linecap="round"/>
+      <path d="m43 13 18 24H51l17 23H18l17-23H25Z" fill="#87ddbb"/>
+      <path d="m43 24 8 11M43 43l10 12" stroke="#bff4cf" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <g id="flower">
+      <path d="M43 43v29M43 64Q23 66 25 53q13-2 18 11" fill="#8ce0b5" stroke="#8ce0b5" stroke-width="4" stroke-linejoin="round"/>
+      <g fill="#f6a6c9">
+        <circle cx="43" cy="23" r="12"/><circle cx="59" cy="35" r="12"/>
+        <circle cx="53" cy="52" r="12"/><circle cx="33" cy="52" r="12"/><circle cx="27" cy="35" r="12"/>
+      </g>
+      <circle cx="43" cy="38" r="10" fill="#ffe49b"/>
+    </g>
+    <g id="moon">
+      <path d="M55 17a28 28 0 1 0 14 43A29 29 0 0 1 55 17Z" fill="#c4bbff"/>
+      <path d="m62 24 3 7 8 2-8 3-3 7-3-7-7-3 7-2Z" fill="#ffe49b"/>
+    </g>
+    <g id="mountain">
+      <path d="m10 67 24-42 13 23 10-17 21 36Z" fill="#aaabef"/>
+      <path d="m34 25 10 18-10-4-9 3ZM57 31l9 15-9-4-7 2Z" fill="#edf2ff"/>
+      <path d="M10 70h68" stroke="#8ce0b5" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <g id="rocket">
+      <path d="m32 53-13 3 4-19 15-6M47 54l-2 14 18-7 3-17" fill="#c3b3ff"/>
+      <path d="M29 48Q34 21 68 17q2 31-26 42Z" fill="#f0efff"/>
+      <path d="M54 20q7-3 14-3 0 9-3 15Z" fill="#9b89ef"/>
+      <circle cx="50" cy="36" r="8" fill="#80d9d0" stroke="#242b48" stroke-width="3"/>
+      <path d="m27 56-9 14 15-8" fill="#ffcf85"/>
+    </g>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <ellipse cx="947" cy="280" rx="460" ry="450" fill="url(#glow)"/>
+  <g fill="none" stroke="#a4a0e9" stroke-opacity=".12">
+    <circle cx="945" cy="300" r="275"/><circle cx="945" cy="300" r="345"/>
+  </g>
+  <g fill="#b9b3e9" opacity=".65">
+    <circle cx="565" cy="89" r="2"/><circle cx="1094" cy="63" r="3"/>
+    <circle cx="1144" cy="478" r="2"/><circle cx="587" cy="468" r="3"/>
+    <circle cx="686" cy="550" r="2"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="64" y="65" width="40" height="40" rx="12" fill="#b7f0d2"/>
+    <g fill="#182b2b">
+      <rect x="74" y="75" width="8" height="8" rx="2"/><rect x="86" y="75" width="8" height="8" rx="2"/>
+      <rect x="74" y="87" width="8" height="8" rx="2"/><rect x="86" y="87" width="8" height="8" rx="2"/>
+    </g>
+    <text x="118" y="93" fill="#f0f1fb" font-size="27" font-weight="700">Weltgenerator</text>
+    <text x="64" y="197" fill="#b7f0d2" font-size="16" font-weight="700" letter-spacing="3">DEIN KLEINES UNIVERSUM</text>
+    <g font-size="62" font-weight="700" letter-spacing="-2">
+      <text x="60" y="275" fill="#f6f3ff">Kleine Welten.</text>
+      <text x="60" y="348" fill="#c4b5ff">Große Abenteuer.</text>
+    </g>
+    <g fill="#c0bfd1" font-size="23">
+      <text x="64" y="404">Entdecke bunte Emoji-Welten.</text>
+      <text x="64" y="439">Spiele los. Gestalte deine eigenen.</text>
+    </g>
+    <rect x="64" y="483" width="233" height="46" rx="23" fill="#b7f0d2"/>
+    <text x="87" y="513" fill="#18302b" font-size="18" font-weight="700">Eine Welt. Ein Klick.</text>
+    <text x="64" y="584" fill="#9594ad" font-size="17" letter-spacing="1">marsrakete.github.io</text>
+    <text x="1119" y="584" text-anchor="end" fill="#a9a5be" font-size="15" letter-spacing="2">ENTDECKEN / SPIELEN / GESTALTEN</text>
+  </g>
+  <g transform="translate(686 116) rotate(7 193 193)">
+    <rect x="-18" y="-18" width="424" height="424" rx="39" fill="#080c16" fill-opacity=".5" stroke="#55516f"/>
+    <g><use xlink:href="#tile"/><use xlink:href="#saturn"/></g>
+    <g transform="translate(100)"><use xlink:href="#tile"/><use xlink:href="#star"/></g>
+    <g transform="translate(200)"><use xlink:href="#tile"/><use xlink:href="#moon"/></g>
+    <g transform="translate(300)"><use xlink:href="#tile"/><use xlink:href="#earth"/></g>
+    <g transform="translate(0 100)"><use xlink:href="#tile"/><use xlink:href="#moon"/></g>
+    <g transform="translate(100 100)">
+      <rect width="86" height="86" rx="21" fill="#3c3960" stroke="#c1b0ff" stroke-width="2"/>
+      <use xlink:href="#rocket"/>
+    </g>
+    <g transform="translate(200 100)"><use xlink:href="#tile"/><use xlink:href="#star"/></g>
+    <g transform="translate(300 100)"><use xlink:href="#tile"/><use xlink:href="#saturn"/></g>
+    <g transform="translate(0 200)"><use xlink:href="#tile"/><use xlink:href="#flower"/></g>
+    <g transform="translate(100 200)"><use xlink:href="#tile"/><use xlink:href="#earth"/></g>
+    <g transform="translate(200 200)"><use xlink:href="#tile"/><use xlink:href="#tree"/></g>
+    <g transform="translate(300 200)"><use xlink:href="#tile"/><use xlink:href="#star"/></g>
+    <g transform="translate(0 300)"><use xlink:href="#tile"/><use xlink:href="#tree"/></g>
+    <g transform="translate(100 300)"><use xlink:href="#tile"/><use xlink:href="#mountain"/></g>
+    <g transform="translate(200 300)"><use xlink:href="#tile"/><use xlink:href="#flower"/></g>
+    <g transform="translate(300 300)"><use xlink:href="#tile"/><use xlink:href="#tree"/></g>
+  </g>
+</svg>

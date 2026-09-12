@@ -1,0 +1,13 @@
+{
+  "name": "weltgenerator",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:og-image": "node scripts/build-og-images.js",
+    "check": "node --check scripts/build-og-images.js && node --check main.js && node --check common.js && node --check worldData.js"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "sharp": "^0.35.2"
+  }
+}
